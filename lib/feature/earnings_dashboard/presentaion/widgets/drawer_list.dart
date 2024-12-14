@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
 
 import '../../../../core/Utils/routes/routes.dart';
-import '../../../../core/Utils/text.dart';
+import '../../../APP/custom_widgets/custom_text.dart';
 import 'drawer_item.dart';
 
 class DrawerList extends StatelessWidget {

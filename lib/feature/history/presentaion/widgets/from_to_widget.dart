@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
-import '../../../../core/Utils/text.dart';
+import '../../../APP/custom_widgets/custom_text.dart';
 
 
 class FromToWidget extends StatelessWidget {

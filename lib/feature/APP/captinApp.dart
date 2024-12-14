@@ -12,6 +12,8 @@ import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localizat
 import 'package:taxi_go_driver/settings/Localization/Model/localizationmodel.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import '../../core/Utils/localization/cubit/local_cubit.dart';
+
 class Captinapp extends StatelessWidget {
   const Captinapp({super.key});
 
@@ -32,7 +34,19 @@ class Captinapp extends StatelessWidget {
         DeviceOrientation.landscapeRight,
       ]);
     }
-
+    return  LayoutBuilder(
+        builder: (context, constraints) => ScreenUtilInit(
+        designSize: constraints.maxWidth >= 600
+        ? const Size(200, 912)
+        : constraints.maxWidth < 390
+    ? const Size(490, 912)
+        : const Size(390, 844),
+    ensureScreenSize: true,
+    minTextAdapt: true,
+    builder: (context, child) => BlocProvider(
+    create: (context) => LocalCubit(),
+    child: BlocBuilder<LocalCubit, LocalState>(
+    builder: (context, state) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -46,43 +60,44 @@ class Captinapp extends StatelessWidget {
           if (langState is ChangeLanguage) {
             locale = Locale(langState.languageCode!);
           }
-          return ScreenUtilInit(
-            designSize: const Size(393, 852),
-            minTextAdapt: true,
-            child: MaterialApp(
-              builder: DevicePreview.appBuilder,
-              title: 'Taxi Go Driver',
-              initialRoute: Routes.splashScreenRoute,
-              onGenerateRoute: RouteGenerator.getRoute,
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                scaffoldBackgroundColor: AppColors.kWhite,
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: AppColors.kblue,
-                ),
-                useMaterial3: true,
+          return MaterialApp(
+          locale: LocalCubit.get(context).localization,
+    builder: DevicePreview.appBuilder,
+            title: 'Taxi Go Driver',
+            initialRoute: Routes.splashScreenRoute,
+            onGenerateRoute: RouteGenerator.getRoute,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              scaffoldBackgroundColor: AppColors.kWhite,
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: AppColors.kblue,
               ),
-              locale: locale,
-              supportedLocales: S.delegate.supportedLocales,
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              localeResolutionCallback: (deviceLocale, supportedLocales) {
-                for (var locale in supportedLocales) {
-                  if (deviceLocale != null &&
-                      deviceLocale.languageCode == locale.languageCode) {
-                    return deviceLocale;
-                  }
-                }
-                return supportedLocales.first;
-              },
+              useMaterial3: true,
             ),
+            supportedLocales: S.delegate.supportedLocales,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            localeResolutionCallback: (deviceLocale, supportedLocales) {
+              for (var locale in supportedLocales) {
+                if (deviceLocale != null &&
+                    deviceLocale.languageCode == locale.languageCode) {
+                  return deviceLocale;
+                }
+              }
+              return supportedLocales.first;
+            },
           );
         },
       ),
+    );
+  }
+    ),
+    ),
+    ),
     );
   }
 }

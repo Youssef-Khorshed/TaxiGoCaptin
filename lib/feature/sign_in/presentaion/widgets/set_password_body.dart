@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/Utils/Custom_button.dart';
-import '../../../../core/Utils/password_field.dart';
 import '../../../../core/Utils/routes/routes.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
-import '../../../../core/Utils/text.dart';
+import '../../../APP/custom_widgets/custom_Button.dart';
+import '../../../APP/custom_widgets/custom_PasswordField.dart';
+import '../../../APP/custom_widgets/custom_text.dart';
 
 class SetPasswordBody extends StatelessWidget {
   SetPasswordBody({super.key});

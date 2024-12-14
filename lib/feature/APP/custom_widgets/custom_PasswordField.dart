@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_driver/core/Utils/validation_mixins.dart';
 
 import 'custom_text_field.dart';
+import 'custom_validation_mixins.dart';
 typedef Validator = String? Function(String?);
 
 class PasswordField extends StatefulWidget {

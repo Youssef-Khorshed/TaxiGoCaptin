@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:taxi_go_driver/widgets/custom_back_arrow.dart';
 
 import '../core/Utils/colors/colors.dart';
-import '../core/Utils/text.dart';
+import '../feature/APP/custom_widgets/custom_text.dart';
 
 class DefaultAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

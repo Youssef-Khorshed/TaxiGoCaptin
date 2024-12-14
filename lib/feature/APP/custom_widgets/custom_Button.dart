@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
-import 'colors/colors.dart';
+import '../../../core/Utils/colors/colors.dart';
+
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.onPressed, required this.text});

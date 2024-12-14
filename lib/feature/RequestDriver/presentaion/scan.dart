@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import '../../../core/Utils/Custom_button.dart';
+import '../../APP/custom_widgets/custom_Button.dart';
+
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});

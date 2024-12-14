@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/Utils/colors/colors.dart';
 import '../../core/Utils/routes/routes.dart';
-import '../../core/Utils/text.dart';
+import '../APP/custom_widgets/custom_text.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const String routeName = 'WelcomeScreen';

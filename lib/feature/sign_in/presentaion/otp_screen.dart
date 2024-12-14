@@ -4,9 +4,9 @@ import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/otp_field.dar
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 
 
-import '../../../core/Utils/Custom_button.dart';
 import '../../../core/Utils/colors/colors.dart';
 import '../../../core/Utils/routes/routes.dart';
+import '../../APP/custom_widgets/custom_Button.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
