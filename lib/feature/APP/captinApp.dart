@@ -5,15 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
-import 'package:taxi_go_driver/core/Utils/generated/l10n.dart';
 import 'package:taxi_go_driver/core/Utils/routes/route_generator.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
 import 'package:taxi_go_driver/settings/Localization/Model/localizationmodel.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../core/Utils/localization/cubit/local_cubit.dart';
-
 class Captinapp extends StatelessWidget {
   const Captinapp({super.key});
 
@@ -61,6 +59,9 @@ class Captinapp extends StatelessWidget {
             locale = Locale(langState.languageCode!);
           }
           return MaterialApp(
+
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
           locale: LocalCubit.get(context).localization,
     builder: DevicePreview.appBuilder,
             title: 'Taxi Go Driver',
@@ -74,13 +75,7 @@ class Captinapp extends StatelessWidget {
               ),
               useMaterial3: true,
             ),
-            supportedLocales: S.delegate.supportedLocales,
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+
             localeResolutionCallback: (deviceLocale, supportedLocales) {
               for (var locale in supportedLocales) {
                 if (deviceLocale != null &&
