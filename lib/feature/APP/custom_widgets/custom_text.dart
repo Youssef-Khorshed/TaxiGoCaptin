@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../settings/Localization/Localizationcubit/localization_cubit.dart';
+import '../../../settings/Localization/Localizationcubit/localization_cubit.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText({

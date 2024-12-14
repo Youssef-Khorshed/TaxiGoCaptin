@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/Utils/Strings.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 
 class CustomAppbar extends StatelessWidget {
   final Widget icon;
@@ -14,7 +13,7 @@ class CustomAppbar extends StatelessWidget {
       title: const Text(
         'Wallet ',
         style: TextStyle(
-          fontFamily: kModelFont,
+          fontFamily: Constants.kModelFont,
           fontSize: 28,
           fontWeight: FontWeight.w400,
           color: Colors.black,

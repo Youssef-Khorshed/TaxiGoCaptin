@@ -19,6 +19,9 @@ dependencies:
   timeline_tile: ^2.0.0
   google_maps_flutter: ^2.10.0
   snapping_sheet: ^3.1.0
+  pretty_dio_logger: ^1.4.0
+  connectivity_plus: ^6.1.1
+  location: ^7.0.1
 
   country_code_picker: ^3.1.0
   flutter_screenutil: ^5.9.3
