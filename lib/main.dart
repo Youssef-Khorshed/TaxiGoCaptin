@@ -12,7 +12,7 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   // Set preferred orientations globally
   await setup();
-  await CacheHelper.init(); // Initialize SharedPreferences
+  await getIt<CacheHelper>().init();
 
   runApp(const Captinapp());
 }
