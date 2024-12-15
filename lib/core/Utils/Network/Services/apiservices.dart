@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
 import '../Error/exception.dart';
@@ -28,7 +27,7 @@ class ApiService {
       // Add default headers and interceptors
 
       String language = LocalCubit.get(context).localizationThemeState ==
-          LocalizationThemeState.ar
+              LocalizationThemeState.ar
           ? "ar"
           : "en";
       _addDioHeaders(language: language);
@@ -43,8 +42,8 @@ class ApiService {
     _dio?.options.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': token ??
-          '', //'Bearer your_token_here', // You can add a token dynamically if needed
+      'Authorization':
+          'Bearer Token $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -62,14 +61,12 @@ class ApiService {
   }
 
   // Function to make GET requests
-  Future<T> getRequest<T>(
-      String url, {
-        Map<String, dynamic>? queryParameters,
-        required BuildContext context
-      }) async {
+  Future<T> getRequest<T>(String url,
+      {Map<String, dynamic>? queryParameters,
+      required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       final response =
-      await getDio(context).get(url, queryParameters: queryParameters);
+          await getDio(context).get(url, queryParameters: queryParameters);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
@@ -86,7 +83,8 @@ class ApiService {
   }
 
   // Function to make POST requests
-  Future<T> postRequest<T>(String url, {dynamic body,  required BuildContext context}) async {
+  Future<T> postRequest<T>(String url,
+      {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       final response = await getDio(context).post(url, data: body);
       if (response.statusCode != null) {
@@ -105,7 +103,8 @@ class ApiService {
   }
 
   // Function to make PUT requests
-  Future<T> putRequest<T>(String url, {dynamic body,  required BuildContext context}) async {
+  Future<T> putRequest<T>(String url,
+      {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       final response = await getDio(context).put(
         url,
@@ -128,7 +127,8 @@ class ApiService {
   }
 
   // Function to make DELETE requests
-  Future<T> deleteRequest<T>(String url,{  required BuildContext context}) async {
+  Future<T> deleteRequest<T>(String url,
+      {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       final response = await getDio(context).delete(url);
       if (response.statusCode != null) {
