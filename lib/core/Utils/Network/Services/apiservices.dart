@@ -14,7 +14,7 @@ class ApiService {
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
   // Singleton Dio instance
-Future<Dio>  getDio(context) async {
+ getDio(context) async {
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -68,6 +68,7 @@ Future<Dio>  getDio(context) async {
       {Map<String, dynamic>? queryParameters,
       required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
+      getDio(context);
       final response =
           await _dio!.get(url, queryParameters: queryParameters);
       if (response.statusCode != null) {
@@ -89,6 +90,8 @@ Future<Dio>  getDio(context) async {
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
+      getDio(context);
+
       final response = await _dio!.post(url, data: body);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
@@ -109,6 +112,8 @@ Future<Dio>  getDio(context) async {
   Future<T> putRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
+      getDio(context);
+
       final response = await _dio!.put(
         url,
         data: json.encode(body), // Send the body as JSON
@@ -133,6 +138,7 @@ Future<Dio>  getDio(context) async {
   Future<T> deleteRequest<T>(String url,
       {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
+      getDio(context);
       final response = await _dio!.delete(url);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
