@@ -34,9 +34,9 @@ class LocalCubit extends Cubit<LocalState> {
 
   void isConnection(){
     emit(InternetLoading());
-
     connectivity.onConnectivityChanged.listen((event) {
-      if(event==ConnectivityResult.none) {
+
+      if(event.first==ConnectivityResult.none) {
         print("errorrrrrrr");
         emit(InternetFailure());
       }},);

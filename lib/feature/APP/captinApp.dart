@@ -42,7 +42,7 @@ class Captinapp extends StatelessWidget {
     ensureScreenSize: true,
     minTextAdapt: true,
     builder: (context, child) => BlocProvider(
-    create: (context) => LocalCubit(),
+    create: (context) => LocalCubit()..isConnection(),
     child: BlocBuilder<LocalCubit, LocalState>(
     builder: (context, state) {
     return MultiBlocProvider(
