@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import '../../../core/Utils/Custom_button.dart';
+import '../../APP/custom_widgets/custom_Button.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
@@ -25,8 +25,7 @@ class _ScanScreenState extends State<ScanScreen> {
     }
   }
 
-  void _performIscan() {
-  }
+  void _performIscan() {}
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +62,6 @@ class _ScanScreenState extends State<ScanScreen> {
             const SizedBox(
               height: 20,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -76,7 +74,8 @@ class _ScanScreenState extends State<ScanScreen> {
             ),
             const Spacer(),
             CustomButton(
-          onPressed: () {  }, text: "Next",
+              onPressed: () {},
+              text: "Next",
             ),
           ],
         ),

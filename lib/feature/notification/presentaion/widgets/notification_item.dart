@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/Utils/text.dart';
+import '../../../APP/custom_widgets/custom_text.dart';
 
 class CustomNotificationItem extends StatefulWidget {
   const CustomNotificationItem(

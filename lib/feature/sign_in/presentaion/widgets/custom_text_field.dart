@@ -7,12 +7,12 @@ class CustomTextField extends StatefulWidget {
   final ValueChanged<String> onChanged;
   final Widget? suffixIcon;
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.label,
     required this.onChanged,
     this.isPassword = false,
     this.suffixIcon,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();

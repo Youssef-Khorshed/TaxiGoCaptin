@@ -15,7 +15,7 @@ class HistoryView extends StatelessWidget {
       appBarTitle: "History",
       widget: Padding(
         padding: const EdgeInsets.fromLTRB(21, 44, 21, 20),
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.9,
           child: ListView.separated(
             padding: EdgeInsets.zero,

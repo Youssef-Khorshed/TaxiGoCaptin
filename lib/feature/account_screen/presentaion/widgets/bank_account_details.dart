@@ -33,7 +33,7 @@ class BankAccountDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 200,
                   child: Text(
                     'STATE BANK OF iq     ...1234',
@@ -42,16 +42,16 @@ class BankAccountDetails extends StatelessWidget {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   'Primary account',
                   style: TextStyle(color: Colors.grey, fontSize: 16),
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: Text(
+                  child: const Text(
                     "Delete",
                     style: TextStyle(color: Colors.red),
                   ),

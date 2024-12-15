@@ -33,9 +33,9 @@ class SignUpHomeBody extends StatelessWidget {
           const CustomTextField(
             label: 'Email',
           ),
-          PhoneNumberFailed(),
+          const PhoneNumberFailed(),
           CustomGenderField(
-            genderOptions: ["male", "female"],
+            genderOptions: const ["male", "female"],
             label: 'Gander',
             onChanged: (String? value) {},
           ),
@@ -55,7 +55,7 @@ class SignUpHomeBody extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          SignInPrompt()
+          const SignInPrompt()
         ],
       ),
     );

@@ -26,7 +26,7 @@ class _CustomGenderFieldState extends State<CustomGenderField> {
   @override
   void initState() {
     super.initState();
-    _selectedGender = widget.selectedGender ?? '${widget.label}';
+    _selectedGender = widget.selectedGender ?? widget.label;
   }
 
   @override

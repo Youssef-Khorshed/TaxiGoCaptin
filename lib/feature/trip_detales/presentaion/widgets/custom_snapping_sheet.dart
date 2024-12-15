@@ -46,7 +46,29 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
               snappingDuration: Duration(seconds: 1),
               grabbingContentOffset: GrabbingContentOffset.bottom,
             ),
-          ],
+          ], // Your main screen content goes here
+          grabbingHeight: cubit.isAccepted ? 120 : 90,
+          // Start fully closed
+          grabbing: Container(
+            color: AppColors.kBackgroundColor,
+            child: Visibility(
+              replacement: SnappingSheetTitleRequest(width: width),
+              visible: cubit.isAccepted,
+              child: SnappingSheetTitleAccepted(
+                width: width,
+              ),
+            ),
+          ),
+          sheetBelow: SnappingSheetContent(
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              color: AppColors.kBackgroundColor,
+              child: RequestDialogBody(
+                width: width,
+              ),
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -65,28 +87,6 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
                 ),
               ),
             ],
-          ), // Your main screen content goes here
-          grabbingHeight: cubit.isAccepted ? 120 : 90,
-          // Start fully closed
-          grabbing: Container(
-            color: AppColors.kBackgroundColor,
-            child: Visibility(
-              replacement: SnappingSheetTitleRequest(width: width),
-              child: SnappingSheetTitleAccepted(
-                width: width,
-              ),
-              visible: cubit.isAccepted,
-            ),
-          ),
-          sheetBelow: SnappingSheetContent(
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              color: AppColors.kBackgroundColor,
-              child: RequestDialogBody(
-                width: width,
-              ),
-            ),
           ),
         );
       },

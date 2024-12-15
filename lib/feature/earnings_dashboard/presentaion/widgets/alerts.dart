@@ -11,7 +11,7 @@ class Alerts {
           contentPadding: EdgeInsets.zero,
           content: Container(
             height: 200,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Column(
@@ -20,11 +20,11 @@ class Alerts {
                 SvgPicture.asset(
                   "assets/icons/alert.svg",
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   textAlign: TextAlign.center,
                   msg,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               ],
             ),

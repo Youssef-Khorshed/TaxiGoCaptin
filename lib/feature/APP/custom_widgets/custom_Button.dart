@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-
-import 'colors/colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.onPressed, required this.text});
@@ -26,9 +25,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: AppStyles.textStyle16.copyWith(
-            color: Colors.white
-          ),
+          style: AppStyles.textStyle16.copyWith(color: Colors.white),
         ),
       ),
     );

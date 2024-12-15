@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class OrDivider extends StatelessWidget {
+  const OrDivider({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Row(
       children: [
-
         Expanded(
           child: Divider(
             color: Colors.grey,
@@ -20,7 +21,6 @@ class OrDivider extends StatelessWidget {
             fontSize: 14,
           ),
         ),
-
         Expanded(
           child: Divider(
             color: Colors.grey,

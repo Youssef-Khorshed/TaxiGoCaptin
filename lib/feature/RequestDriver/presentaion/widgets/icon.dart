@@ -3,7 +3,7 @@ import 'add_photo.dart';
 import 'dart:io';
 
 class CustomIcon extends StatefulWidget {
-  const CustomIcon({Key? key}) : super(key: key);
+  const CustomIcon({super.key});
 
   @override
   State<CustomIcon> createState() => _CustomIconState();
@@ -41,13 +41,9 @@ class _CustomIconState extends State<CustomIcon> {
           );
         },
         icon: Icon(
-          _selectedImage == null
-              ? Icons.file_upload_outlined
-              : Icons.done,
+          _selectedImage == null ? Icons.file_upload_outlined : Icons.done,
           size: 30,
-          color: _selectedImage == null
-              ? Colors.black
-              : Colors.green,
+          color: _selectedImage == null ? Colors.black : Colors.green,
         ),
       ),
     );

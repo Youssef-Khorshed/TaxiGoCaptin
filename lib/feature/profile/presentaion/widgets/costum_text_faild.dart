@@ -11,7 +11,7 @@ class CostumeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
           horizontal: 20, vertical: 10), // EdgeInsets.all(18),
       child: TextFormField(
         decoration: InputDecoration(
@@ -19,7 +19,7 @@ class CostumeTextField extends StatelessWidget {
           labelText: text,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: const BorderSide(color: Colors.white),
           ),
         ),
       ),

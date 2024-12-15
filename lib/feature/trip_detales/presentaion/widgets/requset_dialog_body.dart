@@ -37,6 +37,7 @@ class _RequestDialogBodyState extends State<RequestDialogBody> {
               ),
               Visibility(
                 visible: cubit.isAccepted,
+                replacement: const RequestButtons(),
                 child: CancelButtonAccepted(
                   onCancel: () {
                     cubit.accept();
@@ -44,7 +45,6 @@ class _RequestDialogBodyState extends State<RequestDialogBody> {
                   width: widget.width,
                   isAccepted: cubit.isAccepted,
                 ),
-                replacement: const RequestButtons(),
               ),
             ],
           ),

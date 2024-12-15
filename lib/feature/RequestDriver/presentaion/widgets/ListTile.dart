@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'icon.dart';
 
 class CustomListTile extends StatelessWidget {
-  const CustomListTile({required this.title});
+  const CustomListTile({super.key, required this.title});
 
   final String title;
 

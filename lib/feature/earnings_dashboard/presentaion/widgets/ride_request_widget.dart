@@ -5,7 +5,7 @@ import 'driver_details.dart';
 import 'trip_details.dart';
 
 class RideRequestWidget extends StatelessWidget {
-  const RideRequestWidget({Key? key}) : super(key: key);
+  const RideRequestWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class RideRequestWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
+        child: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // Timeline section
@@ -33,7 +33,7 @@ class RideRequestWidget extends StatelessWidget {
             // Driver Info
             DriverDetails(),
 
-            const SizedBox(height: 25),
+            SizedBox(height: 25),
 
             // Buttons
             DriverAction(),

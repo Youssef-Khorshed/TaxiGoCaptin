@@ -16,43 +16,43 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       padding: EdgeInsets.zero,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width / 3),
-          child: Divider(
+          child: const Divider(
             height: 25,
             thickness: 7,
             color: AppColors.kgrey,
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             horizontal: 10,
           ),
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           width: 100,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 backgroundImage: AssetImage(Assets.imagesDriverImage),
                 radius: 35,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Mohamed",
                     style: TextStyle(
                         color: AppColors.kBlack,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   SvgPicture.asset(
@@ -61,7 +61,7 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 children: [
                   IconButton(

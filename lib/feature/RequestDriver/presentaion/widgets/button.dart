@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({this.onTab, required this.title});
+  const CustomButton({super.key, this.onTab, required this.title});
   final VoidCallback? onTab;
   final String title;
   @override

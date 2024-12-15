@@ -8,12 +8,12 @@ class BookingDetailsAccepted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Row(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Column(
-            children: const [
+            children: [
               Text(
                 "Distance",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

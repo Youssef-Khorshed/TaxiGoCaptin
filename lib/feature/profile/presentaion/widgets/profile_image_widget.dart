@@ -14,8 +14,8 @@ class ProfileImageWidget extends StatelessWidget {
         Container(
           width: 200,
           height: 200,
-          decoration: BoxDecoration(),
-          child: CircleAvatar(
+          decoration: const BoxDecoration(),
+          child: const CircleAvatar(
             radius: 100,
             backgroundImage: AssetImage(Assets.imagesDriverImage),
           ),
@@ -26,9 +26,9 @@ class ProfileImageWidget extends StatelessWidget {
           child: Container(
             width: 40,
             height: 40,
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: Colors.blueAccent),
             child: Icon(Icons.camera_alt_outlined),
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: Colors.blueAccent),
           ),
         )
       ],

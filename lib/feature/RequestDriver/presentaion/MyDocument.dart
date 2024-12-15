@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/ListTile.dart';
-import '../../../core/Utils/Custom_button.dart';
+import '../../APP/custom_widgets/custom_Button.dart';
 import '../../../core/Utils/routes/routes.dart';
 import '../../earnings_dashboard/presentaion/widgets/drawer_list.dart';
-
 
 class DocumentScreen extends StatelessWidget {
   const DocumentScreen({super.key});
@@ -45,8 +44,11 @@ class DocumentScreen extends StatelessWidget {
                     }),
               ),
               CustomButton(
-
-               onPressed: () {    Navigator.pushNamed(context, Routes.homeRoute);}, text:  "Next",),
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.homeRoute);
+                },
+                text: "Next",
+              ),
             ],
           ),
         ));

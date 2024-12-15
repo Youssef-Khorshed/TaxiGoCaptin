@@ -5,6 +5,7 @@ class LocationRow extends StatelessWidget {
   final String time;
 
   const LocationRow({
+    super.key,
     required this.text,
     required this.time,
   });
@@ -18,11 +19,11 @@ class LocationRow extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           Text(
             time,
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
         ],
       ),

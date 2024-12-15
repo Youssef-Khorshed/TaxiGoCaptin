@@ -7,7 +7,7 @@ class AppColors {
   static const Color kbrown = Color(0xff2A2A2A);
   static const Color kYellow = Color(0xffFFC107);
   static const Color kredMap = Color(0xffF52D56);
-  static const Color kreadcancel = Color(0xffFFB9B9FF);
+  static const Color kreadcancel = Color(0xffffb9b9ff);
   static const Color kcall = Color(0xff1e1f22);
   static const Color kblue = Color(0xff3422F2);
   static const Color primaryColor = Color(0xff1D1AD8);
@@ -27,5 +27,5 @@ class AppColors {
   static const Color kComplete = Color(0xff18C161);
   static const Color kBackgroundColor = Color(0xffF8F8FF);
   static const Color kBorderColor = Color(0xffF2F2F2);
-  static const Color kDropMenu = Color(0xffF6F6FDFF);
+  static const Color kDropMenu = Color(0xfff6f6fdff);
 }

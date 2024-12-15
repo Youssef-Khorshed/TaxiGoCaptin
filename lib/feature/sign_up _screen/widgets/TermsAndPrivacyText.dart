@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TermsAndPrivacyText extends StatelessWidget {
+  const TermsAndPrivacyText({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,11 +12,8 @@ class TermsAndPrivacyText extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           const Icon(FontAwesomeIcons.checkCircle, color: Colors.green),
-
           const SizedBox(width: 8),
-
           Expanded(
             child: RichText(
               text: TextSpan(
@@ -24,7 +23,6 @@ class TermsAndPrivacyText extends StatelessWidget {
                   fontSize: 14,
                 ),
                 children: [
-
                   TextSpan(
                     text: 'Terms of service',
                     style: const TextStyle(
@@ -40,7 +38,6 @@ class TermsAndPrivacyText extends StatelessWidget {
                   const TextSpan(
                     text: ' and ',
                   ),
-
                   TextSpan(
                     text: 'Privacy policy.',
                     style: const TextStyle(

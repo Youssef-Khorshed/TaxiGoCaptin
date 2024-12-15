@@ -5,10 +5,10 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.label,
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ class CustomTextField extends StatelessWidget {
           labelStyle: const TextStyle(color: Colors.grey),
           labelText: label,
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color:Colors.grey),
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(color: Colors.grey),
           ),
         ),
       ),

@@ -28,6 +28,7 @@ class Routes {
   static const String editProfileScreen = "/editProfileScreen";
   static const String uploadDocument = "/uploadDocument";
   static const String scan = "/scan";
+  static const String errorscreen = "/errorscreen";
   static const String otpScreen = "/otpScreen";
   static const String otpScreenForget = "/otpScreenForget";
 }

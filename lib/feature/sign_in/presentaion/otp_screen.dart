@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/otp_field.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 
-
-import '../../../core/Utils/Custom_button.dart';
+import '../../APP/custom_widgets/custom_Button.dart';
 import '../../../core/Utils/colors/colors.dart';
 import '../../../core/Utils/routes/routes.dart';
 
@@ -68,7 +67,7 @@ class _OTPScreenState extends State<OTPScreen> {
                           fontWeight: FontWeight.w600,
                         ),
                   ),
-                  verticalSpace( 2.5),
+                  verticalSpace(2.5),
                   Text(
                     'Enter your OTP code',
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
@@ -76,7 +75,7 @@ class _OTPScreenState extends State<OTPScreen> {
                           fontWeight: FontWeight.w300,
                         ),
                   ),
-                verticalSpace( 5),
+                  verticalSpace(5),
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
@@ -85,7 +84,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      verticalSpace( 40),
+                        verticalSpace(40),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 40),
                           child: Row(
@@ -105,7 +104,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 ],
               ),
               verticalSpace(6),
-               verticalSpace(1),
+              verticalSpace(1),
               RichText(
                 text: TextSpan(
                   text: 'Didn\'t receive the code? ',
@@ -121,18 +120,19 @@ class _OTPScreenState extends State<OTPScreen> {
                             fontWeight: FontWeight.w600,
                             color: Colors.blue,
                           ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                        },
+                      recognizer: TapGestureRecognizer()..onTap = () {},
                     ),
                   ],
                 ),
               ),
               const Spacer(),
-              CustomButton(onPressed: () {
-                Navigator.pushNamed(context, Routes.setPassowrdRoute);
-              }, text: '',),
-            verticalSpace( 20),
+              CustomButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.setPassowrdRoute);
+                },
+                text: '',
+              ),
+              verticalSpace(20),
             ],
           ),
         ),

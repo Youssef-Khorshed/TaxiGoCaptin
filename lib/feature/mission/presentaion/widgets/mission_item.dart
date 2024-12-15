@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
-import '../../../../core/Utils/text.dart';
+import '../../../APP/custom_widgets/custom_text.dart';
 import 'custom_check.dart';
-
 
 class MissionItem extends StatelessWidget {
   const MissionItem({super.key, required this.title});

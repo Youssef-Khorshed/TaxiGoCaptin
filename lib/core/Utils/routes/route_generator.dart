@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
 import '../../../feature/RequestDriver/presentaion/MyDocument.dart';
 import '../../../feature/account_screen/presentaion/account_screen.dart';
 import '../../../feature/card_screen/presentaion/card_screen.dart';
@@ -48,6 +50,11 @@ class RouteGenerator {
 
       case Routes.walletRoute:
         return MaterialPageRoute(builder: (_) => const WalletScreen());
+
+      case Routes.errorscreen:
+        return MaterialPageRoute(
+            builder: (_) => CustomErroranimation(
+                errormessage: 'Message', lottie: AppLottie.errorFailure));
 
       case Routes.tripDetailsRoute:
         return MaterialPageRoute(builder: (_) => const TripDetails());

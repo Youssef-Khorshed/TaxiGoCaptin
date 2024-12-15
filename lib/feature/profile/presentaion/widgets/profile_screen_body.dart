@@ -5,7 +5,6 @@ import '../../../sign_in/presentaion/widgets/custom_text_field.dart';
 import '../../../sign_up _screen/widgets/custom_gender_field.dart';
 import '../../../sign_up _screen/widgets/phone_number_field.dart';
 
-
 class ProfileForm extends StatelessWidget {
   const ProfileForm({super.key});
 
@@ -47,13 +46,13 @@ class ProfileForm extends StatelessWidget {
           CustomTextField(label: 'Street', onChanged: (value) {}),
           const SizedBox(height: 20),
           CustomGenderField(
-            genderOptions: ["ANBAR", "KERBALA"],
+            genderOptions: const ["ANBAR", "KERBALA"],
             label: 'City',
             onChanged: (String? value) {},
           ),
           const SizedBox(height: 20),
           CustomGenderField(
-            genderOptions: ["Amara", "Hashimiya"],
+            genderOptions: const ["Amara", "Hashimiya"],
             label: 'District',
             onChanged: (String? value) {},
           ),

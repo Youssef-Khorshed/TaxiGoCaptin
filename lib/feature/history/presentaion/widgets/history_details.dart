@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/Utils/colors/colors.dart';
-import '../../../../core/Utils/text.dart';
+import '../../../APP/custom_widgets/custom_text.dart';
 import 'complete_cancel_buttons.dart';
-
 
 class HistoryDetails extends StatelessWidget {
   const HistoryDetails({super.key, required this.isCompleted});

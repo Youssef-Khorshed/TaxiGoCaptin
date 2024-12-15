@@ -10,11 +10,11 @@ class LocationScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CustomSnappingSheet(
+        const CustomSnappingSheet(
           isAccepted: true,
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
           child: IconButton(
             onPressed: () {
               Navigator.pop(context);
