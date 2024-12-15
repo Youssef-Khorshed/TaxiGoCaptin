@@ -18,3 +18,4 @@ Future<void> setup() async {
 
   //getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(getIt.get<ApiService>()));
 }
+//BlocProvider( create: (context) => BooksBySearchCubit(getIt.get<HomeRepoImpl>())
