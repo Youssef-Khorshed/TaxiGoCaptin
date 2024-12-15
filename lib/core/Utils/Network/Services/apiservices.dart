@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
 
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
@@ -13,7 +14,7 @@ class ApiService {
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
   // Singleton Dio instance
-  getDio(context) {
+  getDio(context) async {
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -30,7 +31,9 @@ class ApiService {
               LocalizationThemeState.ar
           ? "ar"
           : "en";
-      _addDioHeaders(language: language);
+      var token=await      SecureToken.getToken();
+
+      _addDioHeaders(language: language,token: token);
       _addDioInterceptor();
     }
 
