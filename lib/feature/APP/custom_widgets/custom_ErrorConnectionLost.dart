@@ -6,14 +6,9 @@ import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 
 // ignore: must_be_immutable
-class CustomErroranimation extends StatelessWidget {
-  String errormessage;
-  String lottie;
-
-  CustomErroranimation({
+class CustomErrorconnectionlost extends StatelessWidget {
+  CustomErrorconnectionlost({
     super.key,
-    required this.errormessage,
-    required this.lottie,
   });
 
   @override
@@ -23,10 +18,10 @@ class CustomErroranimation extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Lottie.asset(AppLottie.errorFailure,
+            Lottie.asset(AppLottie.internetFailure,
                 fit: BoxFit.cover, height: 300.h, width: 300.w),
             verticalSpace(10.h),
-            Text('An error occurred'),
+            Text('Please Check Your Internet Connection'),
           ],
         ),
       ),
