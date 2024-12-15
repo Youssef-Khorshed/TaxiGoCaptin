@@ -6,11 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/routes/route_generator.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/feature/sign_in/presentaion/controller/sign_in_cubit.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
 import 'package:taxi_go_driver/settings/Localization/Model/localizationmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../core/Utils/Network/Services/services_locator.dart';
 import '../../core/Utils/localization/cubit/local_cubit.dart';
+import '../sign_in/data/repo/sign_in_repo.dart';
 
 class Captinapp extends StatelessWidget {
   const Captinapp({super.key});
@@ -49,6 +52,15 @@ class Captinapp extends StatelessWidget {
                 BlocProvider(
                   create: (context) => LocalizationCubit()
                     ..appLanguage(LanguageEventEnums.initialLanguage),
+                ),
+                BlocProvider(
+                  create: (context) => LocalizationCubit()
+                    ..appLanguage(LanguageEventEnums.initialLanguage),
+                ),
+
+                BlocProvider(
+                  create: (context) => SignInCubit(getIt.get<SignInRepo>())
+                    ..signIn(phone: "1558368864", password: "cs@123456789", context: context),
                 ),
               ],
               child: BlocBuilder<LocalizationCubit, LocalizationState>(

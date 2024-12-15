@@ -14,7 +14,7 @@ class ApiService {
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
   // Singleton Dio instance
-  getDio(context) async {
+Future<Dio>  getDio(context) async {
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -69,13 +69,13 @@ class ApiService {
       required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       final response =
-          await getDio(context).get(url, queryParameters: queryParameters);
+          await _dio!.get(url, queryParameters: queryParameters);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }
@@ -89,13 +89,13 @@ class ApiService {
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio(context).post(url, data: body);
+      final response = await _dio!.post(url, data: body);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }
@@ -109,17 +109,17 @@ class ApiService {
   Future<T> putRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio(context).put(
+      final response = await _dio!.put(
         url,
         data: json.encode(body), // Send the body as JSON
       );
 
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
-          return response;
+          return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }
@@ -133,13 +133,13 @@ class ApiService {
   Future<T> deleteRequest<T>(String url,
       {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio(context).delete(url);
+      final response = await _dio!.delete(url);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }

@@ -3,4 +3,6 @@ class Constants {
   static const String getName = '';
   static const String postName = '';
   static const kModelFont = 'Medel';
+
+  static String login='/login';
 }

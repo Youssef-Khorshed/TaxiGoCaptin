@@ -19,12 +19,14 @@ class WelcomeScreen extends StatelessWidget {
             const Spacer(),
             Image.asset('assets/images/car.png'),
             const SizedBox(height: 20),
-            const Text(
-              'Welcome',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
+            GestureDetector(
+              child: const Text(
+                'Welcome',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             const Text(
