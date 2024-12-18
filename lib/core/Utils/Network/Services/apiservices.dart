@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
-import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
-import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/internetconnection.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
+import 'package:taxi_go_driver/core/Utils/enums/localization.dart';
+import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 
 class ApiService {
   InternetConnectivity internetConnectivity;

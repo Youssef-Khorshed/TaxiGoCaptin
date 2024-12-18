@@ -1,4 +1,26 @@
 {
-  "welcome": "مرحبا"
-
+  "welcome": "مرحبا",
+  "complete_other_field": "هذا الحقل مطلوب *",
+  "my_document": "مستنداتي",
+  "profile_photo": "الصورة الشخصية",
+  "photo_of_Driving_license_front": "صورة رخصة القيادة - الوجه الأمامي",
+  "photo_of_Driving_license_back": "صورة رخصة القيادة - الوجه الخلفي",
+  "photo_of_nationa_ID_front": "صورة بطاقة الهوية الوطنية - الوجه الأمامي",
+  "photo_of_nationa_ID_back": "صورة بطاقة الهوية الوطنية - الوجه الخلفي",
+  "driving_license": "رخصة القيادة",
+  "download_the_document": "تحميل المستند",
+  "km": "كم",
+  "overall_earning": "إجمالي الأرباح",
+  "today_booking": "حجوزات اليوم",
+  "new_requests": "الطلبات الجديدة",
+  "not_available": "غير متوفر",
+  "available": "متوفر",
+  "log_out": "تسجيل الخروج",
+  "account": "الحساب",
+  "wallet": "المحفظة",
+  "history": "التاريخ",
+  "home": "الرئيسية",
+  "you_have": "لديك",
+  "to_accept": "للموافقة",
+  "next": "التالي"
 }

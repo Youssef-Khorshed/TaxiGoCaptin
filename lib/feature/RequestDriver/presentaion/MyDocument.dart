@@ -1,68 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/ListTile.dart';
+import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/document_app_bar.dart';
 import '../../APP/custom_widgets/custom_Button.dart';
 import '../../../core/Utils/routes/routes.dart';
-import '../../earnings_dashboard/presentaion/widgets/drawer_list.dart';
 
 class DocumentScreen extends StatelessWidget {
   const DocumentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List fieldsListTitle = [
+      AppLocalizations.of(context)!.profile_photo,
+      AppLocalizations.of(context)!.photo_of_Driving_license_front,
+      AppLocalizations.of(context)!.photo_of_Driving_license_back,
+      AppLocalizations.of(context)!.photo_of_nationa_ID_front,
+      AppLocalizations.of(context)!.photo_of_nationa_ID_back,
+      // AppLocalizations.of(context)!.driving_license,
+    ];
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: CustomAppBar(),
-        drawer: const Drawer(
-          child: DrawerList(),
-        ),
+        appBar: documentCustomAppBar(context),
+        // drawer: const Drawer(
+        //   child: DrawerList(),
+        // ),
         body: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text("* complet other field",
-                      style: TextStyle(color: Colors.red)),
                   CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 54, 16, 206),
+                    backgroundColor: AppColors.kDarkBlue,
                     child: Text(
-                      "1/9",
+                      "1/5",
                       style: TextStyle(color: Colors.white),
                     ),
                   )
                 ],
               ),
+              verticalSpace(10.h),
               Expanded(
                 child: ListView.builder(
-                    itemCount: 9,
+                    itemCount: fieldsListTitle.length,
                     itemBuilder: (context, index) {
-                      return const CustomListTile(
-                        title: "Profile Photo",
+                      return CustomListTile(
+                        title: fieldsListTitle[index],
                       );
                     }),
               ),
+              verticalSpace(20.h),
               CustomButton(
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.homeRoute);
                 },
-                text: "Next",
+                text: AppLocalizations.of(context)!.next,
               ),
             ],
           ),
         ));
-  }
-
-  AppBar CustomAppBar() {
-    return AppBar(
-      backgroundColor: Colors.white,
-      centerTitle: true,
-      title: const Text(
-        "My Document",
-        style: TextStyle(
-            color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600),
-      ),
-    );
   }
 }

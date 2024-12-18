@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DriverDetails extends StatelessWidget {
   const DriverDetails({
@@ -8,7 +9,7 @@ class DriverDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: const Row(
         children: [
           CircleAvatar(

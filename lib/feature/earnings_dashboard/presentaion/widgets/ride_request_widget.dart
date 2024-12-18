@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/payment_card.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/timer_to_accept.dart';
 
 import 'driver_action.dart';
 import 'driver_details.dart';
@@ -24,19 +28,16 @@ class RideRequestWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: const Column(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Timeline section
-            TripDetails(),
-
-            // Driver Info
+            verticalSpace(15.h),
             DriverDetails(),
-
-            SizedBox(height: 25),
-
-            // Buttons
+            LocationDetails(),
+            verticalSpace(15.h),
             DriverAction(),
+            verticalSpace(10.h),
+            TimerToAccept(),
           ],
         ),
       ),

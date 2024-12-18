@@ -1,3 +1,28 @@
 {
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "home": "Home",
+
+  "complete_other_field": "this field is required *",
+  "my_document": "My Document",
+  "profile_photo": "Profile Photo",
+  "photo_of_Driving_license_front": "photo of Driving license - front",
+  "photo_of_Driving_license_back": "photo of Driving license - back",
+  "photo_of_nationa_ID_front": "photo of national ID - front",
+  "photo_of_nationa_ID_back": "photo of national ID - back",
+  "driving_license": "Driving license",
+  "download_the_document": "Download the document",
+  "km": "KM",
+  "overall_earning": "Overall Earning",
+  "today_booking": "Today Booking",
+  "new_requests": "New Requests",
+  "not_available": "Not Available",
+  "available": "Available",
+  "log_out": "Log Out",
+  "account": "Account",
+  "wallet": "Wallet",
+  "history": "History",
+  "home": "Home",
+  "you_have": "You have", 
+  "to_accept": "to accept",
+  "next": "Next"
 }

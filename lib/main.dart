@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,5 +18,5 @@ void main() async {
   SecureToken.addToken(AppConstants.kTokenValue);
   await getIt<CacheHelper>().init();
 
-  runApp(const Captinapp());
+  runApp(DevicePreview(enabled: true, builder: (context) => const Captinapp()));
 }

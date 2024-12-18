@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 class TripDetailsMap extends StatelessWidget {
   const TripDetailsMap({
@@ -14,17 +16,22 @@ class TripDetailsMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
       child: ListTile(
         title: Text(
           location,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: AppStyles.text16Size400darkGrey,
         ),
-        subtitle: Text(address),
-        leading: SvgPicture.asset(
-          icon,
-          width: 30,
-          height: 30,
+        subtitle: Text(
+          address,
+          style: AppStyles.text16Size400WightGrey,
+        ),
+        leading: Column(
+          children: [
+            SvgPicture.asset(
+              icon,
+              width: 25.w,
+            ),
+          ],
         ),
       ),
     );
