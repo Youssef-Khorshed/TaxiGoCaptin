@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/services_locator.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/routes/route_generator.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
 import 'package:taxi_go_driver/settings/Localization/Model/localizationmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -46,6 +49,10 @@ class Captinapp extends StatelessWidget {
           child: BlocBuilder<LocalCubit, LocalState>(builder: (context, state) {
             return MultiBlocProvider(
               providers: [
+                BlocProvider(
+                  create: (context) => NearbyRideRequestsCubit(
+                      getIt.get<NearbyRideRequestsRepoImpl>()),
+                ),
                 BlocProvider(
                   create: (context) => LocalizationCubit()
                     ..appLanguage(LanguageEventEnums.initialLanguage),

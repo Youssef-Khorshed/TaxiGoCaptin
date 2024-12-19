@@ -9,8 +9,8 @@ import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/documen
 import '../../APP/custom_widgets/custom_Button.dart';
 import '../../../core/Utils/routes/routes.dart';
 
-class DocumentScreen extends StatelessWidget {
-  const DocumentScreen({super.key});
+class CaptainDocuments extends StatelessWidget {
+  const CaptainDocuments({super.key});
 
   @override
   Widget build(BuildContext context) {

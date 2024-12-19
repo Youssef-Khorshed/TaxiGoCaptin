@@ -10,63 +10,62 @@ abstract class Failure {
 /// server Error
 class ServerFailure extends Failure {
   ServerFailure({required super.message});
-  factory ServerFailure.fromDioError(DioException dioError) {
-    switch (dioError.type) {
-      case DioExceptionType.connectionTimeout:
-        return ServerFailure(message: 'Connection Timeout');
-      case DioExceptionType.sendTimeout:
-        return ServerFailure(message: 'Send Timeout');
-      case DioExceptionType.receiveTimeout:
-        return ServerFailure(message: 'Receive Timeout');
-      case DioExceptionType.badCertificate:
-        return ServerFailure(message: 'Bad Certificate');
-      case DioExceptionType.badResponse:
-        return ServerFailure(message: 'Bad Response');
-      case DioExceptionType.cancel:
-        return ServerFailure(message: 'Request Cancelled');
-      case DioExceptionType.connectionError:
-        return ServerFailure(message: 'Connection Error');
-      case DioExceptionType.unknown:
-        return ServerFailure(message: 'Unknown Error');
-      default:
-        return ServerFailure(message: 'Opps Something went wrong');
+  static String fromDioError(DioException dioError) {
+    if (dioError.response != null) {
+      if (dioError.response?.data['error'] != null) {
+        return dioError.response?.data['error'];
+      }
+
+      return dioError.response?.data['message'];
+    } else {
+      switch (dioError.type) {
+        case DioExceptionType.connectionTimeout:
+          return 'Connection Timeout';
+        case DioExceptionType.sendTimeout:
+          return 'Send Timeout';
+        case DioExceptionType.receiveTimeout:
+          return 'Receive Timeout';
+        case DioExceptionType.badCertificate:
+          return 'Bad Certificate';
+        case DioExceptionType.badResponse:
+          return 'Bad Response';
+        case DioExceptionType.cancel:
+          return 'Request Cancelled';
+        case DioExceptionType.connectionError:
+          return 'Connection Error';
+        case DioExceptionType.unknown:
+          return 'Unknown Error';
+        default:
+          return 'Opps Something went wrong';
+      }
     }
   }
-  factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (response['error']['message'] != null) {
-      return ServerFailure(message: response['error']['message']);
+
+  static String fromResponse(Response<dynamic>? response) {
+    if (response != null) {
+      return response.data['error'];
     } else {
-      switch (statusCode) {
+      switch (response?.statusCode) {
         case 200 || 201:
-          return ServerFailure(message: "Success! Data fetched.");
+          return "Success! Data fetched.";
         case 400:
-          return ServerFailure(
-              message: "Bad Request: Please check your parameters.");
+          return "Bad Request: Please check your parameters.";
         case 401:
-          return ServerFailure(message: "Unauthorized: Check your API key.");
+          return "Unauthorized: Check your API key.";
         case 403:
-          return ServerFailure(
-              message: "Forbidden: You don't have access to this resource.");
+          return "Forbidden: You don't have access to this resource.";
         case 404:
-          return ServerFailure(
-              message: "Not Found: The requested resource could not be found.");
+          return "Not Found: The requested resource could not be found.";
         case 408:
-          return ServerFailure(
-              message: "Request Timeout: The server took too long to respond.");
+          return "Request Timeout: The server took too long to respond.";
         case 422:
-          return ServerFailure(
-              message:
-                  "Unprocessable Entity: The request was well-formed but unable to be followed due to semantic errors.");
+          return "Unprocessable Entity: The request was well-formed but unable to be followed due to semantic errors.";
         case 500:
-          return ServerFailure(
-              message: "Server Error: Something went wrong on the server.");
+          return "Server Error: Something went wrong on the server.";
         case 503:
-          return ServerFailure(
-              message: "Service Unavailable: The service is temporarily down.");
+          return "Service Unavailable: The service is temporarily down.";
         default:
-          return ServerFailure(
-              message:
-                  "Unexpected error: $statusCode. Please try again later.");
+          return "Unexpected error: ${response?.statusCode}. Please try again later.";
       }
     }
   }

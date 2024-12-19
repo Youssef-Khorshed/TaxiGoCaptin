@@ -39,9 +39,9 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
             value: status,
             borderRadius: 30.0,
             inactiveIcon: CircleAvatar(
-              backgroundColor: AppColors.kComplete,
+              backgroundColor: AppColors.kblue,
             ),
-            inactiveColor: AppColors.kComplete,
+            inactiveColor: AppColors.kblue,
             activeIcon: const CircleAvatar(
               backgroundColor: Colors.red,
             ),
