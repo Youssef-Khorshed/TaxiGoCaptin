@@ -3,7 +3,7 @@ PODS:
     - Flutter
     - FlutterMacOS
   - Flutter (1.0.0)
-  - flutter_localization (0.0.1):
+  - flutter_secure_storage (6.0.0):
     - Flutter
   - Google-Maps-iOS-Utils (6.0.0):
     - GoogleMaps (~> 9.0)
@@ -33,7 +33,7 @@ PODS:
 DEPENDENCIES:
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/darwin`)
   - Flutter (from `Flutter`)
-  - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
+  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - location (from `.symlinks/plugins/location/ios`)
@@ -51,8 +51,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity_plus/darwin"
   Flutter:
     :path: Flutter
-  flutter_localization:
-    :path: ".symlinks/plugins/flutter_localization/ios"
+  flutter_secure_storage:
+    :path: ".symlinks/plugins/flutter_secure_storage/ios"
   google_maps_flutter_ios:
     :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   image_picker_ios:
@@ -69,7 +69,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   connectivity_plus: 18382e7311ba19efcaee94442b23b32507b20695
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
+  flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   Google-Maps-iOS-Utils: cfe6a0239c7ca634b7e001ad059a6707143dc8dc
   google_maps_flutter_ios: e31555a04d1986ab130f2b9f24b6cdc861acc6d3
   GoogleMaps: 80ea184ed6bf44139f383a8b0e248ba3ec1cc8c9

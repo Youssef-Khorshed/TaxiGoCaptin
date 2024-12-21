@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:taxi_go_driver/settings/Localization/model/localizationmodel.dart';
 import '../../../Network/local/sharedprefrences.dart';
-import '../Model/localizationmodel.dart';
 part 'localization_state.dart';
 
 class LocalizationCubit extends Cubit<LocalizationState> {

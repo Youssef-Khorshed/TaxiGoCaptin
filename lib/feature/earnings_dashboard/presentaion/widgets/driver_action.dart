@@ -17,6 +17,7 @@ class DriverAction extends StatelessWidget {
         children: [
           Expanded(
             child: CostumeButton(
+              onPressed: () {},
               text: "Decline",
               color: Colors.red.withOpacity(.05),
               textColor: Colors.red,

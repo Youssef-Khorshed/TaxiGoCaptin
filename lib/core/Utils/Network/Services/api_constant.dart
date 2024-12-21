@@ -25,4 +25,9 @@ class Constants {
   static String pay_after_ride_cash_amount({required String amount}) =>
       '/captain/rides/payment-cash?paid=$amount';
   static const kModelFont = 'Medel';
+
+  static const String getName = '';
+  static const String postName = '';
+  static const payAfterRide = '$baseUrl/captain/rides/payment-cash';
+  static const completeRide = '$baseUrl/captain/rides/get-last';
 }

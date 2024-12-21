@@ -8,6 +8,7 @@ class AppStyles {
     fontSize: 24.sp,
     fontWeight: FontWeight.w500,
   );
+
   static TextStyle textStyle16 = GoogleFonts.poppins(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
