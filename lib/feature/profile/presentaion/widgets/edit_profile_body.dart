@@ -3,7 +3,6 @@ import 'package:taxi_go_driver/feature/profile/presentaion/widgets/profile_image
 import 'package:taxi_go_driver/feature/profile/presentaion/widgets/rating_widget.dart';
 import 'costum_text_faild.dart';
 
-
 class EditProfileBody extends StatelessWidget {
   const EditProfileBody({super.key});
 

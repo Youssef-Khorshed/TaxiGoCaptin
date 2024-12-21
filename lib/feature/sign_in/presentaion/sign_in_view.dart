@@ -92,7 +92,6 @@ class SignInScreen extends StatelessWidget {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushNamed(context, Routes.signUpRoute);
-
                           },
                       ),
                     ],

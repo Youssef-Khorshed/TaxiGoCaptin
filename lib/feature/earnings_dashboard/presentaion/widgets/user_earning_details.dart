@@ -5,8 +5,6 @@ import '../../../../core/Utils/assets/icons.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import 'alerts.dart';
 
-
-
 class UserEarningDeails extends StatelessWidget {
   const UserEarningDeails({
     super.key,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorConnectionLost.dart';
 import 'package:taxi_go_driver/feature/home/presentaion/widgets/home_screen_body.dart';
 import '../../../core/Utils/colors/colors.dart';
 import '../../../core/Utils/routes/routes.dart';
@@ -16,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final cubit = context.watch<LocalCubit>();
     return Scaffold(
       drawer: const Drawer(
         child: DrawerList(),
@@ -54,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       backgroundColor: AppColors.kDarkBlue,
-      body: const HomeScreenBody(),
+      body: cubit.state is InternetFailure
+          ? CustomErrorconnectionlost()
+          : const HomeScreenBody(),
     );
   }
 }

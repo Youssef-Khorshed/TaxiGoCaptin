@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
 
-
 class AddCardWidget extends StatelessWidget {
   const AddCardWidget({
     super.key,

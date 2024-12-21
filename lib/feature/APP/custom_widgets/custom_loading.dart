@@ -10,8 +10,8 @@ class CustomLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: LoadingAnimationWidget.staggeredDotsWave(
-        color: AppColors.primaryColor,
-        size: 200,
+      color: AppColors.primaryColor,
+      size: 200,
     ));
   }
 }

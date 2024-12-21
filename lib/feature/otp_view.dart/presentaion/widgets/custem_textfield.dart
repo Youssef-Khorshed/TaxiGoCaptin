@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
 
 class VerifyTextField extends StatelessWidget {
-   const VerifyTextField({
+  const VerifyTextField({
     super.key,
     required this.emailOrPhoneController,
   });
@@ -18,7 +18,7 @@ class VerifyTextField extends StatelessWidget {
       child: TextField(
         controller: emailOrPhoneController,
         decoration: InputDecoration(
-          hintStyle: AppStyles.text16Size500WightGreyHintText, 
+          hintStyle: AppStyles.text16Size500WightGreyHintText,
           contentPadding: const EdgeInsets.all(20),
           hintText: 'Email or phone number',
           disabledBorder: OutlineInputBorder(

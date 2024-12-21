@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/feature/otp_view.dart/presentaion/widgets/appBar_widget.dart';
 import 'package:taxi_go_driver/feature/otp_view.dart/presentaion/widgets/otp_view_body.dart';
 
-
 import '../../../core/Utils/colors/colors.dart';
 
 class OtpScreen extends StatefulWidget {

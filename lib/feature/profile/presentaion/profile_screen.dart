@@ -3,8 +3,6 @@ import 'package:taxi_go_driver/feature/profile/presentaion/widgets/profile_scree
 
 import '../../sign_in/presentaion/widgets/custom_auth_appbar.dart';
 
-
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 

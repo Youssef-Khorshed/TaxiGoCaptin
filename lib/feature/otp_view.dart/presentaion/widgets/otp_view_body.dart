@@ -14,24 +14,23 @@ class OtpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           SizedBox(height: 30.h),
-          const OtpHeader(title: 'Forgot Password',
-          subTitle: "Code has been sent to***** ***70"),
-
-           SizedBox(height: 32.h),
-           const CustomOtpTextField(),
-           SizedBox(height: 16.h),
-           const CustomResendCode(),
-           const Spacer(),
-         const CustomButton(text: "Verify"),
-           SizedBox(height: 16.h),
+          SizedBox(height: 30.h),
+          const OtpHeader(
+              title: 'Forgot Password',
+              subTitle: "Code has been sent to***** ***70"),
+          SizedBox(height: 32.h),
+          const CustomOtpTextField(),
+          SizedBox(height: 16.h),
+          const CustomResendCode(),
+          const Spacer(),
+          const CustomButton(text: "Verify"),
+          SizedBox(height: 16.h),
         ],
       ),
     );
   }
 }
-

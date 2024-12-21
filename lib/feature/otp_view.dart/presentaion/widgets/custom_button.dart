@@ -5,9 +5,10 @@ import '../../../../core/Utils/text_styles/styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
- final String text;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-         text,
+          text,
           style: AppStyles.text16Size500WightBlack.copyWith(
             color: AppColors.kWhite,
           ),

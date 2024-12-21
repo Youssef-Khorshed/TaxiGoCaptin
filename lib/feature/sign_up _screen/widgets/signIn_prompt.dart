@@ -21,7 +21,6 @@ class SignInPrompt extends StatelessWidget {
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   Navigator.pushNamed(context, Routes.signInRoute);
-
                 },
             ),
           ],

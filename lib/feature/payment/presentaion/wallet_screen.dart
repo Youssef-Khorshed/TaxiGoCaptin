@@ -6,11 +6,8 @@ import 'package:taxi_go_driver/feature/payment/presentaion/widgets/rounded_botto
 import 'package:taxi_go_driver/feature/payment/presentaion/widgets/wallet_card.dart';
 import 'package:taxi_go_driver/feature/payment/presentaion/widgets/wallet_item.dart';
 
-
 import '../../../core/Utils/colors/colors.dart';
 import '../../../core/Utils/assets/images.dart';
-
-
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});

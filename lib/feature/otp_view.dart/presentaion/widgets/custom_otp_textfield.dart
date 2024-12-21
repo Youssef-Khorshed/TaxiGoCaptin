@@ -12,7 +12,7 @@ class CustomOtpTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return OtpTextField(
       borderRadius: BorderRadius.circular(8),
-      focusedBorderColor:AppColors.kPrimaryColor,
+      focusedBorderColor: AppColors.kPrimaryColor,
       numberOfFields: 5,
       borderColor: const Color(0xFF000000),
       showFieldAsBox: true,

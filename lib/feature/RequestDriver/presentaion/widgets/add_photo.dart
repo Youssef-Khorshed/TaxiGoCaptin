@@ -84,7 +84,8 @@ class _AddPhotoState extends State<AddPhoto> {
                 child: const Center(
                   child: Text(
                     "Cancel",
-                    style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

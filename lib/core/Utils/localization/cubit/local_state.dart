@@ -6,14 +6,15 @@ final class LocalInitial extends LocalState {
   Locale locale;
   LocalInitial(this.locale);
 }
-final class LocaleLoading extends LocalState{
 
-}
-final class LocaleSuccess extends LocalState{
+final class LocaleLoading extends LocalState {}
 
+final class LocaleSuccess extends LocalState {
   LocaleSuccess();
 }
-final class InternetSuccess extends LocalState{}
-final class InternetFailure extends LocalState{}
-final class InternetLoading extends LocalState{}
 
+final class InternetSuccess extends LocalState {}
+
+final class InternetFailure extends LocalState {}
+
+final class InternetLoading extends LocalState {}

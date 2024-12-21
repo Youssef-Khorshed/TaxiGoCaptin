@@ -18,18 +18,14 @@ class CustomResendCode extends StatelessWidget {
           TextSpan(
             text: "Resend again",
             style: const TextStyle(
-              color:AppColors.kPrimaryColor,
+              color: AppColors.kPrimaryColor,
               fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-              },
+            recognizer: TapGestureRecognizer()..onTap = () {},
           ),
         ],
       ),
     );
   }
 }
-
-

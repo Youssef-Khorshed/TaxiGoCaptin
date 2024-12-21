@@ -53,7 +53,8 @@ class ForgotPasswordPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.kblue,
-                  padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                 ),
                 child: const Text(
                   "Continue",
@@ -74,7 +75,8 @@ class ContactOption extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
 
-  const ContactOption({super.key,
+  const ContactOption({
+    super.key,
     required this.title,
     required this.details,
     required this.icon,

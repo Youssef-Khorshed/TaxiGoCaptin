@@ -68,7 +68,7 @@ class ApiService {
       final response =
           await getDio(context).get(url, queryParameters: queryParameters);
       if (response.statusCode != null) {
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200 || response.statusCode == 201) {
           return response.data;
         } else {
           throw ServerException(

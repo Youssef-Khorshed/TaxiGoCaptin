@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 
 import '../../core/Utils/assets/images.dart';
 import '../../core/Utils/routes/routes.dart';

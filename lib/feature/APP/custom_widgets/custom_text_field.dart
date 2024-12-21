@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 typedef Validator = String? Function(String?);
+
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
       {super.key,

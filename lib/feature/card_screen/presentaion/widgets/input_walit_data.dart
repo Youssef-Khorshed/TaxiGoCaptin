@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../widgets/costume_bottun.dart';
 import '../../../profile/presentaion/widgets/costum_text_faild.dart';
+
 class InputWaliData extends StatelessWidget {
   const InputWaliData({
     super.key,

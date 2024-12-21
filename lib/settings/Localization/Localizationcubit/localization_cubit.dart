@@ -11,12 +11,15 @@ class LocalizationCubit extends Cubit<LocalizationState> {
     try {
       switch (eventType) {
         case LanguageEventEnums.initialLanguage:
-        // Try to get the language from shared preferences
+          // Try to get the language from shared preferences
           String? language = CacheHelper.getData(key: 'language');
           if (language != null) {
-            emit(ChangeLanguage(languageCode: language)); // Emit the saved language
+            emit(ChangeLanguage(
+                languageCode: language)); // Emit the saved language
           } else {
-            emit(ChangeLanguage(languageCode: 'en')); // Default to English if no language is saved
+            emit(ChangeLanguage(
+                languageCode:
+                    'en')); // Default to English if no language is saved
           }
           break;
 
@@ -24,9 +27,6 @@ class LocalizationCubit extends Cubit<LocalizationState> {
           await CacheHelper.saveData(key: 'language', value: 'ar');
           emit(ChangeLanguage(languageCode: 'ar'));
           break;
-
-
-
 
         case LanguageEventEnums.englishLanguage:
           await CacheHelper.saveData(key: 'language', value: 'en');

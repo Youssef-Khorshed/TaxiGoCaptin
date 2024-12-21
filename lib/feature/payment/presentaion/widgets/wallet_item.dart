@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
 
-
 class WalletItem extends StatelessWidget {
   final void Function()? onPressed;
   const WalletItem({super.key, this.onPressed});
