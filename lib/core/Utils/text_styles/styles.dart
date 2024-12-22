@@ -11,6 +11,10 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+  static TextStyle textStyle24 = GoogleFonts.poppins(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle style24DarkgrayW500 = TextStyle(
     fontSize: 24,
     color: AppColors.darkgrayColor,
@@ -153,6 +157,14 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+
+  static TextStyle style14WhiteW500 = TextStyle(
+    fontSize: 14.sp,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
   static TextStyle style12GrayW400 = TextStyle(
     fontSize: 12,
     color: AppColors.grayColor,
@@ -167,11 +179,6 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
-  );
-
-  static TextStyle textStyle24 = GoogleFonts.poppins(
-    fontSize: 24.sp,
-    fontWeight: FontWeight.w500,
   );
 
   static TextStyle textStyle16 = GoogleFonts.poppins(
@@ -203,6 +210,11 @@ class AppStyles {
     fontSize: 24.sp,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle text20Size500WightDarkGray = GoogleFonts.poppins(
+    color: AppColors.kDarkGray,
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w500,
+  );
 
   static TextStyle text16Size500WightGreyHintText = GoogleFonts.poppins(
     color: AppColors.kHintTextField,
@@ -215,16 +227,21 @@ class AppStyles {
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle text14Size500WightRed = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+  );
 
   static TextStyle text16Size500WightBlack = GoogleFonts.poppins(
-    color: AppColors.kBlack,
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
   );
 
   static TextStyle text14Size500WightW = GoogleFonts.poppins(
-    color: AppColors.kHintTextField,
     fontSize: 14.sp,
+  );
+  static TextStyle text18Size500Blue = GoogleFonts.poppins(
+    color: AppColors.kblue,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w500,
   );
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
-
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/Utils/routes/routes.dart';
 import '../../../APP/custom_widgets/custom_text.dart';
 import 'drawer_item.dart';
@@ -10,15 +12,16 @@ class DrawerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(vertical: 50),
-      children: [
-        _buildProfileHeader(context),
-        const SizedBox(height: 30),
-        _buildDrawerItems(
-          context,
-        ),
-      ],
+    return SafeArea(
+      child: ListView(
+        children: [
+          _buildProfileHeader(context),
+          verticalSpace(30),
+          _buildDrawerItems(
+            context,
+          ),
+        ],
+      ),
     );
   }
 
@@ -30,14 +33,11 @@ class DrawerList extends StatelessWidget {
       child: Column(
         children: [
           _buildProfileImage(),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: CustomText(
-              text: "Mohamed Haggag",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              text: "محمد عبدالمجيد",
+              style: AppStyles.text20Size500WightDarkGray,
             ),
           ),
         ],
@@ -65,42 +65,35 @@ class DrawerList extends StatelessWidget {
       children: [
         _buildDrawerItem(
           icon: Assets.iconsHome,
-          name: 'Home',
+          name: AppLocalizations.of(context)!.home,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[0]);
           },
         ),
         _buildDrawerItem(
           icon: Assets.iconsHistory,
-          name: 'History',
+          name: AppLocalizations.of(context)!.history,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[1]);
           },
         ),
         _buildDrawerItem(
           icon: Assets.iconsWalletIcon,
-          name: 'Wallet',
+          name: AppLocalizations.of(context)!.wallet,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[2]);
           },
         ),
         _buildDrawerItem(
-          icon: Assets.iconsMissionsIcon,
-          name: 'Missions',
-          onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[3]);
-          },
-        ),
-        _buildDrawerItem(
           icon: Assets.iconsSettingsIcon,
-          name: 'Account ',
+          name: AppLocalizations.of(context)!.account,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[4]);
           },
         ),
         _buildDrawerItem(
           icon: Assets.iconsLogOut,
-          name: 'Log Out',
+          name: AppLocalizations.of(context)!.log_out,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[5]);
           },

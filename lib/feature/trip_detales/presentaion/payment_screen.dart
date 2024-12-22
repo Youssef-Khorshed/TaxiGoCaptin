@@ -18,8 +18,6 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: AppColors.kWhite,
       body: PaymentsDetailsBlockBuilder(),

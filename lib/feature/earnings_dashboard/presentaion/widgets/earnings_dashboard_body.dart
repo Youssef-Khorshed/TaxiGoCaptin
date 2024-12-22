@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
-
-import 'ride_request_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/ride_request_widget.dart';
 import 'user_earning_details.dart';
 
 class EarningsDashboardBody extends StatelessWidget {
@@ -8,50 +15,79 @@ class EarningsDashboardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * .4,
-          child: const Column(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               UserEarningDeails(),
-              SizedBox(height: 20),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    WalletData(title: "Overall earning", data: "\$ 0.00"),
-                    WalletData(title: "Today Booking", data: "2"),
+                    WalletData(
+                        title: AppLocalizations.of(context)!.overall_earning,
+                        data: "0.00 \$"),
+                    WalletData(
+                        title: AppLocalizations.of(context)!.today_booking,
+                        data: "2"),
                   ],
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: 25.0,
-                  right: 20,
-                  left: 20,
+                  top: 25.h,
+                  right: 20.w,
+                  left: 20.w,
                 ),
                 child: Text(
-                  "New Request ",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  AppLocalizations.of(context)!.new_requests,
+                  style: AppStyles.text20Size500WightDarkGray,
                 ),
               ),
             ],
           ),
-        ),
-        Expanded(
-          child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.zero,
-              itemBuilder: (context, index) => const RideRequestWidget(),
-              separatorBuilder: (context, index) => const SizedBox(
-                    height: 10,
-                  ),
-              itemCount: 3),
-        )
-      ],
+          BlocBuilder<NearbyRideRequestsCubit, NearbyRideRequestsState>(
+            builder: (context, state) {
+              final cubit = context.read<NearbyRideRequestsCubit>();
+              if (state is NearbyRideRequestsInitial) {
+                cubit.getNearbyRideRequests(context);
+              }
+              return state is NearbyRideRequestsLoading
+                  ? CustomLoading()
+                  : state is NearbyRideRequestsFailure
+                      ? CustomErroranimation(
+                          errormessage: state.message,
+                          lottie: AppLottie.errorFailure,
+                        )
+                      : state is NearbyRideRequestsSuccess
+                          ? ListView.separated(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (context, index) =>
+                                  RideRequestWidget(
+                                      nearbyRideRequestsData: state
+                                          .nearbyRideRequestsModel
+                                          .data![index]),
+                              separatorBuilder: (context, index) => SizedBox(
+                                    height: 10.h,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 50.w),
+                                      child: Divider(),
+                                    ),
+                                  ),
+                              itemCount:
+                                  state.nearbyRideRequestsModel.data!.length)
+                          : Container();
+            },
+          )
+        ],
+      ),
     );
   }
 }
@@ -91,7 +127,7 @@ class _WalletDataState extends State<WalletData> {
           Text(
             widget.title,
             style: const TextStyle(fontSize: 15),
-          )
+          ),
         ],
       ),
     );

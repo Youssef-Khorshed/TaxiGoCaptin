@@ -46,6 +46,8 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   fluttertoast: ^8.2.10
   flutter_polyline_points: ^2.1.0
+  geocode: ^1.0.3
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

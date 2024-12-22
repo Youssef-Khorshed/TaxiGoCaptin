@@ -33,7 +33,7 @@ class LocationService {
     debugPrint("service Performed");
   }
 
-  Future<void> updateCameraLocation(
+  Future<void> updateUserLocation(
       void Function(LocationData)? onDatachange) async {
     await checkAndrequestLocationService();
     await checkAndrequestLocationPermission();

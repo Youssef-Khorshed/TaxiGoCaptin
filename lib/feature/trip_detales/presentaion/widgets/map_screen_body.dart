@@ -13,15 +13,15 @@ class LocationScreenBody extends StatelessWidget {
         const CustomSnappingSheet(
           isAccepted: true,
         ),
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-        //   child: IconButton(
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //     icon: SvgPicture.asset(Assets.imagesBackArrow),
-        //   ),
-        // ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: SvgPicture.asset(Assets.imagesBackArrow),
+          ),
+        ),
       ],
     );
   }

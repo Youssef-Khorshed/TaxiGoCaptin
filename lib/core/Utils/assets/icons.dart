@@ -4,4 +4,6 @@ class AppIcons {
   static const String gmailIcon = 'assets/icons/Gmail.png';
   static const String listIcon = 'assets/icons/list_icon.svg';
   static const String notificationIcon = 'assets/icons/notification.svg';
+  static const String mapBlue = 'assets/icons/map_blue.svg';
+  static const String mapRed = 'assets/icons/map_red.svg';
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/drawer_list.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/earnings_dashboard_body.dart';
-
 import '../../../core/Utils/colors/colors.dart';
 
 class EarningsDashboardScreen extends StatefulWidget {
@@ -24,49 +28,32 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
         backgroundColor: AppColors.kPrimaryColor,
         elevation: 0,
         centerTitle: true,
-        title: Visibility(
-          visible: status,
-          replacement: const Text("Not Available"),
-          child: const Text("Available"),
+        title: Text(
+          AppLocalizations.of(context)!.home,
+          style: AppStyles.text20Size500WightDarkGray,
         ),
         actions: [
           FlutterSwitch(
-            width: 105.0,
-            switchBorder: Border.all(color: AppColors.kWhite, width: 5),
-            height: 45.0,
-            valueFontSize: 25.0,
-            toggleSize: 45.0,
+            width: 60.w,
+            height: 30.h,
             value: status,
             borderRadius: 30.0,
-            inactiveIcon: Container(
-              padding: const EdgeInsets.all(15),
-              decoration: const BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-              ),
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-              ),
+            inactiveIcon: CircleAvatar(
+              backgroundColor: AppColors.kblue,
             ),
-            inactiveColor: AppColors.kBackgroundColor,
-            activeIcon: Container(
-              padding: const EdgeInsets.all(15),
-              decoration: const BoxDecoration(
-                color: Colors.green,
-                shape: BoxShape.circle,
-              ),
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-              ),
+            inactiveColor: AppColors.kblue,
+            activeIcon: const CircleAvatar(
+              backgroundColor: Colors.red,
             ),
-            padding: 8.0,
-            activeColor: AppColors.kBackgroundColor,
+            padding: 8.w,
+            activeColor: AppColors.kRedMap,
             onToggle: (val) {
               setState(() {
                 status = val;
               });
             },
           ),
+          horizontalSpace(10.w),
         ],
       ),
       drawer: const Drawer(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/routes/routes.dart';
@@ -12,12 +13,13 @@ class DriverAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Row(
         children: [
           Expanded(
             child: CostumeButton(
               onPressed: () {},
+              height: 50.h,
               text: "Decline",
               color: Colors.red.withOpacity(.05),
               textColor: Colors.red,
@@ -27,6 +29,7 @@ class DriverAction extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: CostumeButton(
+              height: 50.h,
               text: "Accept",
               textColor: AppColors.kWhite,
               color: AppColors.kblue,

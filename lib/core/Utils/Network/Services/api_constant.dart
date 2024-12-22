@@ -58,4 +58,7 @@ class Constants {
   static const String postName = '';
   static const payAfterRide = '$baseUrl/captain/rides/payment-cash';
   static const completeRide = '$baseUrl/captain/rides/get-last';
+  static const captainDocumentsEndPoint = '$baseUrl/captain/files';
+  static const nearbyRideRequestsEndPoint =
+      '$baseUrl/captain/rides/find-nearby-rides';
 }

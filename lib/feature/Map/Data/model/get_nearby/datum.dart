@@ -1,4 +1,4 @@
-class Datum {
+class RidePindingRequest {
   int? id;
   int? customerId;
   String? addressFrom;
@@ -16,7 +16,7 @@ class Datum {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  Datum({
+  RidePindingRequest({
     this.id,
     this.customerId,
     this.addressFrom,
@@ -35,7 +35,8 @@ class Datum {
     this.updatedAt,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory RidePindingRequest.fromJson(Map<String, dynamic> json) =>
+      RidePindingRequest(
         id: json['id'] as int?,
         customerId: json['customer_id'] as int?,
         addressFrom: json['address_from'] as String?,

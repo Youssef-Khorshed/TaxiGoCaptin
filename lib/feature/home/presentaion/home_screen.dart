@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () => Scaffold.of(context).openDrawer(),
               child: SvgPicture.asset(
                 Assets.iconsListIcon,
-                color: AppColors.kWhite,
+                colorFilter:
+                    ColorFilter.mode(AppColors.kWhite, BlendMode.srcIn),
               ),
             ),
           ),

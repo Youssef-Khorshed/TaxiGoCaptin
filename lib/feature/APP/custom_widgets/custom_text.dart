@@ -30,7 +30,7 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LocalizationCubit, LocalizationState>(
       builder: (context, state) {
-        final font = (state is ChangeLanguage && state.languageCode == 'en')
+        (state is ChangeLanguage && state.languageCode == 'en')
             ? GoogleFonts.poppins()
             : GoogleFonts.cairo();
 

@@ -73,9 +73,9 @@ class _ScanScreenState extends State<ScanScreen> {
               ],
             ),
             const Spacer(),
-            CustomButton(
+            CustomAppBottom(
               onPressed: () {},
-              text: "Next",
+              buttonText: "Next",
             ),
           ],
         ),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/custom_build_adress_row.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/timer_to_accept.dart';
 import 'driver_action.dart';
-import 'driver_details.dart';
-import 'trip_details.dart';
 
 class RideRequestWidget extends StatelessWidget {
-  const RideRequestWidget({super.key});
+  final NearbyRideRequestsData nearbyRideRequestsData;
+  const RideRequestWidget({super.key, required this.nearbyRideRequestsData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +27,19 @@ class RideRequestWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: const Column(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Timeline section
-            TripDetails(),
-
-            // Driver Info
-            DriverDetails(),
-
-            SizedBox(height: 25),
-
-            // Buttons
+            verticalSpace(15.h),
+            // DriverDetails(),
+            // LocationDetails(),
+            BuildAddressRow(
+              nearbyRideRequestsData: nearbyRideRequestsData,
+            ),
+            verticalSpace(15.h),
             DriverAction(),
+            verticalSpace(10.h),
+            TimerToAccept(),
           ],
         ),
       ),
