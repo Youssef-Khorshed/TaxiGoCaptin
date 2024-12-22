@@ -7,7 +7,6 @@ import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/get_active_ride/get_active_ride.dart';
-import 'package:taxi_go_driver/feature/Map/Data/model/get_nearby/datum.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/directions/directions.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/geocode_adress/geocode_adress.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/place_details/place_details.dart';
@@ -114,13 +113,6 @@ class Maprepoimp extends MapRepo {
   Future<Either<Failure, GetActiveRide>> completeRide(
       {required BuildContext context}) {
     // TODO: implement completeRide
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, RidePindingRequest>> getnearbyRideRequests(
-      {required BuildContext context}) {
-    // TODO: implement getnearbyRideRequests
     throw UnimplementedError();
   }
 
