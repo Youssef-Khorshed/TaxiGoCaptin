@@ -5,5 +5,5 @@ import 'package:taxi_go_driver/feature/RequestDriver/data/models/captain_documen
 
 abstract class CaptainDocumentsRepo {
   Future<Either<Failure, CaptainDocumentsModel>> postCaptainDocuments(
-      BuildContext context);
+      BuildContext context, CaptainDocumentsModel captainDocumentsModel);
 }

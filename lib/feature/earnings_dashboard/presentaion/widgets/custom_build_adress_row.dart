@@ -19,7 +19,7 @@ class BuildAddressRow extends StatelessWidget {
     return FutureBuilder<Map<String, String>>(
       future: _getFormattedAddresses(
         fromLatitude: double.parse(nearbyRideRequestsData.latFrom!),
-        fromLongitude: double.parse(nearbyRideRequestsData!.lngFrom!),
+        fromLongitude: double.parse(nearbyRideRequestsData.lngFrom!),
         toLatitude: double.parse(nearbyRideRequestsData.latTo!),
         toLongitude: double.parse(nearbyRideRequestsData.lngTo!),
       ),

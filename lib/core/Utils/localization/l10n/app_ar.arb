@@ -20,8 +20,16 @@
   "account": "الحساب",
   "wallet": "المحفظة",
   "history": "التاريخ",
-  "home": "الرئيسية",
   "you_have": "لديك",
   "to_accept": "للموافقة",
+  "cancel": "الغاء",
+  "choose_from_gallery": "اختر من المعرض",
+  "scan_a_Photo": "مسح صورة",
+  "select_upload_option": "اختر خيار التحميل",
+  "vehicle_license_front": "صورة رخصة السيارة - الوجه الأمامي",
+  "vehicle_license_back": "صورة رخصة السيارة - الوجه الخلفي",
+  "vehicle_number": "رقم السيارة",
+  "vehicle_color": "لون السيارة",
+  "vehicle_model": "موديل السيارة",
   "next": "التالي"
 }

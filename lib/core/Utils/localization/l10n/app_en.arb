@@ -1,7 +1,6 @@
 {
   "welcome": "Welcome",
   "home": "Home",
-
   "complete_other_field": "this field is required *",
   "my_document": "My Document",
   "profile_photo": "Profile Photo",
@@ -21,8 +20,16 @@
   "account": "Account",
   "wallet": "Wallet",
   "history": "History",
-  "home": "Home",
-  "you_have": "You have", 
+  "you_have": "You have",
   "to_accept": "to accept",
+  "cancel": "Cancel",
+  "choose_from_gallery": "Choose from gallery",
+  "scan_a_Photo": "Scan a Photo",
+  "select_upload_option": "Select Upload Option",
+  "vehicle_license_front": "Vehicle License Front",
+  "vehicle_license_back": "Vehicle License Back",
+  "vehicle_number": "Vehicle Number",
+  "vehicle_color": "Vehicle Color",
+  "vehicle_model": "Vehicle Model",
   "next": "Next"
 }

@@ -6,6 +6,7 @@ import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/ListTile.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/document_app_bar.dart';
+import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/documents_forms.dart';
 import '../../APP/custom_widgets/custom_Button.dart';
 import '../../../core/Utils/routes/routes.dart';
 
@@ -14,12 +15,15 @@ class CaptainDocuments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context).size;
     List fieldsListTitle = [
       AppLocalizations.of(context)!.profile_photo,
       AppLocalizations.of(context)!.photo_of_Driving_license_front,
       AppLocalizations.of(context)!.photo_of_Driving_license_back,
       AppLocalizations.of(context)!.photo_of_nationa_ID_front,
       AppLocalizations.of(context)!.photo_of_nationa_ID_back,
+      AppLocalizations.of(context)!.vehicle_license_front,
+      AppLocalizations.of(context)!.vehicle_license_back,
       // AppLocalizations.of(context)!.driving_license,
     ];
     return Scaffold(
@@ -39,7 +43,7 @@ class CaptainDocuments extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor: AppColors.kDarkBlue,
                     child: Text(
-                      "1/5",
+                      "1/10",
                       style: TextStyle(color: Colors.white),
                     ),
                   )
@@ -47,13 +51,24 @@ class CaptainDocuments extends StatelessWidget {
               ),
               verticalSpace(10.h),
               Expanded(
-                child: ListView.builder(
-                    itemCount: fieldsListTitle.length,
-                    itemBuilder: (context, index) {
-                      return CustomListTile(
-                        title: fieldsListTitle[index],
-                      );
-                    }),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: fieldsListTitle.length,
+                          itemBuilder: (context, index) {
+                            return CustomListTile(
+                              title: fieldsListTitle[index],
+                            );
+                          }),
+                      SizedBox(
+                          height: mediaQuery.height * 0.4,
+                          child: DocumentsForms()),
+                    ],
+                  ),
+                ),
               ),
               verticalSpace(20.h),
               CustomButton(

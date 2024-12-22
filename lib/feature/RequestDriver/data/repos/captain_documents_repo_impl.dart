@@ -12,12 +12,12 @@ class CaptainDocumentsRepoImpl extends CaptainDocumentsRepo {
   CaptainDocumentsRepoImpl(this.apiService);
   @override
   Future<Either<Failure, CaptainDocumentsModel>> postCaptainDocuments(
-      BuildContext context) async {
+      BuildContext context, CaptainDocumentsModel captainDocumentsModel) async {
     try {
       var response = await apiService.postRequest(
           Constants.captainDocumentsEndPoint,
           context: context,
-          body: CaptainDocumentsModel().toJson());
+          body: captainDocumentsModel.toJson());
       return Right(response);
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
