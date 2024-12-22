@@ -43,11 +43,11 @@ class DocumentScreen extends StatelessWidget {
                       );
                     }),
               ),
-              CustomButton(
+              CustomAppBottom(
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.homeRoute);
                 },
-                text: "Next",
+                buttonText: "Next",
               ),
             ],
           ),

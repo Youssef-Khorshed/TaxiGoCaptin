@@ -85,7 +85,7 @@ class SetPasswordBody extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.all(10.w),
-            child: CustomButton(
+            child: CustomAppBottom(
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -95,7 +95,7 @@ class SetPasswordBody extends StatelessWidget {
                 //
                 // }
               },
-              text: "Register",
+              buttonText: "Register",
             ),
           )
         ],

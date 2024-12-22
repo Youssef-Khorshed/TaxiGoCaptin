@@ -1,31 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.text});
-
+class CustomAppBottom extends StatelessWidget {
+  final String? buttonText;
   final VoidCallback onPressed;
-  final String text;
+  final Color? textColor, buttonColor, borderColor, iconColor;
+  final Icon? icon;
+  final double? borderCornerRadius;
+  const CustomAppBottom({
+    this.iconColor,
+    this.borderColor,
+    this.textColor,
+    this.borderCornerRadius,
+    this.buttonText,
+    this.buttonColor,
+    required this.onPressed,
+    super.key,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 54,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              10,
-            ),
+    return InkWell(
+      onTap: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderCornerRadius ?? 10),
+              color: buttonColor ?? AppColors.blueColor,
+              border: Border.all(color: borderColor ?? Colors.white, width: 2)),
+          width: double.infinity,
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              icon ?? const SizedBox(),
+              verticalSpace(20),
+              Center(
+                child: Text(
+                  buttonText ?? "",
+                  style: AppStyles.style16WhiteW500.copyWith(color: textColor),
+                ),
+              ),
+            ],
           ),
-          backgroundColor: AppColors.primaryColor,
-        ),
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: AppStyles.textStyle16.copyWith(color: Colors.white),
         ),
       ),
     );

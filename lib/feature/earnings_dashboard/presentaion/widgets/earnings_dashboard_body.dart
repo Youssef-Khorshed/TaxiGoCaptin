@@ -11,7 +11,7 @@ class EarningsDashboardBody extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * .35,
+          height: MediaQuery.of(context).size.height * .4,
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

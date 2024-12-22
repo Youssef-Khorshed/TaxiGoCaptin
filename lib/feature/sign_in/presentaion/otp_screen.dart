@@ -1,10 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_Button.dart';
 import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/otp_field.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
-
-import '../../APP/custom_widgets/custom_Button.dart';
-
 import '../../../core/Utils/colors/colors.dart';
 import '../../../core/Utils/routes/routes.dart';
 
@@ -127,11 +125,11 @@ class _OTPScreenState extends State<OTPScreen> {
                 ),
               ),
               const Spacer(),
-              CustomButton(
+              CustomAppBottom(
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.setPassowrdRoute);
                 },
-                text: '',
+                buttonText: '',
               ),
               verticalSpace(20),
             ],
