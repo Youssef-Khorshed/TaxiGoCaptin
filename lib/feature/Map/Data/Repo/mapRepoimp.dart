@@ -6,11 +6,16 @@ import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/accept_ride_request/accept_ride_request.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/complete_ride/complete_ride.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/get_active_ride/get_active_ride.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/pickup_user/pickup_user.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/directions/directions.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/geocode_adress/geocode_adress.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/place_details/place_details.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/rideRequestModel/cancel/cancelRideRequest.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/update_captin_location/update_captin_location.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 
 class Maprepoimp extends MapRepo {
   ApiService apiService;
@@ -103,30 +108,76 @@ class Maprepoimp extends MapRepo {
   }
 
   @override
-  Future<Either<Failure, Unit>> acceptRideRequest(
-      {required String rideID, required BuildContext context}) {
-    // TODO: implement acceptRideRequest
-    throw UnimplementedError();
+  Future<Either<Failure, AcceptRideRequest>> acceptRideRequest(
+      {required int rideID, required BuildContext context}) async {
+    try {
+      final res = await apiService.postRequest(
+          context: context, Constants.accept_ride_request(rideId: rideID));
+      return Right(AcceptRideRequest.fromJson(res));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, GetActiveRide>> completeRide(
-      {required BuildContext context}) {
-    // TODO: implement completeRide
-    throw UnimplementedError();
+  Future<Either<Failure, CompleteRide>> completeRide(
+      {required double distanceinKm, required BuildContext context}) async {
+    try {
+      final res = await apiService.postRequest(
+          context: context,
+          Constants.complete_ride(
+            distanceinKm: distanceinKm,
+          ));
+      return Right(CompleteRide.fromJson(res));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, GetActiveRide>> pickCustomer(
-      {required BuildContext context}) {
-    // TODO: implement pickCustomer
-    throw UnimplementedError();
+  Future<Either<Failure, PickupUser>> pickCustomer(
+      {required BuildContext context}) async {
+    try {
+      final res = await apiService.postRequest(
+          context: context, Constants.pickup_customer);
+      return Right(PickupUser.fromJson(res));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, GetActiveRide>> updateCaptinLocation(
-      {required BuildContext context, required LatLng location}) {
-    // TODO: implement updateCaptinLocation
-    throw UnimplementedError();
+  Future<Either<Failure, UpdateCaptinLocation>> updateCaptinLocation(
+      {required BuildContext context, required LatLng location}) async {
+    try {
+      final res = await apiService.postRequest(
+          context: context,
+          Constants.update_captin_location,
+          body: Constants.update_captin_locationBody(location: location));
+      return Right(UpdateCaptinLocation.fromJson(res));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message.toString()));
+    }
+  }
+
+  Future<Either<Failure, NearbyRideRequestsModel>> fetchNearbyRideRequests(
+      BuildContext context) async {
+    try {
+      final response = await apiService.getRequest(
+          context: context, Constants.nearbyRideRequestsEndPoint);
+      return Right(NearbyRideRequestsModel.fromJson(response));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(InternetConnectionFailure(message: e.message.toString()));
+    }
   }
 }

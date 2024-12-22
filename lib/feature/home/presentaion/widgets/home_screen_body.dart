@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
-
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/routes/routes.dart';
 

@@ -7,6 +7,7 @@ import 'package:taxi_go_driver/core/Utils/Network/Services/services_locator.dart
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/routes/route_generator.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
@@ -54,6 +55,9 @@ class Captinapp extends StatelessWidget {
                 BlocProvider(
                   create: (context) => NearbyRideRequestsCubit(
                       getIt.get<NearbyRideRequestsRepoImpl>()),
+                ),
+                BlocProvider(
+                  create: (context) => getIt.get<MapsCubit>(),
                 ),
                 BlocProvider(
                   create: (context) => LocalizationCubit()

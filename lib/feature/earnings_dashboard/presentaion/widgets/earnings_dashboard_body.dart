@@ -68,11 +68,11 @@ class EarningsDashboardBody extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) =>
-                                  RideRequestWidget(
-                                      nearbyRideRequestsData: state
-                                          .nearbyRideRequestsModel
-                                          .data![index]),
+                              itemBuilder: (context, index) {
+                                return RideRequestWidget(
+                                    nearbyRideRequestsData: state
+                                        .nearbyRideRequestsModel.data![index]);
+                              },
                               separatorBuilder: (context, index) => SizedBox(
                                     height: 10.h,
                                     child: Padding(

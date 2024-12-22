@@ -36,8 +36,11 @@ class RideRequestWidget extends StatelessWidget {
             BuildAddressRow(
               nearbyRideRequestsData: nearbyRideRequestsData,
             ),
+
             verticalSpace(15.h),
-            DriverAction(),
+            DriverAction(
+              nearbyRideRequest: nearbyRideRequestsData,
+            ),
             verticalSpace(10.h),
             TimerToAccept(),
           ],

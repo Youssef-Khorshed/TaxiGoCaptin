@@ -1,9 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
+
+// ignore: must_be_immutable
 class BookingDetailsAccepted extends StatelessWidget {
-  const BookingDetailsAccepted({
-    super.key,
-  });
+  NearbyRideRequestsData nearbyRideRequest;
+
+  BookingDetailsAccepted({
+    Key? key,
+    required this.nearbyRideRequest,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

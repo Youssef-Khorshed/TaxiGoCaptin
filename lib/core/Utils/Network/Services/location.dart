@@ -11,7 +11,7 @@ class LocationService {
     if (!isServiceEnabled0) {
       final isServiceEnabled = await location.requestService();
       if (!isServiceEnabled) {
-        throw ServiceException(message: "Service not enabled");
+        throw PermissionException(message: "Service not enabled");
       }
     }
   }
@@ -37,7 +37,9 @@ class LocationService {
       void Function(LocationData)? onDatachange) async {
     await checkAndrequestLocationService();
     await checkAndrequestLocationPermission();
-    location.changeSettings(distanceFilter: 2);
+    location.changeSettings(distanceFilter: 3);
+    debugPrint("location change");
+
     location.onLocationChanged.listen(onDatachange);
   }
 
@@ -48,8 +50,8 @@ class LocationService {
       final x = await location.getLocation();
       debugPrint('action done $x');
       return x;
-    } catch (e) {
-      return LocationData.fromMap({'latitude': 0.0, 'longitude': 0.0});
+    } on PermissionException catch (e) {
+      throw PermissionException(message: e.message);
     }
   }
 }

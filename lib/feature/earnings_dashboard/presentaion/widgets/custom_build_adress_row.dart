@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
@@ -15,11 +14,8 @@ class BuildAddressRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<String, String>>(
-      future: _getFormattedAddresses(
-        fromLatitude: double.parse(nearbyRideRequestsData.latFrom!),
-        fromLongitude: double.parse(nearbyRideRequestsData.lngFrom!),
-        toLatitude: double.parse(nearbyRideRequestsData.latTo!),
-        toLongitude: double.parse(nearbyRideRequestsData.lngTo!),
+      future: parseAddress(
+        nearbyRideRequestsData.addressFrom!,
       ),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -57,75 +53,42 @@ class BuildAddressRow extends StatelessWidget {
           );
         }
 
-        final fromAddress = snapshot.data!['fromAddress']!;
-        final fromCity = snapshot.data!['fromCity']!;
-        final toAddress = snapshot.data!['toAddress']!;
-        final toCity = snapshot.data!['toCity']!;
-
         return ListTile(
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TripDetailsMap(
-                address: fromAddress,
-                location: fromCity,
+                address: nearbyRideRequestsData.addressFrom!,
+                location: snapshot.data!['city'] ?? '',
                 icon: AppIcons.mapRed,
               ),
-              TripDetailsMap(
-                address: toAddress,
-                location: toCity,
-                icon: AppIcons.mapBlue,
-              ),
+              // TripDetailsMap(
+              //   address: nearbyRideRequestsData.addressFrom!,
+              //   location: toCity,
+              //   icon: AppIcons.mapBlue,
+              // ),
             ],
           ),
-          // trailing: Text(
-          //   "${nearbyRideRequestsModel.ride!.distance} ${AppLocalizations.of(context)!.km}",
-          //   style: TextStyle(fontSize: 15.sp),
-          // ),
         );
       },
     );
   }
 
-  Future<Map<String, String>> _getFormattedAddresses({
-    required double fromLatitude,
-    required double fromLongitude,
-    required double toLatitude,
-    required double toLongitude,
-  }) async {
-    try {
-      final fromAddress = await _getAddress(fromLatitude, fromLongitude);
-      final toAddress = await _getAddress(toLatitude, toLongitude);
+  Future<Map<String, String>> parseAddress(String address) {
+    List<String> addressParts = address.split(' ');
+    Map<String, String> parsedAddress = {};
 
-      return {
-        'fromAddress': fromAddress['address']!,
-        'fromCity': fromAddress['city']!,
-        'toAddress': toAddress['address']!,
-        'toCity': toAddress['city']!,
-      };
-    } catch (e) {
-      throw Exception("فشل في جلب العناوين: $e");
-    }
-  }
-
-  Future<Map<String, String>> _getAddress(
-      double latitude, double longitude) async {
-    final address = await GeoCode()
-        .reverseGeocoding(latitude: latitude, longitude: longitude);
-    String _getCity(String city) {
-      if (city.isEmpty) return '';
-
-      List<String> parts = city.split(' ');
-      if (parts.length > 2) {
-        return '${parts[0]} ${parts[1]}';
-      }
-
-      return city;
+    if (addressParts.isNotEmpty) {
+      parsedAddress['street_number'] = addressParts[0];
+      parsedAddress['street_name'] =
+          addressParts.sublist(1, addressParts.length - 5).join(' ');
+      parsedAddress['city'] = addressParts[addressParts.length - 5];
+      parsedAddress['county'] = addressParts[addressParts.length - 4];
+      parsedAddress['state'] = addressParts[addressParts.length - 3];
+      parsedAddress['country'] = addressParts[addressParts.length - 2];
+      parsedAddress['postal_code'] = addressParts[addressParts.length - 1];
     }
 
-    return {
-      'address': address.streetAddress ?? '',
-      'city': _getCity(address.city ?? ''),
-    };
+    return Future.value(parsedAddress);
   }
 }

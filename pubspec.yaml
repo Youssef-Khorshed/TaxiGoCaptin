@@ -23,7 +23,7 @@ dependencies:
   snapping_sheet: ^3.1.0
   pretty_dio_logger: ^1.4.0
   connectivity_plus: ^6.1.1
-  location: ^7.0.1
+  location: ^5.0.0
   dio: ^5.7.0
   country_code_picker: ^3.1.0
   flutter_screenutil: ^5.9.3
@@ -50,6 +50,7 @@ dependencies:
   shimmer: ^3.0.0
 
 dev_dependencies:
+  flutter_launcher_icons: null
   flutter_test:
     sdk: flutter
 
@@ -64,6 +65,14 @@ flutter:
     - assets/images/
     - assets/lottie/
     - assets/fonts/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/taxi_go_icon.jpg"
+  remove_alpha: true
+  adaptive_icon_background: "#1D1AD8"
+  adaptive_icon_foreground: "assets/icons/taxi_go_icon.jpg"   
 
 fonts:
   - family: Medel

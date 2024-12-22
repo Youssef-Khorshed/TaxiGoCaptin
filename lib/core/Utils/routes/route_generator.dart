@@ -22,7 +22,6 @@ import '../../../feature/sign_in/presentaion/sign_in_view.dart';
 import '../../../feature/sign_up _screen/sign_up_screen.dart';
 import '../../../feature/splash_screen/splash_screen.dart';
 import '../../../feature/splash_screen/welcome_screen.dart';
-import '../../../feature/trip_detales/presentaion/map_screen.dart';
 import '../../../feature/verification/verification_view.dart';
 
 class RouteGenerator {
@@ -95,8 +94,7 @@ class RouteGenerator {
       case Routes.homeRoute:
         return MaterialPageRoute(
             builder: (_) => const EarningsDashboardScreen());
-      case Routes.mabScreen:
-        return MaterialPageRoute(builder: (_) => const MapScreen());
+
       case Routes.otpScreenForget:
         return MaterialPageRoute(builder: (_) => const OtpScreen());
       case Routes.uploadDocument:

@@ -25,6 +25,7 @@ class _MapWidgetState extends State<MapWidget> {
     zoom: 14.4746,
   );
 
+  // ignore: unused_element
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
     await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));

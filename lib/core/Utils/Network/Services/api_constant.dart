@@ -4,19 +4,12 @@ class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
   static const String captinToken =
       '32|8t9ccIYshCZ3jBx8ITjqgtOC1FNgbA8kHAbCA5Rs23b9d158';
-  static const String mapToken = 'AIzaSyCI1Xh53omwfYyDPXsovvHwjMgyvamPtow';
+  static const String mapToken = 'AIzaSyCmrk6YbjdCAlwichSDNyyfxlA7zwXhVwc';
+  //12|q6MKp3jMFDLEiSgpkqjYTHL7wM4wVqsdovXGCzBo87dec1d2s
+  //
+  static String kToken = "kToken";
 
-  /// Routes
-
-  // /// nearby rides
-  // static const String find_nearby_rides =
-  //     '$baseUrl/captain/rides/find-nearby-rides';
-
-  // /// find ride request
-  // static String get_ride_request({required String rideId}) =>
-  //     '$baseUrl/ride-requests/$rideId';
-
-  static String accept_ride_request({required String rideId}) =>
+  static String accept_ride_request({required int rideId}) =>
       '/captain/rides/accept?ride_request_id=$rideId';
 
   static const String get_active_rides = '$baseUrl/captain/rides/active';
@@ -27,7 +20,11 @@ class Constants {
 
   static const String pickup_customer = '$baseUrl/captain/rides/pickup';
 
-  static String complete_ride({required String distanceinKm}) =>
+  static Map<String, dynamic> update_captin_locationBody(
+          {required LatLng location}) =>
+      {'latitude': location.latitude, 'longitude': location.longitude};
+
+  static String complete_ride({required double distanceinKm}) =>
       '$baseUrl/captain/rides/complete?distance=$distanceinKm';
   static String placeDetails({
     required String placeId,
@@ -47,11 +44,6 @@ class Constants {
     required String sessionToken,
   }) =>
       'https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&key=$mapToken&sessiontoken=$sessionToken';
-
-  // /// Payment
-  // static String pay_after_ride_cash_amount({required String amount}) =>
-  //     '$baseUrl/captain/rides/payment-cash?paid=$amount';
-  // static String pay_cash_amount() => '$baseUrl/captain/rides/cash-amount';
 
   static const kModelFont = 'Medel';
   static const String getName = '';

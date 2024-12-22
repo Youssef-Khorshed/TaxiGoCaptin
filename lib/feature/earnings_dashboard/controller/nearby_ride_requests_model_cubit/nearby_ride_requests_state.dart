@@ -11,6 +11,8 @@ final class NearbyRideRequestsInitial extends NearbyRideRequestsState {}
 
 final class NearbyRideRequestsLoading extends NearbyRideRequestsState {}
 
+final class NearbyRideRequestsStramClose extends NearbyRideRequestsState {}
+
 final class NearbyRideRequestsSuccess extends NearbyRideRequestsState {
   final NearbyRideRequestsModel nearbyRideRequestsModel;
   NearbyRideRequestsSuccess(this.nearbyRideRequestsModel);

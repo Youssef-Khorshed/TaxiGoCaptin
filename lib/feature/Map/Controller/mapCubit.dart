@@ -1,25 +1,34 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/location.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/streanListener.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/accept_ride_request/accept_ride_request.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/complete_ride/complete_ride.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/get_active_ride/get_active_ride.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/pickup_user/pickup_user.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/geocode_adress/result.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/place_search/prediction.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/rideRequestModel/cancel/cancelRideRequest.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/update_captin_location/update_captin_location.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 
 class MapsCubit extends Cubit<MapsState> {
   final MapRepo mapsRepository;
   // for map intialization
   late GoogleMapController mapController;
-
   // for origin & destination
   GeocodeResult originAddress = GeocodeResult();
   GeocodeResult destinationAddress = GeocodeResult();
@@ -28,10 +37,9 @@ class MapsCubit extends Cubit<MapsState> {
   late Marker destinationMarker;
   late CameraPosition placeCameraPosition;
   LocationPosition? orginPosition;
-  late LocationPosition destinationostion;
+  LocationPosition? destinationPosition;
   LocationService locationService = LocationService();
   late String destinationInfo;
-
   // these variables for getPlaceLocation
   Set<Marker> markers = {};
   Set<Polyline> polyLines = {};
@@ -39,30 +47,40 @@ class MapsCubit extends Cubit<MapsState> {
   List<Prediction> predictions = [];
   MapsCubit({required this.mapsRepository}) : super(MapsInitial());
 
-  /// get user location
-  Future<void> getUserLocation({required String title}) async {
+  /// captin items
+  DataService<Either<Failure, NearbyRideRequestsModel>>? dataService;
+  AcceptRideRequest acceptRideRequest = AcceptRideRequest();
+  UpdateCaptinLocation updateCaptinLocation = UpdateCaptinLocation();
+  PickupUser pickupUser = PickupUser();
+  CompleteRide completeRide = CompleteRide();
+  CancelRideRequest cancelRideRequest = CancelRideRequest();
+  GetActiveRide getActiveRide = GetActiveRide();
+
+  /// get captin location
+  Future<void> getCaptinLocation({required String title}) async {
     try {
       emit(PlaceAddressLoading());
-      final userLocation = await locationService.getuserLocation();
+      final captinLocation = await locationService.getuserLocation();
       orginPosition = LocationPosition(
-        lat: userLocation.latitude,
-        lng: userLocation.longitude,
+        lat: captinLocation.latitude,
+        lng: captinLocation.longitude,
       );
       emit(UpdateOriginLocatoin());
+
       buildmarker(
         title: title,
         destinationInfo: title,
         postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
       );
       updatePlaceCameraPosition(
-          place: LatLng(userLocation.latitude!, userLocation.longitude!));
+          place: LatLng(captinLocation.latitude!, captinLocation.longitude!));
     } on PermissionException catch (error) {
       Fluttertoast.showToast(msg: error.message);
       emit(OpenLoacationFailed());
     }
   }
 
-  /// start updating user location
+  /// start updating captin location
   getUserUpdatedLocation({required String title}) async {
     await locationService.updateUserLocation((LocationData userlocation) {
       try {
@@ -92,30 +110,23 @@ class MapsCubit extends Cubit<MapsState> {
     });
   }
 
-  /// map initialization
-  Future<void> initMap() async {
-    placeCameraPosition = const CameraPosition(
-        target: LatLng(33.40302561069593, 44.498105563683005), zoom: 8);
-    emit(MapsInitialized());
-  }
-
   /// get place Address form Loaction
-  Future<void> emitPlaceAddress({
+  Future<GeocodeResult?> emitPlaceAddress({
     required LatLng placeLatLng,
     required String sessionToken,
-    required bool isorigin,
     required BuildContext context,
   }) async {
+    GeocodeResult? result;
     emit(PlaceAddressLoading());
     final res = await mapsRepository.getPlaceAddress(
         placeLatLng: placeLatLng, sessionToken: sessionToken, context: context);
     res.fold((error) => emit(GetAddressFail(message: error.message)),
         (onsuccess) {
-      isorigin
-          ? originAddress = onsuccess.results![0]
-          : destinationAddress = onsuccess.results![0];
+      result = onsuccess.results![0];
+
       emit(GetAddressSuccess());
     });
+    return result;
   }
 
   /// get place details location
@@ -127,7 +138,7 @@ class MapsCubit extends Cubit<MapsState> {
     final response = await mapsRepository.getPlaceLocation(
         context: context, placeId: placeId, sessionToken: sessionToken);
     response.fold((onError) {}, (onSuccess) {
-      destinationostion = onSuccess.result!.geometry!.location!;
+      destinationPosition = onSuccess.result!.geometry!.location!;
       emit(GetSearchedPlace(onSuccess.result!.geometry!.location!));
     });
   }
@@ -172,7 +183,7 @@ class MapsCubit extends Cubit<MapsState> {
         request: PolylineRequest(
           origin: PointLatLng(orginPosition!.lat!, orginPosition!.lng!),
           destination:
-              PointLatLng(destinationostion.lat!, destinationostion.lng!),
+              PointLatLng(destinationPosition!.lat!, destinationPosition!.lng!),
           mode: TravelMode.driving,
         ),
       );
@@ -220,19 +231,123 @@ class MapsCubit extends Cubit<MapsState> {
     emit(UpdateMarkers());
   }
 
-  //// Captin Ride Requests
-
-  Future<void> getnearbyRequest({required BuildContext context}) async {}
+  //// Captin Ride Methods
   Future<void> canelRideRequest({required BuildContext context}) async {
-    emit(CancelRideLoading());
+    emit(CancelRideRequestLoading());
     final response = await mapsRepository.canelRideRequest(context: context);
-    response.fold((onError) => emit(CancelRideFail()),
-        (onSuccess) => emit(CancelRideSuccess()));
+    response.fold(
+        (onError) => emit(CancelRideRequestFail(message: onError.message)),
+        (onSuccess) {
+      cancelRideRequest = onSuccess;
+      emit(CancelRideRequestSuccess(rideRequest: cancelRideRequest));
+    });
   }
 
-  Future<void> accpetRideRequest({required BuildContext context}) async {}
-  Future<void> getActiveRide({required BuildContext context}) async {}
-  Future<void> updateCaptinLoaction({required BuildContext context}) async {}
-  Future<void> pickCustomer({required BuildContext context}) async {}
-  Future<void> completeRide({required BuildContext context}) async {}
+  Future<void> accpetRideRequest(
+      {required BuildContext context, required int rideID}) async {
+    emit(AccpetRideRequestLoading());
+    final res = await mapsRepository.acceptRideRequest(
+        rideID: rideID, context: context);
+
+    res.fold((ifLeft) => emit(AccpetRideRequestFail(message: ifLeft.message)),
+        (ifRight) {
+      acceptRideRequest = ifRight;
+      emit(AccpetRideRequestSuccess(rideRequest: acceptRideRequest));
+    });
+  }
+
+  Future<void> getActiveRideRequest({required BuildContext context}) async {
+    emit(GetActiveRideRequestLoading());
+    final res = await mapsRepository.getActiveRide(context: context);
+    res.fold(
+        (ifLeft) => emit(GetActiveRideRequestFail(message: ifLeft.message)),
+        (ifRight) {
+      getActiveRide = ifRight;
+      emit(GetActiveRideRequestSuccess(activeRide: getActiveRide));
+    });
+  }
+
+  Future<void> updateCaptinLoaction(
+      {required BuildContext context, required LatLng location}) async {
+    emit(UpdateCaptinLocationLoading());
+    final res = await mapsRepository.updateCaptinLocation(
+        context: context, location: location);
+    res.fold(
+        (ifLeft) => emit(UpdateCaptinLocationFail(message: ifLeft.message)),
+        (ifRight) {
+      updateCaptinLocation = ifRight;
+      emit(UpdateCaptinLocationSuccess(
+          updateCaptinLocation: updateCaptinLocation));
+    });
+  }
+
+  Future<void> pickCustomer({required BuildContext context}) async {
+    emit(PickUpUserLoading());
+    final res = await mapsRepository.pickCustomer(context: context);
+    res.fold((ifLeft) => emit(PickUpUserFail(message: ifLeft.message)),
+        (ifRight) {
+      pickupUser = ifRight;
+      emit(PickUpUserSuccess(pickupUser: pickupUser));
+    });
+  }
+
+  Future<void> completeRideRequest(
+      {required BuildContext context, required double distanceinKm}) async {
+    emit(CompleteRequestLoading());
+    final res = await mapsRepository.completeRide(
+        context: context, distanceinKm: distanceinKm);
+    res.fold((ifLeft) => emit(CompleteRequestFail(message: ifLeft.message)),
+        (ifRight) {
+      completeRide = ifRight;
+      emit(CompleteRideSuccess(completeRide: completeRide));
+    });
+  }
+
+  Future<void> getNearbyRideRequests(BuildContext context) async {
+    emit(NearbyRideRequestsLoading());
+
+    dataService = DataService<Either<Failure, NearbyRideRequestsModel>>(
+      fetchData: () => mapsRepository.fetchNearbyRideRequests(context),
+      pollingInterval: Duration(seconds: 5),
+    );
+
+    try {
+      dataService!.startPolling();
+
+      dataService!.dataStream.listen(
+        (event) {
+          event.fold(
+            (failure) {
+              emit(NearbyRideRequestsFailure(failure.message));
+            },
+            (rideCompleteDetails) {
+              emit(NearbyRideRequestsSuccess(rideCompleteDetails));
+            },
+          );
+        },
+        onError: (error) {
+          emit(NearbyRideRequestsFailure('An error occurred: $error'));
+        },
+        onDone: () {},
+      );
+    } catch (error) {
+      emit(NearbyRideRequestsFailure('Failed to start polling: $error'));
+    }
+  }
+
+  Future<void> intializeCaptinLocatin(BuildContext context) async {
+    emit(IntializationCaptinLocationLoading());
+    await getCaptinLocation(title: 'captin');
+    if (state is UpdateOriginLocatoin) {
+      await updateCaptinLoaction(
+          context: context,
+          location: LatLng(orginPosition!.lat!, orginPosition!.lng!));
+      emit(IntializationCaptinLocationSuccess());
+    }
+  }
 }
+
+
+// accept  - updatelocation  -  getactive  -  pickup - complete  
+// accept  - cancel 
+ 

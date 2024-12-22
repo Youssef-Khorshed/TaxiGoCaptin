@@ -12,7 +12,7 @@ class TermsAndPrivacyText extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(FontAwesomeIcons.checkCircle, color: Colors.green),
+          const Icon(FontAwesomeIcons.circle, color: Colors.green),
           const SizedBox(width: 8),
           Expanded(
             child: RichText(
