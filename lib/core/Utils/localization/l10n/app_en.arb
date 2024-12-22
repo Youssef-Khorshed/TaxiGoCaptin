@@ -1,3 +1,18 @@
 {
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "log_in":"Log In",
+    "transactions": "Transactions",
+    "available_balance": "Available Balance",
+    "deposit_processing": "Deposit Processing",
+    "withdrawal_processing": "Withdrawal Processing",
+    "currency_iqd": "IQD",
+    "transaction_payment": "Payment",
+    "transaction_remaining": "Remaining",
+    "transaction_charge": "Charge",
+    "transaction_payout": "Payout",
+    "transaction_adjustment": "Adjustment",
+    "transaction_withdraw": "Withdraw",
+    "notifications": "Notifications",
+    "notification_details": "Notification Details",
+    "system_notification": "System Notification"
 }

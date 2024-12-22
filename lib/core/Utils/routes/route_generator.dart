@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
+import 'package:taxi_go_driver/feature/notification/screens/notification_screen.dart';
 import '../../../feature/RequestDriver/presentaion/MyDocument.dart';
+import '../../../feature/Wallet/screens/wallet_screen.dart';
 import '../../../feature/account_screen/presentaion/account_screen.dart';
 import '../../../feature/card_screen/presentaion/card_screen.dart';
 import '../../../feature/earnings_dashboard/presentaion/earnings_dashboard_screen.dart';
 import '../../../feature/earnings_dashboard/presentaion/widgets/trip_details.dart';
 import '../../../feature/history/presentaion/history_view.dart';
 import '../../../feature/mission/presentaion/mission_view.dart';
-import '../../../feature/notification/presentaion/notification_view.dart';
 import '../../../feature/otp_view.dart/presentaion/otp_view.dart';
-import '../../../feature/payment/presentaion/payment_screen.dart';
-import '../../../feature/payment/presentaion/wallet_screen.dart';
 import '../../../feature/profile/presentaion/edit_profile_screen.dart';
 import '../../../feature/profile/presentaion/profile_screen.dart';
 import '../../../feature/sign_in/presentaion/otp_screen.dart';
@@ -37,19 +36,24 @@ class RouteGenerator {
 
       case Routes.phoneVerificationRoute:
         return unDefinedRoute();
-
+      case Routes.wallet:
+        return MaterialPageRoute(
+          builder: (context) {
+            return const WalletScreen();
+          },
+        );
       case Routes.scanRoute:
         return unDefinedRoute();
 
-      case Routes.addMoneyRoute:
-        return unDefinedRoute();
+      //case Routes.addMoneyRoute:
+      //  return unDefinedRoute();
 
       case Routes.earningRoute:
         return MaterialPageRoute(
             builder: (_) => const EarningsDashboardScreen());
 
-      case Routes.walletRoute:
-        return MaterialPageRoute(builder: (_) => const WalletScreen());
+      //case Routes.walletRoute:
+      //  return MaterialPageRoute(builder: (_) => const WalletScreen());
 
       case Routes.errorscreen:
         return MaterialPageRoute(
@@ -66,12 +70,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const MissionView());
 
       case Routes.notificationRoute:
-        return MaterialPageRoute(builder: (_) => const NotificationView());
+        return MaterialPageRoute(builder: (_) => const NotificationScreen());
 
-      case Routes.paymentRoute:
-        return MaterialPageRoute(
-            builder: (_) => const PaymentSelectMethodScreen());
-
+      //case Routes.paymentRoute:
+      //  return MaterialPageRoute(
+      //      builder: (_) => const PaymentSelectMethodScreen());
+//
       case Routes.signInRoute:
         return MaterialPageRoute(builder: (_) => const SignInScreen());
 

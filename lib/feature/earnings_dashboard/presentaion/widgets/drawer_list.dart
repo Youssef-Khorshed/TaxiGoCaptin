@@ -85,24 +85,31 @@ class DrawerList extends StatelessWidget {
           },
         ),
         _buildDrawerItem(
+          icon: Assets.iconsWalletIcon,
+          name: 'Notification',
+          onTap: () {
+            Navigator.pushNamed(context, drawerPageRoutes[3]);
+          },
+        ),
+        _buildDrawerItem(
           icon: Assets.iconsMissionsIcon,
           name: 'Missions',
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[3]);
+            Navigator.pushNamed(context, drawerPageRoutes[4]);
           },
         ),
         _buildDrawerItem(
           icon: Assets.iconsSettingsIcon,
           name: 'Account ',
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[4]);
+            Navigator.pushNamed(context, drawerPageRoutes[5]);
           },
         ),
         _buildDrawerItem(
           icon: Assets.iconsLogOut,
           name: 'Log Out',
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[5]);
+            Navigator.pushNamed(context, drawerPageRoutes[6]);
           },
         ),
       ],
@@ -125,7 +132,8 @@ class DrawerList extends StatelessWidget {
 List drawerPageRoutes = [
   Routes.homeRoute,
   Routes.historyRoute,
-  Routes.walletRoute,
+  Routes.wallet,
+  Routes.notificationRoute,
   Routes.missionRoute,
   Routes.accountScreen,
   Routes.signInRoute
