@@ -1,4 +1,6 @@
 {
-  "welcome": "مرحبا"
-
+  "welcome": "مرحبا",
+  "typeamessage": "اكتب رسالة",
+  "activeNow": "نشط الان",
+  "sharelocation": "مشاركه الموقع"
 }

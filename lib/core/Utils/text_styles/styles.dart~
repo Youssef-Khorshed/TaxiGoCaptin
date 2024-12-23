@@ -13,14 +13,6 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
 
   );
-  static TextStyle style14BlackW500 = TextStyle(
-    fontSize: 14.sp,
-    color: AppColors.blackColor,
-    fontWeight: FontWeight.w500,
-    fontFamily: GoogleFonts.cairo().fontFamily,
-    height: 0,
-  );
-
   static TextStyle textStyle24 = GoogleFonts.poppins(
   fontSize: 24.sp,
   fontWeight: FontWeight.w500,

@@ -31,4 +31,7 @@ class Routes {
   static const String errorscreen = "/errorscreen";
   static const String otpScreen = "/otpScreen";
   static const String otpScreenForget = "/otpScreenForget";
+
+  static const String chat = "/chat";
 }
+

@@ -32,7 +32,6 @@ dependencies:
   animate_do: ^3.3.4
   flutter_svg: ^2.0.15
   uuid: ^4.3.3
-  auto_size_text: ^3.0.0
   flutter_rating: ^2.0.2
   image_picker: ^1.1.2
   device_preview: ^1.2.0

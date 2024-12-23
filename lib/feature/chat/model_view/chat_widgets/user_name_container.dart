@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../Core/Utils/Colors/app_colors.dart';
-import '../../../../Core/Utils/Text/text_style.dart';
+import '../../../../core/Utils/colors/colors.dart';
+import '../../../../core/Utils/text_styles/styles.dart';
+
+
 
 class UserNameContainer extends StatelessWidget {
   const UserNameContainer({super.key});
@@ -47,19 +48,10 @@ class UserNameContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                  "Captain_name",
-                  style:AppTextStyles.taxidrivername
+                  "User_name",
+                  style:AppStyles.taxidrivername
               ),
-              // Text(
-              //   AppLocalizations.of(context)!.activeNow,
-              //   style: TextStyle(
-              //     fontSize: 10.sp,
-              //     fontWeight: FontWeight.w400,
-              //     fontFamily: GoogleFonts.cairo().fontFamily,
-              //
-              //     color: Color(0xff00D75A),
-              //   ),
-              // ),
+
             ],
           ),
         ],

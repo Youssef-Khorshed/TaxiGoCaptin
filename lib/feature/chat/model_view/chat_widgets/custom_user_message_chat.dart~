@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 
 class UserMessage extends StatelessWidget {
   final String message;

@@ -23,7 +23,7 @@ class _SplashState extends State<SplashScreen> {
         const Duration(
           seconds: 3,
         ), () {
-      Navigator.pushNamed(context, Routes.welcomeRoute);
+      Navigator.pushNamed(context, Routes.chat);
     });
   }
 

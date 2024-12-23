@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import '../../../../Core/Utils/Assets/icons/app_icons.dart';
+import '../../../../core/Utils/assets/icons.dart';
 import '../manger/chat/chat_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

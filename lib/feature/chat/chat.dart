@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepo.dart';
-import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/custom_message_input_bar_chat.dart';
-import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
-
+import '../../core/Utils/Network/Services/services_locator.dart';
+import '../../core/Utils/colors/colors.dart';
+import 'model_view/chat_widgets/custom_message_input_bar_chat.dart';
 import 'model_view/chat_widgets/custom_user_message_chat.dart';
 import 'model_view/chat_widgets/locationmessage.dart';
 import 'model_view/chat_widgets/user_name_container.dart';
+import 'model_view/manger/chat/chat_cubit.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -37,10 +35,10 @@ class _ChatScreenState extends State<ChatScreen> {
     return BlocProvider.value(
       value: _chatCubit,
       child: Scaffold(
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: AppColors.kWhite,
 
         appBar: AppBar(
-          backgroundColor: AppColors.whiteColor,
+          backgroundColor: AppColors.kWhite,
           elevation: 0,
           scrolledUnderElevation: 0,
           title: const UserNameContainer(),

@@ -1,11 +1,11 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import '../../../../core/Utils/assets/images.dart';
+import '../../../../core/Utils/colors/colors.dart';
+import '../../../../core/Utils/spacing/vertspace.dart';
+import '../../../../core/Utils/text_styles/styles.dart';
 
 class LocationMessage extends StatelessWidget {
   final double latitude;
@@ -36,18 +36,17 @@ class LocationMessage extends StatelessWidget {
             BoxConstraints(maxWidth: widthFactor, maxHeight: heightFactor),
         decoration:
         BoxDecoration(
-          color:usertype=="captain" ?  AppColors.whiteColor : AppColors.blueColor,
-          borderRadius:usertype=="captain" ?BorderRadius.only(
+          color:usertype=="captain" ?   AppColors.kblue:AppColors.kWhite,
+          borderRadius:usertype=="captain" ?   BorderRadius.only(
+            bottomLeft: Radius.circular(10.sp),
+            topLeft: Radius.circular(10.sp),
+            topRight: Radius.circular(10.sp),
+          ):BorderRadius.only(
               bottomLeft: Radius.circular(0.sp),
               bottomRight: Radius.circular(10.sp),
               topLeft: Radius.circular(10.sp),
               topRight: Radius.circular(10.sp))
-              :
-          BorderRadius.only(
-            bottomLeft: Radius.circular(10.sp),
-            topLeft: Radius.circular(10.sp),
-            topRight: Radius.circular(10.sp),
-          ),
+
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -57,8 +56,8 @@ class LocationMessage extends StatelessWidget {
               child: AutoSizeText(
                 message,
                 maxLines: 3,
-                style: AppTextStyles.style14BlackW500.copyWith(
-                  color:usertype=="captain" ?  AppColors.blackColor : AppColors.whiteColor
+                style: AppStyles.style14BlackW500.copyWith(
+                  color:usertype=="captain" ? AppColors.kWhite :AppColors.blackColor
                 ),
               ),
             ),
@@ -66,7 +65,7 @@ class LocationMessage extends StatelessWidget {
         Expanded(
           flex: 10,
           child: Image.asset(
-            AppImages.mapTest,
+            AssetImagesconst.mapTest,
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
