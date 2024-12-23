@@ -45,7 +45,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               child: MaterialButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.signUpRoute);
+                  Navigator.pushNamed(context, Routes.signUp);
                 },
                 height: 50.h,
                 child:  CustomText(
@@ -68,7 +68,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               child: MaterialButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.signInRoute);
+                  Navigator.pushNamed(context, Routes.logIn);
                 },
                 height: 50.h,
                 child:  CustomText(

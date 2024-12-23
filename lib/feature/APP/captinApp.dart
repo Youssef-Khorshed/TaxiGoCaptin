@@ -7,12 +7,12 @@ import 'package:taxi_go_driver/core/Utils/Network/Services/services_locator.dart
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/routes/route_generator.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
-import 'package:taxi_go_driver/feature/otp_view.dart/presentaion/controller/otp_cubit/otp_cubit.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
 import 'package:taxi_go_driver/settings/Localization/Model/localizationmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../core/Utils/localization/cubit/local_cubit.dart';
+import '../Auth/presentation/controller/otp_cubit/otp_cubit.dart';
 
 class Captinapp extends StatelessWidget {
   const Captinapp({super.key});

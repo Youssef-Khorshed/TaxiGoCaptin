@@ -14,5 +14,12 @@ class Constants {
 
   static String setPassword="/set-password";
 
+  static String cities='/cities';
+  static String logout="/logout";
+  static String forgotPasswordSet="/forgot-password-set";
+  static String createProfile="/profile/update";
+  static String districts="/districts-by-city";
+
+
 
 }

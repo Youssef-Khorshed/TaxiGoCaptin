@@ -8,7 +8,7 @@ abstract class Validation {
       return AppLocalizations.of(context)!.phone_required;  // Use localized message
     }
 
-    String pattern = r'^(10|11|12|15)[0-9]{8}$';
+    String pattern = r'$';
     RegExp regex = RegExp(pattern);
 
     if (!regex.hasMatch(value)) {

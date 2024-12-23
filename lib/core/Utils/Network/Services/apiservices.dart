@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
+import 'package:taxi_go_driver/Core/Utils/Network/Services/secure_token.dart';
 
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
@@ -14,7 +14,9 @@ class ApiService {
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
   // Singleton Dio instance
- getDio(context) async {
+  Future<Dio> getDio(context) async {
+    String? token=await   SecureToken.getToken();
+    print("EEEEEEEEEWWWWWWW${token}");
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -30,13 +32,14 @@ class ApiService {
     }
 
 
-      String language = LocalCubit.get(context).localizationThemeState ==
-              LocalizationThemeState.ar
-          ? "ar"
-          : "en";
-      var token=await      SecureToken.getToken();
+    String language = LocalCubit.get(context).localizationThemeState ==
+        LocalizationThemeState.ar
+        ? "ar"
+        : "en";
 
-      _addDioHeaders(language: language,token: token);
+    print("EEEEEE${token}");
+
+    _addDioHeaders(language: language,token: token);
 
 
     return _dio!;
@@ -48,7 +51,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
+      'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -68,12 +71,12 @@ class ApiService {
   // Function to make GET requests
   Future<T> getRequest<T>(String url,
       {Map<String, dynamic>? queryParameters,
-      required BuildContext context}) async {
+        required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       getDio(context);
       final response =
 
-          await _dio!.get(url, data: queryParameters,);
+      await _dio!.get(url, data: queryParameters,);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
@@ -93,13 +96,20 @@ class ApiService {
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      getDio(context);
+      await getDio(context);
 
       final response = await _dio!.post(url, data: body);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
-        } else {
+
+        }
+        if (response.statusCode == 302) {
+          var redirectedUrl = response.headers['location'];
+          print('Redirected to: $redirectedUrl');
+        }
+
+        else {
           throw ServerException(
             message: response.toString(),
           );
@@ -115,7 +125,7 @@ class ApiService {
   Future<T> putRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      getDio(context);
+      await getDio(context);
 
       final response = await _dio!.put(
         url,
@@ -141,7 +151,7 @@ class ApiService {
   Future<T> deleteRequest<T>(String url,
       {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      getDio(context);
+      await getDio(context);
       final response = await _dio!.delete(url);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {

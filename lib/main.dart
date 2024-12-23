@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/Core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_driver/feature/APP/captinApp.dart';
 import 'Network/local/sharedprefrences.dart';
 import 'blocobserever.dart';
@@ -19,6 +20,10 @@ void main() async {
 
   runApp(DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => Captinapp()));
+      builder: (context) =>
+          BlocProvider(
+            create: (context) => LocalCubit(),
+            child: Captinapp(),
+          )));
 }
 
