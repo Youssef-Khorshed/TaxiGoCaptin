@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:taxi_go_driver/controller/snapping_sheet_cubit/snapping_sheet_cubit.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/custom_build_adress_row.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/requset_bottuns.dart';
 
 import 'booking_details_accepted.dart';
 import 'cancel_button_accepted.dart';
-import 'location_details.dart';
 
+// ignore: must_be_immutable
 class RequestDialogBody extends StatefulWidget {
   NearbyRideRequestsData nearbyRideRequest;
 
@@ -36,7 +39,12 @@ class _RequestDialogBodyState extends State<RequestDialogBody> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Divider(),
-              const LocationDetails(),
+              BuildAddressRow(
+                  address: widget.nearbyRideRequest.addressFrom!,
+                  iconmap: AppIcons.mapRed),
+              BuildAddressRow(
+                  address: widget.nearbyRideRequest.addressTo!,
+                  iconmap: AppIcons.mapBlue),
               Visibility(
                 visible: cubit.isAccepted,
                 child: BookingDetailsAccepted(
@@ -45,10 +53,15 @@ class _RequestDialogBodyState extends State<RequestDialogBody> {
               ),
               Visibility(
                 visible: cubit.isAccepted,
-                replacement: const RequestButtons(),
+                replacement: RequestButtons(
+                  nearbyRideRequest: widget.nearbyRideRequest,
+                ),
                 child: CancelButtonAccepted(
-                  onCancel: () {
-                    cubit.accept();
+                  onCancel: () async {
+                    Navigator.pop(context);
+                    context
+                        .read<MapsCubit>()
+                        .canelRideRequest(context: context);
                   },
                   width: widget.width,
                   isAccepted: cubit.isAccepted,

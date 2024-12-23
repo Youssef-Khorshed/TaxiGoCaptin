@@ -1,29 +1,30 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import '../../../../core/Utils/assets/assets.dart';
 import '../../../../core/Utils/colors/colors.dart';
 
 class CancelButtonAccepted extends StatefulWidget {
   const CancelButtonAccepted({
     super.key,
-    required this.onCancel, // Add a callback for cancellation
+    required this.onCancel,
     required this.width,
     required this.isAccepted,
   });
 
   final double width;
   final bool isAccepted;
-  final VoidCallback onCancel; // Callback to handle cancellation
+  final VoidCallback onCancel;
 
   @override
   State<CancelButtonAccepted> createState() => _CancelButtonAcceptedState();
 }
 
 class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
-  bool _isAccepted = false; // Move state management inside the State class
+  bool _isAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
           _isAccepted = !_isAccepted;
           log('Cancellation state: $_isAccepted');
         });
-        widget.onCancel(); // Call the provided callback
+        widget.onCancel();
       },
       child: Container(
         width: widget.width * 0.9,
@@ -45,18 +46,17 @@ class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center, // Center the content
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
                 Assets.iconsCancel,
-                width: 24, // Add a specific width if needed
-                height: 24, // Add a specific height if needed
+                width: 24.w,
+                height: 24.h,
               ),
-              const SizedBox(
-                  width: 10), // Add some spacing between icon and text
-              const Text(
+              verticalSpace(10.h),
+              Text(
                 "Cancel Your Booking",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                style: AppStyles.style20WhiteW600,
               )
             ],
           ),

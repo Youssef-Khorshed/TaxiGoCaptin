@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/Utils/assets/assets.dart';
 import '../../../../core/Utils/colors/colors.dart';
+//import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 class SnappingSheetTitleAccepted extends StatelessWidget {
   const SnappingSheetTitleAccepted({
@@ -72,7 +73,9 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //   _callPhoneNumber('phoneNumber');
+                    },
                     icon: SvgPicture.asset(
                       Assets.iconsMessage,
                       height: 30,
@@ -85,5 +88,15 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> _callPhoneNumber(String phoneNumber) async {
+    //   bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+    //   if (res != null && res) {
+    //     print("Call initiated");
+    //   } else {
+    //     print("Failed to make the call");
+    //   }
+    // }
   }
 }

@@ -47,29 +47,24 @@ class _CustomMapState extends State<CustomMap> {
     return GoogleMap(
       padding: const EdgeInsets.only(bottom: 50, left: 100),
       markers: context.read<MapsCubit>().markers,
-      polylines: context.read<MapsCubit>().polyLines,
+      polylines: context.watch<MapsCubit>().polyLines,
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
-      style: mapStyle, // to control theme (Dark/Light)
+      //style: mapStyle, // to control theme (Dark/Light)
       onMapCreated: (controller) async {
         final cubit = await context.read<MapsCubit>();
         cubit.mapController = controller;
 
-        // await cubit.getCaptinLocation(title: 'Captin');
-
-        final destination = LatLng(
-            double.parse(widget.nearbyRideRequest.latFrom!),
+        final source = LatLng(double.parse(widget.nearbyRideRequest.latFrom!),
             double.parse(widget.nearbyRideRequest.lngFrom!));
-        final source = LatLng(double.parse(widget.nearbyRideRequest.latTo!),
+        final des = LatLng(double.parse(widget.nearbyRideRequest.latTo!),
             double.parse(widget.nearbyRideRequest.lngTo!));
 
-        await cubit.emitPlaceDirections(
+        cubit.emitPlaceDirections(
             origin: source,
-            destination: destination,
+            destination: des,
             sessionToken: Uuid().v4(),
             context: context);
-
-        setState(() {});
       },
 
       initialCameraPosition: const CameraPosition(

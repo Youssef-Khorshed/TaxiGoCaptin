@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 
 class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
@@ -10,7 +13,7 @@ class Constants {
   static String kToken = "kToken";
 
   static String accept_ride_request({required int rideId}) =>
-      '/captain/rides/accept?ride_request_id=$rideId';
+      '$baseUrl/captain/rides/accept?ride_request_id=$rideId';
 
   static const String get_active_rides = '$baseUrl/captain/rides/active';
 
@@ -20,9 +23,11 @@ class Constants {
 
   static const String pickup_customer = '$baseUrl/captain/rides/pickup';
 
+  static StreamSubscription<NearbyRideRequestsModel>? subscription;
+
   static Map<String, dynamic> update_captin_locationBody(
           {required LatLng location}) =>
-      {'latitude': location.latitude, 'longitude': location.longitude};
+      {'lat': location.latitude, 'lng': location.longitude};
 
   static String complete_ride({required double distanceinKm}) =>
       '$baseUrl/captain/rides/complete?distance=$distanceinKm';

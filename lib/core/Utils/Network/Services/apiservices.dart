@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
 import '../Error/exception.dart';
@@ -64,16 +65,20 @@ class ApiService {
       {Map<String, dynamic>? queryParameters,
       required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      _dio = await getDio(context);
-      final response = await _dio!.get(url, queryParameters: queryParameters);
-      if (response.statusCode != null) {
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          return response.data;
-        } else {
-          throw ServerException(
-            message: response.toString(),
-          );
+      try {
+        _dio = await getDio(context);
+        final response = await _dio!.get(url, queryParameters: queryParameters);
+        if (response.statusCode != null) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            return response.data;
+          } else {
+            throw ServerException(
+              message: response.toString(),
+            );
+          }
         }
+      } on DioException catch (e) {
+        throw ServerException(message: ServerFailure.fromDioError(e));
       }
     } else {
       throw NoInternetException(message: 'No internet Connection');
@@ -85,16 +90,20 @@ class ApiService {
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      _dio = await getDio(context);
-      final response = await _dio!.post(url, data: body);
-      if (response.statusCode != null) {
-        if (response.statusCode == 200) {
-          return response.data;
-        } else {
-          throw ServerException(
-            message: response.toString(),
-          );
+      try {
+        _dio = await getDio(context);
+        final response = await _dio!.post(url, data: body);
+        if (response.statusCode != null) {
+          if (response.statusCode == 200) {
+            return response.data;
+          } else {
+            throw ServerException(
+              message: response.toString(),
+            );
+          }
         }
+      } on DioException catch (e) {
+        throw ServerException(message: ServerFailure.fromDioError(e));
       }
     } else {
       throw NoInternetException(message: 'No internet Connection');

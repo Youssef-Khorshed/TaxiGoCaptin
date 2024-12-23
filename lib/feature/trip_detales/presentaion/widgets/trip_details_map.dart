@@ -23,7 +23,7 @@ class TripDetailsMap extends StatelessWidget {
         ),
         subtitle: Text(
           address,
-          style: AppStyles.text16Size400WightGrey,
+          style: AppStyles.style12DarkgrayW400,
         ),
         leading: Column(
           children: [

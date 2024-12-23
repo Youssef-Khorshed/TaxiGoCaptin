@@ -1,9 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/map_screen.dart';
 
@@ -11,12 +10,22 @@ import '../../../../core/Utils/colors/colors.dart';
 import '../../../../widgets/costume_bottun.dart';
 
 // ignore: must_be_immutable
-class DriverAction extends StatelessWidget {
+class DriverAction extends StatefulWidget {
   NearbyRideRequestsData nearbyRideRequest;
   DriverAction({
     Key? key,
     required this.nearbyRideRequest,
   }) : super(key: key);
+
+  @override
+  State<DriverAction> createState() => _DriverActionState();
+}
+
+class _DriverActionState extends State<DriverAction> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +51,9 @@ class DriverAction extends StatelessWidget {
               textColor: AppColors.kWhite,
               color: AppColors.kblue,
               onPressed: () async {
-                context.read<NearbyRideRequestsCubit>().close();
-                Navigator.of(context).push(CupertinoPageRoute(
+                Navigator.of(context).pushReplacement(CupertinoPageRoute(
                     builder: (_) => MapScreen(
-                          nearbyRideRequest: nearbyRideRequest,
+                          nearbyRideRequest: widget.nearbyRideRequest,
                         )));
               },
             ),
@@ -53,5 +61,11 @@ class DriverAction extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    Constants.subscription?.cancel();
+    super.dispose();
   }
 }

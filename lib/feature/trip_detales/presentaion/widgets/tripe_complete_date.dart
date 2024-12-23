@@ -10,6 +10,7 @@ class TripeCompleteDate extends StatelessWidget {
     required this.rideCompleteDetailsModel,
   });
   final RideCompleteDetailsModel rideCompleteDetailsModel;
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -156,6 +156,7 @@ class Maprepoimp extends MapRepo {
   Future<Either<Failure, UpdateCaptinLocation>> updateCaptinLocation(
       {required BuildContext context, required LatLng location}) async {
     try {
+      debugPrint('Location is -----? ${location.toString()}');
       final res = await apiService.postRequest(
           context: context,
           Constants.update_captin_location,

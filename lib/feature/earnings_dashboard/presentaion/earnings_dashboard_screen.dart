@@ -59,7 +59,7 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
       drawer: const Drawer(
         child: DrawerList(),
       ),
-      body: const EarningsDashboardBody(),
+      body: EarningsDashboardBody(),
     );
   }
 }

@@ -18,9 +18,14 @@ class MapsInitialized extends MapsState {}
 
 class UpdatePlaceCameraPosition extends MapsState {}
 
+class UpdateBoundsPosition extends MapsState {}
+
 class UpdateMarkers extends MapsState {}
 
-class UpdateOriginLocatoin extends MapsState {}
+class UpdateOriginLocatoin extends MapsState {
+  LocationPosition locationPosition;
+  UpdateOriginLocatoin({required this.locationPosition});
+}
 
 class UpdateDestinationLocatoin extends MapsState {}
 

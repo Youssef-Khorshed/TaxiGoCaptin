@@ -7,7 +7,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/location.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/streanListener.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
@@ -65,7 +64,7 @@ class MapsCubit extends Cubit<MapsState> {
         lat: captinLocation.latitude,
         lng: captinLocation.longitude,
       );
-      emit(UpdateOriginLocatoin());
+      emit(UpdateOriginLocatoin(locationPosition: orginPosition!));
 
       buildmarker(
         title: title,
@@ -90,7 +89,7 @@ class MapsCubit extends Cubit<MapsState> {
           lat: userlocation.latitude,
           lng: userlocation.longitude,
         );
-        emit(UpdateOriginLocatoin());
+        emit(UpdateOriginLocatoin(locationPosition: orginPosition!));
         buildmarker(
           title: title,
           destinationInfo: title,
@@ -156,43 +155,36 @@ class MapsCubit extends Cubit<MapsState> {
         destination: destination,
         sessionToken: sessionToken,
         context: context);
-    response.fold((onError) {}, (onSuccess) {
+    response.fold((onError) {}, (onSuccess) async {
       distanceTime = onSuccess.routes!.first.legs!.first;
       emit(LegsLoaded(leg: distanceTime));
       buildmarker(
-        title: 'des',
-        destinationInfo: 'des',
+        title: 'destination',
+        destinationInfo: 'destination',
         postion: LatLng(destination.latitude, destination.longitude),
       );
-      updatePlaceCameraPosition(place: destination, zoom: 10);
-      drawPolyline(origin: origin, destination: destination);
+      buildmarker(
+        title: 'userLocation',
+        destinationInfo: 'userLocation',
+        postion: LatLng(origin.latitude, origin.longitude),
+      );
+      updateLatLngBoundPosition(
+          origin: origin, destination: destination, zoom: 12);
+      drawPolyline(points: onSuccess.routes!.first.overviewPolyline!.points!);
       emit(DirectionsLoaded(polyLines));
     });
   }
 
   /// Draw polyline between origin and destination
-  void drawPolyline({
-    required LatLng origin,
-    required LatLng destination,
-  }) async {
+  Future<void> drawPolyline({required String points}) async {
     try {
       emit(DrawPolyinesLoading());
-      PolylinePoints polylinePoints = PolylinePoints();
-      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        googleApiKey: Constants.mapToken,
-        request: PolylineRequest(
-          origin: PointLatLng(orginPosition!.lat!, orginPosition!.lng!),
-          destination:
-              PointLatLng(destinationPosition!.lat!, destinationPosition!.lng!),
-          mode: TravelMode.driving,
-        ),
-      );
+      final res = PolylinePoints().decodePolyline(points);
       polyLines.clear();
       polyLines.add(Polyline(
-        width: 5,
+        width: 2,
         polylineId: const PolylineId('route'),
-        points:
-            result.points.map((e) => LatLng(e.latitude, e.longitude)).toList(),
+        points: res.map((e) => LatLng(e.latitude, e.longitude)).toList(),
       ));
       emit(DrawPolyinesSuccess());
     } catch (e) {
@@ -215,6 +207,18 @@ class MapsCubit extends Cubit<MapsState> {
         .animateCamera(CameraUpdate.newCameraPosition(placeCameraPosition));
 
     emit(UpdatePlaceCameraPosition());
+  }
+
+  void updateLatLngBoundPosition(
+      {required LatLng origin,
+      required LatLng destination,
+      double zoom = 13}) async {
+    LatLngBounds bounds = _calculateBounds(origin, destination);
+    CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
+    await mapController.animateCamera(cameraUpdate);
+    final GoogleMapController controller = mapController;
+    controller.animateCamera(cameraUpdate);
+    emit(UpdateBoundsPosition());
   }
 
   /// build markers between origin and destination
@@ -335,19 +339,23 @@ class MapsCubit extends Cubit<MapsState> {
     }
   }
 
-  Future<void> intializeCaptinLocatin(BuildContext context) async {
-    emit(IntializationCaptinLocationLoading());
-    await getCaptinLocation(title: 'captin');
-    if (state is UpdateOriginLocatoin) {
-      await updateCaptinLoaction(
-          context: context,
-          location: LatLng(orginPosition!.lat!, orginPosition!.lng!));
-      emit(IntializationCaptinLocationSuccess());
-    }
+  LatLngBounds _calculateBounds(LatLng origin, LatLng destination) {
+    double minLat = origin.latitude < destination.latitude
+        ? origin.latitude
+        : destination.latitude;
+    double minLng = origin.longitude < destination.longitude
+        ? origin.longitude
+        : destination.longitude;
+    double maxLat = origin.latitude > destination.latitude
+        ? origin.latitude
+        : destination.latitude;
+    double maxLng = origin.longitude > destination.longitude
+        ? origin.longitude
+        : destination.longitude;
+
+    return LatLngBounds(
+      southwest: LatLng(minLat, minLng),
+      northeast: LatLng(maxLat, maxLng),
+    );
   }
 }
-
-
-// accept  - updatelocation  -  getactive  -  pickup - complete  
-// accept  - cancel 
- 

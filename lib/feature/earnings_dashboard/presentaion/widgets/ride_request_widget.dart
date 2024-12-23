@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/custom_build_adress_row.dart';
@@ -34,7 +35,12 @@ class RideRequestWidget extends StatelessWidget {
             // DriverDetails(),
             // LocationDetails(),
             BuildAddressRow(
-              nearbyRideRequestsData: nearbyRideRequestsData,
+              iconmap: AppIcons.mapRed,
+              address: nearbyRideRequestsData.addressFrom!,
+            ),
+            BuildAddressRow(
+              iconmap: AppIcons.mapBlue,
+              address: nearbyRideRequestsData.addressTo!,
             ),
 
             verticalSpace(15.h),

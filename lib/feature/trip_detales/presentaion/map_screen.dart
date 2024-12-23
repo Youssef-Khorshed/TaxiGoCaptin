@@ -1,8 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_driver/controller/snapping_sheet_cubit/snapping_sheet_cubit.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/custom_snapping_sheet.dart';
 
@@ -23,20 +30,69 @@ class MapScreen extends StatefulWidget {
 
 class MapScreenState extends State<MapScreen> {
   @override
+  void initState() {
+    Constants.subscription?.cancel();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.kblue,
-      body: BlocProvider(
-        create: (context) => SnappingSheetCubit(),
-        child: Stack(
-          children: [
-            CustomSnappingSheet(
-              nearbyRideRequest: widget.nearbyRideRequest,
-              isAccepted: true,
-            ),
-          ],
+    return BlocListener<MapsCubit, MapsState>(
+      listener: (context, state) {
+        if (state is UpdateOriginLocatoin) {
+          context.read<MapsCubit>().updateCaptinLoaction(
+              context: context,
+              location: LatLng(
+                  state.locationPosition.lat!, state.locationPosition.lng!));
+        }
+        if (state is UpdateCaptinLocationSuccess) {
+          final userlocation = context.read<MapsCubit>().orginPosition;
+          final captinlocation = LocationPosition(
+              lat: state.updateCaptinLocation.data!.lat, //31.22136,29.93796
+              lng: state.updateCaptinLocation.data!.lng);
+          final distance = calculateDistance(
+              LatLng(userlocation!.lat!, userlocation.lng!),
+              LatLng(captinlocation.lat!, captinlocation.lng!));
+          if (distance <= 0.2) {
+            Fluttertoast.showToast(
+                msg: 'Arrived to user Successfully $distance');
+          }
+        }
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.kblue,
+        body: BlocProvider(
+          create: (context) => SnappingSheetCubit(),
+          child: Stack(
+            children: [
+              CustomSnappingSheet(
+                nearbyRideRequest: widget.nearbyRideRequest,
+                isAccepted: true,
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  double calculateDistance(LatLng point1, LatLng point2) {
+    const double radius = 6371;
+
+    double lat1 = point1.latitude * pi / 180;
+    double lng1 = point1.longitude * pi / 180;
+    double lat2 = point2.latitude * pi / 180;
+    double lng2 = point2.longitude * pi / 180;
+
+    double dlat = lat2 - lat1;
+    double dlng = lng2 - lng1;
+
+    double a = sin(dlat / 2) * sin(dlat / 2) +
+        cos(lat1) * cos(lat2) * sin(dlng / 2) * sin(dlng / 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+    double distance = radius * c;
+
+    return distance;
   }
 }

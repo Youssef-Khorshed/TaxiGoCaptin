@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 
 // ignore: must_be_immutable
-class BookingDetailsAccepted extends StatelessWidget {
+class BookingDetailsAccepted extends StatefulWidget {
   NearbyRideRequestsData nearbyRideRequest;
 
   BookingDetailsAccepted({
@@ -13,11 +15,17 @@ class BookingDetailsAccepted extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<BookingDetailsAccepted> createState() => _BookingDetailsAcceptedState();
+}
+
+class _BookingDetailsAcceptedState extends State<BookingDetailsAccepted> {
+  @override
   Widget build(BuildContext context) {
+    final mapcubit = context.read<MapsCubit>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Column(
             children: [
@@ -26,22 +34,19 @@ class BookingDetailsAccepted extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                "1.4 km",
+                mapcubit.distanceTime.distance!.text!.toString(),
                 style: TextStyle(fontSize: 25),
               ),
             ],
           ),
-          SizedBox(
-            width: 25,
-          ),
           Column(
             children: [
               Text(
-                "Tima",
+                "Time",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                "6 Min",
+                mapcubit.distanceTime.duration!.text!.toString(),
                 style: TextStyle(fontSize: 25),
               ),
             ],
@@ -49,5 +54,10 @@ class BookingDetailsAccepted extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 class DataService<T> {
   final StreamController<T> controller = StreamController<T>.broadcast();
   final Future<T> Function() fetchData;
@@ -8,17 +10,22 @@ class DataService<T> {
   DataService({required this.fetchData, required this.pollingInterval});
 
   void startPolling() {
-    if (!controller.isClosed) {
+    if (controller.isClosed == false) {
+      debugPrint('Stram is open');
       Timer.periodic(pollingInterval, (timer) async {
         T newData = await fetchData();
         controller.add(newData);
       });
+    } else {
+      debugPrint('Stram is Closed');
     }
   }
 
   Stream<T> get dataStream => controller.stream;
+
   void dispose() {
     controller.close();
+    debugPrint('Stram is Closed');
   }
 }
 

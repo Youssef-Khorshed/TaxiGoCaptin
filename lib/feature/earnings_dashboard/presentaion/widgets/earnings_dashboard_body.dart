@@ -1,17 +1,49 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/ride_request_widget.dart';
 import 'user_earning_details.dart';
 
-class EarningsDashboardBody extends StatelessWidget {
+class EarningsDashboardBody extends StatefulWidget {
   const EarningsDashboardBody({super.key});
+
+  @override
+  State<EarningsDashboardBody> createState() => _EarningsDashboardBodyState();
+}
+
+class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
+  NearbyRideRequestsModel? nearbyRideRequests;
+  StreamSubscription<NearbyRideRequestsModel>? _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _startStream();
+  }
+
+  void _startStream() {
+    _subscription = Stream.periodic(Duration(seconds: 10), (_) {
+      return context
+          .read<NearbyRideRequestsCubit>()
+          .getNearbyRideRequests(context);
+    }).asyncExpand((stream) => stream).listen((data) {
+      setState(() {
+        nearbyRideRequests = data;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,42 +82,33 @@ class EarningsDashboardBody extends StatelessWidget {
               ),
             ],
           ),
-          BlocBuilder<NearbyRideRequestsCubit, NearbyRideRequestsState>(
-            builder: (context, state) {
-              final cubit = context.read<NearbyRideRequestsCubit>();
-              if (state is NearbyRideRequestsInitial) {
-                cubit.getNearbyRideRequests(context);
-              }
-              return state is NearbyRideRequestsLoading
-                  ? CustomLoading()
-                  : state is NearbyRideRequestsFailure
-                      ? CustomErroranimation(
-                          errormessage: state.message,
-                          lottie: AppLottie.errorFailure,
-                        )
-                      : state is NearbyRideRequestsSuccess
-                          ? ListView.separated(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.zero,
-                              itemBuilder: (context, index) {
-                                return RideRequestWidget(
-                                    nearbyRideRequestsData: state
-                                        .nearbyRideRequestsModel.data![index]);
-                              },
-                              separatorBuilder: (context, index) => SizedBox(
-                                    height: 10.h,
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 50.w),
-                                      child: Divider(),
-                                    ),
-                                  ),
-                              itemCount:
-                                  state.nearbyRideRequestsModel.data!.length)
-                          : Container();
-            },
-          )
+          nearbyRideRequests == null
+              ? CustomLoading()
+              : nearbyRideRequests!.data!.isEmpty
+                  ? Center(
+                      child: Text(
+                        "No nearby ride requests found.",
+                      ),
+                    )
+                  : ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      itemBuilder: (context, index) {
+                        return RideRequestWidget(
+                          nearbyRideRequestsData:
+                              nearbyRideRequests!.data![index],
+                        );
+                      },
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: 10.h,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 50.w),
+                          child: Divider(),
+                        ),
+                      ),
+                      itemCount: nearbyRideRequests!.data!.length,
+                    ),
         ],
       ),
     );
