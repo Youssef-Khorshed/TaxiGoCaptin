@@ -22,7 +22,7 @@ class UserMessage extends StatelessWidget {
     final isCaptain = userType == "captain";
 
     return Align(
-      alignment: isCaptain ? Alignment.centerLeft : Alignment.centerRight,
+      alignment: isCaptain ? Alignment.centerRight: Alignment.centerLeft,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
         padding: const EdgeInsets.all(10),
