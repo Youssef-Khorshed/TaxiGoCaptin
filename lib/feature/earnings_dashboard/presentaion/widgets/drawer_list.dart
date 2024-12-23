@@ -85,7 +85,7 @@ class DrawerList extends StatelessWidget {
           },
         ),
         _buildDrawerItem(
-          icon: Assets.iconsWalletIcon,
+          icon: Assets.iconsNotification,
           name: 'Notification',
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[3]);

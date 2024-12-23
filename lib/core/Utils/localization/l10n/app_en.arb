@@ -14,5 +14,12 @@
     "transaction_withdraw": "Withdraw",
     "notifications": "Notifications",
     "notification_details": "Notification Details",
-    "system_notification": "System Notification"
+    "system_notification": "System Notification",
+    "enter_amount": "Enter Amount",
+    "cancel": "Cancel",
+    "add_money": "Add Money",
+    "error_occurred": "An error occurred while processing.",
+    "zain_Cash": "Zain Cash",
+    "wallet" : "Wallet",
+    "no_amount": "No amount"
 }

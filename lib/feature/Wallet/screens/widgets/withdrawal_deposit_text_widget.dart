@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/Utils/spacing/vertspace.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
 
-
 class WithdrawalDepositTextWidget extends StatelessWidget {
   final bool isDeposit;
   final String? deposit, withdrawal;
@@ -35,7 +34,7 @@ class WithdrawalDepositTextWidget extends StatelessWidget {
         Row(
           children: [
             AutoSizeText(
-              amount ?? "No amount",
+              amount ?? AppLocalizations.of(context)!.no_amount,
               style: AppStyles.style18BlueBold,
             ),
             horizontalSpace(5),

@@ -14,6 +14,13 @@
   "transaction_withdraw": "سحب",
   "notifications": "الإشعارات",
   "notification_details": "تفاصيل الإشعار",
-  "system_notification": "إشعار"
+  "system_notification": "إشعار",
+  "enter_amount": "أدخل المبلغ",
+  "cancel": "إلغاء",
+  "add_money": "إضافة أموال",
+  "error_occurred": "حدث خطأ أثناء المعالجة.",
+  "zain_Cash": " زين كاش",
+  "wallet" : "المحفظة",
+  "no_amount": "لا يوجد مبلغ"
 
 }

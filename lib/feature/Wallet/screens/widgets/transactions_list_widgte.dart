@@ -72,6 +72,6 @@ String getTransactionTypeTranslation(
     case 'withdraw':
       return AppLocalizations.of(context)!.transaction_withdraw;
     default:
-      return transactionType; // Return the original value if no match is found
+      return transactionType;
   }
 }

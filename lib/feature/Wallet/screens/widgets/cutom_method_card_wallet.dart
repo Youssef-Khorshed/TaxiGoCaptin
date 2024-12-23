@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WalletMethodCard extends StatefulWidget {
   const WalletMethodCard({super.key});
@@ -20,12 +21,12 @@ class _WalletMethodCardState extends State<WalletMethodCard> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.all(10.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.r),
           border: Border.all(
             color: isSelected ? Colors.blue : Colors.grey,
-            width: 2.0,
+            width: 2.w,
           ),
         ),
         child: Row(
