@@ -6,6 +6,7 @@ import '../../core/Utils/colors/colors.dart';
 import 'model_view/chat_widgets/custom_message_input_bar_chat.dart';
 import 'model_view/chat_widgets/custom_user_message_chat.dart';
 import 'model_view/chat_widgets/locationmessage.dart';
+import 'model_view/chat_widgets/share_location.dart';
 import 'model_view/chat_widgets/user_name_container.dart';
 import 'model_view/manger/chat/chat_cubit.dart';
 
@@ -62,6 +63,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
               return Column(
                 children: [
+                  const ShareLocation(),
+
                   Expanded(
                     child: ListView.builder(
                       controller: _scrollController,
