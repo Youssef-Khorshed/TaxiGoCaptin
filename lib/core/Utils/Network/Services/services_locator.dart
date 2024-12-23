@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
+import 'package:taxi_go_driver/feature/RequestDriver/data/repos/captain_documents_repo_impl.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 
 import '../../../../Network/local/sharedprefrences.dart';
@@ -17,6 +18,8 @@ Future<void> setup() async {
       ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
   getIt.registerSingleton<NearbyRideRequestsRepoImpl>(
       NearbyRideRequestsRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<CaptainDocumentsRepoImpl>(
+      CaptainDocumentsRepoImpl(getIt.get<ApiService>()));
 
   //getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(getIt.get<ApiService>()));
 }

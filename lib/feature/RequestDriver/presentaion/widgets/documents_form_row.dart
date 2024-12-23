@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/custom_text_field.dart';
+
+import 'custom_text_field.dart';
 
 class DocumentsFormRow extends StatelessWidget {
   final String label;
@@ -22,6 +23,12 @@ class DocumentsFormRow extends StatelessWidget {
           width: mediaQuery.width * 0.5,
           child: CustomTextField(
             label: '',
+            validator: (text) {
+              if (text == null || text.isEmpty) {
+                return 'This field is required';
+              }
+              return null;
+            },
             onChanged: onChanged,
           ),
         ),

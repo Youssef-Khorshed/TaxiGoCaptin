@@ -20,13 +20,17 @@ class _AddPhotoState extends State<AddPhoto> {
   File? _selectedImage;
 
   Future<void> _pickImage(ImageSource source) async {
-    final pickedImage = await _picker.pickImage(source: source);
+    final pickedImage = await _picker.pickImage(
+      source: source,
+      imageQuality: 50,
+    );
     if (pickedImage != null) {
       setState(() {
         _selectedImage = File(pickedImage.path);
       });
       widget.onImageSelected(_selectedImage);
     }
+    Navigator.pop(context);
   }
 
   @override
@@ -50,26 +54,39 @@ class _AddPhotoState extends State<AddPhoto> {
                       style: TextStyle(fontSize: 22),
                     ),
                     verticalSpace(10),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.camera_alt),
-                          onPressed: () => _pickImage(ImageSource.camera),
-                        ),
-                        horizontalSpace(10),
-                        Text(AppLocalizations.of(context)!.scan_a_Photo),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        _pickImage(ImageSource.camera);
+                        // Navigator.of(context).pop();
+                      },
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.camera_alt),
+                            onPressed: null,
+                          ),
+                          horizontalSpace(10),
+                          Text(AppLocalizations.of(context)!.scan_a_Photo),
+                        ],
+                      ),
                     ),
                     const Divider(height: 1, indent: 5, endIndent: 5),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.image_search_outlined),
-                          onPressed: () => _pickImage(ImageSource.gallery),
-                        ),
-                        horizontalSpace(10),
-                        Text(AppLocalizations.of(context)!.choose_from_gallery),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        _pickImage(ImageSource.gallery);
+                        // Navigator.of(context).pop();
+                      },
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.image_search_outlined),
+                            onPressed: null,
+                          ),
+                          horizontalSpace(10),
+                          Text(AppLocalizations.of(context)!
+                              .choose_from_gallery),
+                        ],
+                      ),
                     ),
                   ],
                 ),
