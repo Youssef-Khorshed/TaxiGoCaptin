@@ -14,6 +14,7 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: 54,
       child: TextButton(
+
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(

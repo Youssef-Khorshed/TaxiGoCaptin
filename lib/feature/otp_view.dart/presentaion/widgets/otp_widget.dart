@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
 import '../../../../settings/Localization/model/otp_model.dart';
 import 'appBar_widget.dart';
 import 'custom_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPassword extends StatelessWidget {
   final String emailOrPhone;
@@ -25,14 +27,14 @@ class ForgotPassword extends StatelessWidget {
             SizedBox(
               height: mediaQuery.height / 10,
             ),
-            Text('Forgot Password',
+            Text(AppLocalizations.of(context)!.forgot_password,
                 // textAlign: TextAlign.center,
                 style: AppStyles.text24Size500WightDarkGray),
             const SizedBox(
               height: 10,
             ),
             Text(
-              'Code has been sent to ${otpModel.maskedEmailOrPhone()}',
+              '${AppLocalizations.of(context)!.code_sent_to} ${otpModel.maskedEmailOrPhone()}',
               style: const TextStyle(
                   fontSize: 18,
                   color: Colors.grey,
@@ -66,28 +68,28 @@ class ForgotPassword extends StatelessWidget {
                 }),
               ),
             ),
-            const SizedBox(height: 16),
+16.verticalSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Didn't receive code? ",
+                 Text(
+                AppLocalizations.of(context)!.did_not_receive_code,
                   style: TextStyle(fontSize: 20),
                 ),
                 GestureDetector(
                   onTap: () {},
-                  child: const Text(
-                    'Resend again',
-                    style: TextStyle(color: AppColors.kblue, fontSize: 20),
+                  child:  Text(
+                    AppLocalizations.of(context)!.resend_again
+,                    style: TextStyle(color: AppColors.kblue, fontSize: 20),
                   ),
                 ),
               ],
             ),
             const Spacer(),
-            const SizedBox(
+             SizedBox(
               width: double.infinity,
-              child: CustomButton(text: "Verify"),
+              child: CustomButton(text: AppLocalizations.of(context)!.verify),
               // child: ElevatedButton(
               //   onPressed: () {},
               //   style: ElevatedButton.styleFrom(

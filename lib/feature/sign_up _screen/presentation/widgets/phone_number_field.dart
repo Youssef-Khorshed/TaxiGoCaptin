@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../core/Utils/colors/colors.dart';
 
-import '../../../core/Utils/colors/colors.dart';
 
 class PhoneNumberFailed extends StatelessWidget {
   final TextEditingController? controller;
@@ -10,42 +12,42 @@ class PhoneNumberFailed extends StatelessWidget {
   final String countryCode;
   final String countryFlag;
 
-  const PhoneNumberFailed({
+   PhoneNumberFailed({
     super.key,
     this.controller,
     this.onChanged,
-    this.countryCode = '+880',
-    this.countryFlag = Assets.iconsIraq,
+    this.countryCode = '+964',
+    this.countryFlag = Assets.iconsIraq, this.validator,
   });
-
+  String? Function(dynamic p0)? validator;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 30),
+      padding:  EdgeInsets.only(bottom: 30.h),
       child: Container(
-        height: 60,
+        height: 60.h,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey.withOpacity(.5), width: 1),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding:  EdgeInsets.symmetric(horizontal: 8.0.r),
               child: Row(
                 children: [
                   Image.asset(
                     countryFlag,
-                    width: 30,
-                    height: 50,
+                    width: 30.w,
+                    height: 50.h,
                     fit: BoxFit.cover,
                   ),
-                  const SizedBox(width: 8),
+                   SizedBox(width: 8.w),
                   Text(
                     countryCode,
-                    style: const TextStyle(
-                      fontSize: 16,
+                    style:  TextStyle(
+                      fontSize: 16.r,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -53,20 +55,21 @@ class PhoneNumberFailed extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: TextField(
+              child: TextFormField(
+validator: validator,
                 controller: controller,
                 onChanged: onChanged,
-                decoration: const InputDecoration(
-                  hintText: 'Your mobile number',
+                decoration:  InputDecoration(
+                  hintText: AppLocalizations.of(context)!.your_mobile_number,
                   hintStyle: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.r,
                     color: AppColors.kgrey,
                     fontWeight: FontWeight.normal,
                   ),
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 10,
+                    vertical: 12.w,
+                    horizontal: 10.h,
                   ),
                 ),
                 keyboardType: TextInputType.phone,
@@ -75,8 +78,8 @@ class PhoneNumberFailed extends StatelessWidget {
                   LengthLimitingTextInputFormatter(
                       10), // Adjust max length as needed
                 ],
-                style: const TextStyle(
-                  fontSize: 16,
+                style:  TextStyle(
+                  fontSize: 16.r,
                   fontWeight: FontWeight.w500,
                 ),
               ),

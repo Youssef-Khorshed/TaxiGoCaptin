@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SocialIcons extends StatelessWidget {
   const SocialIcons({super.key});
@@ -15,7 +16,7 @@ class SocialIcons extends StatelessWidget {
             print("Gmail button pressed");
           },
         ),
-        const SizedBox(width: 16),
+         SizedBox(width: 16.w),
         buildSocialIcon(
           icon: Icons.facebook,
           color: Colors.blue,
@@ -43,20 +44,20 @@ class SocialIcons extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 50,
-        height: 50,
+        width: 50.w,
+        height: 50.h,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: Colors.grey,
-            width: 1,
+            width: 1.w,
           ),
         ),
         child: Icon(
           icon,
           color: color,
-          size: 24,
+          size: 24.r,
         ),
       ),
     );

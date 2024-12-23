@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../core/Utils/colors/colors.dart';
+import '../../../../core/Utils/colors/colors.dart';
+
 
 class CustomGenderField extends StatefulWidget {
   final String label;
@@ -32,28 +34,28 @@ class _CustomGenderFieldState extends State<CustomGenderField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.9,
-      height: 60,
+      width: MediaQuery.of(context).size.width * 0.9.w,
+      height: 60.h,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding:  EdgeInsets.symmetric(horizontal: 16.0.h),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              _selectedGender == 'Gender' ? widget.label : _selectedGender,
+              _selectedGender == widget.label ? widget.label : _selectedGender,
               style: TextStyle(
-                color: _selectedGender == 'Gender' ? Colors.grey : Colors.black,
+                color: Colors.grey ,
               ),
             ),
             DropdownButtonHideUnderline(
               child: DropdownButton<String>(
                 dropdownColor: AppColors.kWhite,
-                borderRadius: BorderRadius.circular(10),
-                icon: const Icon(FontAwesomeIcons.chevronDown, size: 14),
+                borderRadius: BorderRadius.circular(10.r),
+                icon:  Icon(FontAwesomeIcons.chevronDown, size: 14.r),
                 onChanged: (String? newValue) {
                   if (newValue != null) {
                     setState(() {

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_validation_mixins.dart';
 
+import '../../../core/Utils/validation.dart';
 import 'custom_text_field.dart';
 
-typedef Validator = String? Function(String?);
 
 class PasswordField extends StatefulWidget {
   const PasswordField({
     super.key,
     this.onSaved,
     required this.hintText,
-    required this.controller,
+    required this.controllers,
   });
 
   final String hintText;
-  final TextEditingController controller;
+  final TextEditingController controllers;
   final void Function(String?)? onSaved;
 
   @override
@@ -28,9 +28,9 @@ class _PasswordFieldState extends State<PasswordField> {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       validator: (value) {
-        return ValidationMixin.validatePassword(value);
+        return Validation.validatePassword(value,context);
       },
-      controller: widget.controller,
+      controller: widget.controllers,
       obscureText: obscureText,
       onSaved: widget.onSaved,
       suffixIcon: GestureDetector(

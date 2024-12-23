@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/Utils/routes/routes.dart';
 import '../../../sign_in/presentaion/widgets/custom_text_field.dart';
-import '../../../sign_up _screen/widgets/custom_gender_field.dart';
-import '../../../sign_up _screen/widgets/phone_number_field.dart';
+import '../../../sign_up _screen/presentation/widgets/custom_gender_field.dart';
+import '../../../sign_up _screen/presentation/widgets/phone_number_field.dart';
+
 
 class ProfileForm extends StatelessWidget {
   const ProfileForm({super.key});
@@ -40,7 +41,7 @@ class ProfileForm extends StatelessWidget {
           const SizedBox(height: 30),
           CustomTextField(label: 'Full Name', onChanged: (value) {}),
           const SizedBox(height: 20),
-          const PhoneNumberFailed(),
+           PhoneNumberFailed(),
           CustomTextField(label: 'Email', onChanged: (value) {}),
           const SizedBox(height: 20),
           CustomTextField(label: 'Street', onChanged: (value) {}),

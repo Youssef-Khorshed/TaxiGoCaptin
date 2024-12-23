@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class OrDivider extends StatelessWidget {
   const OrDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return  Row(
       children: [
         Expanded(
           child: Divider(
@@ -15,10 +16,10 @@ class OrDivider extends StatelessWidget {
           ),
         ),
         Text(
-          'or',
+        AppLocalizations.of(context)!.or ,
           style: TextStyle(
             color: Colors.grey,
-            fontSize: 14,
+            fontSize: 14.r,
           ),
         ),
         Expanded(

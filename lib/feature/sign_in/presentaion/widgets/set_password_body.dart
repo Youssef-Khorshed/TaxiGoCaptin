@@ -1,102 +1,138 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
+import 'package:taxi_go_driver/feature/sign_in/presentaion/controller/sign_in_cubit.dart';
 
 import '../../../APP/custom_widgets/custom_Button.dart';
 import '../../../APP/custom_widgets/custom_PasswordField.dart';
 import '../../../../core/Utils/routes/routes.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
 import '../../../APP/custom_widgets/custom_text.dart';
-
-class SetPasswordBody extends StatelessWidget {
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+class SetPasswordBody extends StatefulWidget {
   SetPasswordBody({super.key});
 
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  @override
+  State<SetPasswordBody> createState() => _SetPasswordBodyState();
+}
 
+class _SetPasswordBodyState extends State<SetPasswordBody> {
+  @override
+  void dispose() {
+SignInCubit.get(context).setPasswordFormKey.currentState?.dispose();
+SignInCubit.get(context).setPasswordController.dispose();
+SignInCubit.get(context).setPasswordConfirmationController.dispose();
+SignInCubit.get(context).setPasswordAutoValidateMode = AutovalidateMode.disabled;
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      autovalidateMode: SignInCubit.get(context).setPasswordAutoValidateMode,
+      key: SignInCubit.get(context).setPasswordFormKey,
       child: Column(
         children: [
           SizedBox(
             height: 18.h,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(8.0.r),
             child: Row(
               children: [
                 InkWell(
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: const Icon(
+                  child:  Icon(
                     Icons.arrow_back_ios,
-                    color: Color(0xFF2A2A2A),
+                    color: AppColors.kBrown,
                   ),
                 ),
                 CustomText(
-                  text: "Back",
+                  text: AppLocalizations.of(context)!.back,
                   style: AppStyles.textStyle16.copyWith(
-                    color: const Color(0XFF414141),
+                    color: AppColors.kDarkGray2
                   ),
                 )
               ],
             ),
           ),
-          SizedBox(
-            height: 30.h,
-          ),
+        30.verticalSpace,
           Text(
-            "Set Password",
-            style: TextStyle(fontSize: 24.sp),
+           AppLocalizations.of(context)!.setPassword,
+            style:AppStyles.textStyle24,
           ),
           SizedBox(
             height: 12.h,
           ),
           CustomText(
-            text: "Set your password",
+            text:    AppLocalizations.of(context)!.setYourPassword,
             style: AppStyles.textStyle16,
           ),
-          SizedBox(
-            height: 25.h,
-          ),
+         25.verticalSpace,
           Padding(
             padding: EdgeInsets.all(15.w),
             child: PasswordField(
-              hintText: "Enter Your Password",
-              controller: passwordController,
+
+              hintText:    AppLocalizations.of(context)!.enterYourPassword,
+              controllers: SignInCubit.get(context).setPasswordController,
             ),
           ),
           Padding(
             padding: EdgeInsets.all(15.w),
             child: PasswordField(
-              hintText: "Confirm Password",
-              controller: confirmPasswordController,
+
+              hintText:    AppLocalizations.of(context)!.confirmPassword,
+              controllers:
+                  SignInCubit.get(context).setPasswordConfirmationController ,
             ),
           ),
           CustomText(
-            text: "Atleast 1 number or a special character",
+            text:    AppLocalizations.of(context)!.passwordRequirement,
             style: AppStyles.textStyle16,
           ),
-          SizedBox(
-            height: 40.h,
-          ),
+         40.verticalSpace,
           Padding(
             padding: EdgeInsets.all(10.w),
-            child: CustomButton(
+            child: BlocConsumer<SignInCubit, SignInState>(
+  listener: (context, state) {
+    if (state is SetPasswordError) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(state.errorMessage),
+        ),
+      );
+    }
+    else if (state is SetPasswordSuccess) {
+
+      Navigator.pushNamed(context, Routes.signInRoute);
+    }
+  },
+  builder: (context, state) {
+    if (state is SetPasswordLoading) {
+      return CustomLoading();
+    }
+
+
+    return CustomButton(
               onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  Routes.profileRoute,
-                );
+
+
+                SignInCubit.get(context).setPasswordValidate(context);
+                // Navigator.pushNamed(
+                //   context,
+                //   Routes.profileRoute,
+                // );
                 // if (formKey.currentState!.validate()) {
                 //
                 // }
               },
-              text: "Register",
-            ),
+              text:AppLocalizations.of(context)!.register,
+            );
+  },
+),
           )
         ],
       ),

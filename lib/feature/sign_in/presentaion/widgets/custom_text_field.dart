@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 class CustomTextField extends StatefulWidget {
   final String label;
@@ -12,8 +15,10 @@ class CustomTextField extends StatefulWidget {
     required this.onChanged,
     this.isPassword = false,
     this.suffixIcon,
+    this.controller,this.validator
   });
-
+ final TextEditingController? controller;
+ final String? Function(String?)? validator;
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -24,26 +29,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
+      validator: widget.validator,
       obscureText: widget.isPassword && _obscureText,
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         prefixIcon: widget.suffixIcon,
         labelText: widget.label,
-        labelStyle: GoogleFonts.poppins(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFFD0D0D0),
-        ),
+        labelStyle: AppStyles.text16Size500WightBlack,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(
-            color: Color(0xFFB8B8B8),
+            color: AppColors.kHintTextField,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
           borderSide: const BorderSide(
-            color: Color(0xFFB8B8B8),
+            color: AppColors.kHintTextField,
           ),
         ),
         suffixIcon: widget.isPassword

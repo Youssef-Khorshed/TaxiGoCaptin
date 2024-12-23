@@ -6,6 +6,7 @@ abstract class SecureToken {
  static SecureStorageHelper secureStorageHelper = SecureStorageHelper();
 static  addToken(String token) async {
     await secureStorageHelper.writeValue(AppConstants.kToken, token);
+    print("added $token");
   }
 
  static Future<String?> getToken() async {

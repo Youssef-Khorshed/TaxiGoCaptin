@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/Utils/text_styles/styles.dart';
 
@@ -20,7 +21,7 @@ class VerifyTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintStyle: AppStyles.text16Size500WightGreyHintText, 
           contentPadding: const EdgeInsets.all(20),
-          hintText: 'Email or phone number',
+          hintText:AppLocalizations.of(context)!.email_or_phone_number,
           disabledBorder: OutlineInputBorder(
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             borderSide: BorderSide(
@@ -37,7 +38,7 @@ class VerifyTextField extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             borderSide: BorderSide(
               color: AppStyles.text16Size500WightGreyHintText.color!,
-              width: 2.0,
+              width: 2.0.w,
             ),
           ),
         ),

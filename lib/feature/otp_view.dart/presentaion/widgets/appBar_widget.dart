@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
 
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
 
@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         title: Text(
-          "Back",
+          AppLocalizations.of(context)!.back,
           style: AppStyles.text16Size400darkGrey,
         ));
   }

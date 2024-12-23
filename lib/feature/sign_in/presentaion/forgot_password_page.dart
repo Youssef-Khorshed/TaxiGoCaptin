@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 import '../../../core/Utils/colors/colors.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
 
@@ -10,7 +12,7 @@ class ForgotPasswordPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.kWhite,
-        title: const Text("Forgot Password"),
+        title:  Text(AppLocalizations.of(context)!.forgotPassword),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -23,13 +25,13 @@ class ForgotPasswordPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Select which contact details should we use to reset your password",
-              style: TextStyle(fontSize: 16),
+             Text(
+             AppLocalizations.of(context)!.resetPasswordInstruction,
+              style: AppStyles.textStyle16
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             ContactOption(
-              title: "Via SMS",
+              title:AppLocalizations.of(context)!.viaSMS,
               details: "***** ***70",
               icon: Icons.message,
               onTap: () {
@@ -38,7 +40,7 @@ class ForgotPasswordPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ContactOption(
-              title: "Via Email",
+              title: AppLocalizations.of(context)!.viaEmail,
               details: "*****@xyz.com",
               icon: Icons.email,
               onTap: () {
@@ -55,8 +57,8 @@ class ForgotPasswordPage extends StatelessWidget {
                   backgroundColor: AppColors.kblue,
                   padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                 ),
-                child: const Text(
-                  "Continue",
+                child:  Text(
+                AppLocalizations.of(context)!.continues  ,
                   style: TextStyle(color: Colors.white),
                 ),
               ),
@@ -86,11 +88,11 @@ class ContactOption extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.all(16.r),
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: AppColors.kblue),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,11 +100,11 @@ class ContactOption extends StatelessWidget {
             Row(
               children: [
                 Icon(icon, color: AppColors.kblue),
-                const SizedBox(width: 12),
+                 SizedBox(width: 12.w),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title, style: const TextStyle(fontSize: 18)),
+                    Text(title, style:AppStyles.textStyle18),
                     Text(details, style: const TextStyle(color: Colors.grey)),
                   ],
                 ),

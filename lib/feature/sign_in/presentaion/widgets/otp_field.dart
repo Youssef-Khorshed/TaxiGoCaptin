@@ -1,62 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OTPField extends StatefulWidget {
   final TextEditingController controller;
   final bool autoFocus;
   final int hint;
-  const OTPField({
+   OTPField({required this.onEditingComplete,
     super.key,
     required this.controller,
     required this.autoFocus,
     required this.hint,
   });
-
+void Function() onEditingComplete;
   @override
   State<OTPField> createState() => _OTPFieldState();
 }
 
 class _OTPFieldState extends State<OTPField> {
-  late FocusNode focusNode;
+  // late FocusNode focusNode;
 
   @override
   void initState() {
     super.initState();
-    focusNode = FocusNode();
-    focusNode.addListener(() {
-      if (!focusNode.hasFocus && widget.controller.text.isEmpty) {
-        FocusScope.of(context).nextFocus();
-      }
-    });
+    // focusNode = FocusNode();
+    // focusNode.addListener(() {
+    //   if (!focusNode.hasFocus && widget.controller.text.isEmpty) {
+    //     FocusScope.of(context).nextFocus();
+    //   }
+    // });
   }
 
   @override
   void dispose() {
-    focusNode.dispose();
+    // focusNode.dispose();
     super.dispose();
   }
 
-  void handleEditingComplete() {
-    print('Completed');
-    focusNode.unfocus();
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 45,
-      height: 45,
+      width: 45.w,
+      height: 45.h,
       child: TextField(
         autofocus: widget.autoFocus,
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         controller: widget.controller,
         style: Theme.of(context).inputDecorationTheme.hintStyle?.copyWith(
-              fontSize: 21,
-              height: 20 / 20,
+              fontSize: 21.sp,
+              height: 20.h / 20.h,
             ),
         maxLength: 1,
-        cursorWidth: 2.0,
-        cursorHeight: 20,
+        cursorWidth: 2.0.w,
+        cursorHeight: 20.h,
         cursorColor: Colors.black,
         decoration: InputDecoration(
           filled: widget.controller.text.isNotEmpty,
@@ -76,15 +74,15 @@ class _OTPFieldState extends State<OTPField> {
           ),
           hintStyle: Theme.of(context).inputDecorationTheme.hintStyle?.copyWith(
                 fontWeight: FontWeight.w100,
-                fontSize: 21,
-                height: 20 / 20,
+                fontSize: 21.sp,
+                height: 20.h / 20.h,
               ),
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 10,
+          contentPadding:  EdgeInsets.symmetric(
+            vertical: 10.h,
           ),
           counterText: '',
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(10.r),
             borderSide: const BorderSide(
                 // color: Colors.white,
                 ),
@@ -98,11 +96,16 @@ class _OTPFieldState extends State<OTPField> {
             setState(() {});
             FocusScope.of(context).previousFocus();
           } else {
+            print("^^^^^^^^^${widget.hint}");
             setState(() {});
-            handleEditingComplete();
+            if (widget.hint == 1) {
+              FocusScope.of(context).unfocus();
+            }
+            else
+            widget.onEditingComplete();
           }
         },
-        onEditingComplete: handleEditingComplete,
+        onEditingComplete: widget.onEditingComplete,
       ),
     );
   }

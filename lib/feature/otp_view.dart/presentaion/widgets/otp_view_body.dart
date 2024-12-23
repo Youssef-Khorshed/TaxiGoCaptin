@@ -5,6 +5,7 @@ import 'custom_button.dart';
 import 'custom_otp_textfield.dart';
 import 'custom_resend_code.dart';
 import 'otp_header.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OtpViewBody extends StatelessWidget {
   const OtpViewBody({
@@ -14,22 +15,21 @@ class OtpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  const EdgeInsets.symmetric(horizontal: 16),
+      padding:   EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           SizedBox(height: 30.h),
-          const OtpHeader(title: 'Forgot Password',
-          subTitle: "Code has been sent to***** ***70"),
+          30.verticalSpace,
+           OtpHeader(title:AppLocalizations.of(context)!.forgot_password,
+          subTitle: "${AppLocalizations.of(context)!.code_sent_to}***** *****"),
 
-           SizedBox(height: 32.h),
+          16.verticalSpace,
            const CustomOtpTextField(),
-           SizedBox(height: 16.h),
+          16.verticalSpace,
            const CustomResendCode(),
            const Spacer(),
-         const CustomButton(text: "Verify"),
-           SizedBox(height: 16.h),
-        ],
+          CustomButton(text: AppLocalizations.of(context)!.verify),
+16.verticalSpace        ],
       ),
     );
   }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
+import 'package:taxi_go_driver/feature/otp_view.dart/presentaion/controller/otp_cubit/otp_cubit.dart';
+import 'package:taxi_go_driver/feature/sign_up%20_screen/presentation/controller/sign_up_cubit.dart';
 import '../../../feature/RequestDriver/presentaion/MyDocument.dart';
 import '../../../feature/account_screen/presentaion/account_screen.dart';
 import '../../../feature/card_screen/presentaion/card_screen.dart';
@@ -15,14 +18,16 @@ import '../../../feature/payment/presentaion/payment_screen.dart';
 import '../../../feature/payment/presentaion/wallet_screen.dart';
 import '../../../feature/profile/presentaion/edit_profile_screen.dart';
 import '../../../feature/profile/presentaion/profile_screen.dart';
+import '../../../feature/sign_in/presentaion/controller/sign_in_cubit.dart';
 import '../../../feature/sign_in/presentaion/otp_screen.dart';
 import '../../../feature/sign_in/presentaion/set_password.dart';
 import '../../../feature/sign_in/presentaion/sign_in_view.dart';
-import '../../../feature/sign_up _screen/sign_up_screen.dart';
+import '../../../feature/sign_up _screen/presentation/screens/sign_up_screen.dart';
 import '../../../feature/splash_screen/splash_screen.dart';
 import '../../../feature/splash_screen/welcome_screen.dart';
 import '../../../feature/trip_detales/presentaion/map_screen.dart';
 import '../../../feature/verification/verification_view.dart';
+import '../Network/Services/services_locator.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -30,7 +35,10 @@ class RouteGenerator {
       case Routes.verificationRoute:
         return MaterialPageRoute(builder: (_) => VerificationScreen());
       case Routes.setPassowrdRoute:
-        return MaterialPageRoute(builder: (_) => const SetPasswordView());
+        return MaterialPageRoute(builder: (_) => BlocProvider(
+  create: (context) => getIt.get<SignInCubit>(),
+  child: SetPasswordView(),
+));
 
       case Routes.sendVerificatiouRoute:
         return MaterialPageRoute(builder: (_) => VerificationScreen());
@@ -73,14 +81,22 @@ class RouteGenerator {
             builder: (_) => const PaymentSelectMethodScreen());
 
       case Routes.signInRoute:
-        return MaterialPageRoute(builder: (_) => const SignInScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt.get<SignInCubit>(),
+                  child: SignInScreen(),
+                ));
 
       ///tet
       case Routes.splashScreenRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
 
       case Routes.signUpRoute:
-        return MaterialPageRoute(builder: (_) => const SignUpScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt.get<SignUpCubit>(),
+                  child: SignUpScreen(),
+                ));
       case Routes.confirmMobileOrEmail:
         return MaterialPageRoute(builder: (_) => VerificationScreen());
       case Routes.profileRoute:
@@ -104,7 +120,9 @@ class RouteGenerator {
       case Routes.welcomeRoute:
         return MaterialPageRoute(builder: (_) => const WelcomeScreen());
       case Routes.otpScreen:
-        return MaterialPageRoute(builder: (_) => const OTPScreen());
+        var phone = settings.arguments != null ? settings.arguments as String:null;
+        return MaterialPageRoute(
+            builder: (_) => OTPScreen(phone: phone));
       default:
         return unDefinedRoute();
     }

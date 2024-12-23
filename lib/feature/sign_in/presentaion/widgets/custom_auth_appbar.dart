@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CustomAuthAppBar extends StatelessWidget {
   const CustomAuthAppBar({
     super.key,
@@ -12,7 +13,7 @@ class CustomAuthAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 16),
+         SizedBox(height: 16.h),
         AppBar(
           elevation: 0,
           surfaceTintColor: Colors.white,
@@ -20,7 +21,7 @@ class CustomAuthAppBar extends StatelessWidget {
           centerTitle: true,
           leading: InkWell(
             onTap: () => Navigator.pop(context),
-            child: const Row(
+            child:  Row(
               children: [
                 Expanded(
                   child: Icon(
@@ -29,10 +30,10 @@ class CustomAuthAppBar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Back',
+                AppLocalizations.of(context)!.back  ,
                   style: TextStyle(
-                    color: Color(0xFF414141),
-                    fontSize: 16,
+                    color: AppColors.kDarkGray2,
+                    fontSize: 16.r,
                   ),
                 ),
               ],
@@ -41,12 +42,12 @@ class CustomAuthAppBar extends StatelessWidget {
           title: title != null
               ? Text(
                   title!,
-                  style: const TextStyle(
-                    color: Color(0xFF414141),
-                    fontSize: 16,
+                  style:  TextStyle(
+                    color: AppColors.kDarkGray2,
+                    fontSize: 16.r,
                   ),
                 )
-              : const SizedBox(),
+              :0.verticalSpace
         ),
       ],
     );

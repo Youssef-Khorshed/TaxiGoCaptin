@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:taxi_go_driver/feature/sign_up%20_screen/widgets/sign_up_home_body.dart';
+
+import '../widgets/sign_up_home_body.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -11,7 +13,7 @@ class SignUpScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Back'),
+        title: Text(AppLocalizations.of(context)!.back),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -20,7 +22,7 @@ class SignUpScreen extends StatelessWidget {
               FontAwesomeIcons.angleLeft,
             )),
       ),
-      body: const SignUpHomeBody(),
+      body: SignUpHomeBody(),
     );
   }
 }
