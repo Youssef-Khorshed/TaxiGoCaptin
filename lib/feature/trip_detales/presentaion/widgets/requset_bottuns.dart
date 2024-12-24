@@ -1,67 +1,43 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import 'package:taxi_go_driver/controller/snapping_sheet_cubit/snapping_sheet_cubit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
-import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../widgets/costume_bottun.dart';
 
 // ignore: must_be_immutable
 class RequestButtons extends StatelessWidget {
-  NearbyRideRequestsData nearbyRideRequest;
-
   RequestButtons({
     Key? key,
-    required this.nearbyRideRequest,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SnappingSheetCubit, SnappingSheetState>(
+    return BlocBuilder<MapsCubit, MapsState>(
       builder: (context, state) {
-        var cubit = context.read<SnappingSheetCubit>();
-        return Column(
+        return Row(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: 60,
+            Expanded(
               child: CostumeButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                text: "Cancel",
-                color: Colors.white,
+                onPressed: () {},
+                height: 50.h,
+                text: "Decline",
+                color: Colors.red.withOpacity(.05),
                 textColor: Colors.red,
                 borderColor: Colors.red,
               ),
             ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: 60,
+            const SizedBox(width: 12),
+            Expanded(
               child: CostumeButton(
-                onPressed: () async {
-                  final mapcbuit = context.read<MapsCubit>();
-                  final mapstate = mapcbuit.state;
-                  await mapcbuit.accpetRideRequest(
-                      context: context, rideID: nearbyRideRequest.id!);
-
-                  mapcbuit.getUserUpdatedLocation(title: 'captin');
-                  cubit.accept();
-                  if (mapstate is AccpetRideRequestFail) {
-                    Fluttertoast.showToast(
-                        msg: mapstate.message,
-                        backgroundColor: AppColors.redColor);
-                  }
-                },
+                height: 50.h,
                 text: "Accept",
-                color: AppColors.kblue,
                 textColor: AppColors.kWhite,
+                color: AppColors.kblue,
+                onPressed: () async {},
               ),
             ),
           ],

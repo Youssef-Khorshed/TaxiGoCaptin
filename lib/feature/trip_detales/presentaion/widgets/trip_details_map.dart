@@ -15,24 +15,22 @@ class TripDetailsMap extends StatelessWidget {
   final String icon;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListTile(
-        title: Text(
-          location,
-          style: AppStyles.text16Size400darkGrey,
-        ),
-        subtitle: Text(
-          address,
-          style: AppStyles.style12DarkgrayW400,
-        ),
-        leading: Column(
-          children: [
-            SvgPicture.asset(
-              icon,
-              width: 25.w,
-            ),
-          ],
-        ),
+    return ListTile(
+      title: Text(
+        location,
+        style: AppStyles.style16BlackW600,
+      ),
+      subtitle: Text(
+        address,
+        style: AppStyles.style14DarkgrayW500,
+      ),
+      leading: Column(
+        children: [
+          SvgPicture.asset(
+            icon,
+            width: 25.w,
+          ),
+        ],
       ),
     );
   }

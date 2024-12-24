@@ -31,14 +31,18 @@ class MapsCubit extends Cubit<MapsState> {
   // for origin & destination
   GeocodeResult originAddress = GeocodeResult();
   GeocodeResult destinationAddress = GeocodeResult();
-  Leg distanceTime = Leg();
+  Leg? distanceTime;
+  Leg? captinOriginDistanceTime;
   late Marker orignMarker;
   late Marker destinationMarker;
   late CameraPosition placeCameraPosition;
   LocationPosition? orginPosition;
+  LocationPosition? userPosition;
   LocationPosition? destinationPosition;
   LocationService locationService = LocationService();
   late String destinationInfo;
+  bool isAccepted = false;
+
   // these variables for getPlaceLocation
   Set<Marker> markers = {};
   Set<Polyline> polyLines = {};
@@ -58,6 +62,22 @@ class MapsCubit extends Cubit<MapsState> {
   /// get captin location
   Future<void> getCaptinLocation({required String title}) async {
     try {
+      await getCaptinPosition(title: title);
+      buildmarker(
+        title: title,
+        destinationInfo: title,
+        postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
+      );
+      updatePlaceCameraPosition(
+          place: LatLng(orginPosition!.lat!, orginPosition!.lng!));
+    } on PermissionException catch (error) {
+      Fluttertoast.showToast(msg: error.message);
+      emit(OpenLoacationFailed());
+    }
+  }
+
+  Future<void> getCaptinPosition({required String title}) async {
+    try {
       emit(PlaceAddressLoading());
       final captinLocation = await locationService.getuserLocation();
       orginPosition = LocationPosition(
@@ -65,14 +85,6 @@ class MapsCubit extends Cubit<MapsState> {
         lng: captinLocation.longitude,
       );
       emit(UpdateOriginLocatoin(locationPosition: orginPosition!));
-
-      buildmarker(
-        title: title,
-        destinationInfo: title,
-        postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
-      );
-      updatePlaceCameraPosition(
-          place: LatLng(captinLocation.latitude!, captinLocation.longitude!));
     } on PermissionException catch (error) {
       Fluttertoast.showToast(msg: error.message);
       emit(OpenLoacationFailed());
@@ -80,7 +92,7 @@ class MapsCubit extends Cubit<MapsState> {
   }
 
   /// start updating captin location
-  getUserUpdatedLocation({required String title}) async {
+  getCaptinUpdatedLocation({required String title}) async {
     await locationService.updateUserLocation((LocationData userlocation) {
       try {
         emit(PlaceAddressLoading());
@@ -107,6 +119,12 @@ class MapsCubit extends Cubit<MapsState> {
         emit(OpenLoacationFailed());
       }
     });
+  }
+
+  /// getUserLocation
+  void getuserLocation(LocationPosition location) {
+    userPosition = location;
+    emit(GetUserLocation(locationPosition: userPosition!));
   }
 
   /// get place Address form Loaction
@@ -150,6 +168,8 @@ class MapsCubit extends Cubit<MapsState> {
     required BuildContext context,
   }) async {
     emit(PlaceDirectionsLading());
+    getuserLocation(
+        LocationPosition(lat: origin.latitude, lng: origin.longitude));
     final response = await mapsRepository.getDrirection(
         origin: origin,
         destination: destination,
@@ -157,7 +177,7 @@ class MapsCubit extends Cubit<MapsState> {
         context: context);
     response.fold((onError) {}, (onSuccess) async {
       distanceTime = onSuccess.routes!.first.legs!.first;
-      emit(LegsLoaded(leg: distanceTime));
+      emit(LegsLoaded(leg: distanceTime!));
       buildmarker(
         title: 'destination',
         destinationInfo: 'destination',
@@ -172,6 +192,24 @@ class MapsCubit extends Cubit<MapsState> {
           origin: origin, destination: destination, zoom: 12);
       drawPolyline(points: onSuccess.routes!.first.overviewPolyline!.points!);
       emit(DirectionsLoaded(polyLines));
+    });
+  }
+
+  Future<void> getdistanceLatLng({
+    required LatLng origin,
+    required LatLng destination,
+    required String sessionToken,
+    required BuildContext context,
+  }) async {
+    emit(PlaceDirectionsLading());
+    final response = await mapsRepository.getDrirection(
+        origin: origin,
+        destination: destination,
+        sessionToken: sessionToken,
+        context: context);
+    response.fold((onError) {}, (onSuccess) async {
+      captinOriginDistanceTime = onSuccess.routes!.first.legs!.first;
+      emit(GetDistanceLatLngSuccess(leg: onSuccess.routes!.first.legs!.first));
     });
   }
 
@@ -357,5 +395,10 @@ class MapsCubit extends Cubit<MapsState> {
       southwest: LatLng(minLat, minLng),
       northeast: LatLng(maxLat, maxLng),
     );
+  }
+
+  void accept() {
+    isAccepted = !isAccepted;
+    emit(Accepted());
   }
 }

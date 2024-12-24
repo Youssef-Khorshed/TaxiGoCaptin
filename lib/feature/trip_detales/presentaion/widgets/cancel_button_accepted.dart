@@ -1,10 +1,8 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
-import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-import '../../../../core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_driver/feature/account_screen/presentaion/widgets/costume_bottun.dart';
 import '../../../../core/Utils/colors/colors.dart';
 
 class CancelButtonAccepted extends StatefulWidget {
@@ -29,39 +27,33 @@ class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _isAccepted = !_isAccepted;
-          log('Cancellation state: $_isAccepted');
-        });
-        widget.onCancel();
-      },
-      child: Container(
-        width: widget.width * 0.9,
-        height: 70,
-        decoration: BoxDecoration(
-          color: AppColors.kReadCancel,
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                Assets.iconsCancel,
-                width: 24.w,
-                height: 24.h,
+        onTap: () {
+          setState(() {
+            _isAccepted = !_isAccepted;
+            // log('Cancellation state: $_isAccepted');
+          });
+          widget.onCancel();
+        },
+        child: Row(
+          children: [
+            Expanded(
+              child: CostumeButton(
+                height: 50.h,
+                text: "Compelte Trip",
+                textColor: AppColors.kWhite,
+                color: AppColors.kblue,
+                onPressed: () async {
+                  final cubit = context.read<MapsCubit>();
+                  double distanceinKm =
+                      cubit.captinOriginDistanceTime!.distance!.value! *
+                          1.60934;
+
+                  cubit.completeRideRequest(
+                      context: context, distanceinKm: distanceinKm);
+                },
               ),
-              verticalSpace(10.h),
-              Text(
-                "Cancel Your Booking",
-                style: AppStyles.style20WhiteW600,
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          ],
+        ));
   }
 }

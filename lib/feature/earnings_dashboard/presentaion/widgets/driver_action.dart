@@ -1,8 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/map_screen.dart';
 
@@ -29,36 +33,54 @@ class _DriverActionState extends State<DriverAction> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Row(
-        children: [
-          Expanded(
-            child: CostumeButton(
-              onPressed: () {},
-              height: 50.h,
-              text: "Decline",
-              color: Colors.red.withOpacity(.05),
-              textColor: Colors.red,
-              borderColor: Colors.red,
+    return BlocListener<MapsCubit, MapsState>(
+      listener: (context, state) {
+        if (state is AccpetRideRequestSuccess) {
+          Navigator.pop(context);
+          Constants.subscription?.cancel();
+          Navigator.of(context).pushReplacement(CupertinoPageRoute(
+              builder: (_) => MapScreen(
+                    nearbyRideRequest: state.rideRequest,
+                  )));
+        }
+
+        if (state is AccpetRideRequestFail) {
+          Fluttertoast.showToast(
+              msg: state.message, backgroundColor: AppColors.redColor);
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Row(
+          children: [
+            Expanded(
+              child: CostumeButton(
+                onPressed: () {},
+                height: 50.h,
+                text: "Decline",
+                color: Colors.red.withOpacity(.05),
+                textColor: Colors.red,
+                borderColor: Colors.red,
+              ),
             ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: CostumeButton(
-              height: 50.h,
-              text: "Accept",
-              textColor: AppColors.kWhite,
-              color: AppColors.kblue,
-              onPressed: () async {
-                Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                    builder: (_) => MapScreen(
-                          nearbyRideRequest: widget.nearbyRideRequest,
-                        )));
-              },
+            const SizedBox(width: 12),
+            Expanded(
+              child: CostumeButton(
+                height: 50.h,
+                text: "Accept",
+                textColor: AppColors.kWhite,
+                color: AppColors.kblue,
+                onPressed: () async {
+                  final mapcbuit = context.read<MapsCubit>();
+                  await mapcbuit.accpetRideRequest(
+                      context: context, rideID: widget.nearbyRideRequest.id!);
+
+                  await mapcbuit.getActiveRideRequest(context: context);
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

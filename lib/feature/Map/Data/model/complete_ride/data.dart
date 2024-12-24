@@ -8,7 +8,7 @@ class Data {
   dynamic cancelReason;
   String? distance;
   double? time;
-  int? distancePrice;
+  String? distancePrice;
   double? timePrice;
   dynamic discount;
   double? total;
@@ -55,7 +55,7 @@ class Data {
         cancelReason: json['cancel_reason'] as dynamic,
         distance: json['distance'] as String?,
         time: (json['time'] as num?)?.toDouble(),
-        distancePrice: json['distance_price'] as int?,
+        distancePrice: json['distance_price'] as String?,
         timePrice: (json['time_price'] as num?)?.toDouble(),
         discount: json['discount'] as dynamic,
         total: (json['total'] as num?)?.toDouble(),

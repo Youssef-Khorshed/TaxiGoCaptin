@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
 import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorConnectionLost.dart';
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(12.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, Routes.accountScreen);
+                Navigator.popAndPushNamed(context, Routes.accountScreen);
               },
               child: CircleAvatar(
                 backgroundImage: Image.asset(Assets.imagesDriverImage).image,
@@ -63,5 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ? CustomErrorconnectionlost()
           : const HomeScreenBody(),
     );
+  }
+
+  @override
+  void dispose() {
+    Constants.subscription?.cancel();
+    super.dispose();
   }
 }

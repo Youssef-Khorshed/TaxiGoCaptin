@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/ride_request_widget.dart';
+import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/walletData.dart';
 import 'user_earning_details.dart';
 
 class EarningsDashboardBody extends StatefulWidget {
@@ -23,6 +24,9 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
 
   @override
   void initState() {
+    debugPrint(
+        "---------------------------init---------------------------------------");
+
     super.initState();
     _startStream();
   }
@@ -40,9 +44,27 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
   }
 
   @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("didUpdateWidget called");
+  }
+
+  @override
+  void deactivate() {
+    debugPrint(
+        "----------------------------Deactivate--------------------------------------");
+
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
-    _subscription?.cancel();
     super.dispose();
+    _subscription?.cancel();
+    debugPrint(
+        "------------------------------------------------------------------");
+
+    debugPrint("Closed");
   }
 
   @override
@@ -83,12 +105,24 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
             ],
           ),
           nearbyRideRequests == null
-              ? CustomLoading()
+              ? Column(
+                  children: [
+                    verticalSpace(MediaQuery.of(context).size.height / 8),
+                    Text(
+                      "Looking for nearby request",
+                      style: AppStyles.style16BlackW600,
+                    ),
+                  ],
+                )
               : nearbyRideRequests!.data!.isEmpty
-                  ? Center(
-                      child: Text(
-                        "No nearby ride requests found.",
-                      ),
+                  ? Column(
+                      children: [
+                        verticalSpace(MediaQuery.of(context).size.height / 8),
+                        Text(
+                          "No nearby ride requests found",
+                          style: AppStyles.style16BlackW600,
+                        ),
+                      ],
                     )
                   : ListView.separated(
                       shrinkWrap: true,
@@ -109,48 +143,6 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
                       ),
                       itemCount: nearbyRideRequests!.data!.length,
                     ),
-        ],
-      ),
-    );
-  }
-}
-
-class WalletData extends StatefulWidget {
-  const WalletData({
-    super.key,
-    required this.title,
-    required this.data,
-  });
-  final String title;
-  final String data;
-  @override
-  State<WalletData> createState() => _WalletDataState();
-}
-
-class _WalletDataState extends State<WalletData> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
-      height: 100,
-      decoration: BoxDecoration(boxShadow: const [
-        BoxShadow(
-          color: Colors.grey,
-          offset: Offset(0.0, 1.0),
-          blurRadius: 2.0,
-        ),
-      ], color: Colors.white, borderRadius: BorderRadius.circular(20)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            " ${widget.data}",
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          Text(
-            widget.title,
-            style: const TextStyle(fontSize: 15),
-          ),
         ],
       ),
     );

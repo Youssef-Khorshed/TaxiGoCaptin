@@ -56,7 +56,8 @@ class BuildAddressRow extends StatelessWidget {
 
         return TripDetailsMap(
           address: address,
-          location: "${snapshot.data!['street_name']}",
+          location:
+              "${snapshot.data!['street_number']} ${snapshot.data!['city']} ",
           icon: iconmap,
         );
       },

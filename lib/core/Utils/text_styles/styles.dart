@@ -95,7 +95,7 @@ class AppStyles {
   );
 
   static TextStyle style16BlackW600 = TextStyle(
-    fontSize: 16,
+    fontSize: 16.sp,
     color: AppColors.blackColor,
     fontWeight: FontWeight.w600,
     fontFamily: GoogleFonts.cairo().fontFamily,
@@ -127,7 +127,7 @@ class AppStyles {
   );
 
   static TextStyle style14DarkgrayW500 = TextStyle(
-    fontSize: 14,
+    fontSize: 14.sp,
     color: AppColors.darkgrayColor,
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,

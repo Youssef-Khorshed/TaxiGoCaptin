@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
-
-import 'package:taxi_go_driver/controller/snapping_sheet_cubit/snapping_sheet_cubit.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/accept_ride_request/accept_ride_request.dart';
 import 'package:taxi_go_driver/feature/Map/map_widget/custom_map.dart';
-import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/requset_dialog_body.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/snappingSheet_title_request.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/snappinhSheet_title_accsebted.dart';
@@ -13,7 +13,7 @@ import '../../../../core/Utils/colors/colors.dart';
 
 // ignore: must_be_immutable
 class CustomSnappingSheet extends StatefulWidget {
-  NearbyRideRequestsData nearbyRideRequest;
+  AcceptRideRequest nearbyRideRequest;
 
   CustomSnappingSheet({
     Key? key,
@@ -32,9 +32,9 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
 
-    return BlocBuilder<SnappingSheetCubit, SnappingSheetState>(
+    return BlocBuilder<MapsCubit, MapsState>(
       builder: (context, state) {
-        var cubit = context.read<SnappingSheetCubit>();
+        var cubit = context.read<MapsCubit>();
         return SnappingSheet(
           // controller: _controller,
           lockOverflowDrag: false,
@@ -62,9 +62,13 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
           grabbing: Container(
             color: AppColors.kBackgroundColor,
             child: Visibility(
-              replacement: SnappingSheetTitleRequest(width: width),
+              child: SnappingSheetTitleRequest(width: width),
               visible: cubit.isAccepted,
-              child: SnappingSheetTitleAccepted(
+              replacement: SnappingSheetTitleAccepted(
+                customerPhoneNumber:
+                    widget.nearbyRideRequest.data!.request!.customer!.phone!,
+                cutomerName:
+                    widget.nearbyRideRequest.data!.request!.customer!.name!,
                 width: width,
               ),
             ),

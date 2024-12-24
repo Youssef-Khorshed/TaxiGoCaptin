@@ -5,19 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:taxi_go_driver/controller/snapping_sheet_cubit/snapping_sheet_cubit.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
+import 'package:taxi_go_driver/feature/Map/Data/model/accept_ride_request/accept_ride_request.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/placesModel/place_details/location.dart';
-import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/custom_snapping_sheet.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../core/Utils/colors/colors.dart';
 
 // ignore: must_be_immutable
 class MapScreen extends StatefulWidget {
-  NearbyRideRequestsData nearbyRideRequest;
+  AcceptRideRequest nearbyRideRequest;
 
   MapScreen({
     Key? key,
@@ -44,33 +44,37 @@ class MapScreenState extends State<MapScreen> {
               context: context,
               location: LatLng(
                   state.locationPosition.lat!, state.locationPosition.lng!));
-        }
-        if (state is UpdateCaptinLocationSuccess) {
-          final userlocation = context.read<MapsCubit>().orginPosition;
+        } else if (state is UpdateCaptinLocationSuccess) {
+          final userlocation = context.read<MapsCubit>().userPosition;
           final captinlocation = LocationPosition(
               lat: state.updateCaptinLocation.data!.lat, //31.22136,29.93796
               lng: state.updateCaptinLocation.data!.lng);
-          final distance = calculateDistance(
-              LatLng(userlocation!.lat!, userlocation.lng!),
-              LatLng(captinlocation.lat!, captinlocation.lng!));
-          if (distance <= 0.2) {
-            Fluttertoast.showToast(
-                msg: 'Arrived to user Successfully $distance');
+          context.read<MapsCubit>().getdistanceLatLng(
+              context: context,
+              sessionToken: Uuid().v4(),
+              destination: LatLng(userlocation!.lat!, userlocation.lng!),
+              origin: LatLng(captinlocation.lat!, captinlocation.lng!));
+        } else if (state is PickUpUserSuccess) {
+          Fluttertoast.showToast(msg: state.pickupUser.message!);
+          context.read<MapsCubit>().accept();
+        } else if (state is CompleteRideSuccess) {
+          Fluttertoast.showToast(msg: state.completeRide.message!);
+        }
+        if (state is GetDistanceLatLngSuccess) {
+          if (state.leg.distance!.value! < 100) {
+            context.read<MapsCubit>().pickCustomer(context: context);
           }
         }
       },
       child: Scaffold(
         backgroundColor: AppColors.kblue,
-        body: BlocProvider(
-          create: (context) => SnappingSheetCubit(),
-          child: Stack(
-            children: [
-              CustomSnappingSheet(
-                nearbyRideRequest: widget.nearbyRideRequest,
-                isAccepted: true,
-              ),
-            ],
-          ),
+        body: Stack(
+          children: [
+            CustomSnappingSheet(
+              nearbyRideRequest: widget.nearbyRideRequest,
+              isAccepted: true,
+            ),
+          ],
         ),
       ),
     );

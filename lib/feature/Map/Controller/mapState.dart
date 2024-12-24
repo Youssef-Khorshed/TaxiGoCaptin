@@ -86,6 +86,18 @@ class LegsLoaded extends MapsState {
 
 class PlaceDirectionsLading extends MapsState {}
 
+class GetDistanceLatLngSuccess extends MapsState {
+  Leg leg;
+  GetDistanceLatLngSuccess({required this.leg});
+}
+
+class Accepted extends MapsState {}
+
+class GetUserLocation extends MapsState {
+  LocationPosition locationPosition;
+  GetUserLocation({required this.locationPosition});
+}
+
 class GetAddressLoading extends MapsState {}
 
 class GetAddressSuccess extends MapsState {}

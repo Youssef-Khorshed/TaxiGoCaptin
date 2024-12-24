@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/drawer_list.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/earnings_dashboard_body.dart';
 import '../../../core/Utils/colors/colors.dart';
@@ -38,16 +42,25 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
             height: 30.h,
             value: status,
             borderRadius: 30.0,
-            inactiveIcon: CircleAvatar(
+            activeIcon: CircleAvatar(
               backgroundColor: AppColors.kblue,
             ),
             inactiveColor: AppColors.kblue,
-            activeIcon: const CircleAvatar(
+            inactiveIcon: const CircleAvatar(
               backgroundColor: Colors.red,
             ),
             padding: 8.w,
             activeColor: AppColors.kRedMap,
-            onToggle: (val) {
+            onToggle: (val) async {
+              if (val) {
+                debugPrint('Printer');
+                final cubit = context.read<MapsCubit>();
+                await cubit.getCaptinPosition(title: 'captin');
+                await cubit.updateCaptinLoaction(
+                    context: context,
+                    location: LatLng(
+                        cubit.orginPosition!.lat!, cubit.orginPosition!.lng!));
+              }
               setState(() {
                 status = val;
               });
@@ -61,5 +74,11 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
       ),
       body: EarningsDashboardBody(),
     );
+  }
+
+  @override
+  void dispose() {
+    Constants.subscription?.cancel();
+    super.dispose();
   }
 }

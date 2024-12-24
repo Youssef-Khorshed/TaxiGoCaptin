@@ -4,7 +4,6 @@ import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/custom_build_adress_row.dart';
-import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/timer_to_accept.dart';
 import 'driver_action.dart';
 
 class RideRequestWidget extends StatelessWidget {
@@ -32,8 +31,6 @@ class RideRequestWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             verticalSpace(15.h),
-            // DriverDetails(),
-            // LocationDetails(),
             BuildAddressRow(
               iconmap: AppIcons.mapRed,
               address: nearbyRideRequestsData.addressFrom!,
@@ -42,13 +39,11 @@ class RideRequestWidget extends StatelessWidget {
               iconmap: AppIcons.mapBlue,
               address: nearbyRideRequestsData.addressTo!,
             ),
-
             verticalSpace(15.h),
             DriverAction(
               nearbyRideRequest: nearbyRideRequestsData,
             ),
             verticalSpace(10.h),
-            TimerToAccept(),
           ],
         ),
       ),

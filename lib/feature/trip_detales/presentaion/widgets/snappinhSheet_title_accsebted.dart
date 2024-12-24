@@ -1,14 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../core/Utils/assets/assets.dart';
 import '../../../../core/Utils/colors/colors.dart';
+
 //import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
+// ignore: must_be_immutable
 class SnappingSheetTitleAccepted extends StatelessWidget {
-  const SnappingSheetTitleAccepted({
-    super.key,
+  String customerPhoneNumber;
+  String cutomerName;
+  SnappingSheetTitleAccepted({
+    Key? key,
+    required this.customerPhoneNumber,
+    required this.cutomerName,
     required this.width,
-  });
+  }) : super(key: key);
 
   final double width;
 
@@ -46,8 +55,8 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Mohamed",
+                  Text(
+                    cutomerName,
                     style: TextStyle(
                         color: AppColors.kBlack,
                         fontSize: 20,
@@ -66,16 +75,16 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _callPhoneNumber(customerPhoneNumber);
+                    },
                     icon: SvgPicture.asset(
                       Assets.iconsCall,
                       height: 30,
                     ),
                   ),
                   IconButton(
-                    onPressed: () {
-                      //   _callPhoneNumber('phoneNumber');
-                    },
+                    onPressed: () {},
                     icon: SvgPicture.asset(
                       Assets.iconsMessage,
                       height: 30,
@@ -91,12 +100,15 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
   }
 
   Future<void> _callPhoneNumber(String phoneNumber) async {
-    //   bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
-    //   if (res != null && res) {
-    //     print("Call initiated");
-    //   } else {
-    //     print("Failed to make the call");
-    //   }
-    // }
+    final Uri phoneUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+
+    if (await canLaunchUrl(phoneUri)) {
+      await launchUrl(phoneUri);
+    } else {
+      throw 'Could not launch $phoneNumber';
+    }
   }
 }
