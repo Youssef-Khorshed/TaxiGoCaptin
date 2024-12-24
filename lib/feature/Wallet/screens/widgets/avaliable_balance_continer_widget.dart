@@ -33,7 +33,7 @@ class AvaliableBalanceContinerWidget extends StatelessWidget {
                   amount,
                   style: AppStyles.style18BlueBold,
                 ),
-                horizontalSpace(5),
+                horizontalSpace(5.h),
                 AutoSizeText(
                   AppLocalizations.of(context)!.currency_iqd,
                   style: AppStyles.style12DarkgrayW400,

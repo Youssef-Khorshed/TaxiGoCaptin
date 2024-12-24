@@ -8,11 +8,15 @@ import 'withdrawal_deposit_text_widget.dart';
 import 'withdrawal_deposit_time_widget.dart';
 
 class TransactionCardWidget extends StatelessWidget {
-  final String paymentType , amount;
+  final String paymentType, amount;
   final String dateTime;
   final bool inside;
   const TransactionCardWidget(
-      {super.key, required this.paymentType, required this.dateTime, required this.inside, required this.amount});
+      {super.key,
+      required this.paymentType,
+      required this.dateTime,
+      required this.inside,
+      required this.amount});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +32,10 @@ class TransactionCardWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           WithdrawalDepositArrowWidget(
+          WithdrawalDepositArrowWidget(
             inside: inside,
           ),
-          horizontalSpace(20),
+          horizontalSpace(20.h),
           WithdrawalDepositTextWidget(
             deposit: paymentType,
             isDeposit: true,

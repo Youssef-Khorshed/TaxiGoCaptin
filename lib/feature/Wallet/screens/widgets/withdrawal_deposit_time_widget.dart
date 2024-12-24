@@ -1,10 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/Utils/spacing/vertspace.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
-
-
 
 class WithdrawalDepositTimeWidget extends StatelessWidget {
   final DateTime dateTime;
@@ -26,7 +25,7 @@ class WithdrawalDepositTimeWidget extends StatelessWidget {
           time,
           style: AppStyles.style12DarkgrayW400,
         ),
-        verticalSpace(10),
+        verticalSpace(10.h),
         AutoSizeText(
           date,
           style: AppStyles.style12DarkgrayW400,

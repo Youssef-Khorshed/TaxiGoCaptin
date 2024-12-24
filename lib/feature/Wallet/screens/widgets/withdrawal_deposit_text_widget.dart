@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/Utils/spacing/vertspace.dart';
 import '../../../../core/Utils/text_styles/styles.dart';
 
@@ -30,14 +31,14 @@ class WithdrawalDepositTextWidget extends StatelessWidget {
                     AppLocalizations.of(context)!.withdrawal_processing,
                 style: AppStyles.style18BlackW600,
               ),
-        verticalSpace(5),
+        verticalSpace(5.h),
         Row(
           children: [
             AutoSizeText(
               amount ?? AppLocalizations.of(context)!.no_amount,
               style: AppStyles.style18BlueBold,
             ),
-            horizontalSpace(5),
+            horizontalSpace(5.h),
             AutoSizeText(
               AppLocalizations.of(context)!.currency_iqd,
               style: AppStyles.style12DarkgrayW400,

@@ -5,7 +5,7 @@
   "available_balance": "الرصيد المتاح :",
   "deposit_processing": "عمليه الإيداع",
   "withdrawal_processing": "عمليه السحب",
-  "currency_iqd": "د.ع",
+  "currency_iqd": "دينار",
   "transaction_payment": "دفع",
   "transaction_remaining": "المتبقي",
   "transaction_charge": "شحن",
