@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
-import 'package:taxi_go_driver/feature/trip_detales/controllers/pay_after_ride_controller/pay_after_ride_cubit.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/ride_complete_cubit/ride_complete_details_cubit.dart';
-import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/fare_input_dialog.dart';
 
 class TestSccreen extends StatelessWidget {
   const TestSccreen({super.key});
@@ -15,7 +13,9 @@ class TestSccreen extends StatelessWidget {
       children: [
         Center(
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, Routes.walletRoute);
+            },
             child: Container(
               height: 100,
               width: double.infinity,
