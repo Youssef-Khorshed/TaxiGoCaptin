@@ -9,7 +9,6 @@ import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
 import '../Error/exception.dart';
 
-
 class ApiService {
   InternetConnectivity internetConnectivity;
   ApiService({required this.internetConnectivity});
