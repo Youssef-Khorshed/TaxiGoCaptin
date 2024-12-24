@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
@@ -5,14 +6,12 @@ import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 class Buildrowdetail extends StatelessWidget {
   String label;
   String value;
-  String count;
   bool isBold;
 
   Buildrowdetail(
       {super.key,
       required this.label,
       required this.value,
-      required this.count,
       this.isBold = false});
 
   @override
@@ -23,16 +22,14 @@ class Buildrowdetail extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
+          AutoSizeText(label,
               style: !isBold
-                  ? AppStyles.text18BlackW500
-                  : AppStyles.text16BlackW200),
-          Row(
-            children: [
-              Text(value, style: AppStyles.text18BlackW500),
-              Text(count, style: AppStyles.text16BlackW200),
-            ],
-          ),
+                  ? AppStyles.style14DarkgrayW500
+                  : AppStyles.style16DarkgrayW500),
+          AutoSizeText(value,
+              style: !isBold
+                  ? AppStyles.style14DarkgrayW500
+                  : AppStyles.style16DarkgrayW500),
         ],
       ),
     );

@@ -169,7 +169,6 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
-
   static TextStyle style12GrayW400 = TextStyle(
     fontSize: 12,
     color: AppColors.grayColor,
