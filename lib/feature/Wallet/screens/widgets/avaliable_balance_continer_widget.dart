@@ -37,17 +37,6 @@ class AvaliableBalanceContinerWidget extends StatelessWidget {
                   AppLocalizations.of(context)!.currency_iqd,
                   style: AppStyles.style12DarkgrayW400,
                 ),
-                const Spacer(),
-                // GestureDetector(
-                //   onTap: () {
-                //     walletDialog(context);
-                //   },
-                //   child: Icon(
-                //     Icons.add,
-                //     size: 35.sp,
-                //     color: AppColors.blueColor,
-                //   ),
-                // ),
               ],
             ),
           ],
