@@ -10,27 +10,44 @@ class TripDetailsMap extends StatelessWidget {
     required this.address,
     required this.icon,
   });
+
   final String location;
   final String address;
   final String icon;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      child: ListTile(
-        title: Text(
-          location,
-          style: AppStyles.text18BlackW500,
-        ),
-        subtitle: Text(
-          address,
-          style: AppStyles.text14GreyW200,
-        ),
-        leading: SvgPicture.asset(
-          icon,
-          width: 30.w,
-          height: 30.h,
-        ),
+      child: Row(
+        crossAxisAlignment:
+            CrossAxisAlignment.start, // محاذاة النص العلوي مع الأيقونة
+        children: [
+          // الأيقونة
+          SvgPicture.asset(
+            icon,
+            width: 20.w,
+            height: 20.h,
+          ),
+          SizedBox(width: 10.w), // مسافة بين الأيقونة والنص
+          // النصوص
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  location,
+                  style: AppStyles.text18BlackW500,
+                ),
+                SizedBox(height: 5.h), // مسافة بين العنوان والعنوان الفرعي
+                Text(
+                  address,
+                  style: AppStyles.text14GreyW200,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -8,7 +8,7 @@ class PayAfterRideCubit extends Cubit<PayAfterRideState> {
   PayAfterRideCubit(this.repo) : super(PayAfterRideInitial());
   final PaidAfterRideRepo repo;
 
-  Future<void> confirmRate(context, double paid) async {
+  Future<void> pay(context, double paid) async {
     print("**************************${state}");
     emit(PayAfterRideLoading());
     final result = await repo.pay(context, paid);

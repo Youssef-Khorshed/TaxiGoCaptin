@@ -15,9 +15,7 @@ class TestSccreen extends StatelessWidget {
       children: [
         Center(
           child: GestureDetector(
-            onTap: () {
-              FareInputDialog.showFareInputDialog(context);
-            },
+            onTap: () {},
             child: Container(
               height: 100,
               width: double.infinity,

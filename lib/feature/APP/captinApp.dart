@@ -8,8 +8,10 @@ import 'package:taxi_go_driver/core/Utils/Network/Services/services_locator.dart
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/routes/route_generator.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/feature/trip_detales/controllers/cash_amount_cubit/cash_amount_cubit.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/pay_after_ride_controller/pay_after_ride_cubit.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/ride_complete_cubit/ride_complete_details_cubit.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/cash_amount_repo/cash_amount_repo.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_repo/paid_after_ride_repo.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/ride_complete_repo/ride_complete.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
@@ -63,6 +65,10 @@ class Captinapp extends StatelessWidget {
                 BlocProvider(
                   create: (context) =>
                       PayAfterRideCubit(getIt<PaidAfterRideRepo>()),
+                ),
+                BlocProvider(
+                  create: (context) => CashAmountCubit(getIt<CashAmountRepo>())
+                    ..loadRideDetails(context),
                 ),
               ],
               child: BlocBuilder<LocalizationCubit, LocalizationState>(

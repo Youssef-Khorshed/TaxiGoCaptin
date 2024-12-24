@@ -78,6 +78,8 @@
   "enter_the_fare_value": "Enter the fare value",
   "fare": "Fare",
   "please_enter_the_fare_value": "Please enter the fare value",
-  "please_enter_a_valid_number": "Please enter a valid number"
-
+  "please_enter_a_valid_number": "Please enter a valid number",
+  "entered_amount_must_not_be_less_than_the_fare_value": "Entered amount must not be less than the fare value",
+  "please_enter_a_valid_amount": "Please enter a valid amount",
+  "the_trip_was_completed_successfully": "The trip was completed successfully"
 }

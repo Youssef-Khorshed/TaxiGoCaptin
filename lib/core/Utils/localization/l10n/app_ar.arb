@@ -76,10 +76,13 @@
   "please_rate_the_trip": "من فضلك قيم الرحله ",
   "thank_you_for_your_review": "\"شكرًا لتقييمك! رأيك يهمنا ويساعدنا على تحسين تجربتك معنا. نتمنى أن تكون رحلتك ممتعة ونتطلع لخدمتك مجددًا قريبًا!\"",
   "canceled": "\"تم الغاء الرحله بنجاح!\"",
-  "enter_the_fare_value": "أدخل قيمة الأجرة",
-  "fare": "الاجره",
+  "enter_the_fare_value": "ادخل المبلغ المدفوع",
+  "fare": "المبلغ",
   "please_enter_the_fare_value": "من فضلك أدخل قيمة الأجرة",
-  "please_enter_a_valid_number": "من فضلك أدخل رقمًا صحيحًا"
+  "please_enter_a_valid_number": "من فضلك أدخل رقمًا صحيحًا",
+  "entered_amount_must_not_be_less_than_the_fare_value": "يجب ان لا يكون المبلغ المدخل اقل من قيمة الأجرة",
+  "please_enter_a_valid_amount": "من فضلك ادخل مبلغ صحيح",
+  "the_trip_was_completed_successfully": "تم انهاء الرحلة بنجاح"
 
 
 }
