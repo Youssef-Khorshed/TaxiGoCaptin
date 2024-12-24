@@ -24,12 +24,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   void initState() {
     super.initState();
-    mm(context);
-  }
-
-  void mm(context) async {
-    await BlocProvider.of<RideCompleteDetailsCubit>(context)
-        .getRideCompleteDetails(context);
   }
 
   Widget build(BuildContext context) {
@@ -74,7 +68,7 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                           Center(
                             child: Text(
                               AppLocalizations.of(context)!.payment,
-                              style: AppStyles.text16Size500WightBlack,
+                              style: AppStyles.text16BlackW500,
                             ),
                           ),
                           verticalSpace(10),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/pay_after_ride_controller/pay_after_ride_cubit.dart';
@@ -48,12 +49,10 @@ class _FareInputFormState extends State<FareInputForm> {
     if (_formKey.currentState!.validate()) {
       final fare = double.parse(_fareController.text);
       Navigator.of(context).pop();
-      CustomSnackBar(
-        textStyle: AppStyles.text14Size500Wight,
-        message:
-            '${AppLocalizations.of(context)!.the_fare_has_been_entered}: $fare ${AppLocalizations.of(context)!.currency}',
-        backgroundColor: AppColors.kComplete,
-      ).show(context);
+
+      Fluttertoast.showToast(
+          msg:
+              '${AppLocalizations.of(context)!.the_fare_has_been_entered}: $fare ${AppLocalizations.of(context)!.currency_iqd}');
 
       BlocProvider.of<PayAfterRideCubit>(context).confirmRate(context, fare);
     }
@@ -67,15 +66,24 @@ class _FareInputFormState extends State<FareInputForm> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            AppLocalizations.of(context)!.enter_the_fare_value,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Padding(
+            padding: EdgeInsets.all(4.0),
+            child: Text(
+              AppLocalizations.of(context)!.enter_the_fare_value,
+              style: AppStyles.text18BlackW500,
+            ),
           ),
           const SizedBox(height: 16.0),
           TextFormField(
             controller: _fareController,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.kblue,
+                  width: 1.0,
+                ),
+              ),
               labelText: AppLocalizations.of(context)!.fare,
               hintText: AppLocalizations.of(context)!.enter_the_fare_value,
               border: OutlineInputBorder(),
@@ -104,7 +112,7 @@ class _FareInputFormState extends State<FareInputForm> {
                     onPressed: _submitFare,
                     child: Text(
                       AppLocalizations.of(context)!.send,
-                      style: AppStyles.text14Size500WightW,
+                      style: AppStyles.text16WhiteW200,
                     ),
                   );
                 },

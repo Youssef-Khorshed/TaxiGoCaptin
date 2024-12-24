@@ -232,4 +232,35 @@ class AppStyles {
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
+
+  static TextStyle text16BlackW500 = TextStyle(
+    color: AppColors.kBlack,
+    fontSize: 16.sp,
+    fontFamily: "Cairo",
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle text18BlackW500 = TextStyle(
+    color: AppColors.blackColor,
+    fontSize: 18.sp,
+    fontFamily: "Cairo",
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle text14GreyW200 = TextStyle(
+    color: AppColors.kGrey2,
+    fontSize: 14.sp,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w200,
+  );
+  static TextStyle text16WhiteW200 = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 16.sp,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w200,
+  );
+  static TextStyle text16BlackW200 = TextStyle(
+    color: AppColors.kGrey2,
+    fontSize: 16.sp,
+    fontFamily: "Cairo",
+    fontWeight: FontWeight.w400,
+  );
 }

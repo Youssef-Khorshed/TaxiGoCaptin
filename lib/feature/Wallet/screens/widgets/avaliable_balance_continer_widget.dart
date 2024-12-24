@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/spacing/vertspace.dart';
-import 'wallet_dialog_method.dart';
 
 class AvaliableBalanceContinerWidget extends StatelessWidget {
   final String amount;
@@ -39,16 +38,16 @@ class AvaliableBalanceContinerWidget extends StatelessWidget {
                   style: AppStyles.style12DarkgrayW400,
                 ),
                 const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    walletDialog(context);
-                  },
-                  child: Icon(
-                    Icons.add,
-                    size: 35.sp,
-                    color: AppColors.blueColor,
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     walletDialog(context);
+                //   },
+                //   child: Icon(
+                //     Icons.add,
+                //     size: 35.sp,
+                //     color: AppColors.blueColor,
+                //   ),
+                // ),
               ],
             ),
           ],

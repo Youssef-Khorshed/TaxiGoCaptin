@@ -5,7 +5,7 @@ import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/model/paid_after_ride_model/paid_after_ride_model.dart';
-import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_repo/paid_after_ride_repo.dart';
 
 class PaidAfterRideRepoIpm implements PaidAfterRideRepo {
   final ApiService apiService;

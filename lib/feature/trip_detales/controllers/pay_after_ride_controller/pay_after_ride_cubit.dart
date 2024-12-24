@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_repo/paid_after_ride_repo.dart';
 
 part 'pay_after_ride_state.dart';
 

@@ -21,7 +21,7 @@
   "error_occurred": "حدث خطأ أثناء المعالجة.",
   "zain_Cash": " زين كاش",
   "no_amount": "لا يوجد مبلغ",
-  "the_fare_has_been_entered":"تم إدخال الأجرة" , "currency":"دينار عراقي",
+  "the_fare_has_been_entered":"تم إدخال الأجرة" ,
   "payment":"الدفع",
   "current_location":"الموقع الحالي",
   "payment_details":"تفاصيل الدفع",

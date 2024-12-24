@@ -49,7 +49,7 @@ class BuildAddressRow extends StatelessWidget {
                   highlightColor: Colors.grey[100]!,
                   child: simmerWidget(context),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
@@ -87,9 +87,25 @@ class BuildAddressRow extends StatelessWidget {
               ),
             ],
           ),
-          trailing: Text(
-            "${rideDetails.distance} ${AppLocalizations.of(context)!.km}",
-            style: TextStyle(fontSize: 15.sp),
+          trailing: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: "${rideDetails.distance} ",
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    color: Colors.black, // اللون الأسود للمسافة
+                  ),
+                ),
+                TextSpan(
+                  text: AppLocalizations.of(context)!.km,
+                  style: TextStyle(
+                    fontSize: 15.sp,
+                    color: Colors.grey, // اللون الرمادي لـ "km"
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -177,7 +193,7 @@ Widget simmerWidget(context) {
           ],
         ),
       ),
-      horizontalSpace(5),
+      horizontalSpace(5.w),
     ],
   );
 }

@@ -5,12 +5,14 @@ import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 class Buildrowdetail extends StatelessWidget {
   String label;
   String value;
+  String count;
   bool isBold;
 
   Buildrowdetail(
       {super.key,
       required this.label,
       required this.value,
+      required this.count,
       this.isBold = false});
 
   @override
@@ -23,12 +25,14 @@ class Buildrowdetail extends StatelessWidget {
         children: [
           Text(label,
               style: !isBold
-                  ? AppStyles.text14Size500WightW
-                  : AppStyles.text14Size500WightW),
-          Text(value,
-              style: !isBold
-                  ? AppStyles.text14Size500WightW
-                  : AppStyles.text14Size500WightW),
+                  ? AppStyles.text18BlackW500
+                  : AppStyles.text16BlackW200),
+          Row(
+            children: [
+              Text(value, style: AppStyles.text18BlackW500),
+              Text(count, style: AppStyles.text16BlackW200),
+            ],
+          ),
         ],
       ),
     );

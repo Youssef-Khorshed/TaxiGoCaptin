@@ -48,6 +48,7 @@ dependencies:
   geocode: ^1.0.3
   auto_size_text:
   url_launcher:
+  fluttertoast: ^8.2.10
 
 
 dev_dependencies:

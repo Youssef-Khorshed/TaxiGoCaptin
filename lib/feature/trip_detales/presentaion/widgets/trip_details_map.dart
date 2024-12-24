@@ -20,11 +20,11 @@ class TripDetailsMap extends StatelessWidget {
       child: ListTile(
         title: Text(
           location,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: AppStyles.text18BlackW500,
         ),
         subtitle: Text(
           address,
-          style: AppStyles.text16Size400darkGrey,
+          style: AppStyles.text14GreyW200,
         ),
         leading: SvgPicture.asset(
           icon,
