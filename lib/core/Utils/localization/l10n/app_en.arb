@@ -53,5 +53,10 @@
   "noPromoCode": "No Promo Code",
   "please_rate_the_trip": "Please rate the trip",
   "thank_you_for_your_review": "\"Thank you for your review! Your opinion matters to us and helps us improve your experience with us. We hope your trip was enjoyable and we look forward to serving you again soon!\""
-,   "canceled": "\"Request Canceled!\""
+,   "canceled": "\"Request Canceled!\"",
+  "enter_the_fare_value": "Enter the fare value",
+  "fare": "Fare",
+  "please_enter_the_fare_value": "Please enter the fare value",
+  "please_enter_a_valid_number": "Please enter a valid number"
+
 }

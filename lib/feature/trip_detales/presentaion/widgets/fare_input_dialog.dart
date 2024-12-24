@@ -10,14 +10,13 @@ class FareInputDialog {
   static void showFareInputDialog(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // يسمح بتوسيع الـ Dialog لتجنب لوحة المفاتيح
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
       ),
       builder: (context) => Padding(
         padding: EdgeInsets.only(
-          bottom:
-              MediaQuery.of(context).viewInsets.bottom, // تجنب لوحة المفاتيح
+          bottom: MediaQuery.of(context).viewInsets.bottom,
           top: 16.0,
           left: 16.0,
           right: 16.0,
@@ -68,39 +67,48 @@ class _FareInputFormState extends State<FareInputForm> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'أدخل قيمة الأجرة',
+          Text(
+            AppLocalizations.of(context)!.enter_the_fare_value,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16.0),
           TextFormField(
             controller: _fareController,
             keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              labelText: 'الأجرة',
-              hintText: 'أدخل قيمة الأجرة',
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.fare,
+              hintText: AppLocalizations.of(context)!.enter_the_fare_value,
               border: OutlineInputBorder(),
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'من فضلك أدخل قيمة الأجرة';
+                return AppLocalizations.of(context)!
+                    .please_enter_the_fare_value;
               }
               if (double.tryParse(value) == null) {
-                return 'من فضلك أدخل رقمًا صحيحًا';
+                return AppLocalizations.of(context)!
+                    .please_enter_a_valid_number;
               }
               return null;
             },
           ),
           const SizedBox(height: 16.0),
-          SizedBox(
-            width: double.infinity,
-            child: BlocBuilder<PayAfterRideCubit, PayAfterRideState>(
-              builder: (context, state) {
-                return ElevatedButton(
-                  onPressed: _submitFare,
-                  child: const Text('إرسال'),
-                );
-              },
+          Center(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * .4,
+              child: BlocBuilder<PayAfterRideCubit, PayAfterRideState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.kblue),
+                    onPressed: _submitFare,
+                    child: Text(
+                      AppLocalizations.of(context)!.send,
+                      style: AppStyles.text14Size500WightW,
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ],

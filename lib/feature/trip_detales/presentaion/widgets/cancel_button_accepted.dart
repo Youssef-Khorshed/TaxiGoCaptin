@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../core/Utils/assets/assets.dart';
 import '../../../../core/Utils/colors/colors.dart';
@@ -54,8 +55,8 @@ class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
               ),
               const SizedBox(
                   width: 10), // Add some spacing between icon and text
-              const Text(
-                "Cancel Your Booking",
+              Text(
+                AppLocalizations.of(context)!.cancel_booking,
                 style: TextStyle(color: Colors.white, fontSize: 20),
               )
             ],

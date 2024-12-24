@@ -8,6 +8,7 @@ class Routes {
   static const String earningRoute = '/earning';
   static const String scanRoute = '/scan';
   static const String paymentRoute = '/payment';
+  static const String paymentDetailsRoute = '/paymentDetails';
   static const String addMoneyRoute = '/addMoney';
   static const String walletRoute = '/wallet';
   static const String tripDetailsRoute = '/details';

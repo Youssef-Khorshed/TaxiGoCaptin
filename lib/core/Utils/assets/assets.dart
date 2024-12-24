@@ -46,4 +46,5 @@ class Assets {
   static const String imagesRectangle1271 = 'assets/images/Rectangle1271.png';
   static const String imagesSplashScreen = 'assets/images/SplashScreen.png';
   static const String imagesTo = 'assets/images/to.svg';
+  static const String cash = 'assets/images/paymentimg.png';
 }

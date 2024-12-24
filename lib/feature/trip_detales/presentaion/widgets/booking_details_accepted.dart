@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingDetailsAccepted extends StatelessWidget {
   const BookingDetailsAccepted({
@@ -9,13 +10,13 @@ class BookingDetailsAccepted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Column(
             children: [
               Text(
-                "Distance",
+                AppLocalizations.of(context)!.distance,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
@@ -30,7 +31,7 @@ class BookingDetailsAccepted extends StatelessWidget {
           Column(
             children: [
               Text(
-                "Tima",
+                AppLocalizations.of(context)!.time,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(

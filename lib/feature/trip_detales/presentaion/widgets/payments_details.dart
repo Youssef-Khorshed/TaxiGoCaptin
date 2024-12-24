@@ -21,9 +21,11 @@ class PaymentsDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppLocalizations.of(context)!.payment_details,
-          style: AppStyles.text14Size500WightW,
+        Center(
+          child: Text(
+            AppLocalizations.of(context)!.payment_details,
+            style: AppStyles.text16Size500WightBlack,
+          ),
         ),
         verticalSpace(size.height * 0.01),
         Column(
@@ -38,30 +40,30 @@ class PaymentsDetails extends StatelessWidget {
                 Spacer(),
                 Row(children: [
                   Text(
-                    rideDetails.paymentMethod ?? "",
+                    rideDetails.rideRequest.paymentMethod ?? "",
                     style: AppStyles.text14Size500WightW,
                   ),
                   horizontalSpace(5.w),
-                  Image.asset(Assets.iconsBankIcon, height: size.height * 0.02),
+                  Image.asset(Assets.cash, height: size.height * 0.02),
                 ]),
               ],
             ),
             Buildrowdetail(
                 label: AppLocalizations.of(context)!.distance,
                 value:
-                    '${rideDetails.ride!.distance} ${AppLocalizations.of(context)!.km} '),
+                    '${rideDetails.distance} ${AppLocalizations.of(context)!.km} '),
             Buildrowdetail(
                 label: AppLocalizations.of(context)!.time,
                 value:
-                    '${rideDetails.ride!.time?.round()} ${AppLocalizations.of(context)!.min} '),
+                    '${rideDetails.time.round()} ${AppLocalizations.of(context)!.min} '),
             Buildrowdetail(
                 label: AppLocalizations.of(context)!.promo_code,
                 value:
-                    '${rideDetails.promocode ?? AppLocalizations.of(context)!.noPromoCode}  '),
+                    '${rideDetails.rideRequest.promocode ?? AppLocalizations.of(context)!.noPromoCode}  '),
             Buildrowdetail(
               label: AppLocalizations.of(context)!.total,
               value:
-                  '${rideDetails.ride!.paid} ${AppLocalizations.of(context)!.currency} ',
+                  '${rideDetails.paid} ${AppLocalizations.of(context)!.currency} ',
               isBold: true,
             ),
           ],

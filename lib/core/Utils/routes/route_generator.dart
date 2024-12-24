@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
+import 'package:taxi_go_driver/feature/trip_detales/presentaion/payment_screen.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/test_sccreen.dart';
 
 import '../../../feature/RequestDriver/presentaion/MyDocument.dart';
@@ -75,6 +76,8 @@ class RouteGenerator {
 
       case Routes.signInRoute:
         return MaterialPageRoute(builder: (_) => const SignInScreen());
+      case Routes.paymentDetailsRoute:
+        return MaterialPageRoute(builder: (_) => const PaymentScreen());
 
       ///tet
       case Routes.splashScreenRoute:

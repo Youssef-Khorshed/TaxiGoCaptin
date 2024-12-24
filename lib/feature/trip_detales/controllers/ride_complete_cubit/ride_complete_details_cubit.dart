@@ -15,17 +15,13 @@ class RideCompleteDetailsCubit extends Cubit<RideCompleteDetailsState> {
   Future<void> getRideCompleteDetails(BuildContext context) async {
     emit(RideCompleteDetailsLoading());
 
-    // استدعاء الريبو للحصول على التفاصيل
     final result = await rideCompleteRepoImp.getRideCompleteDetails(context);
 
-    // التعامل مع النتيجة
     result.fold(
       (failure) {
-        // في حال حدوث فشل
         emit(RideCompleteDetailsFailure(failure.message));
       },
       (rideCompleteDetails) {
-        // في حال نجاح الاستجابة
         emit(RideCompleteDetailsSuccess(rideCompleteDetails));
       },
     );

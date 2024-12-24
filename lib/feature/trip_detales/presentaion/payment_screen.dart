@@ -13,10 +13,25 @@ import 'package:taxi_go_driver/feature/account_screen/presentaion/widgets/costum
 import 'package:taxi_go_driver/feature/trip_detales/controllers/ride_complete_cubit/ride_complete_details_cubit.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/tripe_complete_date.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
 
   @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  @override
+  void initState() {
+    super.initState();
+    mm(context);
+  }
+
+  void mm(context) async {
+    await BlocProvider.of<RideCompleteDetailsCubit>(context)
+        .getRideCompleteDetails(context);
+  }
+
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
@@ -38,7 +53,7 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<RideCompleteDetailsCubit>();
         if (state is RideCompleteDetailsInitial) {
-          cubit.getRideCompleteDetails(context);
+          // cubit.getRideCompleteDetails(context);
         }
         print("Current state: $state");
         return state is RideCompleteDetailsLoading
@@ -71,7 +86,7 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                           verticalSpace(
                               MediaQuery.of(context).size.height * .15),
                           CostumeButton(
-                            text: "AppLocalizations.of(context)!.confirm",
+                            text: AppLocalizations.of(context)!.confirm,
                             height: MediaQuery.of(context).size.height * 0.01,
                             onPressed: () {
                               Navigator.of(context)
