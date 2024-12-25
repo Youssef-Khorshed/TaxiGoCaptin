@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'custom_text_field.dart';
 
 class DocumentsFormRow extends StatelessWidget {
@@ -25,7 +26,7 @@ class DocumentsFormRow extends StatelessWidget {
             label: '',
             validator: (text) {
               if (text == null || text.isEmpty) {
-                return 'This field is required';
+                return AppLocalizations.of(context)!.complete_other_field;
               }
               return null;
             },
