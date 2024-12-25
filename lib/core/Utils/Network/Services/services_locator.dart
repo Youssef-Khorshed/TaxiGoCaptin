@@ -5,6 +5,7 @@ import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepoimp.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo_ipm.dart';
+import 'package:taxi_go_driver/feature/RequestDriver/data/repos/captain_documents_repo_impl.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 import '../../../../Network/local/sharedprefrences.dart';
 import '../../../../feature/chat/data/repo/chatrepo.dart';
@@ -30,6 +31,8 @@ Future<void> setup() async {
   getIt.registerSingleton<Chatrepo>(Chatrepoimp(
     getIt.get<ApiService>(),
   ));
+  getIt.registerSingleton<CaptainDocumentsRepoImpl>(
+      CaptainDocumentsRepoImpl(getIt.get<ApiService>()));
 
   getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
 

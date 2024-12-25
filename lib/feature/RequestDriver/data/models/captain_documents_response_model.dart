@@ -1,27 +1,27 @@
-import 'dart:convert';
+// import 'dart:convert';
 
-class CaptainDocumentsResponseModel {
-  bool success;
-  String message;
+// class CaptainDocumentsResponseModel {
+//   bool success;
+//   String message;
 
-  CaptainDocumentsResponseModel({
-    required this.success,
-    required this.message,
-  });
+//   CaptainDocumentsResponseModel({
+//     required this.success,
+//     required this.message,
+//   });
 
-  factory CaptainDocumentsResponseModel.fromRawJson(String str) =>
-      CaptainDocumentsResponseModel.fromJson(json.decode(str));
+//   factory CaptainDocumentsResponseModel.fromRawJson(String str) =>
+//       CaptainDocumentsResponseModel.fromJson(json.decode(str));
 
-  String toRawJson() => json.encode(toJson());
+//   String toRawJson() => json.encode(toJson());
 
-  factory CaptainDocumentsResponseModel.fromJson(Map<String, dynamic> json) =>
-      CaptainDocumentsResponseModel(
-        success: json["success"],
-        message: json["message"],
-      );
+//   factory CaptainDocumentsResponseModel.fromJson(Map<String, dynamic> json) =>
+//       CaptainDocumentsResponseModel(
+//         success: json["success"],
+//         message: json["message"],
+//       );
 
-  Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-      };
-}
+//   Map<String, dynamic> toJson() => {
+//         "success": success,
+//         "message": message,
+//       };
+// }

@@ -53,6 +53,7 @@
   "please_rate_the_trip": "Please rate the trip",
   "thank_you_for_your_review": "\"Thank you for your review! Your opinion matters to us and helps us improve your experience with us. We hope your trip was enjoyable and we look forward to serving you again soon!\""
 ,   "canceled": "\"Request Canceled!\"",
+  "home": "Home",
   "complete_other_field": "this field is required *",
   "my_document": "My Document",
   "profile_photo": "Profile Photo",
@@ -72,11 +73,20 @@
   "account": "Account",
   "wallet": "Wallet",
   "history": "History",
-  "home": "Home",
-  "you_have": "You have", 
+  "you_have": "You have",
   "to_accept": "to accept",
   "next": "Next",
   "typeamessage": "Type a message",
   "activeNow": "Active Now",
-  "sharelocation": "Share Location"
+  "sharelocation": "Share Location",
+  "cancel": "Cancel",
+  "choose_from_gallery": "Choose from gallery",
+  "scan_a_Photo": "Scan a Photo",
+  "select_upload_option": "Select Upload Option",
+  "vehicle_license_front": "Vehicle License Front",
+  "vehicle_license_back": "Vehicle License Back",
+  "vehicle_number": "Vehicle Number",
+  "vehicle_color": "Vehicle Color",
+  "vehicle_model": "Vehicle Model",
+  "next": "Next"
 }

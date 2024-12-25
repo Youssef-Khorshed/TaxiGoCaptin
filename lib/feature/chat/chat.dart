@@ -37,7 +37,6 @@ class _ChatScreenState extends State<ChatScreen> {
       value: _chatCubit,
       child: Scaffold(
         backgroundColor: AppColors.kWhite,
-
         appBar: AppBar(
           backgroundColor: AppColors.kWhite,
           elevation: 0,
@@ -64,7 +63,6 @@ class _ChatScreenState extends State<ChatScreen> {
               return Column(
                 children: [
                   const ShareLocation(),
-
                   Expanded(
                     child: ListView.builder(
                       controller: _scrollController,
@@ -79,15 +77,14 @@ class _ChatScreenState extends State<ChatScreen> {
                             widthFactor: screenWidth * 0.7,
                             heightFactor: screenHeight * 0.2,
                             usertype: message.senderType,
-                            message: message.message ?? "",
+                            message: message.message,
                           );
                         }
                         return UserMessage(
-                          message: message.message ?? "",
+                          message: message.message,
                           userType: message.senderType,
                           widthFactor: screenWidth * 0.9,
                         );
-
                       },
                     ),
                   ),

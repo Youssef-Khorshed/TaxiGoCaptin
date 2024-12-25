@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 class AddPhoto extends StatefulWidget {
   final Function(File?) onImageSelected;
@@ -15,13 +19,17 @@ class _AddPhotoState extends State<AddPhoto> {
   File? _selectedImage;
 
   Future<void> _pickImage(ImageSource source) async {
-    final pickedImage = await _picker.pickImage(source: source);
+    final pickedImage = await _picker.pickImage(
+      source: source,
+      imageQuality: 50,
+    );
     if (pickedImage != null) {
       setState(() {
         _selectedImage = File(pickedImage.path);
       });
       widget.onImageSelected(_selectedImage);
     }
+    Navigator.pop(context);
   }
 
   @override
@@ -34,43 +42,56 @@ class _AddPhotoState extends State<AddPhoto> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(16.r),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(20.w),
                 child: Column(
                   children: [
-                    const Text(
-                      "Select Upload Option",
+                    Text(
+                      AppLocalizations.of(context)!.select_upload_option,
                       style: TextStyle(fontSize: 22),
                     ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.camera_alt),
-                          onPressed: () => _pickImage(ImageSource.camera),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text("Scan a Photo"),
-                      ],
+                    verticalSpace(10),
+                    InkWell(
+                      onTap: () {
+                        _pickImage(ImageSource.camera);
+                        // Navigator.of(context).pop();
+                      },
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.camera_alt),
+                            onPressed: null,
+                          ),
+                          horizontalSpace(10),
+                          Text(AppLocalizations.of(context)!.scan_a_Photo),
+                        ],
+                      ),
                     ),
                     const Divider(height: 1, indent: 5, endIndent: 5),
-                    Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.image_search_outlined),
-                          onPressed: () => _pickImage(ImageSource.gallery),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text("Choose from Gallery"),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        _pickImage(ImageSource.gallery);
+                        // Navigator.of(context).pop();
+                      },
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.image_search_outlined),
+                            onPressed: null,
+                          ),
+                          horizontalSpace(10),
+                          Text(AppLocalizations.of(context)!
+                              .choose_from_gallery),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            verticalSpace(20),
             InkWell(
               onTap: () => Navigator.pop(context),
               borderRadius: BorderRadius.circular(22),
@@ -81,11 +102,10 @@ class _AddPhotoState extends State<AddPhoto> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(22),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    "Cancel",
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
+                    AppLocalizations.of(context)!.cancel,
+                    style: AppStyles.text14Size500WightRed,
                   ),
                 ),
               ),
