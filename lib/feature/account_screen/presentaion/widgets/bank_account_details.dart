@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 // ignore: unused_import
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
@@ -19,7 +20,7 @@ class BankAccountDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(6.0),
             child: CircleAvatar(
-              radius: 40,
+              radius: 40.r,
               child: SvgPicture.asset(
                 Assets.iconsBankIcon,
                 height: 100,

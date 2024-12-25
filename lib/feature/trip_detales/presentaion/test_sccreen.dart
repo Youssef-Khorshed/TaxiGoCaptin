@@ -23,7 +23,7 @@ class TestSccreen extends StatelessWidget {
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Center(child: Text("paid")),
+              child: Center(child: Text("wallet")),
             ),
           ),
         ),

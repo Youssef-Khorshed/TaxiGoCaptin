@@ -20,17 +20,14 @@ class TripDetailsMap extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Row(
-        crossAxisAlignment:
-            CrossAxisAlignment.start, // محاذاة النص العلوي مع الأيقونة
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // الأيقونة
           SvgPicture.asset(
             icon,
             width: 20.w,
             height: 20.h,
           ),
-          SizedBox(width: 10.w), // مسافة بين الأيقونة والنص
-          // النصوص
+          SizedBox(width: 10.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +36,7 @@ class TripDetailsMap extends StatelessWidget {
                   location,
                   style: AppStyles.text18BlackW500,
                 ),
-                SizedBox(height: 5.h), // مسافة بين العنوان والعنوان الفرعي
+                SizedBox(height: 5.h),
                 Text(
                   address,
                   style: AppStyles.text14GreyW200,

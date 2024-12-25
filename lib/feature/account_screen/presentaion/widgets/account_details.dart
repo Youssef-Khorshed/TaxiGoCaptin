@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
 import '../../../../core/Utils/routes/routes.dart';
+
 class ProfileDetails extends StatelessWidget {
   const ProfileDetails({
     super.key,
@@ -13,10 +15,10 @@ class ProfileDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.all(8.0),
           child: CircleAvatar(
-            radius: 40,
+            radius: 40.r,
             backgroundImage: AssetImage(Assets.imagesDriverImage),
           ),
         ),

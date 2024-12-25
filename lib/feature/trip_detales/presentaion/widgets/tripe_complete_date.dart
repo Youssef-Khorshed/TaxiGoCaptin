@@ -60,7 +60,7 @@ class _TripeCompleteDateState extends State<TripeCompleteDate> {
               builder: (context, state) {
                 var cubit = context.read<CashAmountCubit>();
                 var cubit2 = context.read<PayAfterRideCubit>();
-                cubit.cashAmount = "0";
+
                 var amount = double.parse(cubit.cashAmount);
                 return state is PayAfterRideLoading
                     ? SizedBox(height: 40.h, child: CustomLoading())
