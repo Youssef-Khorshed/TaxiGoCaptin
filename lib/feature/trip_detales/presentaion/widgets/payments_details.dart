@@ -1,17 +1,13 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
-import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/cash_amount_cubit/cash_amount_cubit.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/model/ride_complete_model/ride_complete_details_model.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/custom_buildrowdetail_hiring.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/fare_input_dialog.dart';
 
 class PaymentsDetails extends StatelessWidget {
   const PaymentsDetails({

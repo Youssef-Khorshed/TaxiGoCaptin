@@ -77,16 +77,7 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                             rideCompleteDetailsModel:
                                 state.rideCompleteDetailsModel,
                           ),
-                          verticalSpace(
-                              MediaQuery.of(context).size.height * .15),
-                          CostumeButton(
-                            text: AppLocalizations.of(context)!.confirm,
-                            height: MediaQuery.of(context).size.height * 0.01,
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(Routes.historyRoute);
-                            },
-                          ),
+                          verticalSpace(25.h)
                         ],
                       )
                     : Container();

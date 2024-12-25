@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
-import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/model/ride_complete_model/ride_complete_details_model.dart';
@@ -29,14 +28,14 @@ class BuildAddressRow extends StatelessWidget {
 
     return FutureBuilder<Map<String, String>>(
       future: _getFormattedAddresses(
-        // fromLatitude: double.parse(rideDetails.rideRequest.latFrom),
-        // fromLongitude: double.parse(rideDetails.rideRequest.lngFrom),
-        // toLatitude: double.parse(rideDetails.rideRequest.latTo),
-        // toLongitude: double.parse(rideDetails.rideRequest.lngTo),
-        fromLatitude: double.parse("31513360473233"),
-        fromLongitude: double.parse("730129688187574"),
-        toLatitude: double.parse("347690885526916"),
-        toLongitude: double.parse("43.708672016474615"),
+        fromLatitude: double.parse(rideDetails.rideRequest.latFrom),
+        fromLongitude: double.parse(rideDetails.rideRequest.lngFrom),
+        toLatitude: double.parse(rideDetails.rideRequest.latTo),
+        toLongitude: double.parse(rideDetails.rideRequest.lngTo),
+        // fromLatitude: double.parse("31513360473233"),
+        // fromLongitude: double.parse("730129688187574"),
+        // toLatitude: double.parse("347690885526916"),
+        // toLongitude: double.parse("43.708672016474615"),
       ),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

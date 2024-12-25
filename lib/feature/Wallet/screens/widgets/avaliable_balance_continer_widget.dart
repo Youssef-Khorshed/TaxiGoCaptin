@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-import '../../../../core/Utils/colors/colors.dart';
+
 import '../../../../core/Utils/spacing/vertspace.dart';
 
 class AvaliableBalanceContinerWidget extends StatelessWidget {

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class RideCompleteDetailsModel {
   final int id;
   final int rideRequestId;
