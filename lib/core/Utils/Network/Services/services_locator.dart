@@ -7,6 +7,9 @@ import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_r
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo_ipm.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 import '../../../../Network/local/sharedprefrences.dart';
+import '../../../../feature/chat/data/repo/chatrepo.dart';
+import '../../../../feature/chat/data/repo/chatrepoimp.dart';
+import '../../../../feature/chat/model_view/manger/chat/chat_cubit.dart';
 import 'apiservices.dart';
 import 'internetconnection.dart';
 
@@ -24,6 +27,11 @@ Future<void> setup() async {
       () => PaidAfterRideRepoIpm(apiService: getIt()));
   getIt.registerSingleton<NearbyRideRequestsRepoImpl>(
       NearbyRideRequestsRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<Chatrepo>(Chatrepoimp(
+    getIt.get<ApiService>(),
+  ));
+
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
 
   getIt.registerLazySingleton<MapRepo>(() => Maprepoimp(apiService: getIt()));
 

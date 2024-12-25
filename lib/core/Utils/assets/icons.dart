@@ -6,4 +6,6 @@ class AppIcons {
   static const String notificationIcon = 'assets/icons/notification.svg';
   static const String mapBlue = 'assets/icons/map_blue.svg';
   static const String mapRed = 'assets/icons/map_red.svg';
+  static const String send = 'assets/images/send.png';
+  static const String shareLocation = 'assets/icons/Group.png';
 }

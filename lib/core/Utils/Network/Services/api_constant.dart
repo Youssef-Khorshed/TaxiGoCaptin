@@ -59,4 +59,6 @@ class Constants {
   static const captainDocumentsEndPoint = '$baseUrl/captain/files';
   static const nearbyRideRequestsEndPoint =
       '$baseUrl/captain/rides/find-nearby-rides';
+  static const rooms = '${baseUrl}/captain/rides/get-messages';
+  static const sendchat = '${baseUrl}/captain/rides/send-message';
 }

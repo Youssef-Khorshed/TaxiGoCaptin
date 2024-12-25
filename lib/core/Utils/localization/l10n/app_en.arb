@@ -75,5 +75,8 @@
   "home": "Home",
   "you_have": "You have", 
   "to_accept": "to accept",
-  "next": "Next"
+  "next": "Next",
+  "typeamessage": "Type a message",
+  "activeNow": "Active Now",
+  "sharelocation": "Share Location"
 }

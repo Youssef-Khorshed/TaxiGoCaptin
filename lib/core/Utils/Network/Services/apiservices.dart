@@ -3,11 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
+
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
 import '../Error/exception.dart';
 import 'internetconnection.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
 
 class ApiService {
   InternetConnectivity internetConnectivity;

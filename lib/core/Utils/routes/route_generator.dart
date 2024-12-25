@@ -6,6 +6,7 @@ import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.
 import '../../../feature/RequestDriver/presentaion/captain_documents.dart';
 import '../../../feature/account_screen/presentaion/account_screen.dart';
 import '../../../feature/card_screen/presentaion/card_screen.dart';
+import '../../../feature/chat/chat.dart';
 import '../../../feature/earnings_dashboard/presentaion/earnings_dashboard_screen.dart';
 import '../../../feature/earnings_dashboard/presentaion/widgets/trip_details.dart';
 import '../../../feature/history/presentaion/history_view.dart';
@@ -50,6 +51,9 @@ class RouteGenerator {
 
       case Routes.walletRoute:
         return MaterialPageRoute(builder: (_) => const WalletScreen());
+
+        case Routes.chat:
+        return MaterialPageRoute(builder: (_) => const ChatScreen());
 
       case Routes.errorscreen:
         return MaterialPageRoute(

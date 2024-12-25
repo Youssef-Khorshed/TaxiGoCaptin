@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../colors/colors.dart';
+
+
+class AppStyles {
+  static TextStyle taxidrivername= TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color:AppColors.blackColor,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+
+  );
+  static TextStyle textStyle24 = GoogleFonts.poppins(
+  fontSize: 24.sp,
+  fontWeight: FontWeight.w500,
+  );
+  static TextStyle textStyle16 = GoogleFonts.poppins(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.kblue,
+  );
+  static TextStyle sharelocation=TextStyle(
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+  );
+  static TextStyle text16Size400WightGrey = GoogleFonts.poppins(
+      color: AppColors.kGrey, fontSize: 16.sp, fontWeight: FontWeight.w400,);
+
+       static TextStyle text16Size400darkGrey = GoogleFonts.poppins(
+      color: AppColors.kDarkGray, fontSize: 16.sp, fontWeight: FontWeight.w400,);
+
+  static TextStyle text24Size500Wight= GoogleFonts.poppins(
+      color: AppColors.kBlack, fontSize: 24.sp, fontWeight: FontWeight.w500,);
+
+  static TextStyle text24Size500WightDarkGray = GoogleFonts.poppins(
+      color: AppColors.kDarkGray, fontSize: 24.sp, fontWeight: FontWeight.w500,);
+
+      static TextStyle text16Size500WightGreyHintText = GoogleFonts.poppins(
+      color: AppColors.kHintTextField, fontSize: 14.sp, fontWeight: FontWeight.w500,);
+
+  static TextStyle text14Size500Wight = GoogleFonts.poppins(
+      color: AppColors.kBlack, fontSize: 14.sp, fontWeight: FontWeight.w500,);
+
+  static TextStyle text16Size500WightBlack = GoogleFonts.poppins(
+      color: AppColors.kBlack, fontSize: 16.sp, fontWeight: FontWeight.w400,);
+
+  static TextStyle text14Size500WightW = GoogleFonts.poppins(
+      color: AppColors.kHintTextField, fontSize: 14.sp, fontWeight: FontWeight.w500,);
+}

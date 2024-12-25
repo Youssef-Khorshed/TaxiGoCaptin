@@ -13,7 +13,6 @@ class AppColors {
   static const Color primaryColor = Color(0xff1D1AD8);
   static const Color kWhite = Color(0xffFFFFFF);
   static const Color blackColor = Color(0xff000000);
-  static const Color grayColor = Color(0xffC4C4C4);
 
   static const Color kGrey = Color(0xffA0A0A0);
   static const Color kHintTextField = Color(0xffD0D0D0);
@@ -31,15 +30,7 @@ class AppColors {
   static const Color kBackgroundColor = Color(0xffF8F8FF);
   static const Color kBorderColor = Color(0xffF2F2F2);
   static const Color kDropMenu = Color(0xfff6f6fdff);
-  static const Color blueColor = Color(0xff1D1AD8);
-  static const Color blueColor2 = Color(0xff0F0E72);
-  static const Color whiteColor = Colors.white;
-  static const Color whiteColor2 = Color(0xffFAFAFA);
-  static const Color transparentColor = Colors.transparent;
-  static const Color redColor = Color(0xFFEB001B);
-  static const Color darkgrayColor = Color(0xff868686);
-  static const Color ligterBlueColor = Color(0xffF4F4FF);
-  static const Color amberColor = Colors.amber;
-  static const Color yellowColor = Color(0xffFFD825);
-  static const Color lightGreen = Colors.lightGreen;
+
+
+
 }

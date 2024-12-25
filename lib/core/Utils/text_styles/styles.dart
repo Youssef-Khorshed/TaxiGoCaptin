@@ -11,10 +11,25 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+  static TextStyle style16 = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.blackColor,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+  );
+  static TextStyle style14BlackW500 = TextStyle(
+    fontSize: 14.sp,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+
   static TextStyle textStyle24 = GoogleFonts.poppins(
     fontSize: 24.sp,
     fontWeight: FontWeight.w500,
   );
+
   static TextStyle style24DarkgrayW500 = TextStyle(
     fontSize: 24,
     color: AppColors.darkgrayColor,
@@ -118,14 +133,6 @@ class AppStyles {
     height: 0,
   );
 
-  static TextStyle style14BlackW500 = TextStyle(
-    fontSize: 14,
-    color: AppColors.blackColor,
-    fontWeight: FontWeight.w500,
-    fontFamily: GoogleFonts.cairo().fontFamily,
-    height: 0,
-  );
-
   static TextStyle style14DarkgrayW500 = TextStyle(
     fontSize: 14.sp,
     color: AppColors.darkgrayColor,
@@ -186,7 +193,12 @@ class AppStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.kblue,
   );
-
+  static TextStyle sharelocation = TextStyle(
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+  );
   static TextStyle text16Size400WightGrey = GoogleFonts.poppins(
     color: AppColors.kGrey,
     fontSize: 16.sp,
