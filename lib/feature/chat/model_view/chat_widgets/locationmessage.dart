@@ -28,26 +28,26 @@ class LocationMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: usertype=="captain" ?   Alignment.centerLeft:Alignment.centerRight ,
+      alignment:
+          usertype == "captain" ? Alignment.centerLeft : Alignment.centerRight,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5.sp),
         padding: const EdgeInsets.all(10),
         constraints:
             BoxConstraints(maxWidth: widthFactor, maxHeight: heightFactor),
-        decoration:
-        BoxDecoration(
-          color:usertype=="captain" ?   AppColors.kblue:AppColors.kWhite,
-          borderRadius:usertype=="captain" ?   BorderRadius.only(
-            bottomLeft: Radius.circular(10.sp),
-            topLeft: Radius.circular(10.sp),
-            topRight: Radius.circular(10.sp),
-          ):BorderRadius.only(
-              bottomLeft: Radius.circular(0.sp),
-              bottomRight: Radius.circular(10.sp),
-              topLeft: Radius.circular(10.sp),
-              topRight: Radius.circular(10.sp))
-
-        ),
+        decoration: BoxDecoration(
+            color: usertype == "captain" ? AppColors.kblue : AppColors.kWhite,
+            borderRadius: usertype == "captain"
+                ? BorderRadius.only(
+                    bottomLeft: Radius.circular(10.sp),
+                    topLeft: Radius.circular(10.sp),
+                    topRight: Radius.circular(10.sp),
+                  )
+                : BorderRadius.only(
+                    bottomLeft: Radius.circular(0.sp),
+                    bottomRight: Radius.circular(10.sp),
+                    topLeft: Radius.circular(10.sp),
+                    topRight: Radius.circular(10.sp))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -57,30 +57,26 @@ class LocationMessage extends StatelessWidget {
                 message,
                 maxLines: 3,
                 style: AppStyles.style14BlackW500.copyWith(
-                  color:usertype=="captain" ? AppColors.kWhite :AppColors.blackColor
-                ),
+                    color: usertype == "captain"
+                        ? AppColors.kWhite
+                        : AppColors.blackColor),
               ),
             ),
             verticalSpace(5.h),
-        Expanded(
-          flex: 10,
-          child: Image.asset(
-            AssetImagesconst.mapTest,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
-
-        )
+            Expanded(
+              flex: 10,
+              child: Image.asset(
+                AppImages.mapTest,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+              ),
+            )
           ],
         ),
       ),
     );
   }
-
-
-
-
 
   Set<Marker> buildMarkers() {
     return {

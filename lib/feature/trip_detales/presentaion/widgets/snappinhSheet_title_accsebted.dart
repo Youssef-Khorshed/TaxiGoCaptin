@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/Utils/assets/assets.dart';
 import '../../../../core/Utils/colors/colors.dart';
 
 //import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -46,7 +47,7 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const CircleAvatar(
-                backgroundImage: AssetImage(Assets.imagesDriverImage),
+                backgroundImage: AssetImage(AppImages.imagesDriverImage),
                 radius: 35,
               ),
               const SizedBox(
@@ -66,7 +67,7 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                     height: 5,
                   ),
                   SvgPicture.asset(
-                    Assets.iconsCar1,
+                    AppIcons.iconsCar1,
                     height: 20,
                   ),
                 ],
@@ -79,14 +80,14 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                       _callPhoneNumber(customerPhoneNumber);
                     },
                     icon: SvgPicture.asset(
-                      Assets.iconsCall,
+                      AppIcons.iconsCall,
                       height: 30,
                     ),
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      Assets.iconsMessage,
+                      AppIcons.iconsMessage,
                       height: 30,
                     ),
                   ),

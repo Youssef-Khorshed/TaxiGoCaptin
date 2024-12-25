@@ -49,7 +49,7 @@ class UserNameContainer extends StatelessWidget {
             children: [
               Text(
                   "User_name",
-                  style:AppStyles.taxidrivername
+                  style:AppStyles.text14Size500Wight
               ),
 
             ],

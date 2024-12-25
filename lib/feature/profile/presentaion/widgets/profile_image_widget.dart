@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   const ProfileImageWidget({
@@ -17,7 +17,7 @@ class ProfileImageWidget extends StatelessWidget {
           decoration: const BoxDecoration(),
           child: const CircleAvatar(
             radius: 100,
-            backgroundImage: AssetImage(Assets.imagesDriverImage),
+            backgroundImage: AssetImage(AppImages.imagesDriverImage),
           ),
         ),
         Positioned(

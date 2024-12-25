@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorConnectionLost.dart';
 import 'package:taxi_go_driver/feature/home/presentaion/widgets/home_screen_body.dart';
@@ -32,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: GestureDetector(
               onTap: () => Scaffold.of(context).openDrawer(),
               child: SvgPicture.asset(
-                Assets.iconsListIcon,
+                AppIcons.iconsListIcon,
                 colorFilter:
                     ColorFilter.mode(AppColors.kWhite, BlendMode.srcIn),
               ),
@@ -40,8 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         backgroundColor: AppColors.kDarkBlue,
-        title: const Text(
-          'Home',
+        title: Text(
+          AppLocalizations.of(context)!.home,
           style: TextStyle(color: AppColors.kWhite),
         ),
         centerTitle: true,
@@ -53,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.popAndPushNamed(context, Routes.accountScreen);
               },
               child: CircleAvatar(
-                backgroundImage: Image.asset(Assets.imagesDriverImage).image,
+                backgroundImage: Image.asset(AppImages.imagesDriverImage).image,
               ),
             ),
           )

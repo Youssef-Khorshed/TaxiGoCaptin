@@ -32,7 +32,7 @@ class _CustomCheckState extends State<CustomCheck> {
                 ? AppColors.kblue.withOpacity(0.2)
                 : const Color(0xff3366FF),
             shape: const CircleBorder()),
-        child: Center(child: SvgPicture.asset(AssetImagesconst.check)),
+        child: Center(child: SvgPicture.asset(AppImages.check)),
       ),
     );
   }

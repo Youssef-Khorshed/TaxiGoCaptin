@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/model/ride_complete_model/ride_complete_details_model.dart';
@@ -42,7 +42,7 @@ class PaymentsDetails extends StatelessWidget {
                     style: AppStyles.text14Size500WightW,
                   ),
                   horizontalSpace(5.w),
-                  Image.asset(Assets.iconsBankIcon, height: size.height * 0.02),
+                  Image.asset(AppIcons.iconsBankIcon, height: size.height * 0.02),
                 ]),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -49,7 +50,7 @@ class DrawerList extends StatelessWidget {
     return Center(
       child: ClipOval(
         child: Image.asset(
-          'assets/images/profile_image.png',
+          AppImages.imagesProfileImage,
           width: 100,
           height: 100,
           fit: BoxFit.cover,
@@ -64,35 +65,35 @@ class DrawerList extends StatelessWidget {
     return Column(
       children: [
         _buildDrawerItem(
-          icon: Assets.iconsHome,
+          icon: AppIcons.iconsHome,
           name: AppLocalizations.of(context)!.home,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[0]);
           },
         ),
         _buildDrawerItem(
-          icon: Assets.iconsHistory,
+          icon: AppIcons.iconsHistory,
           name: AppLocalizations.of(context)!.history,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[1]);
           },
         ),
         _buildDrawerItem(
-          icon: Assets.iconsWalletIcon,
+          icon: AppIcons.iconsWalletIcon,
           name: AppLocalizations.of(context)!.wallet,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[2]);
           },
         ),
         _buildDrawerItem(
-          icon: Assets.iconsSettingsIcon,
+          icon: AppIcons.iconsSettingsIcon,
           name: AppLocalizations.of(context)!.account,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[4]);
           },
         ),
         _buildDrawerItem(
-          icon: Assets.iconsLogOut,
+          icon: AppIcons.iconsLogOut,
           name: AppLocalizations.of(context)!.log_out,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[5]);

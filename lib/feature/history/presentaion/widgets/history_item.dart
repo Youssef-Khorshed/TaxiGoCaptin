@@ -36,16 +36,16 @@ class HistoryItem extends StatelessWidget {
                 children: [
                   const FromToWidget(
                     dist: "University",
-                    image: AssetImagesconst.from,
+                    image: AppImages.from,
                     time: "11:24 AM",
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: SvgPicture.asset(AssetImagesconst.dotes),
+                    child: SvgPicture.asset(AppImages.dotes),
                   ),
                   const FromToWidget(
                     dist: "any place",
-                    image: AssetImagesconst.to,
+                    image: AppImages.to,
                     time: "11:52 AM",
                   ),
                 ],

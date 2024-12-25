@@ -34,7 +34,7 @@ class _SplashState extends State<SplashScreen> {
         child: FadeIn(
           duration: const Duration(seconds: 3),
           child: Image.asset(
-            AssetImagesconst.imageicon,
+            AppImages.imageicon,
             fit: BoxFit.cover,
           ),
         ),

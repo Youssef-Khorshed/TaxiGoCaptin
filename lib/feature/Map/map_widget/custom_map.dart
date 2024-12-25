@@ -71,7 +71,7 @@ class _CustomMapState extends State<CustomMap> {
         destination: des,
         sessionToken: Uuid().v4(),
         context: context);
-    context.read<MapsCubit>().getUserUpdatedLocation(title: 'captin');
+    context.read<MapsCubit>().getCaptinUpdatedLocation(title: 'captin');
   }
 
   void initalStyle() async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import '../../../../core/Utils/routes/routes.dart';
 
 class ProfileDetails extends StatelessWidget {
@@ -18,7 +19,7 @@ class ProfileDetails extends StatelessWidget {
           padding: EdgeInsets.all(8.0),
           child: CircleAvatar(
             radius: 40,
-            backgroundImage: AssetImage(Assets.imagesDriverImage),
+            backgroundImage: AssetImage(AppImages.imagesDriverImage),
           ),
         ),
         Padding(
@@ -46,7 +47,7 @@ class ProfileDetails extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      Assets.iconsPhone,
+                      AppIcons.iconsPhone,
                       height: 15,
                     ),
                   ),
@@ -61,7 +62,7 @@ class ProfileDetails extends StatelessWidget {
             Navigator.pushNamed(context, Routes.editProfileScreen);
           },
           icon: SvgPicture.asset(
-            Assets.iconsEdit,
+            AppIcons.iconsEdit,
             height: 40,
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 
 class BankAccountDetails extends StatelessWidget {
   const BankAccountDetails({
@@ -21,7 +21,7 @@ class BankAccountDetails extends StatelessWidget {
             child: CircleAvatar(
               radius: 40,
               child: SvgPicture.asset(
-                Assets.iconsBankIcon,
+                AppIcons.iconsBankIcon,
                 height: 100,
                 fit: BoxFit.fill,
               ),

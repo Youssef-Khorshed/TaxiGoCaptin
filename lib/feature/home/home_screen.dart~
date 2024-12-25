@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_driver/Presentaion/earnings_dashboard/widgets/drawer_list.dart';
 import 'package:taxi_go_driver/Presentaion/home/widgets/home_screen_body.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
-
+ 
 import '../../core/Utils/colors/colors.dart';
 import '../../core/routes/routes.dart';
 

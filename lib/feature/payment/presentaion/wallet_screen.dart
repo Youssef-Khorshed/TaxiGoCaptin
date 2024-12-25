@@ -24,7 +24,7 @@ class WalletScreen extends StatelessWidget {
             GestureDetector(
               child: CustomAppbar(
                 icon: SvgPicture.asset(
-                  AssetImagesconst.backArrow,
+                  AppImages.backArrow,
                   height: 15,
                   width: 15,
                 ),

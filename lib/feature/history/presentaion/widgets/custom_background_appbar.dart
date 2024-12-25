@@ -55,7 +55,7 @@ class _CustomBackgroundAppBarState extends State<CustomBackgroundAppBar> {
                         onTap: () {
                           scaffoldKey.currentState!.openDrawer();
                         },
-                        child: SvgPicture.asset(AssetImagesconst.drawer)),
+                        child: SvgPicture.asset(AppImages.drawer)),
                   ),
                   title: widget.appBarTitle,
                   textColor: Colors.white,

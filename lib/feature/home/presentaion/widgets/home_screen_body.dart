@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/routes/routes.dart';
 
@@ -23,9 +25,9 @@ class HomeScreenBody extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage(Assets.imagesMap),
+                    image: AssetImage(AppImages.imagesMap),
                   ),
                 ),
               ),
@@ -46,7 +48,7 @@ class HomeScreenBody extends StatelessWidget {
                   color: AppColors.kWhite,
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: const Row(
+                child: Row(
                   children: [
                     Spacer(),
                     Icon(
@@ -55,7 +57,7 @@ class HomeScreenBody extends StatelessWidget {
                     ),
                     Spacer(),
                     Text(
-                      "Choose Your Request ",
+                      AppLocalizations.of(context)!.choose_your_request,
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
                     Spacer(),

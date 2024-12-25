@@ -14,7 +14,7 @@ class CustomBackArrow extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: SvgPicture.asset(AssetImagesconst.backArrow)),
+          child: SvgPicture.asset(AppImages.backArrow)),
     );
   }
 }

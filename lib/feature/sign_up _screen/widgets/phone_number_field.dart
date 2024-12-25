@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 
 import '../../../core/Utils/colors/colors.dart';
 
@@ -15,7 +15,7 @@ class PhoneNumberFailed extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.countryCode = '+880',
-    this.countryFlag = Assets.iconsIraq,
+    this.countryFlag = AppIcons.iconsIraq,
   });
 
   @override
