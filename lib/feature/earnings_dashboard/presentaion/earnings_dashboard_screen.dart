@@ -5,7 +5,6 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
-
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
