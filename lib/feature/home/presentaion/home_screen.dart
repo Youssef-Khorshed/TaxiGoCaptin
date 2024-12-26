@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
           AppLocalizations.of(context)!.home,
           style: TextStyle(color: AppColors.kWhite),
         ),
-        centerTitle: true,
+        centerTitle: false,
         actions: [
           Padding(
             padding: const EdgeInsets.all(12.0),

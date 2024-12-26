@@ -12,7 +12,8 @@ import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/wa
 import 'user_earning_details.dart';
 
 class EarningsDashboardBody extends StatefulWidget {
-  const EarningsDashboardBody({super.key});
+  final bool status;
+  const EarningsDashboardBody({super.key, required this.status});
 
   @override
   State<EarningsDashboardBody> createState() => _EarningsDashboardBodyState();
@@ -104,45 +105,58 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
               ),
             ],
           ),
-          nearbyRideRequests == null
+          widget.status == false
               ? Column(
                   children: [
                     verticalSpace(MediaQuery.of(context).size.height / 8),
                     Text(
-                      "Looking for nearby request",
+                      AppLocalizations.of(context)!.you_are_offline,
                       style: AppStyles.style16BlackW600,
                     ),
                   ],
                 )
-              : nearbyRideRequests!.data!.isEmpty
+              : nearbyRideRequests == null
                   ? Column(
                       children: [
                         verticalSpace(MediaQuery.of(context).size.height / 8),
                         Text(
-                          "No nearby ride requests found",
+                          AppLocalizations.of(context)!
+                              .looking_for_nearby_request,
                           style: AppStyles.style16BlackW600,
                         ),
                       ],
                     )
-                  : ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (context, index) {
-                        return RideRequestWidget(
-                          nearbyRideRequestsData:
-                              nearbyRideRequests!.data![index],
-                        );
-                      },
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: 10.h,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 50.w),
-                          child: Divider(),
+                  : nearbyRideRequests!.data!.isEmpty
+                      ? Column(
+                          children: [
+                            verticalSpace(
+                                MediaQuery.of(context).size.height / 8),
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .no_nearby_ride_requests_found,
+                              style: AppStyles.style16BlackW600,
+                            ),
+                          ],
+                        )
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            return RideRequestWidget(
+                              nearbyRideRequestsData:
+                                  nearbyRideRequests!.data![index],
+                            );
+                          },
+                          separatorBuilder: (context, index) => SizedBox(
+                            height: 10.h,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 50.w),
+                              child: Divider(),
+                            ),
+                          ),
+                          itemCount: nearbyRideRequests!.data!.length,
                         ),
-                      ),
-                      itemCount: nearbyRideRequests!.data!.length,
-                    ),
         ],
       ),
     );

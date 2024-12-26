@@ -88,5 +88,8 @@
   "vehicle_number": "رقم السيارة",
   "vehicle_color": "لون السيارة",
   "vehicle_model": "موديل السيارة",
+  "you_are_offline": "انت غير متصل بالانترنت",
+  "looking_for_nearby_request": "بحث عن طلبات قريبة",
+  "no_nearby_ride_requests_found": "لم يتم العثور على طلبات رحلات قريبة",
   "choose_your_request": "اختر طلبك"
 }

@@ -88,5 +88,8 @@
   "vehicle_number": "Vehicle Number",
   "vehicle_color": "Vehicle Color",
   "vehicle_model": "Vehicle Model",
+  "you_are_offline": "You are Offline",
+  "looking_for_nearby_request": "Looking for nearby request",
+  "no_nearby_ride_requests_found": "No nearby ride requests found",
   "choose_your_request": "Choose Your Request"
 }

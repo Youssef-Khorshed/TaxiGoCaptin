@@ -44,12 +44,12 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
             activeIcon: CircleAvatar(
               backgroundColor: AppColors.kblue,
             ),
-            inactiveColor: AppColors.kblue,
+            activeColor: AppColors.kblue,
+            inactiveColor: AppColors.redColor,
             inactiveIcon: const CircleAvatar(
               backgroundColor: Colors.red,
             ),
             padding: 8.w,
-            activeColor: AppColors.kRedMap,
             onToggle: (val) async {
               if (val) {
                 debugPrint('Printer');
@@ -71,7 +71,7 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
       drawer: const Drawer(
         child: DrawerList(),
       ),
-      body: EarningsDashboardBody(),
+      body: EarningsDashboardBody(status: status),
     );
   }
 
