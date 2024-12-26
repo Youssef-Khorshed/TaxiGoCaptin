@@ -14,6 +14,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
   // Set preferred orientations globally
+  //edit
   await setup();
   SecureToken.addToken(Constants.captinToken);
   await getIt<CacheHelper>().init();
