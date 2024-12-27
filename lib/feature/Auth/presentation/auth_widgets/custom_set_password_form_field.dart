@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-
 
 import '../../../../core/Utils/colors/colors.dart';
+import '../../../../core/Utils/text_styles/styles.dart';
 
 class CustomSetPasswordFormField extends StatelessWidget {
   final String lableText;
@@ -26,13 +25,13 @@ class CustomSetPasswordFormField extends StatelessWidget {
         labelText: lableText,
         labelStyle: AppStyles.style16WhiteW500
             .copyWith(color: AppColors.grayColor, fontSize: 14.sp),
-        enabledBorder:  OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.blackColor, width: 1.w),
             borderRadius: BorderRadius.all(Radius.circular(8.r))),
-        focusedBorder:  OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.blueColor, width: 2.w),
             borderRadius: BorderRadius.all(Radius.circular(8.r))),
-        errorBorder:  OutlineInputBorder(
+        errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.redColor, width: 2.w),
             borderRadius: BorderRadius.all(Radius.circular(8.r))),
         errorMaxLines: 1,

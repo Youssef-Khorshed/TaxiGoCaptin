@@ -37,7 +37,7 @@ class _DriverActionState extends State<DriverAction> {
       listener: (context, state) {
         if (state is AccpetRideRequestSuccess) {
           Navigator.pop(context);
-          Constants.subscription?.cancel();
+          // Constants.subscription?.cancel();
           Navigator.of(context).pushReplacement(CupertinoPageRoute(
               builder: (_) => MapScreen(
                     nearbyRideRequest: state.rideRequest,
@@ -87,7 +87,7 @@ class _DriverActionState extends State<DriverAction> {
 
   @override
   void dispose() {
-    Constants.subscription?.cancel();
+    // Constants.subscription?.cancel();
     super.dispose();
   }
 }

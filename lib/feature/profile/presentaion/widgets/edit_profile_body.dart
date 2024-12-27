@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/feature/profile/presentaion/widgets/profile_image_widget.dart';
 import 'package:taxi_go_driver/feature/profile/presentaion/widgets/rating_widget.dart';
-import 'costum_text_faild.dart';
+import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/custom_text_field.dart';
+
 
 class EditProfileBody extends StatelessWidget {
   const EditProfileBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: const [
-      SizedBox(
+    return ListView(children: [
+      const SizedBox(
         height: 40,
       ),
-      ProfileImageWidget(),
-      SizedBox(height: 15),
+      const ProfileImageWidget(),
+      const SizedBox(height: 15),
       RatingWidget(),
       Column(children: [
-        CostumeTextField(
-          icon: Icons.person,
-          text: "Mohamed Haggag",
+         CustomTextField(
+          suffixIcon: Icon(Icons.person),
+          label: "Mohamed Haggag", onChanged: (String ) {  },
         ),
-        CostumeTextField(
-          icon: Icons.email,
-          text: "haggag987@gmail.com",
+         CustomTextField(
+          suffixIcon:const Icon( Icons.email),
+           label: "haggag987@gmail.com", onChanged: (String ) {  },
         ),
-        CostumeTextField(
-          icon: Icons.phone,
-          text: "+27-1234 4158",
+        CustomTextField(
+          suffixIcon: const Icon(Icons.phone),
+label: "+27-1234 4158", onChanged: (String ) {  },
+
         ),
       ]),
     ]);

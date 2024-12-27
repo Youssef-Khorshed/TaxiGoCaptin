@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../../../../../../Core/Utils/Network/Services/secure_token.dart';
 
+import '../../../../../core/Utils/Network/Services/secure_profile.dart';
 import '../../../data/models/log_out/Log_out_model.dart';
 import '../../../data/repo/auth_repo.dart';
 
@@ -26,6 +27,9 @@ static LogOutCubit get(context) => BlocProvider.of(context);
       },
           (data) async {
         if (data.status??false) {
+          await SecureToken.deleteToken();
+          await SecureProfile.deleteProfileImage();
+          await SecureProfile.deleteProfileName();
 
           emit(LogOutSuccess( data: data));
 

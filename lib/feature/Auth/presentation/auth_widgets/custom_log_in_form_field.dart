@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
+import '../../../../core/Utils/text_styles/styles.dart';
 
 
 class CustomLogInFormField extends StatefulWidget {
@@ -30,7 +30,7 @@ class _CustomLogInFormFieldState extends State<CustomLogInFormField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(vertical: 10.h),
+      padding: EdgeInsets.symmetric(vertical: 10.h),
       child: TextFormField(
         controller: widget.controller,
         obscureText: widget.isPassword && isPasswordHidden,
@@ -42,19 +42,19 @@ class _CustomLogInFormFieldState extends State<CustomLogInFormField> {
             fontSize: 15.sp,
             color: AppColors.grayColor,
           ),
-          enabledBorder:  OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.blackColor, width: 1),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: AppColors.blackColor, width: 1),
             borderRadius: BorderRadius.all(
               Radius.circular(8.r),
             ),
           ),
-          focusedBorder:  OutlineInputBorder(
+          focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.blueColor, width: 2.w),
             borderRadius: BorderRadius.all(
               Radius.circular(8.r),
             ),
           ),
-          errorBorder:  OutlineInputBorder(
+          errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.redColor, width: 2.w),
             borderRadius: BorderRadius.all(
               Radius.circular(8.r),
@@ -65,7 +65,7 @@ class _CustomLogInFormFieldState extends State<CustomLogInFormField> {
               .copyWith(fontSize: 14.sp, color: AppColors.redColor),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.r),
-            borderSide:  BorderSide(color: AppColors.grayColor, width: 1.w),
+            borderSide: BorderSide(color: AppColors.grayColor, width: 1.w),
           ),
           labelText: widget.labelText,
           hintText: widget.hintText,

@@ -1,16 +1,18 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 
 import '../../../../../core/Utils/colors/colors.dart';
-import '../../../../../core/Utils/spacing/vertspace.dart';
-import '../../../../APP/custom_widgets/custom_app_bottom.dart';
+import '../../../../../core/Utils/text_styles/styles.dart';
+import '../../../../APP/custom_widgets/Custom_button.dart';
 import '../../controller/otp_cubit/otp_cubit.dart';
 
+// ignore: must_be_immutable
 class LoginOtpScreen extends StatefulWidget {
   LoginOtpScreen({super.key, required this.phone});
   String phone;
@@ -40,17 +42,17 @@ class _LoginOtpScreenState extends State<LoginOtpScreen> {
                     size: 25.r,
                   ),
                   horizontalSpace(5),
-                  Text(AppLocalizations.of(context)!.back,
-                      style: AppStyles.textStyle20)
+                  AutoSizeText(AppLocalizations.of(context)!.back,
+                      style: AppStyles.style20BlackW500)
                 ]),
               ),
               verticalSpace(30),
-              Text(
+              AutoSizeText(
                 AppLocalizations.of(context)!.phoneVerification,
                 style: AppStyles.style24WhiteW500
                     .copyWith(color: Colors.black),
               ),
-              Text(AppLocalizations.of(context)!.enterOTPCode,
+              AutoSizeText(AppLocalizations.of(context)!.enterOTPCode,
                   style: AppStyles.style16WhiteW500
                       .copyWith(color: AppColors.grayColor)),
               verticalSpace(15),
@@ -87,7 +89,7 @@ class _LoginOtpScreenState extends State<LoginOtpScreen> {
                   horizontalSpace(5),
                   GestureDetector(
                     onTap: () {},
-                    child: Text(
+                    child: AutoSizeText(
                         AppLocalizations.of(context)!.resend_again,
                         style: AppStyles.style16WhiteW500
                             .copyWith(color: AppColors.blueColor)),

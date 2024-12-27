@@ -1,19 +1,18 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:taxi_go_driver/feature/Auth/data/models/get_cities_model/GetCitiesModel.dart';
+import 'package:taxi_go_driver/feature/Auth/data/models/log_out/Log_out_model.dart';
 
-
-import '../../../../Core/Utils/Network/Error/failure.dart';
-import '../../../../Core/Utils/Network/Services/api_constant.dart';
-import '../../../../Core/Utils/Network/Services/apiservices.dart';
-import '../../../../Core/Utils/Network/Services/secure_token.dart';
+import '../../../../core/Utils/Network/Error/failure.dart';
+import '../../../../core/Utils/Network/Services/api_constant.dart';
+import '../../../../core/Utils/Network/Services/apiservices.dart';
+import '../../../../core/Utils/Network/Services/secure_token.dart';
 import '../models/create_profile_model/create_profile_model.dart';
 import '../models/forget_password_model/Forget_password_model.dart';
-import '../models/get_cities_model/GetCitiesModel.dart';
-import '../models/get_districts_by_cities/GetDistrictsByCities.dart';
-import '../models/log_out/Log_out_model.dart';
+import '../models/get_districts_by_cities/GetDistrictsModel.dart';
 import '../models/login_model/LoginModel.dart';
+
 import '../models/login_model/set_password_model.dart';
 import '../models/send_verification_code_model/send_verification_code_model.dart';
 import '../models/set_password_model/SendPasswordModel.dart';
@@ -37,12 +36,12 @@ class AuthRepoImpl extends AuthRepo {
           context: context);
       if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
+      } else {
+        return Right(LoginModel.fromJson(response));
       }
-      else{
-      return Right(LoginModel.fromJson(response));
-    }} catch (e) {
+    } catch (e) {
       if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
+        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
       } else {
         return Left(ServerFailure(message: e.toString()));
       }
@@ -64,12 +63,12 @@ class AuthRepoImpl extends AuthRepo {
           context: context);
       if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
+      } else {
+        return Right(SetPasswordModel.fromJson(response));
       }
-      else{
-      return Right(SetPasswordModel.fromJson(response));
-    } }catch (e) {
+    } catch (e) {
       if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
+        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
       } else {
         return Left(ServerFailure(message: e.toString()));
       }
@@ -83,19 +82,18 @@ class AuthRepoImpl extends AuthRepo {
       var response = await apiService.getRequest(
           Constants.baseUrl + Constants.sendVerification,
           context: context);
-      SendVerificationCodeModel data =
-          SendVerificationCodeModel.fromJson(response);
       if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
-      }
-      else {
+      } else {
+        SendVerificationCodeModel data =
+            SendVerificationCodeModel.fromJson(response);
         return Right(data);
-      }} catch (e) {
+      }
+    } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
           message: e.response!.data["message"],
         ));
-
       } else {
         return Left(ServerFailure(
           message: e.toString(),
@@ -115,11 +113,10 @@ class AuthRepoImpl extends AuthRepo {
       print("respondse ${response}");
       if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
+      } else {
+        VerifyAccount data = VerifyAccount.fromJson(response);
+        return Right(data);
       }
-      else
-      {  VerifyAccount data = VerifyAccount.fromJson(response);
-      return Right(data);}
-
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -143,10 +140,10 @@ class AuthRepoImpl extends AuthRepo {
           context: context);
       if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
+      } else {
+        SendPasswordModel data = SendPasswordModel.fromJson(response);
+        return Right(data);
       }
-      else{
-      SendPasswordModel data = SendPasswordModel.fromJson(response);
-      return Right(data);}
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -168,16 +165,14 @@ class AuthRepoImpl extends AuthRepo {
           Constants.baseUrl + Constants.forgotPassword,
           queryParameters: {"identifier": phone},
           context: context);
-      if(response["status"] == false){
+      if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
-
+      } else {
+        ForgetPasswordModel data = ForgetPasswordModel.fromJson(response);
+        return Right(data);
       }
-      else{ ForgetPasswordModel data = ForgetPasswordModel.fromJson(response);
-      return Right(data);}
-
     } catch (e) {
       if (e is DioException) {
-
         return Left(ServerFailure(
           message: e.response!.data.toString(),
         ));
@@ -199,15 +194,13 @@ class AuthRepoImpl extends AuthRepo {
           Constants.baseUrl + Constants.forgotPasswordCheckCode,
           body: {"identifier": phone, "code": otp},
           context: context);
-      if(response["status"] == false){
+      if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
-
-      }
-    else{
+      } else {
         SendVerificationCodeModel data =
-        SendVerificationCodeModel.fromJson(response);
+            SendVerificationCodeModel.fromJson(response);
         return Right(data);
-    }
+      }
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -233,19 +226,16 @@ class AuthRepoImpl extends AuthRepo {
           body: {"name": name, "phone": phone, "gender": gender},
           context: context);
       print(response);
-      if(response["status"] == false){
+      if (response["status"] == false) {
         return Left(ServerFailure(message: response["message"]));
-
-      }
-     else{
+      } else {
         RegisterModel dataModel = RegisterModel.fromJson(response);
         if (dataModel.data?.token != null) {
           print("LOL${dataModel.data?.token}");
-
         }
         await SecureToken.addToken(dataModel.data!.token!);
         return Right(dataModel.data ?? RegisterDataModel());
-     }
+      }
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -278,15 +268,16 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, GetDistrictsByCitiesModel>> getDistricts(
+  Future<Either<Failure, GetDistrictsModel>> getDistricts(
       BuildContext context, int cityId) async {
     try {
       var response = await apiService.getRequest(
           Constants.baseUrl + Constants.districts,
           context: context,
           queryParameters: {"city_id": cityId});
-      GetDistrictsByCitiesModel data =
-          GetDistrictsByCitiesModel.fromJson(response);
+      GetDistrictsModel data = GetDistrictsModel.fromJson(response);
+      print("EEEEEEWWWWWWss${data.data?.districts?.length}");
+
       return Right(data);
     } catch (e) {
       if (e is DioException) {
@@ -324,7 +315,7 @@ class AuthRepoImpl extends AuthRepo {
       required BuildContext context}) async {
     try {
       var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.setPassword,
+          Constants.baseUrl + Constants.forgotPasswordSet,
           body: {
             "password": password,
             "password_confirmation": passwordConfirmation,
@@ -334,7 +325,7 @@ class AuthRepoImpl extends AuthRepo {
       return Right(SetPasswordModel.fromJson(response));
     } catch (e) {
       if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
+        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
       } else {
         return Left(ServerFailure(message: e.toString()));
       }
@@ -349,7 +340,7 @@ class AuthRepoImpl extends AuthRepo {
       return Right(LogOutModel.fromJson(response));
     } catch (e) {
       if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
+        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
       } else {
         return Left(ServerFailure(message: e.toString()));
       }

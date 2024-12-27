@@ -77,7 +77,7 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
 
   @override
   void dispose() {
-    Constants.subscription?.cancel();
+    // Constants.subscription?.cancel();
     super.dispose();
   }
 }

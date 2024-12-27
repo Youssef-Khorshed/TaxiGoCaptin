@@ -8,6 +8,8 @@ class Routes {
   static const String setProfile = '/setProfile';
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
+  static const String generalScreen = '/generalscreen';
+
   static const String earningRoute = '/earning';
   static const String scanRoute = '/scan';
   static const String paymentRoute = '/payment';

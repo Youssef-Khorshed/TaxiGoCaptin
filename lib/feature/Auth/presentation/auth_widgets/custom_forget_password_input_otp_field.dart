@@ -4,7 +4,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
 
-
 class CustomForgetPasswordInputOtpField extends StatelessWidget {
   final Function(String)? onCompleted;
   const CustomForgetPasswordInputOtpField({super.key, this.onCompleted});

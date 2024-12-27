@@ -1,5 +1,4 @@
 {
-  "welcome": "مرحبا",
   "the_fare_has_been_entered": "تم إدخال الأجرة",
   "currency": "دينار عراقي",
   "payment": "الدفع",
@@ -8,6 +7,9 @@
   "distance": "المسافة",
   "time": "الوقت",
   "promo_code": "كود الخصم",
+  "countryCode": "964+",
+  "field_is_required" : "الحقل مطلوب",
+
   "total": "المجموع",
   "select_payment_method": " اختر طريقة الدفع",
   "cash": "النقدية",
@@ -22,7 +24,6 @@
   "to": "إلى",
   "go": "متابعة",
   "done": "تم",
-  "back": "رجوع",
   "km": "كم",
   "min": "دقيقة",
   "change_address": "تغيير العنوان",
@@ -91,7 +92,7 @@
   "you_are_offline": "انت غير متصل بالانترنت",
   "looking_for_nearby_request": "بحث عن طلبات قريبة",
   "no_nearby_ride_requests_found": "لم يتم العثور على طلبات رحلات قريبة",
-  "choose_your_request": "اختر طلبك"
+  "choose_your_request": "اختر طلبك",
   "welcome": "مرحبا",
   "back": "رجوع",
   "sign_up": "تسجيل",
@@ -155,8 +156,14 @@
   "continues": "متابعه",
   "betterSharingExperience": "استمتع بتجربة مشاركة أفضل",
   "createAccount": "إنشاء حساب",
-  "logIn": "تسجيل الدخول"
-
+  "logIn": "تسجيل الدخول",
+  "hello": "مرحبا",
+  "iraq": "العراق",
+  "unless500":"تحذير:\n لا يمكنك القيام بأي رحلة إلا إذا كان لديك 500 دينار على الأقل في محفظتك",
+  "exit":"خروج",
+  "confirmExit":"هل تريد الخروج من التطبيق؟",
+  "yes":"نعم",
+  "no":"لا"
 
 
 

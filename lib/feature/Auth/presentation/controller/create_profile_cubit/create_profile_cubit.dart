@@ -12,7 +12,7 @@ import 'package:meta/meta.dart';
 import '../../../../../core/Utils/Network/Services/secure_profile.dart';
 import '../../../data/models/create_profile_model/create_profile_model.dart';
 import '../../../data/models/get_cities_model/GetCitiesModel.dart';
-import '../../../data/models/get_districts_by_cities/GetDistrictsByCities.dart';
+import '../../../data/models/get_districts_by_cities/GetDistrictsModel.dart';
 import '../../../data/repo/auth_repo.dart';
 
 
@@ -21,7 +21,7 @@ part 'create_profile_state.dart';
 class CreateProfileCubit extends Cubit<CreateProfileState> {
   CreateProfileCubit(this.authRepo) : super(CreateProfileInitial());
   GetCitiesModel? getCitiesModel;
-  GetDistrictsByCitiesModel? directionModel;
+  GetDistrictsModel? directionModel;
   AuthRepo authRepo;
   String? selectedCityId;
   String? selectedDistrictId;
@@ -49,9 +49,10 @@ class CreateProfileCubit extends Cubit<CreateProfileState> {
     var result = await authRepo.getDistricts(context, cityId);
     result.fold((failure) => emit(GetCitiesFailure(error: failure.message)),
             (response) {
+
           directionModel = response;
           selectedCityId = cityId.toString();
-          print("WWWWWWWWWW${getCitiesModel!.data!.cities?.length}");
+          print("WWWWWWWWWW${directionModel!.data!.districts?.length}");
           emit(GetDistrictsSuccess(districts: response));
         });
   }
@@ -62,7 +63,7 @@ class CreateProfileCubit extends Cubit<CreateProfileState> {
     var result = await authRepo.createProfile(context, formData);
     result.fold((failure) => emit(GetCitiesFailure(error: failure.message)),
             (response) async {
-        await  SecureProfile.addProfileImage(response.data?.user?.picture! );
+        await  SecureProfile.addProfileImage(response.data?.user?.picture??"" );
         await  SecureProfile.addProfileName(response.data!.user!.name!);
         print("images${await SecureProfile.getProfileImage()}");
         print("names${await SecureProfile.getProfileName()}");

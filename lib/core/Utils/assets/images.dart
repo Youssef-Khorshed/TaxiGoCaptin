@@ -28,4 +28,5 @@ class AppImages {
   static const String drawerIconTablerHomeFilled =
       'assets/DrawerIcon/tabler_home-filled.svg';
   static const String fontsMedelRegular = 'assets/fonts/MedelRegular.ttf';
+  static const String user="assets/images/a-user.png";
 }

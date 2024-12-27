@@ -66,14 +66,14 @@ class SetPasswordBody extends StatelessWidget {
             padding: EdgeInsets.all(15.w),
             child: PasswordField(
               hintText: "Enter Your Password",
-              controller: passwordController,
+              controllers: passwordController,
             ),
           ),
           Padding(
             padding: EdgeInsets.all(15.w),
             child: PasswordField(
               hintText: "Confirm Password",
-              controller: confirmPasswordController,
+              controllers: confirmPasswordController,
             ),
           ),
           CustomText(

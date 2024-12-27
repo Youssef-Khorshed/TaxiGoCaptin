@@ -20,7 +20,7 @@ class SignInPrompt extends StatelessWidget {
                   color: Colors.blue, decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.pushNamed(context, Routes.signInRoute);
+                  // Navigator.pushNamed(context, Routes.signInRoute);
                 },
             ),
           ],

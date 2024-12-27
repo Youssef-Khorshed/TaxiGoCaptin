@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
+import 'package:taxi_go_driver/feature/Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
 import '../../../feature/RequestDriver/presentaion/captain_documents.dart';
 import '../../../feature/Auth/presentation/controller/create_profile_cubit/create_profile_cubit.dart';
 import '../../../feature/Auth/presentation/controller/login_cubit/login_cubit.dart';
@@ -19,10 +20,7 @@ import '../../../feature/Auth/presentation/screens/sign_up/create_profile_screen
 import '../../../feature/Auth/presentation/screens/sign_up/otp_screen.dart';
 import '../../../feature/Auth/presentation/screens/sign_up/set_password_screen.dart';
 import '../../../feature/Auth/presentation/screens/sign_up/sign_up_screen.dart';
-import '../../../feature/RequestDriver/presentaion/MyDocument.dart';
 import '../../../feature/account_screen/presentaion/account_screen.dart';
-import '../../../feature/card_screen/presentaion/card_screen.dart';
-import '../../../feature/chat/chat.dart';
 import '../../../feature/earnings_dashboard/presentaion/earnings_dashboard_screen.dart';
 import '../../../feature/earnings_dashboard/presentaion/widgets/trip_details.dart';
 import '../../../feature/history/presentaion/history_view.dart';
@@ -63,33 +61,35 @@ class RouteGenerator {
       case Routes.walletRoute:
         return MaterialPageRoute(builder: (_) => const WalletScreen());
 
-        case Routes.chat:
-        return MaterialPageRoute(builder: (_) => const ChatScreen());
+    // case Routes.chat:
+    // return MaterialPageRoute(builder: (_) => const ChatScreen());
 
       case Routes.errorscreen:
         return MaterialPageRoute(
-            builder: (_) => CustomErroranimation(
-                errormessage: 'Message', lottie: AppLottie.errorFailure));
+            builder: (_) =>
+                CustomErroranimation(
+                    errormessage: 'Message', lottie: AppLottie.errorFailure));
 
       case Routes.tripDetailsRoute:
         return MaterialPageRoute(builder: (_) => const TripDetails());
 
       case Routes.signUp:
-        return MaterialPageRoute(builder: (_) => BlocProvider(
-          create: (context) => getIt.get<SignUpCubit>(),
-          child: SignUpScreen(),
-        ));
+        return MaterialPageRoute(builder: (_) =>
+            BlocProvider(
+              create: (context) => getIt.get<SignUpCubit>(),
+              child: SignUpScreen(),
+            ));
 
       case Routes.otp:
         var phone = settings.arguments != null
             ? settings.arguments as String
             : null;
         return MaterialPageRoute(builder: (context) {
-
           return BlocProvider(
             create: (context) => getIt.get<OtpCubit>(),
             child: OtpScreen(phone: phone),
-          );});
+          );
+        });
       case Routes.setPassword:
         return MaterialPageRoute(
           builder: (context) {
@@ -99,6 +99,8 @@ class RouteGenerator {
             );
           },
         );
+
+
       case Routes.setProfile:
         return MaterialPageRoute(
           builder: (context) {
@@ -169,10 +171,10 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) => const PaymentSelectMethodScreen());
 
-      case Routes.signInRoute:
-        return MaterialPageRoute(builder: (_) => const SignInScreen());
+    // case Routes.signInRoute:
+    //   return MaterialPageRoute(builder: (_) => const SignInScreen());
 
-      ///tet
+    ///tet
       case Routes.splashScreenRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
 
@@ -181,15 +183,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => VerificationScreen());
 
       case Routes.accountScreen:
-        return MaterialPageRoute(builder: (_) => const AccountScreen());
-
+        return MaterialPageRoute(builder: (_) =>
+            AccountScreen());
 
 
       case Routes.homeRoute:
         return MaterialPageRoute(
             builder: (_) => const EarningsDashboardScreen());
-      case Routes.mabScreen:
-        return MaterialPageRoute(builder: (_) => const MapScreen());
+
 
       case Routes.uploadDocument:
         return MaterialPageRoute(builder: (_) => const CaptainDocuments());
@@ -203,12 +204,13 @@ class RouteGenerator {
 
   static Route<dynamic> unDefinedRoute() {
     return MaterialPageRoute(
-      builder: (_) => Scaffold(
-        appBar: AppBar(
-          title: const Text('No Route Found'),
-        ),
-        body: const Center(child: Text('No Route Found')),
-      ),
+      builder: (_) =>
+          Scaffold(
+            appBar: AppBar(
+              title: const Text('No Route Found'),
+            ),
+            body: const Center(child: Text('No Route Found')),
+          ),
     );
   }
 }

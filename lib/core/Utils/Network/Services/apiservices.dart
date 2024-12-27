@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:taxi_go_driver/Core/Utils/Network/Services/secure_token.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
 
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';

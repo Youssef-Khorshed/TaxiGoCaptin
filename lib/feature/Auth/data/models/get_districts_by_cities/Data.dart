@@ -1,23 +1,23 @@
-import 'Cities.dart';
+import 'Districts.dart';
 
 class DistrictsData {
   DistrictsData({
-      this.cities,});
+      this.districts,});
 
   DistrictsData.fromJson(dynamic json) {
-    if (json['cities'] != null) {
-      cities = [];
-      json['cities'].forEach((v) {
-        cities?.add(DistricCities.fromJson(v));
+    if (json['districts'] != null) {
+      districts = [];
+      json['districts'].forEach((v) {
+        districts?.add(Districts.fromJson(v));
       });
     }
   }
-  List<DistricCities>? cities;
+  List<Districts>? districts;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (cities != null) {
-      map['cities'] = cities?.map((v) => v.toJson()).toList();
+    if (districts != null) {
+      map['districts'] = districts?.map((v) => v.toJson()).toList();
     }
     return map;
   }

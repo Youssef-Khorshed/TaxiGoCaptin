@@ -31,7 +31,7 @@ class MapScreen extends StatefulWidget {
 class MapScreenState extends State<MapScreen> {
   @override
   void initState() {
-    Constants.subscription?.cancel();
+    // Constants.subscription?.cancel();
     super.initState();
   }
 

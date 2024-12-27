@@ -155,10 +155,14 @@
   "continues": "Continue",
   "betterSharingExperience": "Have a better sharing experience",
   "createAccount": "Create an account",
-  "logIn": "Log In"
-
-
-
-
-
+  "logIn": "Log In",
+  "field_is_required" : "Field is required",
+  "countryCode": "964+",
+  "hello": "Hello",
+        "iraq": "Iraq",
+  "unless500": "Warning: \\n  You cannot make any trip unless you have at least 500 dinars in your wallet",
+"exit": "Exit"    ,
+  "confirmExit": "Are you sure you want to exit?",
+  "yes": "Yes",
+  "no": "No"
 }

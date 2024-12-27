@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    Constants.subscription?.cancel();
+    // Constants.subscription?.cancel();
     super.dispose();
   }
 }

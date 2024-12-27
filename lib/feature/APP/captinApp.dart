@@ -1,6 +1,10 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:taxi_go_driver/Core/Utils/Network/Services/secure_token.dart';
+import 'package:taxi_go_driver/feature/Auth/data/repo/auth_repo.dart';
+import 'package:taxi_go_driver/feature/Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
+import 'package:taxi_go_driver/settings/Localization/localizationmodel.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/services_locator.dart';
@@ -13,18 +17,33 @@ import 'package:taxi_go_driver/feature/RequestDriver/data/repos/captain_document
 import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
-import 'package:taxi_go_driver/settings/Localization/Model/localizationmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/pay_after_ride_controller/pay_after_ride_cubit.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo.dart';
-import 'package:taxi_go_driver/settings/Localization/model/localizationmodel.dart';
-
+import 'package:taxi_go_driver/settings/Localization/localizationmodel.dart';
+import 'package:taxi_go_driver/settings/Localization/localizationmodel.dart';
 import '../../core/Utils/localization/cubit/local_cubit.dart';
 import '../Auth/presentation/controller/otp_cubit/otp_cubit.dart';
 
-class Captinapp extends StatelessWidget {
+class Captinapp extends StatefulWidget {
   const Captinapp({super.key});
 
+  @override
+  State<Captinapp> createState() => _CaptinappState();
+}
+
+class _CaptinappState extends State<Captinapp> {
+  getToken() async {
+    token = await SecureToken.getToken();
+
+  }
+  String? token;
+
+  @override
+  void initState() {
+    getToken();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -57,6 +76,8 @@ class Captinapp extends StatelessWidget {
             return MultiBlocProvider(
               providers: [
                 BlocProvider(
+                    create: (context) => LogOutCubit(getIt.get<AuthRepo>())),
+                BlocProvider(
                   create: (context) => NearbyRideRequestsCubit(
                       getIt.get<NearbyRideRequestsRepoImpl>()),
                 ),
@@ -71,14 +92,7 @@ class Captinapp extends StatelessWidget {
                   create: (context) => LocalizationCubit()
                     ..appLanguage(LanguageEventEnums.initialLanguage),
                 ),
-                BlocProvider(
-                  create: (context) => LocalizationCubit()
-                    ..appLanguage(LanguageEventEnums.initialLanguage),
-                ),
-                BlocProvider(
-                  create: (context) => getIt.get<OtpCubit>()
-                ),
-
+                BlocProvider(create: (context) => getIt.get<OtpCubit>()),
                 BlocProvider(
                   create: (context) =>
                       PayAfterRideCubit(getIt.get<PaidAfterRideRepo>()),
@@ -93,7 +107,9 @@ class Captinapp extends StatelessWidget {
                     locale: LocalCubit.get(context).localization,
                     builder: DevicePreview.appBuilder,
                     title: 'Taxi Go Driver',
-                    initialRoute: Routes.splashScreenRoute,
+                    initialRoute:token != null
+                        ? Routes.welcomeRoute
+                        : Routes.splashScreenRoute ,
                     onGenerateRoute: RouteGenerator.getRoute,
                     debugShowCheckedModeBanner: false,
                     theme: ThemeData(

@@ -18,7 +18,7 @@ final class GetCitiesFailure extends CreateProfileState {
 final class GetCitiesLoading extends CreateProfileState {}
 //get districts
 final class GetDistrictsSuccess extends CreateProfileState {
-  GetDistrictsByCitiesModel? districts;
+  GetDistrictsModel? districts;
   GetDistrictsSuccess({this.districts});
 }
 final class GetDistrictsFailure extends CreateProfileState {

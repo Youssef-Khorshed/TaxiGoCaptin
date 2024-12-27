@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/custom_auth_appbar.dart';
+import 'package:taxi_go_driver/feature/Auth/presentation/auth_widgets/custom_auth_app_bar.dart';
 import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/sign_in_form.dart';
+import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/social_login_button.dart';
 import '../../../core/Utils/assets/icons.dart';
 import '../../../core/Utils/routes/routes.dart';
-import 'widgets/social_login_button.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -91,7 +91,7 @@ class SignInScreen extends StatelessWidget {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushNamed(context, Routes.signUpRoute);
+                            // Navigator.pushNamed(context, Routes.signUpRoute);
                           },
                       ),
                     ],

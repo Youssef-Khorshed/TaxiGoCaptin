@@ -1,15 +1,17 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-
+import 'package:taxi_go_driver/Core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/Core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/Custom_button.dart';
 import '../../../../../core/Utils/colors/colors.dart';
-import '../../../../../core/Utils/routes/routes.dart';
-import '../../../../../core/Utils/spacing/vertspace.dart';
-import '../../../../APP/custom_widgets/custom_app_bottom.dart';
 import '../../auth_widgets/custom_auth_app_bar.dart';
 import '../../auth_widgets/custom_forget_password_input_otp_field.dart';
+
 class ForgetPasswordSendOtpScreen extends StatelessWidget {
   const ForgetPasswordSendOtpScreen({super.key});
 
@@ -18,19 +20,19 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-            preferredSize: Size(MediaQuery.of(context).size.width, 80),
+            preferredSize: Size(MediaQuery.of(context).size.width, 80.h),
             child: const CustomAuthAppBar()),
         body: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
           child: Column(
             children: [
               verticalSpace(10),
-              Text(
-                "Forget Password OTP",
-                style: AppStyles.text24Size500Wight,
+              AutoSizeText(
+                AppLocalizations.of(context)!.forgotPassword,
+                style: AppStyles.style24BlackW500,
               ),
-              Text(
-               AppLocalizations.of(context)!.code_sent_to,
+              AutoSizeText(
+                AppLocalizations.of(context)!.code_sent_to,
                 style: AppStyles.style16WhiteW500
                     .copyWith(color: AppColors.grayColor),
                 textAlign: TextAlign.center,
@@ -62,7 +64,7 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.setNewPassword);
                 },
-                buttonText:AppLocalizations.of(context)!.verify,
+                buttonText: AppLocalizations.of(context)!.verify,
               ),
             ],
           ),
