@@ -13,12 +13,14 @@ import 'package:taxi_go_driver/feature/RequestDriver/data/repos/captain_document
 import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 import 'package:taxi_go_driver/settings/Localization/Localizationcubit/localization_cubit.dart';
+import 'package:taxi_go_driver/settings/Localization/Model/localizationmodel.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/pay_after_ride_controller/pay_after_ride_cubit.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo.dart';
 import 'package:taxi_go_driver/settings/Localization/model/localizationmodel.dart';
 
 import '../../core/Utils/localization/cubit/local_cubit.dart';
+import '../Auth/presentation/controller/otp_cubit/otp_cubit.dart';
 
 class Captinapp extends StatelessWidget {
   const Captinapp({super.key});
@@ -70,6 +72,14 @@ class Captinapp extends StatelessWidget {
                     ..appLanguage(LanguageEventEnums.initialLanguage),
                 ),
                 BlocProvider(
+                  create: (context) => LocalizationCubit()
+                    ..appLanguage(LanguageEventEnums.initialLanguage),
+                ),
+                BlocProvider(
+                  create: (context) => getIt.get<OtpCubit>()
+                ),
+
+                BlocProvider(
                   create: (context) =>
                       PayAfterRideCubit(getIt.get<PaidAfterRideRepo>()),
                 ),
@@ -83,7 +93,7 @@ class Captinapp extends StatelessWidget {
                     locale: LocalCubit.get(context).localization,
                     builder: DevicePreview.appBuilder,
                     title: 'Taxi Go Driver',
-                    initialRoute: Routes.homeRoute,
+                    initialRoute: Routes.splashScreenRoute,
                     onGenerateRoute: RouteGenerator.getRoute,
                     debugShowCheckedModeBanner: false,
                     theme: ThemeData(

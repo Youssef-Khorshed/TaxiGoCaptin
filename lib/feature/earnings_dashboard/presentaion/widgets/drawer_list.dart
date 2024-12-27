@@ -122,5 +122,4 @@ List drawerPageRoutes = [
   Routes.walletRoute,
   Routes.missionRoute,
   Routes.accountScreen,
-  Routes.signInRoute
 ];

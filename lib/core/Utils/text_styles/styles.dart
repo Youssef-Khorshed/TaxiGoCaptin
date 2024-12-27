@@ -186,7 +186,43 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
+  static TextStyle style16WhiteW500 = TextStyle(
+    fontSize: 16,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
   );
+
+  static TextStyle style24WhiteW500 = TextStyle(
+    fontSize: 24,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+
+  static TextStyle text24Size500Wight = GoogleFonts.poppins(
+    color: AppColors.kBlack,
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle textStyle20 = GoogleFonts.poppins(
+      fontSize: 20.sp, fontWeight: FontWeight.w500, color: AppColors.kWhite);
+
+  static TextStyle textStyle20Blue = GoogleFonts.poppins(
+      fontSize: 20.sp, fontWeight: FontWeight.w500, color: AppColors.kblue);
+  static TextStyle textStyle18 = GoogleFonts.poppins(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle textStyle14 = GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle textStyle24Bron = GoogleFonts.poppins(
+      fontSize: 24.sp, fontWeight: FontWeight.w500, color: AppColors.kBrown);
 
   static TextStyle textStyle16 = GoogleFonts.poppins(
     fontSize: 16.sp,
@@ -210,6 +246,11 @@ class AppStyles {
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle text16Size400darkGrey = GoogleFonts.poppins(
+    color: AppColors.kDarkGray,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle text24Size500Wight = GoogleFonts.poppins(
     color: AppColors.kBlack,
@@ -218,6 +259,10 @@ class AppStyles {
   );
 
   static TextStyle text24Size500WightDarkGray = GoogleFonts.poppins(
+    color: AppColors.kDarkGray,
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w500,
+  );
     color: AppColors.kDarkGray,
     fontSize: 24.sp,
     fontWeight: FontWeight.w500,
@@ -243,12 +288,25 @@ class AppStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static TextStyle text14Size500kOrange = GoogleFonts.poppins(
+    color: AppColors.kBlack,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle text16Size500WightBlack = GoogleFonts.poppins(
+    color: AppColors.kBlack,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+  );
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
   );
 
   static TextStyle text14Size500WightW = GoogleFonts.poppins(
+    color: AppColors.kHintTextField,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+  );
     fontSize: 14.sp,
   );
   static TextStyle text18Size500Blue = GoogleFonts.poppins(

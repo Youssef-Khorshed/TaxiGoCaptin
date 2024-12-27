@@ -12,6 +12,8 @@ class CustomLoading extends StatelessWidget {
         child: LoadingAnimationWidget.staggeredDotsWave(
       color: AppColors.primaryColor,
       size: 200,
+        color: AppColors.primaryColor,
+        size: 100.r,
     ));
   }
 }
