@@ -1,0 +1,34 @@
+class AppIcons {
+  static const String appleIcon = 'assets/icons/Apple.jpg';
+  static const String facebookIcon = 'assets/icons/Facebook.png';
+  static const String gmailIcon = 'assets/icons/Gmail.png';
+  static const String listIcon = 'assets/icons/list_icon.svg';
+  static const String notificationIcon = 'assets/icons/notification.svg';
+  static const String mapBlue = 'assets/icons/map_blue.svg';
+  static const String mapRed = 'assets/icons/map_red.svg';
+  static const String send = 'assets/images/send.png';
+  static const String shareLocation = 'assets/icons/Group.png';
+    static const String iconsAlert = 'assets/icons/alert.svg';
+  static const String iconsApple = 'assets/icons/Apple.jpg';
+  static const String iconsBankIcon = 'assets/icons/bank_icon.svg';
+  static const String iconsCall = 'assets/icons/call.svg';
+  static const String iconsCancel = 'assets/icons/cancel.svg';
+  static const String iconsCar1 = 'assets/icons/car1.svg';
+  static const String iconsEdit = 'assets/icons/edit.svg';
+  static const String iconsFacebook = 'assets/icons/Facebook.png';
+  static const String iconsGmail = 'assets/icons/Gmail.png';
+  static const String iconsHistory = 'assets/icons/history .svg';
+  static const String iconsHome = 'assets/icons/home.svg';
+  static const String iconsIraq = 'assets/icons/iraq.png';
+  static const String iconsListIcon = 'assets/icons/list_icon.svg';
+  static const String iconsLogOut = 'assets/icons/log_out.svg';
+  static const String iconsMapBlue = 'assets/icons/map_blue.svg';
+  static const String iconsMapRed = 'assets/icons/map_red.svg';
+  static const String iconsMessage = 'assets/icons/message.svg';
+  static const String iconsMissionsIcon = 'assets/icons/missions_icon.svg';
+  static const String iconsNotification = 'assets/icons/notification.svg';
+  static const String iconsPhone = 'assets/icons/phone.svg';
+  static const String iconsSearch = 'assets/icons/search.svg';
+  static const String iconsSettingsIcon = 'assets/icons/settings_icon.svg';
+  static const String iconsWalletIcon = 'assets/icons/wallet_icon.svg';
+}
