@@ -8,9 +8,11 @@ import 'Network/local/sharedprefrences.dart';
 import 'blocobserever.dart';
 import 'core/Utils/Network/Services/secure_token.dart';
 import 'core/Utils/Network/Services/services_locator.dart';
+import 'package:connectivity_monitor/connectivity_monitor.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ConnectivityService.startConnectionNotifier();
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
   // Set preferred orientations globally

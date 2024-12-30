@@ -407,7 +407,6 @@ class MapsCubit extends Cubit<MapsState> {
 
   void arrivedToCustomer() {
     arrivedtoCustomer = true;
-
     emit(ArrivedToCustomer(arrivedtoCustomer: arrivedtoCustomer));
   }
 

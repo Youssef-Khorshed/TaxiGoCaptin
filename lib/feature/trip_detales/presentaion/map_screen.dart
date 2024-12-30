@@ -93,7 +93,6 @@ class MapScreenState extends State<MapScreen> {
       if (state.leg.distance!.value! < 100 &&
           !context.read<MapsCubit>().arrivedtoCustomer) {
         context.read<MapsCubit>().arrivedToCustomer();
-        context.read<MapsCubit>().pickCustomer(context: context);
       }
     }
   }
