@@ -1,8 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/Utils/routes/routes.dart';
-
 class SignInPrompt extends StatelessWidget {
   const SignInPrompt({super.key});
 
@@ -20,7 +18,7 @@ class SignInPrompt extends StatelessWidget {
                   color: Colors.blue, decoration: TextDecoration.underline),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.pushNamed(context, Routes.signInRoute);
+                  // Navigator.pushNamed(context, Routes.signInRoute);
                 },
             ),
           ],

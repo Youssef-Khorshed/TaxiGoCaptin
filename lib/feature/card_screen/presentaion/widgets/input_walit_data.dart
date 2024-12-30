@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../widgets/costume_bottun.dart';
-import '../../../profile/presentaion/widgets/costum_text_faild.dart';
+import 'package:taxi_go_driver/feature/sign_in/presentaion/widgets/custom_text_field.dart';
 
 class InputWaliData extends StatelessWidget {
   const InputWaliData({
@@ -12,14 +11,27 @@ class InputWaliData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      const CostumeTextField(text: "mohamed", icon: Icons.wallet),
-      const CostumeTextField(
-          text: "5100 4560 40000 7587", icon: Icons.wallet_rounded),
-      const CostumeTextField(
-        text: "05/25",
-        icon: Icons.calendar_month,
+      CustomTextField(
+        label: "mohamed",
+        suffixIcon: Icon(Icons.wallet),
+        onChanged: (String) {},
       ),
-      const CostumeTextField(text: "222", icon: Icons.security),
+      CustomTextField(
+        label: "5100 4560 40000 7587",
+        suffixIcon: Icon(Icons.wallet_rounded),
+        onChanged: (String) {},
+      ),
+      CustomTextField(
+        label: "05/25",
+        suffixIcon: const Icon(Icons.calendar_month), onChanged: (String) {},
+        // text: "05/25",
+        // icon: Icons.calendar_month,
+      ),
+      CustomTextField(
+        label: "222",
+        suffixIcon: const Icon(Icons.security),
+        onChanged: (String) {},
+      ),
       const SizedBox(
         height: 150,
       ),

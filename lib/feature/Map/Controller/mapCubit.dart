@@ -79,6 +79,7 @@ class MapsCubit extends Cubit<MapsState> {
     }
   }
 
+  /// getCaptinPosition
   Future<void> getCaptinPosition({required String title}) async {
     try {
       emit(PlaceAddressLoading());

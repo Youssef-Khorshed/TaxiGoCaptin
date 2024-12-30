@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
@@ -30,7 +29,6 @@ class MapScreen extends StatefulWidget {
 class MapScreenState extends State<MapScreen> {
   @override
   void initState() {
-    Constants.subscription?.cancel();
     super.initState();
   }
 

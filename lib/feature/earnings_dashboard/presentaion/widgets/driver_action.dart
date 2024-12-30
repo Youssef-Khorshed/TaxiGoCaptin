@@ -1,10 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
@@ -37,7 +35,6 @@ class _DriverActionState extends State<DriverAction> {
       listener: (context, state) {
         if (state is AccpetRideRequestSuccess) {
           Navigator.pop(context);
-          Constants.subscription?.cancel();
           Navigator.of(context).push(CupertinoPageRoute(
               builder: (_) => MapScreen(
                     nearbyRideRequest: state.rideRequest,
@@ -89,7 +86,6 @@ class _DriverActionState extends State<DriverAction> {
 
   @override
   void dispose() {
-    Constants.subscription?.cancel();
     super.dispose();
   }
 }

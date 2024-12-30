@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:taxi_go_driver/settings/Localization/model/localizationmodel.dart';
+import 'package:taxi_go_driver/settings/Localization/localizationmodel.dart';
 import '../../../Network/local/sharedprefrences.dart';
 part 'localization_state.dart';
 

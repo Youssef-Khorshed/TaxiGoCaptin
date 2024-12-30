@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 
 class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
@@ -23,8 +20,6 @@ class Constants {
   static const String cancel_ride = '$baseUrl/captain/rides/cancel';
 
   static const String pickup_customer = '$baseUrl/captain/rides/pickup';
-
-  static StreamSubscription<NearbyRideRequestsModel>? subscription;
 
   static Map<String, dynamic> update_captin_locationBody(
           {required LatLng location}) =>
@@ -61,4 +56,20 @@ class Constants {
       '$baseUrl/captain/rides/find-nearby-rides';
   static const rooms = '${baseUrl}/captain/rides/get-messages';
   static const sendchat = '${baseUrl}/captain/rides/send-message';
+
+  static String login = '/login';
+  static String register = '/captain/register';
+  static String sendVerification = "/ask-verification-code";
+  static String verifyAccount = "/verify-email";
+  static String forgotPassword = "/forgot-password";
+
+  static String forgotPasswordCheckCode = "/forgot-password-check-code";
+
+  static String setPassword = "/set-password";
+
+  static String cities = '/cities';
+  static String logout = "/logout";
+  static String forgotPasswordSet = "/forgot-password-set";
+  static String createProfile = "/profile/update";
+  static String districts = "/districts-by-city";
 }

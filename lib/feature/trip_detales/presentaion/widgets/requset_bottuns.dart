@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
-
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../widgets/costume_bottun.dart';
 

@@ -11,6 +11,13 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+  static TextStyle style15Blue = TextStyle(
+    fontSize: 15.sp,
+    color: AppColors.blueColor,
+    fontWeight: FontWeight.bold,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
   static TextStyle style16 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
@@ -222,6 +229,7 @@ class AppStyles {
     fontSize: 24.sp,
     fontWeight: FontWeight.w500,
   );
+
   static TextStyle text20Size500WightDarkGray = GoogleFonts.poppins(
     color: AppColors.kDarkGray,
     fontSize: 20.sp,
@@ -251,6 +259,12 @@ class AppStyles {
   static TextStyle text14Size500WightW = GoogleFonts.poppins(
     fontSize: 14.sp,
   );
+  static TextStyle text14Size500kOrange = GoogleFonts.poppins(
+    color: AppColors.kBlack,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+  );
+
   static TextStyle text18Size500Blue = GoogleFonts.poppins(
     color: AppColors.kblue,
     fontSize: 18.sp,

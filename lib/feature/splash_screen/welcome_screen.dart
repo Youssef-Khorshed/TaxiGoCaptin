@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 import '../../core/Utils/colors/colors.dart';
 import '../../core/Utils/routes/routes.dart';
 import '../APP/custom_widgets/custom_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const String routeName = 'WelcomeScreen';
@@ -13,68 +16,63 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xff14129B),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
         child: Column(
           children: [
             const Spacer(),
             Image.asset('assets/images/car.png'),
-            const SizedBox(height: 20),
-            const Text(
-              'Welcome',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-              ),
+            SizedBox(height: 20.h),
+            GestureDetector(
+              child: Text(AppLocalizations.of(context)!.welcome,
+                  style: AppStyles.text24Size500Wight),
             ),
-            const Text(
-              'Have a better sharing experience',
+            Text(
+              AppLocalizations.of(context)!.betterSharingExperience,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w400,
               ),
             ),
             const Spacer(),
             Container(
               width: double.infinity,
-              height: 54,
+              height: 54.h,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.kWhite,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: MaterialButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.signUpRoute);
+                  Navigator.pushNamed(context, Routes.signUp);
                 },
-                height: 50,
-                child: const CustomText(
-                  text: "Create an account",
+                height: 50.h,
+                child: CustomText(
+                  text: AppLocalizations.of(context)!.createAccount,
                   colorText: AppColors.kblue,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
+                  style: AppStyles.style20BlackW500,
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Container(
               width: double.infinity,
-              height: 54,
+              height: 54.h,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white),
                 color: Colors.transparent,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
               ),
               child: MaterialButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.signInRoute);
+                  Navigator.pushNamed(context, Routes.logIn);
                 },
-                height: 50,
-                child: const CustomText(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  colorText: Colors.white,
-                  text: "Log In",
+                height: 50.h,
+                child: CustomText(
+                  style: AppStyles.style20BlackW500,
+                  text: AppLocalizations.of(context)!.logIn,
                 ),
               ),
             ),

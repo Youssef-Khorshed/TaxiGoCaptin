@@ -14,25 +14,29 @@ class ApiService {
   InternetConnectivity internetConnectivity;
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
+  // Singleton Dio instance
   Future<Dio> getDio(context) async {
+    String? token = await SecureToken.getToken();
+    print("EEEEEEEEEWWWWWWW${token}");
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
       _dio = Dio();
 
-      // Configure Dio options (timeouts, etc.)
       _dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
+
       _addDioInterceptor();
     }
-    // Add default headers and interceptors
 
     String language = LocalCubit.get(context).localizationThemeState ==
             LocalizationThemeState.ar
         ? "ar"
         : "en";
-    var token = await SecureToken.getToken();
+
+    print("EEEEEE${token}");
+
     _addDioHeaders(language: language, token: token);
 
     return _dio!;

@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../core/Utils/Network/Services/secure_profile.dart';
 import '../../../../core/Utils/routes/routes.dart';
 import '../../../APP/custom_widgets/custom_text.dart';
+import '../../../Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
 import 'drawer_item.dart';
 
-class DrawerList extends StatelessWidget {
+class DrawerList extends StatefulWidget {
   const DrawerList({super.key});
+
+  @override
+  State<DrawerList> createState() => _DrawerListState();
+}
+
+class _DrawerListState extends State<DrawerList> {
+  String? name;
+
+  String? image;
+  void initState() {
+    imageAndName();
+    super.initState();
+  }
+
+  Future<void> imageAndName() async {
+    image = await SecureProfile.getProfileImage();
+    name = await SecureProfile.getProfileName();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +59,7 @@ class DrawerList extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: CustomText(
-              text: "محمد عبدالمجيد",
+              text: name ?? AppLocalizations.of(context)!.user,
               style: AppStyles.text20Size500WightDarkGray,
             ),
           ),
@@ -47,21 +69,20 @@ class DrawerList extends StatelessWidget {
   }
 
   Widget _buildProfileImage() {
-    return Center(
-      child: ClipOval(
-        child: Image.asset(
-          AppImages.imagesProfileImage,
-          width: 100,
-          height: 100,
-          fit: BoxFit.cover,
-        ),
-      ),
+    return CircleAvatar(
+      radius: 40,
+      backgroundImage: image != null
+          ? NetworkImage(image!)
+          : const AssetImage(
+              AppImages.imagesProfileImage,
+            ),
     );
   }
 
   Widget _buildDrawerItems(
     context,
   ) {
+    var parentContext = context;
     return Column(
       children: [
         _buildDrawerItem(
@@ -89,14 +110,48 @@ class DrawerList extends StatelessWidget {
           icon: AppIcons.iconsSettingsIcon,
           name: AppLocalizations.of(context)!.account,
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[4]);
+            Navigator.pushNamed(context, drawerPageRoutes[3]);
           },
         ),
-        _buildDrawerItem(
-          icon: AppIcons.iconsLogOut,
-          name: AppLocalizations.of(context)!.log_out,
-          onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[5]);
+        BlocConsumer<LogOutCubit, LogOutState>(
+          listener: (context, state) {
+            if (state is LogOutSuccess) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.welcomeRoute, (route) => false);
+            }
+          },
+          builder: (context, state) {
+            return _buildDrawerItem(
+              icon: AppIcons.iconsLogOut,
+              name: AppLocalizations.of(context)!.log_out,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(AppLocalizations.of(context)!.exit),
+                      content: Text(AppLocalizations.of(context)!.confirmExit),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(AppLocalizations.of(context)!.no),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            LogOutCubit.get(parentContext)
+                                .logOut(parentContext);
+                          },
+                          child: Text(AppLocalizations.of(context)!.yes),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            );
           },
         ),
       ],
@@ -121,6 +176,5 @@ List drawerPageRoutes = [
   Routes.historyRoute,
   Routes.walletRoute,
   Routes.missionRoute,
-  Routes.accountScreen,
-  Routes.signInRoute
+  Routes.welcomeRoute,
 ];

@@ -43,7 +43,7 @@ class AccountScreenBody extends StatelessWidget {
             ),
             CostumeButton(
               onPressed: () {
-                Navigator.pushNamed(context, Routes.signInRoute);
+                Navigator.pushNamed(context, Routes.logIn);
               },
               text: "Logout",
               color: AppColors.kblue,

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
@@ -71,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    Constants.subscription?.cancel();
     super.dispose();
   }
 }
