@@ -42,7 +42,7 @@ class _UserEarningDeailsState extends State<UserEarningDeails> {
         leading: CircleAvatar(
             radius: 25.r,
             backgroundColor: Colors.white,
-            backgroundImage: image != null
+            backgroundImage: image != null&&image!=""
                 ? NetworkImage(image!)
                 : const AssetImage(
                     AppImages.imagesProfileImage,

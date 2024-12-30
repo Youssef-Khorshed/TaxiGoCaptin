@@ -71,7 +71,7 @@ class _DrawerListState extends State<DrawerList> {
   Widget _buildProfileImage() {
     return CircleAvatar(
       radius: 40,
-      backgroundImage: image != null
+      backgroundImage: image != null&&image!=""
           ? NetworkImage(image!)
           : const AssetImage(
               AppImages.imagesProfileImage,

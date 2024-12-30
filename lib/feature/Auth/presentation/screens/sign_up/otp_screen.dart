@@ -180,10 +180,10 @@ class _OtpScreenState extends State<OtpScreen> {
                     textColor: AppColors.whiteColor,
                     buttonText: AppLocalizations.of(context)!.verify,
                     onPressed: () async {
-                      Navigator.pushReplacementNamed(
-                          context, Routes.setNewPassword,
-                          arguments: widget.phone);
-                      // Navigator.pushNamed(context, AppRoutes.setPassword,arguments: widget.phone);
+                      // Navigator.pushReplacementNamed(
+                      //     context, Routes.setNewPassword,
+                      //     arguments: widget.phone);
+                      Navigator.pushNamed(context, Routes.setPassword,arguments: widget.phone);
                       _seconds = 0;
                       setState(() {});
                       if (widget.phone == "" || widget.phone == null) {

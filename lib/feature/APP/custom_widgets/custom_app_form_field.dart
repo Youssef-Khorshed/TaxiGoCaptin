@@ -112,7 +112,7 @@ class _CustomAppFormFieldState extends State<CustomAppFormField> {
                 color: AppColors.grayColor,
               ),
               SizedBox(width: 5.w),
-              SvgPicture.asset(
+              Image.asset(
                 AppIcons.iconsIraq,
                 width: 20.w,
               ),

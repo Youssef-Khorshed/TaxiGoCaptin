@@ -35,7 +35,8 @@ class ConfirmMobileOrEmail extends StatelessWidget {
             height: 60.h,
             child: CostumeButton(
               onPressed: () {
-                Navigator.pushNamed(context, Routes.otpScreen);
+                Navigator.pushNamed(context, Routes.
+                otpScreen);
               },
               color: AppColors.kblue,
               text: "Send  OTP",

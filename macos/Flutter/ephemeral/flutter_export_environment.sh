@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Program Files\flutter_windows_3.24.5-stable\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\Khorshed\Downloads\Taxi_Go_Captain_version-newSwitch\Taxi_Go_Captain_version-newSwitch"
+export "FLUTTER_ROOT=C:\tools\flutter-sdk"
+export "FLUTTER_APPLICATION_PATH=C:\Users\AQ\Taxi_Go_Captain_version"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"

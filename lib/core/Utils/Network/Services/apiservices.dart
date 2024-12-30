@@ -17,7 +17,6 @@ class ApiService {
   // Singleton Dio instance
   Future<Dio> getDio(context) async {
     String? token = await SecureToken.getToken();
-    print("EEEEEEEEEWWWWWWW${token}");
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -108,8 +107,9 @@ class ApiService {
             if (response.statusCode == 200) {
               return response.data;
             } else {
+
               throw ServerException(
-                message: response.toString(),
+                message: ServerFailure.fromResponse(response),
               );
             }
           }

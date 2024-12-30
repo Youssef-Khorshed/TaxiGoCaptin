@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_driver/feature/Auth/data/models/get_cities_model/GetCitiesModel.dart';
 import 'package:taxi_go_driver/feature/Auth/data/models/log_out/Log_out_model.dart';
 
@@ -12,7 +13,7 @@ import '../models/create_profile_model/create_profile_model.dart';
 import '../models/forget_password_model/Forget_password_model.dart';
 import '../models/get_districts_by_cities/GetDistrictsModel.dart';
 import '../models/login_model/LoginModel.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../models/login_model/set_password_model.dart';
 import '../models/send_verification_code_model/send_verification_code_model.dart';
 import '../models/set_password_model/SendPasswordModel.dart';
@@ -225,8 +226,9 @@ class AuthRepoImpl extends AuthRepo {
           Constants.baseUrl + Constants.register,
           body: {"name": name, "phone": phone, "gender": gender},
           context: context);
-      print(response);
+
       if (response["status"] == false) {
+
         return Left(ServerFailure(message: response["message"]));
       } else {
         RegisterModel dataModel = RegisterModel.fromJson(response);
@@ -238,14 +240,18 @@ class AuthRepoImpl extends AuthRepo {
       }
     } catch (e) {
       if (e is DioException) {
+
         return Left(ServerFailure(
-          message: e.response!.data["message"],
+          message: ServerFailure.fromDioError(e),
         ));
-      } else {
+      } else if(e is ServerException){
         return Left(ServerFailure(
-          message: e.toString(),
+          message:e.message,
         ));
       }
+      else return Left(ServerFailure(
+          message:"ERROR",
+        ));
     }
   }
 

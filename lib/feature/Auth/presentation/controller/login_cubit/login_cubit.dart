@@ -28,7 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
       if (data.status == true) {
         //  if (data.data?.token != null) {
         await SecureToken.addToken(data.data!.token!);
-        await SecureProfile.addProfileImage(data.data!.user!.picture!);
+        await SecureProfile.addProfileImage(data.data!.user!.picture??"");
         await SecureProfile.addProfileName(data.data!.user!.name!);
         print("EEEEEeeeE${await SecureToken.getToken()}");
 
