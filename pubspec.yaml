@@ -84,5 +84,12 @@ fonts:
   - family: Medel
     fonts:
       - asset: assets/fonts/MedelRegular.ttf
+  - family: Cairo
+    fonts:
+      - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
+
+  - family: Amiri
+    fonts:
+      - asset: assets/fonts/Amiri.ttf
 
 

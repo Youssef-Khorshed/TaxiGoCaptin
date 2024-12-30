@@ -6,8 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-
-import '../../../../Core/Utils/enums/localization.dart';
+import '../../../../core/Utils/enums/localization.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../core/Utils/localization/cubit/local_cubit.dart';
 

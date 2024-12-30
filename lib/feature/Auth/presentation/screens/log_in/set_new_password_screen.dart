@@ -2,10 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/Core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
-
-import '../../../../../Core/Utils/validation.dart';
+import 'package:taxi_go_driver/core/Utils/validation.dart';
 import '../../../../../core/Utils/text_styles/styles.dart';
 import '../../../../APP/custom_widgets/Custom_button.dart';
 import '../../../../APP/custom_widgets/custom_app_form_field.dart';
@@ -68,8 +67,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                   BlocConsumer<SetNewPasswordCubit, SetNewPasswordState>(
                     listener: (context, state) {
                       if (state is SetNewPasswordSuccess) {
-                        Navigator.pushReplacementNamed(
-                            context, Routes.logIn);
+                        Navigator.pushReplacementNamed(context, Routes.logIn);
                       } else if (state is SetNewPasswordError) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(state.message),
@@ -84,7 +82,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                       return CustomAppBottom(
                         onPressed: () async {
                           await SetNewPasswordCubit.get(context)
-                              .setPasswordValidate(context,widget.phone!);
+                              .setPasswordValidate(context, widget.phone!);
                           setState(() {});
                           // Navigator.pushReplacementNamed(
                           //     context, AppRoutes.generalScreen);

@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../../Core/Utils/Network/Services/secure_token.dart';
-
+import '../../../../../../core/Utils/Network/Services/secure_token.dart';
 import '../../../../../core/Utils/Network/Services/secure_profile.dart';
 import '../../../data/models/log_out/Log_out_model.dart';
 import '../../../data/repo/auth_repo.dart';

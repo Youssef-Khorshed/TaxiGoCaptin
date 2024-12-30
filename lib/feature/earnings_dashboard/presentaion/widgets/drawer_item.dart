@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/Utils/colors/colors.dart';
 import '../../../APP/custom_widgets/custom_text.dart';
 
 class DrawerItem extends StatelessWidget {
@@ -16,7 +17,10 @@ class DrawerItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
         child: ListTile(
-          leading: SvgPicture.asset(icon),
+          leading: SvgPicture.asset(
+            icon,
+            colorFilter: ColorFilter.mode(AppColors.blueColor, BlendMode.srcIn),
+          ),
           title: CustomText(text: name),
         ),
       ),

@@ -4,11 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/Core/Utils/routes/routes.dart';
-import 'package:taxi_go_driver/Core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_app_form_field.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
-
 import '../../../../../core/Utils/assets/images.dart';
 import '../../../../../core/Utils/colors/colors.dart';
 import '../../../../../core/Utils/spacing/vertspace.dart';
@@ -182,37 +181,36 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: BlocConsumer<CreateProfileCubit, CreateProfileState>(
-  listener: (context, state) {
-if(state is CreateProfileSuccess)
-
-  {
-Navigator.pushReplacementNamed(context, Routes.homeRoute);
-  }
-  },
-
-  builder: (context, state) {
-    return BlocBuilder<CreateProfileCubit,
+                          child: BlocConsumer<CreateProfileCubit,
                               CreateProfileState>(
-                            builder: (context, state) {
-                              if (state is CreateProfileLoading) {
-                                return const CustomLoading();
+                            listener: (context, state) {
+                              if (state is CreateProfileSuccess) {
+                                Navigator.pushReplacementNamed(
+                                    context, Routes.homeRoute);
                               }
-                              return CustomSetProfileButtoms(
-                                text: AppLocalizations.of(context)!.save,
-                                backgroundColor: AppColors.blueColor,
-                                textColor: AppColors.whiteColor,
-                                onPressed: () async {
-                                  await CreateProfileCubit.get(context)
-                                      .createProfileValidate(context, file);
-                                  setState(() {});
-                                  // Navigator.pushNamed(context, AppRoutes.generalScreen);
+                            },
+                            builder: (context, state) {
+                              return BlocBuilder<CreateProfileCubit,
+                                  CreateProfileState>(
+                                builder: (context, state) {
+                                  if (state is CreateProfileLoading) {
+                                    return const CustomLoading();
+                                  }
+                                  return CustomSetProfileButtoms(
+                                    text: AppLocalizations.of(context)!.save,
+                                    backgroundColor: AppColors.blueColor,
+                                    textColor: AppColors.whiteColor,
+                                    onPressed: () async {
+                                      await CreateProfileCubit.get(context)
+                                          .createProfileValidate(context, file);
+                                      setState(() {});
+                                      // Navigator.pushNamed(context, AppRoutes.generalScreen);
+                                    },
+                                  );
                                 },
                               );
                             },
-                          );
-  },
-),
+                          ),
                         ),
                       ],
                     ),

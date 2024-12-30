@@ -16,12 +16,24 @@ import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepoimp.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/data/repos/captain_documents_repo_impl.dart';
-
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
-import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo.dart';
-import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_after_ride_repo_ipm.dart';
+import 'package:taxi_go_driver/feature/Wallet/controller/wallet_deposit_cubit/deposit_cubit.dart';
+import 'package:taxi_go_driver/feature/Wallet/controller/wallet_get_profile_cubit/cubit/wallet_get_profile_cubit.dart';
+import 'package:taxi_go_driver/feature/Wallet/controller/wallet_transactions_cubit/cubit/transaction_cubit.dart';
+import 'package:taxi_go_driver/feature/Wallet/data/repo/wallet_repo.dart';
+import 'package:taxi_go_driver/feature/Wallet/data/repo/wallet_repo_impl.dart';
+import 'package:taxi_go_driver/feature/notification/controller/cubit/get_all_notification_cubit.dart';
+import 'package:taxi_go_driver/feature/notification/data/repo/notification_repo.dart';
+import 'package:taxi_go_driver/feature/notification/data/repo/notification_repo_impl.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/cash_amount_repo/cash_amount_repo.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/cash_amount_repo/cash_amount_repo_ipm.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_repo/paid_after_ride_repo.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_repo/paid_after_ride_repo_ipm.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/ride_complete_repo/ride_complete.dart';
+import 'package:taxi_go_driver/feature/trip_detales/date/repos/ride_complete_repo/ride_complete_imp.dart';
 
 final getIt = GetIt.instance;
+
 Future<void> setup() async {
   getIt.registerLazySingleton<CacheHelper>(() => CacheHelper());
   getIt.registerLazySingleton<Connectivity>(() => Connectivity());
@@ -55,5 +67,32 @@ Future<void> setup() async {
   getIt.registerLazySingleton<MapRepo>(() => Maprepoimp(apiService: getIt()));
 
   getIt.registerFactory(() => MapsCubit(mapsRepository: getIt()));
-}
+
 //BlocProvider( create: (context) => BooksBySearchCubit(getIt.get<HomeRepoImpl>())
+
+  if (!getIt.isRegistered<RideCompleteRepo>()) {
+    getIt.registerLazySingleton<RideCompleteRepo>(
+        () => RideCompleteRepoImpl(apiService: getIt.get<ApiService>()));
+  }
+
+  if (!getIt.isRegistered<WalletRepo>()) {
+    getIt.registerLazySingleton<WalletRepo>(
+        () => WalletRepoImpl(apiService: getIt.get<ApiService>()));
+  }
+
+  if (!getIt.isRegistered<NotificationRepo>()) {
+    getIt.registerLazySingleton<NotificationRepo>(
+        () => NotificationRepoImpl(apiService: getIt.get<ApiService>()));
+  }
+  if (!getIt.isRegistered<CashAmountRepo>()) {
+    getIt.registerLazySingleton<CashAmountRepo>(
+        () => CashAmountRepoIpm(apiService: getIt.get<ApiService>()));
+  }
+
+  // تسجيل الـ Cubits
+  getIt.registerFactory(() => WalletCubit(getIt.get<WalletRepo>()));
+  getIt.registerFactory(() => TransactionCubit(getIt.get<WalletRepo>()));
+  getIt.registerFactory(() => WalletGetProfileCubit(getIt.get<WalletRepo>()));
+  getIt.registerFactory(
+      () => GetAllNotificationCubit(getIt.get<NotificationRepo>()));
+}

@@ -12,9 +12,11 @@ class Routes {
       '/verificationPhoneAndPassword';
   static const String generalScreen = '/generalscreen';
 
+  static const String wallet = '/wallet';
   static const String earningRoute = '/earning';
   static const String scanRoute = '/scan';
   static const String paymentRoute = '/payment';
+  static const String paymentDetailsRoute = '/paymentDetails';
   static const String addMoneyRoute = '/addMoney';
   static const String walletRoute = '/wallet';
   static const String tripDetailsRoute = '/details';
@@ -22,10 +24,8 @@ class Routes {
   static const String locationRoute = '/location';
   static const String missionRoute = '/mission';
   static const String notificationRoute = '/notification';
-  static const String signUpRoute = "/signUp";
   static const String logIn = '/logIn';
   static const String loginOtpScreen = '/loginOtpScreen';
-
   static const String signUp = '/signUp';
   static const String splashScreenRoute = "/";
   static const String welcomeRoute = "/welcome";

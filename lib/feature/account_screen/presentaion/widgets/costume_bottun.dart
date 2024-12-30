@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 class CostumeButton extends StatelessWidget {
   const CostumeButton({
@@ -32,7 +33,7 @@ class CostumeButton extends StatelessWidget {
         child: Center(
             child: Text(
           text,
-          style: TextStyle(color: textColor, fontSize: 18),
+          style: AppStyles.text16BlackW500.copyWith(color: textColor),
         )),
       ),
     );

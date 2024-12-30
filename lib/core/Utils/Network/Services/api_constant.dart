@@ -72,4 +72,34 @@ class Constants {
   static String forgotPasswordSet = "/forgot-password-set";
   static String createProfile = "/profile/update";
   static String districts = "/districts-by-city";
+
+  static const String walletDeposit = 'deposit';
+  static const String walleTransactions = 'transactions';
+  static const String walleGetProfileData = 'profile';
+  static const String getAllNotification = 'notifications';
+  static const String getAmount = '$baseUrl/captain/rides/cash-amount';
+
+  static String depositURL({
+    required String amount,
+  }) =>
+      '$baseUrl$walletDeposit?amount=$amount';
+
+  static String transactionsURL({
+    String? transactionType,
+    String? paymentMethod,
+  }) {
+    String url = '$baseUrl/$walleTransactions';
+    if (transactionType != null && transactionType.isNotEmpty) {
+      url += '?transaction_type=$transactionType';
+    }
+    if (paymentMethod != null && paymentMethod.isNotEmpty) {
+      url +=
+          '${transactionType != null && transactionType.isNotEmpty ? '&' : '?'}payment_method=$paymentMethod';
+    }
+    return url;
+  }
+
+  static String getProfileURL() => '$baseUrl$walleGetProfileData';
+
+  static String getAllNotificationURL() => '$baseUrl$getAllNotification';
 }

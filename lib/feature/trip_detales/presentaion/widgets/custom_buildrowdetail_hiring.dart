@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
@@ -21,14 +22,14 @@ class Buildrowdetail extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
+          AutoSizeText(label,
               style: !isBold
-                  ? AppStyles.text14Size500WightW
-                  : AppStyles.text14Size500WightW),
-          Text(value,
+                  ? AppStyles.style14DarkgrayW500
+                  : AppStyles.style16DarkgrayW500),
+          AutoSizeText(value,
               style: !isBold
-                  ? AppStyles.text14Size500WightW
-                  : AppStyles.text14Size500WightW),
+                  ? AppStyles.style14DarkgrayW500
+                  : AppStyles.style16DarkgrayW500),
         ],
       ),
     );

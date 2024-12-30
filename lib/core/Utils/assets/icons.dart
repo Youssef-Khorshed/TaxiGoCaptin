@@ -8,7 +8,7 @@ class AppIcons {
   static const String mapRed = 'assets/icons/map_red.svg';
   static const String send = 'assets/images/send.png';
   static const String shareLocation = 'assets/icons/Group.png';
-    static const String iconsAlert = 'assets/icons/alert.svg';
+  static const String iconsAlert = 'assets/icons/alert.svg';
   static const String iconsApple = 'assets/icons/Apple.jpg';
   static const String iconsBankIcon = 'assets/icons/bank_icon.svg';
   static const String iconsCall = 'assets/icons/call.svg';
@@ -31,4 +31,7 @@ class AppIcons {
   static const String iconsSearch = 'assets/icons/search.svg';
   static const String iconsSettingsIcon = 'assets/icons/settings_icon.svg';
   static const String iconsWalletIcon = 'assets/icons/wallet_icon.svg';
+  static const String iraqiFlagIcon = 'assets/icons/iraq_flag_icon.svg';
+  static const String appIcon = 'assets/icons/taxi_go_icon.jpg';
+  static const String menuIcon = 'assets/icons/menu_icon.svg';
 }

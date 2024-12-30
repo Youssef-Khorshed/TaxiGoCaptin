@@ -7,20 +7,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_driver/feature/APP/captinApp.dart';
 import 'Network/local/sharedprefrences.dart';
-import 'app_constants.dart';
 import 'blocobserever.dart';
-import 'core/Utils/Network/Services/secure_token.dart';
 import 'core/Utils/Network/Services/services_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await setup();
   Bloc.observer = MyBlocObserver();
   ConnectivityService.startConnectionNotifier();
 
   await ScreenUtil.ensureScreenSize();
   // Set preferred orientations globally
-  await setup();
-  SecureToken.addToken(AppConstants.kTokenValue);
+
+  // SecureToken.addToken(AppConstants.kTokenValue);
   await getIt<CacheHelper>().init();
 
   runApp(DevicePreview(

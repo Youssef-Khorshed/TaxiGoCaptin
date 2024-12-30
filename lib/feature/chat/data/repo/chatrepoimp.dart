@@ -3,14 +3,17 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:taxi_go_driver/feature/chat/data/repo/chatrepo.dart';
-import '../../../../Core/Utils/Network/Error/failure.dart';
-import '../../../../Core/Utils/Network/Services/api_constant.dart';
+import '../../../../core/Utils/Network/Error/failure.dart';
+import '../../../../core/Utils/Network/Services/api_constant.dart';
 import '../../../../core/Utils/Network/Services/apiservices.dart';
 import '../model/message_data.dart';
+
 class Chatrepoimp implements Chatrepo {
   final ApiService apiService;
 
-  Chatrepoimp(this.apiService,);
+  Chatrepoimp(
+    this.apiService,
+  );
 
   @override
   Future<Either<Failure, List<Message>>> getChatDetails({
@@ -36,8 +39,6 @@ class Chatrepoimp implements Chatrepo {
     }
   }
 
-
-
   @override
   Future<void> sendMessage({
     String? message,
@@ -58,5 +59,4 @@ class Chatrepoimp implements Chatrepo {
       log('Error sending message: $e');
     }
   }
-
 }

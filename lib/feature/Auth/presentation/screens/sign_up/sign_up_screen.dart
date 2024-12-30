@@ -5,20 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/enums/gender.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/core/Utils/validation.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_app_form_field.dart';
-
-import '../../../../../Core/Utils/enums/gender.dart';
-import '../../../../../Core/Utils/validation.dart';
-import '../../../../../core/Utils/colors/colors.dart';
-import '../../../../../core/Utils/spacing/vertspace.dart';
-import '../../../../APP/custom_widgets/custom_Button.dart';
-import '../../../../APP/custom_widgets/custom_loading.dart';
-import '../../auth_widgets/custom_terms_check_box.dart';
-import '../../controller/sign_up_cubit.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
+import 'package:taxi_go_driver/feature/Auth/presentation/auth_widgets/custom_terms_check_box.dart';
+import 'package:taxi_go_driver/feature/Auth/presentation/controller/sign_up_cubit.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

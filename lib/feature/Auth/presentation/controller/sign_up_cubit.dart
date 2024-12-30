@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/Core/Utils/Network/Services/secure_token.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
 import 'package:taxi_go_driver/feature/Auth/data/repo/auth_repo.dart';
-import '../../../../../Core/Utils/enums/gender.dart';
+import '../../../../../core/Utils/enums/gender.dart';
 import '../../data/models/sign_up_model/Data.dart';
 part 'sign_up_state.dart';
 

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
+import 'package:taxi_go_user_version/core/Utils/Network/Error/exception.dart';
+import 'package:taxi_go_user_version/core/Utils/Network/Error/failure.dart';
+import 'package:taxi_go_user_version/core/Utils/Network/Services/api_constant.dart';
+import 'package:taxi_go_user_version/core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo/ride_complete.dart';
 

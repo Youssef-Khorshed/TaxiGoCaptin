@@ -10,9 +10,11 @@ class TripDetailsMap extends StatelessWidget {
     required this.address,
     required this.icon,
   });
+
   final String location;
   final String address;
   final String icon;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(

@@ -11,6 +11,18 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+
+  static TextStyle style28WhiteW600 = TextStyle(
+    fontSize: 28,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w600,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+  static TextStyle textStyle24 = GoogleFonts.poppins(
+    fontSize: 24.sp,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle style15Blue = TextStyle(
     fontSize: 15.sp,
     color: AppColors.blueColor,
@@ -30,11 +42,6 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
-  );
-
-  static TextStyle textStyle24 = GoogleFonts.poppins(
-    fontSize: 24.sp,
-    fontWeight: FontWeight.w500,
   );
 
   static TextStyle style24DarkgrayW500 = TextStyle(
@@ -206,6 +213,23 @@ class AppStyles {
     fontSize: 12.sp,
     fontFamily: GoogleFonts.cairo().fontFamily,
   );
+
+  static TextStyle style18BlueW500 = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.blueColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+
+  static TextStyle style16BlackW700 = TextStyle(
+    fontSize: 16.sp,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+
   static TextStyle text16Size400WightGrey = GoogleFonts.poppins(
     color: AppColors.kGrey,
     fontSize: 16.sp,
@@ -252,6 +276,7 @@ class AppStyles {
   );
 
   static TextStyle text16Size500WightBlack = GoogleFonts.poppins(
+    color: AppColors.kBlack,
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
   );
@@ -259,15 +284,40 @@ class AppStyles {
   static TextStyle text14Size500WightW = GoogleFonts.poppins(
     fontSize: 14.sp,
   );
-  static TextStyle text14Size500kOrange = GoogleFonts.poppins(
-    color: AppColors.kBlack,
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-  );
 
   static TextStyle text18Size500Blue = GoogleFonts.poppins(
     color: AppColors.kblue,
     fontSize: 18.sp,
     fontWeight: FontWeight.w500,
+  );
+  static TextStyle text16BlackW500 = TextStyle(
+    color: AppColors.kBlack,
+    fontSize: 16.sp,
+    fontFamily: "Cairo",
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle text18BlackW500 = TextStyle(
+    color: AppColors.blackColor,
+    fontSize: 18.sp,
+    fontFamily: "Cairo",
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle text14GreyW200 = TextStyle(
+    color: AppColors.kGrey2,
+    fontSize: 14.sp,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w200,
+  );
+  static TextStyle text16WhiteW200 = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 16.sp,
+    fontFamily: "Poppins",
+    fontWeight: FontWeight.w200,
+  );
+  static TextStyle text16BlackW200 = TextStyle(
+    color: AppColors.kGrey2,
+    fontSize: 16.sp,
+    fontFamily: "Cairo",
+    fontWeight: FontWeight.w400,
   );
 }

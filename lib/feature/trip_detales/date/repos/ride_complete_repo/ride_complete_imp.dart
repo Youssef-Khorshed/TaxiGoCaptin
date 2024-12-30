@@ -20,8 +20,9 @@ class RideCompleteRepoImpl implements RideCompleteRepo {
           RideCompleteDetailsModel.fromJson(response["data"]);
       print("response");
       print(rideDetails.toJson());
+
       return Right(
-        RideCompleteDetailsModel.fromJson(rideDetails.toJson()),
+        await RideCompleteDetailsModel.fromJson(rideDetails.toJson()),
       );
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));

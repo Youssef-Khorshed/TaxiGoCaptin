@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/Core/Utils/routes/routes.dart';
-import 'package:taxi_go_driver/Core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_app_form_field.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
-
-
 import '../../../../../core/Utils/colors/colors.dart';
 import '../../../../../core/Utils/spacing/vertspace.dart';
 import '../../../../../core/Utils/validation.dart';

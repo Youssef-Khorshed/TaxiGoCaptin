@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:taxi_go_driver/feature/RequestDriver/presentaion/widgets/custom_text_field.dart';
+import 'package:taxi_go_driver/feature/otp_view.dart/presentaion/widgets/phone_number_field.dart';
+import 'package:taxi_go_driver/feature/profile/presentaion/widgets/custom_gender_field.dart';
 import '../../../../core/Utils/routes/routes.dart';
-import '../../../sign_in/presentaion/widgets/custom_text_field.dart';
-import '../../../sign_up _screen/widgets/custom_gender_field.dart';
-import '../../../sign_up _screen/widgets/phone_number_field.dart';
 
 class ProfileForm extends StatelessWidget {
   const ProfileForm({super.key});

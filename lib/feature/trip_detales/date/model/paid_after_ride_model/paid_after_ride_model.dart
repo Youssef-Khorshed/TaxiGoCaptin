@@ -6,7 +6,7 @@ class PaidAfterRideModel {
 
   factory PaidAfterRideModel.fromJson(Map<String, dynamic> json) {
     return PaidAfterRideModel(
-      status: json["status"],
+      status: json["success"],
       message: json["message"],
     );
   }

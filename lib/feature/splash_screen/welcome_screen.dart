@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-
-import '../../core/Utils/colors/colors.dart';
-import '../../core/Utils/routes/routes.dart';
-import '../APP/custom_widgets/custom_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_text.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const String routeName = 'WelcomeScreen';
@@ -20,7 +20,7 @@ class WelcomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            Image.asset('assets/images/car.png'),
+            Image.asset(AppImages.welcomeCarImage),
             SizedBox(height: 20.h),
             GestureDetector(
               child: Text(AppLocalizations.of(context)!.welcome,
