@@ -20,18 +20,18 @@ class CustomAppFormField extends StatefulWidget {
 
   const CustomAppFormField(
       {super.key,
-        required this.hintText,
-        this.obscureText = false,
-        this.isPassword = false,
-        this.iconWidget,
-        this.controller,
-        this.validator,
-        this.onTap,
-        this.prefixIcon,
-        this.isPhone = false,
-        this.hintStyle,
-        required this.isNumbers,
-        this.suffixIcon});
+      required this.hintText,
+      this.obscureText = false,
+      this.isPassword = false,
+      this.iconWidget,
+      this.controller,
+      this.validator,
+      this.onTap,
+      this.prefixIcon,
+      this.isPhone = false,
+      this.hintStyle,
+      required this.isNumbers,
+      this.suffixIcon});
 
   @override
   State<CustomAppFormField> createState() => _CustomAppFormFieldState();
@@ -83,73 +83,73 @@ class _CustomAppFormFieldState extends State<CustomAppFormField> {
                 .copyWith(color: AppColors.grayColor, fontSize: 12.sp),
         suffixIcon: widget.isPassword
             ? IconButton(
-          icon: Icon(isPasswordHidden
-              ? Icons.visibility_off_outlined
-              : Icons.visibility_outlined),
-          onPressed: () {
-            isPasswordHidden = !isPasswordHidden;
-            setState(() {});
-          },
-        )
+                icon: Icon(isPasswordHidden
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined),
+                onPressed: () {
+                  isPasswordHidden = !isPasswordHidden;
+                  setState(() {});
+                },
+              )
             : widget.isPhone &&
-            Localizations.localeOf(context).languageCode == 'ar'
-            ? Container(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                AppLocalizations.of(context)!.countryCode,
-                style: AppStyles.style15Blue,
-              ),
-              SizedBox(width: 5.w),
-              Container(
-                width: 1.w,
-                height: 20.h,
-                color: AppColors.grayColor,
-              ),
-              SizedBox(width: 5.w),
-              Image.asset(
-                AppIcons.iconsIraq,
-                width: 20.w,
-              ),
-              horizontalSpace(5.w),
-            ],
-          ),
-        )
-            : null,
+                    Localizations.localeOf(context).languageCode == 'ar'
+                ? Container(
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.countryCode,
+                          style: AppStyles.style15Blue,
+                        ),
+                        SizedBox(width: 5.w),
+                        Container(
+                          width: 1.w,
+                          height: 20.h,
+                          color: AppColors.grayColor,
+                        ),
+                        SizedBox(width: 5.w),
+                        Image.asset(
+                          AppIcons.iconsIraq,
+                          width: 20.w,
+                        ),
+                        horizontalSpace(5.w),
+                      ],
+                    ),
+                  )
+                : null,
         prefixIcon: widget.isPhone &&
-            Localizations.localeOf(context).languageCode == 'en'
+                Localizations.localeOf(context).languageCode == 'en'
             ? Container(
-          padding: EdgeInsets.symmetric(horizontal: 5.w),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              horizontalSpace(5.w),
-              SvgPicture.asset(
-                AppIcons.iconsIraq,
-                width: 20.w,
-              ),
-              horizontalSpace(5.w),
-              Container(
-                width: 1.w,
-                height: 20.h,
-                color: AppColors.grayColor,
-              ),
-              horizontalSpace(5.w),
-              Text(
-                AppLocalizations.of(context)!.countryCode,
-                style: AppStyles.style15Blue,
-              ),
-            ],
-          ),
-        )
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    horizontalSpace(5.w),
+                    SvgPicture.asset(
+                      AppIcons.iconsIraq,
+                      width: 20.w,
+                    ),
+                    horizontalSpace(5.w),
+                    Container(
+                      width: 1.w,
+                      height: 20.h,
+                      color: AppColors.grayColor,
+                    ),
+                    horizontalSpace(5.w),
+                    Text(
+                      AppLocalizations.of(context)!.countryCode,
+                      style: AppStyles.style15Blue,
+                    ),
+                  ],
+                ),
+              )
             : null,
         contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       ),

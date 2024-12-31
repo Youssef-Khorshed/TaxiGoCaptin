@@ -124,12 +124,16 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                 return CustomAppBottom(
                     buttonText: AppLocalizations.of(context)!.register,
                     onPressed: () async {
-                      Navigator.pushNamed(context, Routes.setProfile);
+                      if (SetPasswordCubit.get(context)
+                          .setPasswordFormKey
+                          .currentState!
+                          .validate()) {
+                        await SetPasswordCubit.get(context)
+                            .setPasswordValidate(context);
+                      }
+                      // Navigator.pushNamed(context, Routes.setProfile);
 
-                      await SetPasswordCubit.get(context)
-                          .setPasswordValidate(context);
                       setState(() {});
-                      //  Navigator.pushNamed(context, AppRoutes.setProfile);
                     });
               },
             ),

@@ -56,7 +56,7 @@ class AppStyles {
     fontSize: 24,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
-    fontFamily: "Amiri",
+    fontFamily: "Cairo",
     height: 0,
   );
 
@@ -116,10 +116,10 @@ class AppStyles {
   );
 
   static TextStyle style16WhiteW500 = TextStyle(
-    fontSize: 16,
+    fontSize: 16.sp,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: "Cairo",
     height: 0,
   );
 

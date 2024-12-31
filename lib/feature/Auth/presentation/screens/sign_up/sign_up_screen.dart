@@ -137,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     BlocConsumer<SignUpCubit, SignUpState>(
                       listener: (context, state) {
                         if (state is SignUpSuccess) {
-                          Navigator.pushNamed(context, Routes.otp);
+                          Navigator.pushNamed(context, Routes.setPassword);
                         } else if (state is SignUpFailure) {
                           Fluttertoast.showToast(
                             msg: state.message,
@@ -149,6 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           return const CustomLoading();
                         } else {
                           return CustomAppBottom(
+                              borderCornerRadius: 10.r,
                               buttonText: AppLocalizations.of(context)!.sign_up,
                               onPressed: () async {
                                 // Navigator.pushNamed(context, AppRoutes.otp);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
@@ -9,6 +10,8 @@ class CustomAppBottom extends StatelessWidget {
   final Color? textColor, buttonColor, borderColor, iconColor;
   final Icon? icon;
   final double? borderCornerRadius;
+  final double? height;
+  final double? width;
   const CustomAppBottom({
     this.iconColor,
     this.borderColor,
@@ -19,6 +22,8 @@ class CustomAppBottom extends StatelessWidget {
     required this.onPressed,
     super.key,
     this.icon,
+    this.height,
+    this.width,
   });
 
   @override
@@ -31,9 +36,9 @@ class CustomAppBottom extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderCornerRadius ?? 10),
               color: buttonColor ?? AppColors.blueColor,
-              border: Border.all(color: borderColor ?? Colors.white, width: 2)),
-          width: double.infinity,
-          height: 60,
+              border: Border.all(color: borderColor ?? Colors.white, width: 1)),
+          width: width ?? double.infinity,
+          height: height ?? 60.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

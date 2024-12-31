@@ -186,7 +186,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             listener: (context, state) {
                               if (state is CreateProfileSuccess) {
                                 Navigator.pushReplacementNamed(
-                                    context, Routes.homeRoute);
+                                    context, Routes.uploadDocument);
                               }
                             },
                             builder: (context, state) {

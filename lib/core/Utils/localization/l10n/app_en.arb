@@ -172,7 +172,7 @@
   "didNotReceiveCode": "Didn't receive the code?",
   "enterOTPCode": "Enter your OTP code",
   "phoneVerification": "Phone Verification",
-  "dontHaveAccount": "Don't have an account?",
+  "dontHaveAccount": "Don't have an account ? ",
   "signUp": "Sign Up",
   "continues": "Continue",
   "betterSharingExperience": "Have a better sharing experience",

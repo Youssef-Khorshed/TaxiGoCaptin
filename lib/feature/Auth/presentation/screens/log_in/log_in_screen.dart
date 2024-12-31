@@ -65,6 +65,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 4.0.w),
                     child: Column(children: [
                       CustomAppFormField(
+                        hintStyle: AppStyles.style14BlackW500,
                         onTap: () {},
                         isPassword: false,
                         obscureText: false,
@@ -84,8 +85,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         obscureText: true,
                         hintText:
                             AppLocalizations.of(context)!.password_required,
-                        controller:
-                            LoginCubit.get(context).loginPassController,
+                        controller: LoginCubit.get(context).loginPassController,
                         validator: (p0) =>
                             Validation.validatePassword(p0, context),
                         isNumbers: false,
@@ -98,9 +98,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                     child: InkWell(
                       onTap: () {
-                        // Navigator.pushReplacementNamed(
-                        //     context, Routes.verificationPhoneAndPassword);
-                        LoginCubit.get(context).loginValidate(context);
+                        Navigator.pushReplacementNamed(
+                            context, Routes.verificationPhoneAndPassword);
                       },
                       child: Text(
                         AppLocalizations.of(context)!.forgotPassword,
@@ -124,8 +123,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 LoginCubit.get(context).loginPassController.clear();
                 Navigator.pushReplacementNamed(context, Routes.homeRoute);
               } else if (state is LoginInError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.errorMessage)));
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.errorMessage)));
               }
             },
             builder: (context, state) {

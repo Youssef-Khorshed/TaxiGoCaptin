@@ -229,32 +229,36 @@ class _CaptainDocumentsState extends State<CaptainDocuments> {
                             errormessage: state.message,
                             lottie: AppLottie.errorFailure,
                           )
-                        : CustomAppBottom(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate() &&
-                                  documentsCounts == 10) {
-                                cubit.postCaptainDocuments(
-                                  context,
-                                  CaptainDocumentsModel(
-                                    profilePhoto: profilePhoto,
-                                    drivingLicenseFront: drivingLicenseFront,
-                                    drivingLicenseBack: drivingLicenseBack,
-                                    nationalIdFront: nationalIdFront,
-                                    nationalIdBack: nationalIdBack,
-                                    vehicleLicenseFront: vehicleLicenseFront,
-                                    vehicleLicenseBack: vehicleLicenseBack,
-                                    vehicleModel: vehicleModel,
-                                    vehicleColor: vehicleColor,
-                                    vehicleNumber: vehicleNumber,
-                                  ),
-                                );
-                              } else {
-                                setState(() {
-                                  dataComplete = false;
-                                });
-                              }
-                            },
-                            buttonText: AppLocalizations.of(context)!.next,
+                        : SizedBox(
+                            height: 55.h,
+                            child: CustomAppBottom(
+                              borderCornerRadius: 10.r,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate() &&
+                                    documentsCounts == 10) {
+                                  cubit.postCaptainDocuments(
+                                    context,
+                                    CaptainDocumentsModel(
+                                      profilePhoto: profilePhoto,
+                                      drivingLicenseFront: drivingLicenseFront,
+                                      drivingLicenseBack: drivingLicenseBack,
+                                      nationalIdFront: nationalIdFront,
+                                      nationalIdBack: nationalIdBack,
+                                      vehicleLicenseFront: vehicleLicenseFront,
+                                      vehicleLicenseBack: vehicleLicenseBack,
+                                      vehicleModel: vehicleModel,
+                                      vehicleColor: vehicleColor,
+                                      vehicleNumber: vehicleNumber,
+                                    ),
+                                  );
+                                } else {
+                                  setState(() {
+                                    dataComplete = false;
+                                  });
+                                }
+                              },
+                              buttonText: AppLocalizations.of(context)!.next,
+                            ),
                           ),
               ],
             ),
