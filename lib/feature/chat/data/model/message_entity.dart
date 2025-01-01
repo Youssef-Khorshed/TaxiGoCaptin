@@ -8,7 +8,7 @@ class MessageEntity {
   final String? lat;
   final String? lng;
   final String? voiceMessagePath;
-  final DateTime createdAt;
+  final String createdAt;
   final DateTime updatedAt;
 
   MessageEntity({
@@ -37,7 +37,7 @@ class MessageEntity {
       lat: json['lat'],
       lng: json['lng'],
       voiceMessagePath: json['voice_message_path'],
-      createdAt: DateTime.parse(json['created_at']),
+      createdAt: json['created_at'],
       updatedAt: DateTime.parse(json['updated_at']),
     );
   }
@@ -54,7 +54,7 @@ class MessageEntity {
       'lat': lat,
       'lng': lng,
       'voice_message_path': voiceMessagePath,
-      'created_at': createdAt.toIso8601String(),
+      'created_at': createdAt,
       'updated_at': updatedAt.toIso8601String(),
     };
   }

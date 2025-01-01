@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
+import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
@@ -85,7 +86,9 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.chat);
+                    },
                     icon: SvgPicture.asset(
                       AppIcons.iconsMessage,
                       height: 30,

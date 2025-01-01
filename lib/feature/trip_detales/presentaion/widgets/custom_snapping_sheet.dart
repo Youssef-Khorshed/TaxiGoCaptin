@@ -26,8 +26,6 @@ class CustomSnappingSheet extends StatefulWidget {
 }
 
 class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
-  // final SnappingSheetController _controller = SnappingSheetController();
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -36,7 +34,6 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
       builder: (context, state) {
         var cubit = context.read<MapsCubit>();
         return SnappingSheet(
-          // controller: _controller,
           lockOverflowDrag: false,
           snappingPositions: const [
             SnappingPosition.pixels(

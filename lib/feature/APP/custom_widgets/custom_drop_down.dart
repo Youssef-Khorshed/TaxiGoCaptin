@@ -1,7 +1,5 @@
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/Utils/colors/colors.dart';
 
 // ignore: must_be_immutable
@@ -54,8 +52,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
         textAlign: TextAlign.center,
       ),
       items: widget.items
-          .map((gender) =>
-              DropdownMenuItem(value: gender, child: Text(gender)))
+          .map((gender) => DropdownMenuItem(value: gender, child: Text(gender)))
           .toList(),
       onChanged: (value) {
         setState(() {

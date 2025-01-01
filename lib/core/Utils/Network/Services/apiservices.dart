@@ -47,7 +47,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer 32|8t9ccIYshCZ3jBx8ITjqgtOC1FNgbA8kHAbCA5Rs23b9d158', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -107,7 +107,6 @@ class ApiService {
             if (response.statusCode == 200) {
               return response.data;
             } else {
-
               throw ServerException(
                 message: ServerFailure.fromResponse(response),
               );

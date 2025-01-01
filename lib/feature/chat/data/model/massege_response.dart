@@ -15,7 +15,8 @@ class MessagesResponse {
     return MessagesResponse(
       success: json['success'],
       message: json['message'],
-      data: List<Message>.from(json['data'].map((x) => MessagesResponse.fromJson(x))),
+      data: List<Message>.from(
+          json['data'].map((x) => MessagesResponse.fromJson(x))),
     );
   }
 

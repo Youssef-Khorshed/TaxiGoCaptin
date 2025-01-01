@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
-import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 
 // ignore: must_be_immutable
 class BookingDetailsAccepted extends StatefulWidget {
@@ -17,10 +16,10 @@ class BookingDetailsAccepted extends StatefulWidget {
 class _BookingDetailsAcceptedState extends State<BookingDetailsAccepted> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MapsCubit, MapsState>(
-      builder: (context, state) {
-        if (state is LegsLoaded) {
-          return Container(
+    final cubit = context.read<MapsCubit>();
+    return cubit.distanceTime == null
+        ? SizedBox()
+        : Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -64,10 +63,6 @@ class _BookingDetailsAcceptedState extends State<BookingDetailsAccepted> {
               ],
             ),
           );
-        }
-        return SizedBox();
-      },
-    );
   }
 
   @override

@@ -1,1 +1,1 @@
-enum MESSAGETYPE { text, audio,location }
+enum MESSAGETYPE { text, audio, location }

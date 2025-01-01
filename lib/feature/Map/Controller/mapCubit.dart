@@ -180,22 +180,26 @@ class MapsCubit extends Cubit<MapsState> {
         sessionToken: sessionToken,
         context: context);
     response.fold((onError) {}, (onSuccess) async {
-      distanceTime = onSuccess.routes!.first.legs!.first;
-      emit(LegsLoaded(leg: distanceTime!));
-      buildmarker(
-        title: 'destination',
-        destinationInfo: 'destination',
-        postion: LatLng(destination.latitude, destination.longitude),
-      );
-      buildmarker(
-        title: 'userLocation',
-        destinationInfo: 'userLocation',
-        postion: LatLng(origin.latitude, origin.longitude),
-      );
-      updateLatLngBoundPosition(
-          origin: origin, destination: destination, zoom: 12);
-      drawPolyline(points: onSuccess.routes!.first.overviewPolyline!.points!);
-      emit(DirectionsLoaded(polyLines));
+      if (onSuccess.status != "ZERO_RESULTS") {
+        distanceTime = onSuccess.routes!.first.legs!.first;
+        emit(LegsLoaded(leg: distanceTime!));
+        buildmarker(
+          title: 'destination',
+          destinationInfo: 'destination',
+          postion: LatLng(destination.latitude, destination.longitude),
+        );
+        buildmarker(
+          title: 'userLocation',
+          destinationInfo: 'userLocation',
+          postion: LatLng(origin.latitude, origin.longitude),
+        );
+        updateLatLngBoundPosition(
+            origin: origin, destination: destination, zoom: 12);
+        drawPolyline(points: onSuccess.routes!.first.overviewPolyline!.points!);
+        emit(DirectionsLoaded(polyLines));
+      } else {
+        Fluttertoast.showToast(msg: 'Can`t find Directions ');
+      }
     });
   }
 

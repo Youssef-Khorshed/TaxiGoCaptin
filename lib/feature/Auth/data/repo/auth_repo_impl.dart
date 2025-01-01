@@ -13,7 +13,6 @@ import '../models/create_profile_model/create_profile_model.dart';
 import '../models/forget_password_model/Forget_password_model.dart';
 import '../models/get_districts_by_cities/GetDistrictsModel.dart';
 import '../models/login_model/LoginModel.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../models/login_model/set_password_model.dart';
 import '../models/send_verification_code_model/send_verification_code_model.dart';
 import '../models/set_password_model/SendPasswordModel.dart';
@@ -228,7 +227,6 @@ class AuthRepoImpl extends AuthRepo {
           context: context);
 
       if (response["status"] == false) {
-
         return Left(ServerFailure(message: response["message"]));
       } else {
         RegisterModel dataModel = RegisterModel.fromJson(response);
@@ -240,17 +238,16 @@ class AuthRepoImpl extends AuthRepo {
       }
     } catch (e) {
       if (e is DioException) {
-
         return Left(ServerFailure(
           message: ServerFailure.fromDioError(e),
         ));
-      } else if(e is ServerException){
+      } else if (e is ServerException) {
         return Left(ServerFailure(
-          message:e.message,
+          message: e.message,
         ));
-      }
-      else return Left(ServerFailure(
-          message:"ERROR",
+      } else
+        return Left(ServerFailure(
+          message: "ERROR",
         ));
     }
   }

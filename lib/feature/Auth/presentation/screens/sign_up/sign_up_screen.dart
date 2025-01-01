@@ -41,9 +41,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String selectedGender = Gender.non.name;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: BlocBuilder<SignUpCubit, SignUpState>(
+    return Scaffold(
+      body: SafeArea(
+        child: BlocBuilder<SignUpCubit, SignUpState>(
           builder: (context, state) {
             SignUpCubit cubit = SignUpCubit.get(context);
 
@@ -189,7 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     ),
-                    verticalSpace(20.h),
+                    // verticalSpace(20.h),
                   ],
                 ),
               ),

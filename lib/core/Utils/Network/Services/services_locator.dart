@@ -16,6 +16,9 @@ import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepoimp.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/data/repos/captain_documents_repo_impl.dart';
+import 'package:taxi_go_driver/feature/chat/data/repo/chatrepo.dart';
+import 'package:taxi_go_driver/feature/chat/data/repo/chatrepoimp.dart';
+import 'package:taxi_go_driver/feature/chat/model_view/manger/chat/chat_cubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 import 'package:taxi_go_driver/feature/Wallet/controller/wallet_deposit_cubit/deposit_cubit.dart';
 import 'package:taxi_go_driver/feature/Wallet/controller/wallet_get_profile_cubit/cubit/wallet_get_profile_cubit.dart';
@@ -37,6 +40,7 @@ final getIt = GetIt.instance;
 Future<void> setup() async {
   getIt.registerLazySingleton<CacheHelper>(() => CacheHelper());
   getIt.registerLazySingleton<Connectivity>(() => Connectivity());
+
   getIt.registerLazySingleton<InternetConnectivity>(
       () => MobileConnectivity(connectivity: getIt.get<Connectivity>()));
   getIt.registerSingleton<ApiService>(
@@ -60,6 +64,9 @@ Future<void> setup() async {
       () => PaidAfterRideRepoIpm(apiService: getIt()));
   getIt.registerSingleton<NearbyRideRequestsRepoImpl>(
       NearbyRideRequestsRepoImpl(getIt.get<ApiService>()));
+
+  getIt.registerSingleton<Chatrepo>(Chatrepoimp(getIt.get<ApiService>()));
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
 
   getIt.registerSingleton<CaptainDocumentsRepoImpl>(
       CaptainDocumentsRepoImpl(getIt.get<ApiService>()));

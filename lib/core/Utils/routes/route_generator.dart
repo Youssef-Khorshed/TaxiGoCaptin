@@ -138,7 +138,7 @@ class RouteGenerator {
             builder: (_) => const EarningsDashboardScreen());
 
       case Routes.chat:
-        return MaterialPageRoute(builder: (_) => const ChatScreen());
+        return MaterialPageRoute(builder: (_) => ChatScreen());
 
       case Routes.errorscreen:
         return MaterialPageRoute(

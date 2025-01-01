@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/Utils/colors/colors.dart';
-import '../../../../core/Utils/text_styles/styles.dart';
-
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/feature/chat/model_view/manger/chat/chat_cubit.dart';
 
 class UserNameContainer extends StatelessWidget {
-  const UserNameContainer({super.key});
-
+  const UserNameContainer({super.key, required this.name, required this.image});
+  final String name;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(0.0),
+      padding: EdgeInsets.all(5.0.sp),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
             onTap: () {
+              BlocProvider.of<ChatCubit>(context).stopMessageUpdateTimer();
               Navigator.pop(context);
             },
             child: const Icon(
@@ -26,32 +30,33 @@ class UserNameContainer extends StatelessWidget {
               color: AppColors.blackColor,
             ),
           ),
-          SizedBox(width: 5.w),
-
+          horizontalSpace(5),
           Container(
             width: 40.w,
             height: 40.h,
-            decoration: const BoxDecoration(
-              color: Color(0xff969696),
+            decoration: BoxDecoration(
+              color: const Color(0xff969696),
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: NetworkImage(
-                  "https://firebasestorage.googleapis.com/v0/b/alexu-a9210.appspot.com/o/Vector%20(1).png?alt=media&token=e4d896a0-ec30-4944-b798-8ce0845d0bdb",
-                ),
+                image: NetworkImage(image),
                 fit: BoxFit.contain,
-
               ),
             ),
           ),
-          SizedBox(width: 10.w),
+          horizontalSpace(10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(name, style: AppStyles.taxidrivername),
               Text(
-                  "User_name",
-                  style:AppStyles.text14Size500Wight
+                AppLocalizations.of(context)!.activeNow,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: GoogleFonts.cairo().fontFamily,
+                  color: const Color(0xff00D75A),
+                ),
               ),
-
             ],
           ),
         ],

@@ -11,6 +11,26 @@ class AppStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+  static TextStyle taxidrivername = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.blackColor,
+    fontFamily: GoogleFonts.amiri().fontFamily,
+  );
+  static TextStyle style10DarkgrayW700 = TextStyle(
+    fontSize: 10.sp,
+    color: AppColors.darkgrayColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+  static TextStyle style12BlackW700 = TextStyle(
+    fontSize: 12.sp,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
 
   static TextStyle style28WhiteW600 = TextStyle(
     fontSize: 28,

@@ -13,7 +13,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/services_locator.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
-import 'package:taxi_go_driver/feature/Auth/presentation/controller/sign_up_cubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/controller/cubit/captain_documents_cubit.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/data/repos/captain_documents_repo_impl.dart';

@@ -1,12 +1,10 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../colors/colors.dart';
 import '../text_styles/styles.dart';
 
 class CustomAppBottom extends StatelessWidget {
-    final String? buttonText;
+  final String? buttonText;
   final double? width;
   final VoidCallback onPressed;
   final Color? textColor, buttonColor, borderColor, iconColor;
@@ -56,10 +54,9 @@ class CustomAppBottom extends StatelessWidget {
                       ),
                     )
                   : Container(),
-              AutoSizeText(
+              Text(
                 buttonText ?? "",
-                style:
-                    AppStyles.style16WhiteW500.copyWith(color: textColor),
+                style: AppStyles.style16WhiteW500.copyWith(color: textColor),
               ),
             ],
           ),

@@ -1,11 +1,11 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import '../../../../core/Utils/assets/images.dart';
-import '../../../../core/Utils/colors/colors.dart';
-import '../../../../core/Utils/spacing/vertspace.dart';
-import '../../../../core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
 class LocationMessage extends StatelessWidget {
   final double latitude;
@@ -36,18 +36,21 @@ class LocationMessage extends StatelessWidget {
         constraints:
             BoxConstraints(maxWidth: widthFactor, maxHeight: heightFactor),
         decoration: BoxDecoration(
-            color: usertype == "captain" ? AppColors.kblue : AppColors.kWhite,
-            borderRadius: usertype == "captain"
-                ? BorderRadius.only(
-                    bottomLeft: Radius.circular(10.sp),
-                    topLeft: Radius.circular(10.sp),
-                    topRight: Radius.circular(10.sp),
-                  )
-                : BorderRadius.only(
-                    bottomLeft: Radius.circular(0.sp),
-                    bottomRight: Radius.circular(10.sp),
-                    topLeft: Radius.circular(10.sp),
-                    topRight: Radius.circular(10.sp))),
+          color: usertype == "captain"
+              ? AppColors.whiteColor
+              : AppColors.blueColor,
+          borderRadius: usertype == "captain"
+              ? BorderRadius.only(
+                  bottomLeft: Radius.circular(0.sp),
+                  bottomRight: Radius.circular(10.sp),
+                  topLeft: Radius.circular(10.sp),
+                  topRight: Radius.circular(10.sp))
+              : BorderRadius.only(
+                  bottomLeft: Radius.circular(10.sp),
+                  topLeft: Radius.circular(10.sp),
+                  topRight: Radius.circular(10.sp),
+                ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -58,8 +61,8 @@ class LocationMessage extends StatelessWidget {
                 maxLines: 3,
                 style: AppStyles.style14BlackW500.copyWith(
                     color: usertype == "captain"
-                        ? AppColors.kWhite
-                        : AppColors.blackColor),
+                        ? AppColors.blackColor
+                        : AppColors.whiteColor),
               ),
             ),
             verticalSpace(5.h),

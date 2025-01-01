@@ -27,10 +27,13 @@ class AppImages {
   static const String imagesTo = 'assets/images/to.svg';
   static const String drawerIconTablerHomeFilled =
       'assets/DrawerIcon/tabler_home-filled.svg';
+  static const String emptyData = 'assets/images/Task-amico 1.svg';
+
   static const String fontsMedelRegular = 'assets/fonts/MedelRegular.ttf';
   static const String user = "assets/images/a-user.png";
-
+  static const String timeImage = 'assets/images/time.png';
   static const _path = "assets/images";
+
   static const String splashImage = 'assets/images/splash_screen.png';
   static const String welcomeCarImage = 'assets/images/car.png';
   static const String zainCashImage = '$_path/zaincash.png';
