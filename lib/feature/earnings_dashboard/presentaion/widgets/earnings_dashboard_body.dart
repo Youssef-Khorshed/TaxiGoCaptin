@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
+import 'package:taxi_go_driver/feature/Wallet/controller/wallet_get_profile_cubit/cubit/wallet_get_profile_cubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/ride_request_widget.dart';
@@ -80,16 +81,28 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
               UserEarningDeails(),
               Padding(
                 padding: EdgeInsets.all(20.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    WalletData(
-                        title: AppLocalizations.of(context)!.overall_earning,
-                        data: "0.00 \$"),
-                    WalletData(
-                        title: AppLocalizations.of(context)!.today_booking,
-                        data: "2"),
-                  ],
+                child:
+                    BlocBuilder<WalletGetProfileCubit, WalletGetProfileState>(
+                  builder: (context, state) {
+                    var cubit = context.read<WalletGetProfileCubit>();
+                    return state is WalletGetProfileSuccess
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              WalletData(
+                                  title: AppLocalizations.of(context)!
+                                      .overall_earning,
+                                  data: state.getProfileModel.data!.balance
+                                      .toString()),
+                              WalletData(
+                                  title: AppLocalizations.of(context)!
+                                      .today_booking,
+                                  data: state.getProfileModel.data!.captainFcm
+                                      .toString()),
+                            ],
+                          )
+                        : CircularProgressIndicator();
+                  },
                 ),
               ),
               Padding(
