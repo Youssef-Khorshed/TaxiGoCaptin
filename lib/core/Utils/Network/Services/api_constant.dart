@@ -2,6 +2,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
+  static const String profileEndPoint = "$baseUrl/profile";
+
+  ///Test
+  static const String historyEndPoint = "$baseUrl/captain/rides/history";
+  static const String saveTripEndPoint = "$baseUrl/profile";
+  static const String addFavTripEndPoint = "$baseUrl/profile";
   static const String captinToken =
       //   '131|BmmCi5b6ykluwU9m4GcWO0BSQySij5XhK09qxbIhab11396f';
       '32|8t9ccIYshCZ3jBx8ITjqgtOC1FNgbA8kHAbCA5Rs23b9d158';
@@ -73,10 +79,10 @@ class Constants {
   static String createProfile = "/profile/update";
   static String districts = "/districts-by-city";
 
-  static const String walletDeposit = 'deposit';
-  static const String walleTransactions = 'transactions';
-  static const String walleGetProfileData = 'profile';
-  static const String getAllNotification = 'notifications';
+  static const String walletDeposit = '/deposit';
+  static const String walleTransactions = '/transactions';
+  static const String walleGetProfileData = '/profile';
+  static const String getAllNotification = '/notifications';
   static const String getAmount = '$baseUrl/captain/rides/cash-amount';
 
   static String depositURL({

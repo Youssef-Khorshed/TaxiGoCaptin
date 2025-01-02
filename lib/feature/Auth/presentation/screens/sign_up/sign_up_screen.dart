@@ -121,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               selectedGender = value!;
                             },
                           ),
-                          verticalSpace(10),
+                          verticalSpace(10.h),
                           CustomTermsCheckBox(
                             isChecked: _isChecked,
                             onChanged: (value) {

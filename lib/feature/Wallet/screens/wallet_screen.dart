@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/feature/History/Screens/my_history.dart';
 import '../../../core/Utils/colors/colors.dart';
 import '../../../core/Utils/spacing/vertspace.dart';
 import '../../../core/Utils/text_styles/styles.dart';
@@ -14,18 +15,17 @@ class WalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.whiteColor,
-          title: AutoSizeText(AppLocalizations.of(context)!.wallet,
-              style: AppStyles.style20BlackW500),
-          centerTitle: true,
-        ),
         backgroundColor: AppColors.whiteColor,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              verticalSpace(30.h),
+              NewAppBr(
+                name: AppLocalizations.of(context)!.wallet,
+              ),
+              verticalSpace(20.h),
               const AvailableBalanceListWidget(),
               verticalSpace(10.h),
               Padding(

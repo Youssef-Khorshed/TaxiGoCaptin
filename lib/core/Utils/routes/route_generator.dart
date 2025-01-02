@@ -6,18 +6,18 @@ import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/sign_up_cubit.dart';
 import 'package:taxi_go_driver/feature/Auth/presentation/screens/sign_up/sign_up_screen.dart';
+import 'package:taxi_go_driver/feature/History/Screens/my_history.dart';
 import 'package:taxi_go_driver/feature/RequestDriver/presentaion/captain_documents.dart';
+import 'package:taxi_go_driver/feature/Wallet/screens/wallet_screen.dart';
 import 'package:taxi_go_driver/feature/account_screen/presentaion/account_screen.dart';
 import 'package:taxi_go_driver/feature/card_screen/presentaion/card_screen.dart';
 import 'package:taxi_go_driver/feature/chat/chat.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/earnings_dashboard_screen.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/trip_details.dart';
-import 'package:taxi_go_driver/feature/history/presentaion/history_view.dart';
-import 'package:taxi_go_driver/feature/mission/presentaion/mission_view.dart';
 import 'package:taxi_go_driver/feature/notification/presentaion/notification_view.dart';
 import 'package:taxi_go_driver/feature/payment/presentaion/payment_screen.dart';
-import 'package:taxi_go_driver/feature/payment/presentaion/wallet_screen.dart';
 import 'package:taxi_go_driver/feature/profile/presentaion/profile_screen.dart';
+import 'package:taxi_go_driver/feature/profile/profile.dart';
 import 'package:taxi_go_driver/feature/splash_screen/splash_screen.dart';
 import 'package:taxi_go_driver/feature/splash_screen/welcome_screen.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/payment_screen.dart';
@@ -149,10 +149,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const TripDetails());
 
       case Routes.historyRoute:
-        return MaterialPageRoute(builder: (_) => const HistoryView());
-
-      case Routes.missionRoute:
-        return MaterialPageRoute(builder: (_) => const MissionView());
+        return MaterialPageRoute(builder: (_) => const HistoryScreen());
 
       case Routes.notificationRoute:
         return MaterialPageRoute(builder: (_) => const NotificationView());
@@ -169,8 +166,8 @@ class RouteGenerator {
 
       case Routes.profileRoute:
         return MaterialPageRoute(builder: (_) => const ProfileScreen());
-      case Routes.accountScreen:
-        return MaterialPageRoute(builder: (_) => const AccountScreen());
+      // case Routes.accountScreen:
+      //   return MaterialPageRoute(builder: (_) => const AccountScreen());
       case Routes.cardScreen:
         return MaterialPageRoute(builder: (_) => const CardScreen());
 

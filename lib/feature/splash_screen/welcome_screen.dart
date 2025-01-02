@@ -44,7 +44,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               const Spacer(),
               Padding(
-                padding: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.only(bottom: 10.h),
                 child: Column(
                   children: [
                     SizedBox(

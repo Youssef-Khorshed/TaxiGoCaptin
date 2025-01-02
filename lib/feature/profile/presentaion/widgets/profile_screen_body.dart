@@ -37,12 +37,21 @@ class ProfileForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          CustomTextField(label: 'Full Name', onChanged: (value) {}),
+          CustomTextField(
+            label: 'Full Name',
+            onChanged: (value) {},
+          ),
           const SizedBox(height: 20),
           const PhoneNumberFailed(),
-          CustomTextField(label: 'Email', onChanged: (value) {}),
+          CustomTextField(
+            label: 'Email',
+            onChanged: (value) {},
+          ),
           const SizedBox(height: 20),
-          CustomTextField(label: 'Street', onChanged: (value) {}),
+          CustomTextField(
+            label: 'Street',
+            onChanged: (value) {},
+          ),
           const SizedBox(height: 20),
           CustomGenderField(
             genderOptions: const ["ANBAR", "KERBALA"],
