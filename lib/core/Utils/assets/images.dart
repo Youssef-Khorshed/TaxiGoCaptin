@@ -25,6 +25,8 @@ class AppImages {
   static const String imagesRectangle1271 = 'assets/images/Rectangle1271.png';
   static const String imagesSplashScreen = 'assets/images/SplashScreen.png';
   static const String imagesTo = 'assets/images/to.svg';
+  static const String userlocationImage = 'assets/images/userlocation.png';
+  static const String captinlocationImage = 'assets/images/captinlocation.png';
   static const String drawerIconTablerHomeFilled =
       'assets/DrawerIcon/tabler_home-filled.svg';
   static const String emptyData = 'assets/images/Task-amico 1.svg';

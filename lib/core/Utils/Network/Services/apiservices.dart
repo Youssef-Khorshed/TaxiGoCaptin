@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/secure_token.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/services_locator.dart';
 
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
@@ -29,12 +30,10 @@ class ApiService {
       _addDioInterceptor();
     }
 
-    String language = LocalCubit.get(context).localizationThemeState ==
+    String language = getIt.get<LocalCubit>().localizationThemeState ==
             LocalizationThemeState.ar
         ? "ar"
         : "en";
-
-    print("EEEEEE${token}");
 
     _addDioHeaders(language: language, token: token);
 

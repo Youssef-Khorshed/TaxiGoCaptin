@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:taxi_go_driver/Network/local/sharedprefrences.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/internetconnection.dart';
+import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_driver/feature/Auth/data/repo/auth_repo.dart';
 import 'package:taxi_go_driver/feature/Auth/data/repo/auth_repo_impl.dart';
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/create_profile_cubit/create_profile_cubit.dart';
@@ -59,6 +60,8 @@ Future<void> setup() async {
   getIt.registerFactory<SetNewPasswordCubit>(
       () => SetNewPasswordCubit(getIt.get<AuthRepo>()));
   getIt.registerSingleton<LogOutCubit>(LogOutCubit(getIt.get<AuthRepo>()));
+
+  getIt.registerSingleton<LocalCubit>(LocalCubit());
 
   getIt.registerLazySingleton<PaidAfterRideRepo>(
       () => PaidAfterRideRepoIpm(apiService: getIt()));
