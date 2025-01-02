@@ -241,5 +241,6 @@
   "tomorrow" : "غدا",
   "last_7_days" : "اخر 7 ايام",
   "last_30_days" : "اخر 30 يوم",
-  "this_month"    :"هذا الشهر", "price":"السعر",  "yesterday":"الامس"
+  "this_month"    :"هذا الشهر", "price":"السعر",  "yesterday":"الامس",
+  "empty_transactions": "لا توجد اى معاملات"
 }

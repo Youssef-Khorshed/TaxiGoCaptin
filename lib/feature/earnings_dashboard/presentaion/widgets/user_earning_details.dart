@@ -45,13 +45,14 @@ class _UserEarningDeailsState extends State<UserEarningDeails> {
             Navigator.pushNamed(context, Routes.profileRoute);
           },
           child: CircleAvatar(
-              radius: 25.r,
-              backgroundColor: Colors.white,
-              backgroundImage: image != null && image != ""
-                  ? NetworkImage(image!)
-                  : const AssetImage(
-                      AppImages.imagesProfileImage,
-                    )),
+            radius: 25.r,
+            backgroundColor: Colors.white,
+            backgroundImage: image != null && image != ""
+                ? NetworkImage(image!)
+                : const AssetImage(
+                    AppImages.imagesProfileImage,
+                  ),
+          ),
         ),
         title: Text(
           '${AppLocalizations.of(context)!.hello} ${name?.split(" ")[0]}',

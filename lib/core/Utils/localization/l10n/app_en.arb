@@ -204,5 +204,5 @@
   "tomorrow" : "Tomorrow",
   "last_7_days" : "Last 7 Days",
   "last_30_days" : "Last 30 Days",
-  "this_month"    :"This Month", "yesterday":"Yesterday"
+  "this_month"    :"This Month", "yesterday":"Yesterday",    "empty_transactions": "There are no transactions"
 }

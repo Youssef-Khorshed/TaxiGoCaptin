@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/feature/chat/model_view/chat_widgets/custom_empty_data_view.dart';
 import '../../../../Core/Utils/Network/Services/services_locator.dart';
 import '../../controller/wallet_transactions_cubit/cubit/transaction_cubit.dart';
 import 'transaction_card_widget.dart';
@@ -16,38 +17,43 @@ class TransactionsListWidget extends StatelessWidget {
       child: BlocBuilder<TransactionCubit, TransactionState>(
         builder: (context, state) {
           final transactionCubit = context.read<TransactionCubit>();
+          var data = transactionCubit.getAllTransactionsModel?.data!.length;
           if (state is TransactionLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TransactionSuccess) {
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: transactionCubit.getAllTransactionsModel?.data!.length,
-              itemBuilder: (context, index) {
-                return TransactionCardWidget(
-                  amount: transactionCubit
-                          .getAllTransactionsModel?.data![index].amount ??
-                      '1000 ',
-                  inside: transactionCubit.getAllTransactionsModel?.data![index]
-                              .transactionType ==
-                          'charge' ||
-                      transactionCubit.getAllTransactionsModel?.data![index]
-                              .transactionType ==
-                          'withdraw' ||
-                      transactionCubit.getAllTransactionsModel?.data![index]
-                              .transactionType ==
-                          'adjustment',
-                  dateTime: transactionCubit
-                          .getAllTransactionsModel?.data![index].createdAt ??
-                      '',
-                  paymentType: getTransactionTypeTranslation(
-                    context,
-                    transactionCubit.getAllTransactionsModel?.data![index]
-                            .transactionType ??
-                        '',
-                  ),
-                );
-              },
-            );
+            return data == 0
+                ? CustomEmptyDataView(
+                    message: AppLocalizations.of(context)!.empty_transactions)
+                : ListView.builder(
+                    shrinkWrap: true,
+                    itemCount:
+                        transactionCubit.getAllTransactionsModel?.data!.length,
+                    itemBuilder: (context, index) {
+                      return TransactionCardWidget(
+                        amount: transactionCubit
+                                .getAllTransactionsModel?.data![index].amount ??
+                            '1000 ',
+                        inside: transactionCubit.getAllTransactionsModel
+                                    ?.data![index].transactionType ==
+                                'charge' ||
+                            transactionCubit.getAllTransactionsModel
+                                    ?.data![index].transactionType ==
+                                'withdraw' ||
+                            transactionCubit.getAllTransactionsModel
+                                    ?.data![index].transactionType ==
+                                'adjustment',
+                        dateTime: transactionCubit.getAllTransactionsModel
+                                ?.data![index].createdAt ??
+                            '',
+                        paymentType: getTransactionTypeTranslation(
+                          context,
+                          transactionCubit.getAllTransactionsModel?.data![index]
+                                  .transactionType ??
+                              '',
+                        ),
+                      );
+                    },
+                  );
           }
           return const SizedBox.shrink();
         },

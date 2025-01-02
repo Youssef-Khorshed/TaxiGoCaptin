@@ -94,7 +94,7 @@ class Constants {
     String? transactionType,
     String? paymentMethod,
   }) {
-    String url = '$baseUrl/$walleTransactions';
+    String url = '$baseUrl$walleTransactions';
     if (transactionType != null && transactionType.isNotEmpty) {
       url += '?transaction_type=$transactionType';
     }
