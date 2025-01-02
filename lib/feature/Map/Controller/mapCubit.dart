@@ -9,6 +9,7 @@ import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/location.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/streanListener.dart';
+import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/accept_ride_request/accept_ride_request.dart';
@@ -188,11 +189,15 @@ class MapsCubit extends Cubit<MapsState> {
           destinationInfo: 'destination',
           postion: LatLng(destination.latitude, destination.longitude),
         );
+
         buildmarker(
           title: 'userLocation',
           destinationInfo: 'userLocation',
           postion: LatLng(origin.latitude, origin.longitude),
         );
+        final onValue = await BitmapDescriptor.asset(
+            const ImageConfiguration(), AppImages.captinLocationImage);
+
         updateLatLngBoundPosition(
             origin: origin, destination: destination, zoom: 12);
         drawPolyline(points: onSuccess.routes!.first.overviewPolyline!.points!);

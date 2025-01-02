@@ -24,7 +24,7 @@ void main() async {
   await getIt<CacheHelper>().init();
 
   runApp(DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: false, // !kReleaseMode,
       builder: (context) => BlocProvider(
             create: (context) => LocalCubit(),
             child: Captinapp(),

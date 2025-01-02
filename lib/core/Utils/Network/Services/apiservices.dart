@@ -17,27 +17,28 @@ class ApiService {
   static Dio? _dio;
   // Singleton Dio instance
   Future<Dio> getDio(context) async {
-    String? token = await SecureToken.getToken();
-    Duration timeOut = const Duration(seconds: 30);
+    return SecureToken.getToken().then((onValue) {
+      Duration timeOut = const Duration(seconds: 30);
 
-    if (_dio == null) {
-      _dio = Dio();
+      if (_dio == null) {
+        _dio = Dio();
 
-      _dio!
-        ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut;
+        _dio!
+          ..options.connectTimeout = timeOut
+          ..options.receiveTimeout = timeOut;
 
-      _addDioInterceptor();
-    }
+        _addDioInterceptor();
+      }
 
-    String language = getIt.get<LocalCubit>().localizationThemeState ==
-            LocalizationThemeState.ar
-        ? "ar"
-        : "en";
+      String language = getIt.get<LocalCubit>().localizationThemeState ==
+              LocalizationThemeState.ar
+          ? "ar"
+          : "en";
 
-    _addDioHeaders(language: language, token: token);
+      _addDioHeaders(language: language, token: onValue);
 
-    return _dio!;
+      return _dio!;
+    });
   }
 
   // Function to set default headers
@@ -46,7 +47,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer 32|8t9ccIYshCZ3jBx8ITjqgtOC1FNgbA8kHAbCA5Rs23b9d158', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer $token', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -70,9 +71,8 @@ class ApiService {
     try {
       if (await internetConnectivity.isConnected) {
         try {
-          _dio = await getDio(context);
-          final response =
-              await _dio!.get(url, queryParameters: queryParameters);
+          final dio = await getDio(context);
+          final response = await dio.get(url, queryParameters: queryParameters);
           if (response.statusCode != null) {
             if (response.statusCode == 200 || response.statusCode == 201) {
               return response.data;
@@ -100,8 +100,8 @@ class ApiService {
     try {
       if (await internetConnectivity.isConnected) {
         try {
-          _dio = await getDio(context);
-          final response = await _dio!.post(url, data: body);
+          final dio = await getDio(context);
+          final response = await dio.post(url, data: body);
           if (response.statusCode != null) {
             if (response.statusCode == 200) {
               return response.data;
