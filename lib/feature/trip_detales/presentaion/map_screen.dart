@@ -83,7 +83,7 @@ class MapScreenState extends State<MapScreen> {
       /// Check if the trip completed
     } else if (state is CompleteRideSuccess) {
       Fluttertoast.showToast(msg: state.completeRide.message!);
-      Navigator.of(context).pushReplacementNamed(Routes.paymentRoute);
+      Navigator.of(context).pushReplacementNamed(Routes.paymentDetailsRoute);
     }
 
     /// check if arrived Nearby User

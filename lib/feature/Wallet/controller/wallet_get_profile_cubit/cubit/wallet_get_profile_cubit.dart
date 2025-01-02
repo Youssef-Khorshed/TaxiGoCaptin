@@ -26,4 +26,6 @@ class WalletGetProfileCubit extends Cubit<WalletGetProfileState> {
       },
     );
   }
+
+  Future<void> dailyEarningsAndDays({required BuildContext context}) async {}
 }

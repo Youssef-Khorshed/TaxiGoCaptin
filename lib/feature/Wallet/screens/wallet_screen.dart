@@ -30,9 +30,36 @@ class _WalletScreenState extends State<WalletScreen> {
     }
 
     return Scaffold(
-      appBar: drawerAppBar(
-        name: AppLocalizations.of(context)!.wallet,
-        image: "",
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: FutureBuilder<AppBar>(
+          future: drawerAppBar(
+            name: AppLocalizations.of(context)!.wallet,
+          ),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return AppBar(
+                backgroundColor: AppColors.whiteColor,
+                title: Text(
+                  AppLocalizations.of(context)!.wallet,
+                  style: AppStyles.style16BlackW600,
+                ),
+                centerTitle: true,
+              );
+            } else if (snapshot.hasError) {
+              return AppBar(
+                backgroundColor: AppColors.whiteColor,
+                title: Text(
+                  AppLocalizations.of(context)!.wallet,
+                  style: AppStyles.style16BlackW600,
+                ),
+                centerTitle: true,
+              );
+            } else {
+              return snapshot.data!;
+            }
+          },
+        ),
       ),
       drawer: Drawer(
         child: DrawerList(

@@ -39,8 +39,12 @@ class UserInfo {
   String? rate;
   String? balance;
   String? emailVerifiedAt;
+  int? daily_earnings;
+  int? daily_rides;
 
   UserInfo({
+    this.daily_earnings,
+    this.daily_rides,
     this.name,
     this.phone,
     this.gender,
@@ -53,6 +57,8 @@ class UserInfo {
   });
 
   UserInfo.fromJson(Map<String, dynamic> json) {
+    daily_earnings = json['daily_earnings'];
+    daily_rides = json['daily_rides'];
     name = json['name'];
     phone = json['phone'];
 

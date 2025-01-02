@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/secure_profile.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
@@ -40,7 +43,37 @@ class _HistoryScreenState extends State<HistoryScreen> {
     }
 
     return Scaffold(
-      appBar: drawerAppBar(name: AppLocalizations.of(context)!.trips_history),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: FutureBuilder<AppBar>(
+          future: drawerAppBar(
+            name: AppLocalizations.of(context)!.trips_history,
+          ),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return AppBar(
+                backgroundColor: AppColors.whiteColor,
+                title: Text(
+                  AppLocalizations.of(context)!.trips_history,
+                  style: AppStyles.style16BlackW600,
+                ),
+                centerTitle: true,
+              );
+            } else if (snapshot.hasError) {
+              return AppBar(
+                backgroundColor: AppColors.whiteColor,
+                title: Text(
+                  AppLocalizations.of(context)!.trips_history,
+                  style: AppStyles.style16BlackW600,
+                ),
+                centerTitle: true,
+              );
+            } else {
+              return snapshot.data!;
+            }
+          },
+        ),
+      ),
       drawer: Drawer(
         child: DrawerList(
           onItemTap: (index) => onItemTap(index),
@@ -63,68 +96,71 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   padding:
                       EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 15.0.w, vertical: 10.h),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.r)),
-                    child: historyData.isEmpty
-                        ? Center(
-                            child: CustomEmptyDataView(
-                                message: AppLocalizations.of(context)!
-                                    .empty_message),
-                          )
-                        : Column(
-                            children: [
-                              const Row(
-                                children: [
-                                  Expanded(
-                                      child: CustomDetailsfilterdropdown()),
-                                ],
-                              ),
-                              verticalSpace(16.h),
-                              Expanded(
-                                child: ListView.builder(
-                                  itemCount: historyData.length,
-                                  itemBuilder: (context, index) {
-                                    return HistoryTripCard(
-                                      onStarPressed: () {
-                                        if (historyData[index].isFavorite ==
-                                            true) {
-                                          return;
-                                        } else {
-                                          HistoryViewModel.get(context)
-                                              .addToFavTrip(
-                                                  context,
-                                                  historyData[index]
-                                                      .ride![0]
-                                                      .id!);
-                                          HistoryViewModel.get(context)
-                                              .getHistoryData(context);
-                                        }
-                                      },
-                                      onSavedPressed: () {
-                                        if (historyData[index].isSaved ==
-                                            true) {
-                                          return;
-                                        } else {
-                                          HistoryViewModel.get(context)
-                                              .saveTrip(
-                                                  context,
-                                                  historyData[index]
-                                                      .ride![0]
-                                                      .id!);
-                                          HistoryViewModel.get(context)
-                                              .getHistoryData(context);
-                                        }
-                                      },
-                                      historyData: historyData[index],
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                  ),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 15.0.w, vertical: 10.h),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.r)),
+                      child: historyData.isEmpty
+                          ? Center(
+                              child: CustomEmptyDataView(
+                                  message: AppLocalizations.of(context)!
+                                      .empty_message),
+                            )
+                          : CustomEmptyDataView(
+                              message:
+                                  AppLocalizations.of(context)!.empty_message)
+                      // Column(
+                      //         children: [
+                      //           const Row(
+                      //             children: [
+                      //               Expanded(
+                      //                   child: CustomDetailsfilterdropdown()),
+                      //             ],
+                      //           ),
+                      //           verticalSpace(16.h),
+                      //           Expanded(
+                      //             child: ListView.builder(
+                      //               itemCount: historyData.length,
+                      //               itemBuilder: (context, index) {
+                      //                 return HistoryTripCard(
+                      //                   onStarPressed: () {
+                      //                     if (historyData[index].isFavorite ==
+                      //                         true) {
+                      //                       return;
+                      //                     } else {
+                      //                       HistoryViewModel.get(context)
+                      //                           .addToFavTrip(
+                      //                               context,
+                      //                               historyData[index]
+                      //                                   .ride![0]
+                      //                                   .id!);
+                      //                       HistoryViewModel.get(context)
+                      //                           .getHistoryData(context);
+                      //                     }
+                      //                   },
+                      //                   onSavedPressed: () {
+                      //                     if (historyData[index].isSaved ==
+                      //                         true) {
+                      //                       return;
+                      //                     } else {
+                      //                       HistoryViewModel.get(context)
+                      //                           .saveTrip(
+                      //                               context,
+                      //                               historyData[index]
+                      //                                   .ride![0]
+                      //                                   .id!);
+                      //                       HistoryViewModel.get(context)
+                      //                           .getHistoryData(context);
+                      //                     }
+                      //                   },
+                      //                   historyData: historyData[index],
+                      //                 );
+                      //               },
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      ),
                 );
               }
               if (state is HistoryFailureStates) {
@@ -142,12 +178,36 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 }
 
-AppBar drawerAppBar({required String name, String? image}) {
+Future<AppBar> drawerAppBar({required String name}) async {
+  final String? image = await SecureProfile.getProfileImage();
+
   return AppBar(
     backgroundColor: AppColors.whiteColor,
     title: Text(
       name,
       style: AppStyles.style16BlackW600,
+    ),
+    leading: Builder(
+      builder: (BuildContext context) {
+        return IconButton(
+          icon: Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.identity()
+              ..scale(-1.0, 1.0), // Mirror horizontally
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: SvgPicture.asset(
+                AppIcons.iconsListIcon,
+                height: 50.h,
+              ),
+            ),
+          ),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        );
+      },
     ),
     centerTitle: true,
     actions: [
@@ -156,15 +216,12 @@ AppBar drawerAppBar({required String name, String? image}) {
         child: CircleAvatar(
           radius: 25.r,
           backgroundColor: Colors.white,
-          backgroundImage: image != null && image != ""
-              ? NetworkImage(image)
-              : const AssetImage(
-                  AppImages.imagesProfileImage,
-                ),
+          backgroundImage: image != null && image.isNotEmpty
+              ? NetworkImage(image) as ImageProvider
+              : const AssetImage(AppImages.imagesProfileImage) as ImageProvider,
         ),
       ),
-      horizontalSpace(10.w)
+      horizontalSpace(10.w),
     ],
   );
-  ;
 }
