@@ -6,14 +6,10 @@ import 'package:taxi_go_driver/feature/History/history_widgets/custom_build_trip
 
 // ignore: must_be_immutable
 class HistoryTripCard extends StatelessWidget {
-  final void Function() onStarPressed;
-  final void Function() onSavedPressed;
   final HistoryData historyData;
 
   const HistoryTripCard({
     super.key,
-    required this.onStarPressed,
-    required this.onSavedPressed,
     required this.historyData,
   });
 
@@ -32,25 +28,7 @@ class HistoryTripCard extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: onStarPressed,
-                  icon: Icon(
-                    historyData.isFavorite == true
-                        ? Icons.star
-                        : Icons.star_border_outlined,
-                    color: AppColors.amberColor,
-                  ),
-                ),
-                IconButton(
-                    onPressed: onSavedPressed,
-                    icon: Icon(
-                      historyData.isSaved == true
-                          ? Icons.bookmark
-                          : Icons.bookmark_add_outlined,
-                      color: AppColors.blueColor,
-                    ))
-              ],
+              children: [],
             ),
           ),
           CustomBuildTripDetails(

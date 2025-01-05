@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Services/secure_profile.dart';
-import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
-import 'package:taxi_go_driver/core/Utils/assets/images.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+import 'package:taxi_go_driver/Core/Utils/Network/Services/services_locator.dart';
 import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_dummy_widget.dart';
+import 'package:taxi_go_driver/feature/APP/custom_widgets/drawer_app_bar.dart';
 import 'package:taxi_go_driver/feature/History/controller/history_states.dart';
 import 'package:taxi_go_driver/feature/History/controller/history_view_model.dart';
 import 'package:taxi_go_driver/feature/History/data/history_data_model.dart';
 import 'package:taxi_go_driver/feature/History/history_widgets/custom_details_filter_dropdown.dart';
 import 'package:taxi_go_driver/feature/History/history_widgets/custom_trip_card_history.dart';
-import 'package:taxi_go_driver/feature/History/history_widgets/loadign_state_view.dart';
 import 'package:taxi_go_driver/feature/chat/model_view/chat_widgets/custom_empty_data_view.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/drawer_list.dart';
 
 class HistoryScreen extends StatefulWidget {
-  const HistoryScreen({super.key});
+  HistoryScreen({super.key});
 
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  final List<HistoryData> historyData = [];
+
+  final ScrollController _scrollController = ScrollController();
+
   int selctedIndex = 0;
 
   @override
@@ -54,7 +54,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               return AppBar(
                 backgroundColor: AppColors.whiteColor,
                 title: Text(
-                  AppLocalizations.of(context)!.trips_history,
+                  AppLocalizations.of(context)!.wallet,
                   style: AppStyles.style16BlackW600,
                 ),
                 centerTitle: true,
@@ -63,7 +63,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               return AppBar(
                 backgroundColor: AppColors.whiteColor,
                 title: Text(
-                  AppLocalizations.of(context)!.trips_history,
+                  AppLocalizations.of(context)!.wallet,
                   style: AppStyles.style16BlackW600,
                 ),
                 centerTitle: true,
@@ -81,147 +81,131 @@ class _HistoryScreenState extends State<HistoryScreen> {
         ),
       ),
       backgroundColor: AppColors.whiteColor,
-      body: Column(
-        children: [
-          verticalSpace(50.h),
-          BlocBuilder<HistoryViewModel, HistoryStates>(
-            bloc: HistoryViewModel.get(context)..getHistoryData(context),
-            buildWhen: (previous, current) => current != previous,
-            builder: (context, state) {
-              if (state is HistorySuccessStates ||
-                  state is AddToSaveToFavSuccessStates) {
-                List<HistoryData> historyData =
-                    HistoryViewModel.get(context).historyData;
-                return Padding(
+      body: BlocProvider(
+        create: (context) => getIt.get<HistoryViewModel>()
+          ..getHistoryData(context, tripHistory: "day"),
+        child: BlocBuilder<HistoryViewModel, HistoryStates>(
+          buildWhen: (previous, current) => previous != current,
+          builder: (context, state) {
+            if (state is HistorySuccessStates) {
+              historyData.clear();
+              historyData.addAll(HistoryViewModel.get(context).historyData);
+              return Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+                child: Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
-                  child: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(20.r)),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(child: CustomDetailsfilterdropdown()),
+                        ],
+                      ),
+                      historyData.isEmpty
+                          ? verticalSpace(
+                              MediaQuery.of(context).size.height / 5)
+                          : verticalSpace(16.h),
+                      historyData.isEmpty
+                          ? CustomEmptyDataView(
+                              message:
+                                  AppLocalizations.of(context)!.empty_message)
+                          : Expanded(
+                              child: ListView.builder(
+                                controller: _scrollController,
+                                itemCount: historyData.length,
+                                itemBuilder: (context, index) {
+                                  return HistoryTripCard(
+                                    historyData: historyData[index],
+                                  );
+                                },
+                              ),
+                            ),
+                    ],
+                  ),
+                ),
+              );
+            } else if (state is HistoryFailureStates) {
+              return CustomErroranimation(
+                errormessage: state.errMessage,
+                lottie: AppLottie.errorFailure,
+              );
+            }
+
+            return state is HistoryLoadingStates
+                ? Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 15.0.w, vertical: 10.h),
+                    child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 15.0.w, vertical: 10.h),
+                        decoration: BoxDecoration(
+                            color: AppColors.whiteColor,
+                            borderRadius: BorderRadius.circular(20.r)),
+                        child: Skeletonizer(
+                          child: Column(
+                            children: [
+                              const Row(
+                                children: [
+                                  Expanded(
+                                      child: CustomDetailsfilterdropdown()),
+                                ],
+                              ),
+                              Expanded(
+                                child: ListView.builder(
+                                    controller: _scrollController,
+                                    itemCount: 10,
+                                    itemBuilder: (context, index) =>
+                                        const CustomDummyWidget()),
+                              ),
+                            ],
+                          ),
+                        )))
+                : Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 15.0.w, vertical: 10.h),
+                    child: Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: 15.0.w, vertical: 10.h),
                       decoration: BoxDecoration(
+                          color: AppColors.whiteColor,
                           borderRadius: BorderRadius.circular(20.r)),
-                      child: historyData.isEmpty
-                          ? Center(
-                              child: CustomEmptyDataView(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(child: CustomDetailsfilterdropdown()),
+                            ],
+                          ),
+                          historyData.isEmpty
+                              ? verticalSpace(
+                                  MediaQuery.of(context).size.height / 5)
+                              : verticalSpace(16.h),
+                          historyData.isEmpty
+                              ? CustomEmptyDataView(
                                   message: AppLocalizations.of(context)!
-                                      .empty_message),
-                            )
-                          : CustomEmptyDataView(
-                              message:
-                                  AppLocalizations.of(context)!.empty_message)
-                      // Column(
-                      //         children: [
-                      //           const Row(
-                      //             children: [
-                      //               Expanded(
-                      //                   child: CustomDetailsfilterdropdown()),
-                      //             ],
-                      //           ),
-                      //           verticalSpace(16.h),
-                      //           Expanded(
-                      //             child: ListView.builder(
-                      //               itemCount: historyData.length,
-                      //               itemBuilder: (context, index) {
-                      //                 return HistoryTripCard(
-                      //                   onStarPressed: () {
-                      //                     if (historyData[index].isFavorite ==
-                      //                         true) {
-                      //                       return;
-                      //                     } else {
-                      //                       HistoryViewModel.get(context)
-                      //                           .addToFavTrip(
-                      //                               context,
-                      //                               historyData[index]
-                      //                                   .ride![0]
-                      //                                   .id!);
-                      //                       HistoryViewModel.get(context)
-                      //                           .getHistoryData(context);
-                      //                     }
-                      //                   },
-                      //                   onSavedPressed: () {
-                      //                     if (historyData[index].isSaved ==
-                      //                         true) {
-                      //                       return;
-                      //                     } else {
-                      //                       HistoryViewModel.get(context)
-                      //                           .saveTrip(
-                      //                               context,
-                      //                               historyData[index]
-                      //                                   .ride![0]
-                      //                                   .id!);
-                      //                       HistoryViewModel.get(context)
-                      //                           .getHistoryData(context);
-                      //                     }
-                      //                   },
-                      //                   historyData: historyData[index],
-                      //                 );
-                      //               },
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
+                                      .empty_message)
+                              : Expanded(
+                                  child: ListView.builder(
+                                    controller: _scrollController,
+                                    itemCount: historyData.length,
+                                    itemBuilder: (context, index) {
+                                      return HistoryTripCard(
+                                        historyData: historyData[index],
+                                      );
+                                    },
+                                  ),
+                                ),
+                        ],
                       ),
-                );
-              }
-              if (state is HistoryFailureStates) {
-                return CustomErroranimation(
-                  errormessage: state.errMessage,
-                  lottie: AppLottie.errorFailure,
-                );
-              }
-              return LoadingStateView();
-            },
-          ),
-        ],
+                    ),
+                  );
+          },
+        ),
       ),
     );
   }
-}
-
-Future<AppBar> drawerAppBar({required String name}) async {
-  final String? image = await SecureProfile.getProfileImage();
-
-  return AppBar(
-    backgroundColor: AppColors.whiteColor,
-    title: Text(
-      name,
-      style: AppStyles.style16BlackW600,
-    ),
-    leading: Builder(
-      builder: (BuildContext context) {
-        return IconButton(
-          icon: Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.identity()
-              ..scale(-1.0, 1.0), // Mirror horizontally
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: SvgPicture.asset(
-                AppIcons.iconsListIcon,
-                height: 50.h,
-              ),
-            ),
-          ),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-        );
-      },
-    ),
-    centerTitle: true,
-    actions: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CircleAvatar(
-          radius: 25.r,
-          backgroundColor: Colors.white,
-          backgroundImage: image != null && image.isNotEmpty
-              ? NetworkImage(image) as ImageProvider
-              : const AssetImage(AppImages.imagesProfileImage) as ImageProvider,
-        ),
-      ),
-      horizontalSpace(10.w),
-    ],
-  );
 }

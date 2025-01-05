@@ -8,9 +8,11 @@ import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/History/data/history_data_model.dart';
 
 class CustomDriverdetailsHistory extends StatelessWidget {
-  const CustomDriverdetailsHistory(
-      {super.key, required this.price, required this.captainData});
-  final CaptainData captainData;
+  const CustomDriverdetailsHistory({
+    super.key,
+    required this.price,
+  });
+
   final String price;
 
   @override
@@ -20,28 +22,10 @@ class CustomDriverdetailsHistory extends StatelessWidget {
 
   Widget _buildDriverDetails(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: AppColors.grayColor,
-        radius: 20.r,
-        backgroundImage: NetworkImage(
-          captainData.picture ??
-              'https://r2-us-west.photoai.com/1725044540-0740bf41f0465a6d0ef030a85d1f270a-1.png',
-        ),
-      ),
-      title: AutoSizeText(
-        captainData.name ?? '',
-        style: AppStyles.style18BlackW500,
-        maxLines: 1,
-      ),
       subtitle: Row(
         children: [
           const Icon(Icons.star, size: 16, color: AppColors.amberColor),
           horizontalSpace(3),
-          AutoSizeText(
-            captainData.rate ?? '',
-            style: AppStyles.style14GrayW500,
-            maxLines: 1,
-          ),
         ],
       ),
       trailing: _buildPrice(context),

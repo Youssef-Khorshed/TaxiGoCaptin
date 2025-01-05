@@ -5,7 +5,6 @@ sealed class WalletGetProfileState {}
 
 final class WalletGetProfileInitial extends WalletGetProfileState {}
 
-
 final class WalletGetProfileLoading extends WalletGetProfileInitial {}
 
 final class WalletGetProfileSuccess extends WalletGetProfileInitial {
@@ -14,4 +13,8 @@ final class WalletGetProfileSuccess extends WalletGetProfileInitial {
   WalletGetProfileSuccess({required this.getProfileModel});
 }
 
-final class WalletGetProfileError extends WalletGetProfileInitial {}
+final class WalletGetProfileError extends WalletGetProfileInitial {
+  final String message;
+
+  WalletGetProfileError({required this.message});
+}

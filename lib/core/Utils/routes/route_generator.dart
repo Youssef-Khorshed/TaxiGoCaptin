@@ -148,7 +148,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const TripDetails());
 
       case Routes.historyRoute:
-        return MaterialPageRoute(builder: (_) => const HistoryScreen());
+        return MaterialPageRoute(builder: (_) => HistoryScreen());
 
       case Routes.notificationRoute:
         return MaterialPageRoute(builder: (_) => const NotificationView());

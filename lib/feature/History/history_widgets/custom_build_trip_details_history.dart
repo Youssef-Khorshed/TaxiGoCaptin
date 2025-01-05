@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/feature/History/data/history_data_model.dart';
-import 'package:taxi_go_driver/feature/History/history_widgets/custom_BuildAdressRow%5B1%5D.dart';
 import 'package:taxi_go_driver/feature/History/history_widgets/custom_driver_details_history.dart';
+
+import 'custom_BuildAdressRow[1].dart';
 
 class CustomBuildTripDetails extends StatelessWidget {
   final HistoryData historyData;
@@ -44,8 +45,7 @@ class TripDetails extends StatelessWidget {
           color: AppColors.darkgrayColor,
         ),
         CustomDriverdetailsHistory(
-          price: historyData.ride?[0].total ?? '200',
-          captainData: historyData.ride![0].captainData!,
+          price: historyData.paid ?? "200",
         ),
       ],
     );

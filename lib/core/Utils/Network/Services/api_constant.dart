@@ -79,16 +79,16 @@ class Constants {
   static String createProfile = "/profile/update";
   static String districts = "/districts-by-city";
 
-  static const String walletDeposit = '/deposit';
+  static const String walletDeposit = 'deposit';
   static const String walleTransactions = '/transactions';
   static const String walleGetProfileData = '/profile';
-  static const String getAllNotification = '/notifications';
+  static const String getAllNotification = 'notifications';
   static const String getAmount = '$baseUrl/captain/rides/cash-amount';
 
   static String depositURL({
     required String amount,
   }) =>
-      '$baseUrl$walletDeposit?amount=$amount';
+      "$baseUrl/$walletDeposit?amount=$amount";
 
   static String transactionsURL({
     String? transactionType,

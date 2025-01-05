@@ -51,12 +51,8 @@ class UserData {
   final double balance;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final DateTime daily_earnings;
-  final DateTime daily_rides;
 
   UserData({
-    required this.daily_earnings,
-    required this.daily_rides,
     required this.id,
     required this.name,
     required this.phone,
@@ -86,8 +82,6 @@ class UserData {
 
   factory UserData.fromJson(Map<String, dynamic> json) {
     return UserData(
-      daily_earnings: json['daily_earnings'],
-      daily_rides: json['daily_rides'],
       id: json['id'],
       name: json['name'] ?? "",
       phone: json['phone'] ?? "",

@@ -13,6 +13,8 @@ import 'package:taxi_go_driver/feature/Auth/presentation/controller/otp_cubit/ot
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/set_new_password/set_new_password_cubit.dart';
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/set_password_cubit/set_password_cubit.dart';
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/sign_up_cubit.dart';
+import 'package:taxi_go_driver/feature/History/controller/history_view_model.dart';
+import 'package:taxi_go_driver/feature/History/data/repo/history_repo.dart';
 import 'package:taxi_go_driver/feature/History/data/repo/history_repo_impl.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
@@ -58,8 +60,11 @@ Future<void> setup() async {
   getIt.registerFactory<OtpCubit>(() => OtpCubit(getIt.get<AuthRepo>()));
   getIt.registerFactory<SetPasswordCubit>(
       () => SetPasswordCubit(getIt.get<AuthRepo>()));
-  getIt.registerSingleton<HistoryRepoImpl>(
-      HistoryRepoImpl(apiService: getIt.get<ApiService>()));
+  getIt.registerLazySingleton<HistoryRepo>(
+      () => HistoryRepoImpl(apiService: getIt.get()));
+  getIt.registerFactory<HistoryViewModel>(
+      () => HistoryViewModel(historyRepo: getIt.get<HistoryRepo>()));
+
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<AuthRepo>()));
   getIt.registerFactory<SetNewPasswordCubit>(
       () => SetNewPasswordCubit(getIt.get<AuthRepo>()));
