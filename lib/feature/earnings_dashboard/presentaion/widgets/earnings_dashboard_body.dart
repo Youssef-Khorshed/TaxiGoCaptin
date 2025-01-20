@@ -115,7 +115,7 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
                     ),
                   ],
                 )
-              : nearbyRideRequests == null
+              : nearbyRideRequests == null || nearbyRideRequests?.data == null
                   ? Column(
                       children: [
                         verticalSpace(MediaQuery.of(context).size.height / 8),

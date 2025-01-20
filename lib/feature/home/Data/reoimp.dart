@@ -11,16 +11,16 @@ class HomeRepoImp implements HomeRepo {
   @override
   Future<Either<Failure, List<Getride>>> getdata(
       {required BuildContext context}) async {
-    try {
-      final res = await apiService.getRequest(
-          'https://jsonplaceholder.typicode.com/posts',
-          context: context);
-      List<dynamic> reslist = res;
+    final res = await apiService.getRequest(
+        'https://jsonplaceholder.typicode.com/posts',
+        context: context);
+    return res.fold((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }, (response) {
+      List<dynamic> reslist = response.data;
       final result =
           reslist.map((toElement) => Getride.fromJson(toElement)).toList();
       return Right(result);
-    } catch (e) {
-      return Left(ServerFailure(message: ''));
-    }
+    });
   }
 }

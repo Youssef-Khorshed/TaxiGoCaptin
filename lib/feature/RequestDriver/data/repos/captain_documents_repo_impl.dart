@@ -17,17 +17,18 @@ class CaptainDocumentsRepoImpl extends CaptainDocumentsRepo {
   Future<Either<Failure, bool>> postCaptainDocuments(
       BuildContext context, CaptainDocumentsModel captainDocumentsModel) async {
     try {
-      var response = await apiService.postRequest(
+      final response = await apiService.postRequest(
         Constants.captainDocumentsEndPoint,
         context: context,
         body: FormData.fromMap(captainDocumentsModel.toJson()),
       );
-
-      if (response['success'] == true) {
-        return const Right(true);
-      } else {
-        return const Right(false);
-      }
+      return response.fold((l) => Left(ServerFailure(message: l)), (res) {
+        if (res.data['success'] == true) {
+          return const Right(true);
+        } else {
+          return const Right(false);
+        }
+      });
     } on NoInternetException {
       return Left(
         InternetConnectionFailure(message: 'No internet Connection'),

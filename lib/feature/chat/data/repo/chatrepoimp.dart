@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -22,24 +21,22 @@ class Chatrepoimp implements Chatrepo {
   Future<Either<Failure, List<Message>>> getChatDetails({
     required BuildContext context,
   }) async {
-    try {
-      final response = await apiService.getRequest(
-        Constants.rooms,
-        context: context,
-      );
-
-      if (response != null && response['data'] is List) {
-        final messages = (response['data'] as List)
+    final response = await apiService.getRequest(
+      Constants.rooms,
+      context: context,
+    );
+    return response.fold((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }, (response) {
+      if (response.data['data'] is List) {
+        final messages = (response.data['data'] as List)
             .map((json) => Message.fromJson(json as Map<String, dynamic>))
             .toList();
         return Right(messages);
       } else {
         return Left(ServerFailure(message: 'Invalid data format from server.'));
       }
-    } catch (e) {
-      log('Error fetching chat details: $e');
-      return Left(ServerFailure(message: 'Failed to fetch chat details.'));
-    }
+    });
   }
 
   @override

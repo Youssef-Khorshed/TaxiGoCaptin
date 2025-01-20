@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
@@ -15,26 +14,17 @@ class PaidAfterRideRepoIpm implements PaidAfterRideRepo {
   @override
   Future<Either<Failure, PaidAfterRideModel>> pay(
       BuildContext context, double paid) async {
-    try {
-      // استخدام await للحصول على نتيجة postRequest
-      final ratStatus = await apiService.postRequest(
-        Constants.payAfterRide,
-        context: context,
-        body: {
-          "paid": paid,
-        },
-      );
-      print("**************************${ratStatus}");
-
-      return Right(
-        PaidAfterRideModel.fromJson(ratStatus),
-      );
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(InternetConnectionFailure(message: e.message.toString()));
-    } catch (e) {
-      return Left(InternetConnectionFailure(message: 'Unexpected error: $e'));
-    }
+    final ratStatus = await apiService.postRequest(
+      Constants.payAfterRide,
+      context: context,
+      body: {
+        "paid": paid,
+      },
+    );
+    return ratStatus.fold(
+        (l) => Left(ServerFailure(message: l)),
+        (res) => Right(
+              PaidAfterRideModel.fromJson(res.data),
+            ));
   }
 }

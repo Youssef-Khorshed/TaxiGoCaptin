@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/repos/captain_documents_repo_impl.dart';
 
@@ -18,7 +20,7 @@ class NearbyRideRequestsCubit extends Cubit<NearbyRideRequestsState> {
           await nearbyRideRequestsRepoImpl.fetchNearbyRideRequests(context);
 
       return res.fold(
-        (failure) => throw Exception(failure.message),
+        (failure) => NearbyRideRequestsModel(),
         (data) => data,
       );
     }).asyncMap((futureData) => futureData);

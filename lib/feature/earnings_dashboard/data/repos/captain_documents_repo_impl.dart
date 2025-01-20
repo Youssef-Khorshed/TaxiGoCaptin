@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
@@ -15,16 +14,12 @@ class NearbyRideRequestsRepoImpl extends NearbyRideRequestsRepo {
   @override
   Future<Either<Failure, NearbyRideRequestsModel>> fetchNearbyRideRequests(
       BuildContext context) async {
-    try {
-      final response = await apiService.getRequest(
-          context: context, Constants.nearbyRideRequestsEndPoint);
-      print('hhhhhhhh ${response["data"]}');
-
-      return Right(NearbyRideRequestsModel.fromJson(response));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(InternetConnectionFailure(message: e.message.toString()));
-    }
+    final response = await apiService.getRequest(
+        context: context, Constants.nearbyRideRequestsEndPoint);
+    return response.fold((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }, (response) {
+      return Right(NearbyRideRequestsModel.fromJson(response.data));
+    });
   }
 }

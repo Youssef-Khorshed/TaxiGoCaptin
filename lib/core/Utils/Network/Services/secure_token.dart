@@ -5,7 +5,7 @@ import '../../../../app_constants.dart';
 
 abstract class SecureToken {
   static SecureStorageHelper secureStorageHelper = SecureStorageHelper();
-  static addToken(String token) async {
+  static Future<void> addToken(String token) async {
     await secureStorageHelper.writeValue(AppConstants.kToken, token);
     debugPrint("added $token");
   }
@@ -14,7 +14,7 @@ abstract class SecureToken {
     return await secureStorageHelper.readValue(AppConstants.kToken);
   }
 
-  static deleteToken() async {
+  static Future<void> deleteToken() async {
     await secureStorageHelper.deleteValue(AppConstants.kToken);
   }
 }

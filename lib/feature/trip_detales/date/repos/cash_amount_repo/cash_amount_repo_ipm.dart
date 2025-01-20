@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
@@ -14,20 +13,15 @@ class CashAmountRepoIpm implements CashAmountRepo {
   @override
   Future<Either<Failure, CashAmountModel>> getAmount(
       BuildContext context) async {
-    try {
-      final response =
-          await apiService.getRequest(context: context, Constants.getAmount);
-      CashAmountModel rideDetails = CashAmountModel.fromJson(response["data"]);
-      print("response");
-      print(rideDetails.toJson());
+    final response =
+        await apiService.getRequest(context: context, Constants.getAmount);
+    return response.fold((l) => Left(ServerFailure(message: l)),
+        (response) async {
+      CashAmountModel rideDetails =
+          CashAmountModel.fromJson(response.data["data"]);
 
-      return Right(
-        await CashAmountModel.fromJson(rideDetails.toJson()),
-      );
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+      final value = await CashAmountModel.fromJson(rideDetails.toJson());
+      return Right(value);
+    });
   }
 }

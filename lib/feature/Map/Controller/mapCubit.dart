@@ -9,7 +9,6 @@ import 'package:taxi_go_driver/core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/location.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/streanListener.dart';
-import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/accept_ride_request/accept_ride_request.dart';
@@ -191,12 +190,15 @@ class MapsCubit extends Cubit<MapsState> {
         );
 
         buildmarker(
-          title: 'userLocation',
-          destinationInfo: 'userLocation',
+          title: 'User',
+          destinationInfo: 'User',
+          customicon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
           postion: LatLng(origin.latitude, origin.longitude),
         );
-        final onValue = await BitmapDescriptor.asset(
-            const ImageConfiguration(), AppImages.captinLocationImage);
+
+        // final onValue = await BitmapDescriptor.asset(
+        //     const ImageConfiguration(), AppImages.captinLocationImage);
 
         updateLatLngBoundPosition(
             origin: origin, destination: destination, zoom: 12);
@@ -273,17 +275,20 @@ class MapsCubit extends Cubit<MapsState> {
   }
 
   /// build markers between origin and destination
-  void buildmarker({
-    required String title,
-    required String destinationInfo,
-    required LatLng postion,
-  }) {
+  void buildmarker(
+      {required String title,
+      required String destinationInfo,
+      required LatLng postion,
+      BitmapDescriptor? customicon}) {
+    emit(MarkersLoading());
+
     markers.add(Marker(
         markerId: MarkerId(title),
         position: postion,
         infoWindow: InfoWindow(title: title),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed)));
-    emit(UpdateMarkers());
+        icon: customicon ??
+            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)));
+    emit(UpdateMarkers(markers: markers));
   }
 
   //// Captin Ride Methods
