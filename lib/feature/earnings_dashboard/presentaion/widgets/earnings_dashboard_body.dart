@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_driver/core/Firebase/firebase_notification.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/controller/nearby_ride_requests_model_cubit/nearby_ride_requests_cubit.dart';
@@ -29,6 +30,8 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
         "---------------------------init---------------------------------------");
 
     super.initState();
+    FirebaseNotification.init(context);
+    FirebaseNotification.initNotifications();
     _startStream();
   }
 

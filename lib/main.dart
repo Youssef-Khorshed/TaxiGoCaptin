@@ -29,3 +29,5 @@ void main() async {
             child: Captinapp(),
           )));
 }
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
