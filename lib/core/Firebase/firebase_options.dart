@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyA5NDkH74hDUxKMkGegVJDo5bjjry83BGs',
-    appId: '1:36281369878:android:e21d8c2d6aca08de247c37',
+    appId: '1:36281369878:android:a582cb60bfe9da7b247c37',
     messagingSenderId: '36281369878',
     projectId: 'taxi-go-app',
     storageBucket: 'taxi-go-app.firebasestorage.app',
@@ -59,10 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDJfoKBr1kzAtzMwKiRC5j00kVw3-niKN8',
-    appId: '1:36281369878:ios:071605da6eb04f34247c37',
+    appId: '1:36281369878:ios:2442b45c6f0ad0d3247c37',
     messagingSenderId: '36281369878',
     projectId: 'taxi-go-app',
     storageBucket: 'taxi-go-app.firebasestorage.app',
-    iosBundleId: 'com.example.taxiGoUserVersion',
+    iosBundleId: 'com.example.taxiGoDriver',
   );
 }
