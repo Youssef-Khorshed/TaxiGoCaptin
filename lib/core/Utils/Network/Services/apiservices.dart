@@ -63,8 +63,8 @@ class ApiService {
       required BuildContext context}) async {
     try {
       if (await internetConnectivity.isConnected) {
-        await getDio();
-        final response = await _dio!.get(
+        final dio = await getDio();
+        final response = await dio.get(
           url,
           data: queryParameters,
         );

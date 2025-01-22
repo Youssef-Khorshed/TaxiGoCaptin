@@ -12,6 +12,7 @@
     "transaction_remaining": "Remaining",
     "transaction_charge": "Charge",
     "transaction_payout": "Payout",
+    "not_autherized":"Not Autherized",
     "transaction_adjustment": "Adjustment",
     "transaction_withdraw": "Withdraw",
     "notifications": "Notifications",

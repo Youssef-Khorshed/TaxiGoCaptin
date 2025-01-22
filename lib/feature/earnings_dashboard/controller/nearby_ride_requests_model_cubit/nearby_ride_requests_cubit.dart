@@ -20,7 +20,8 @@ class NearbyRideRequestsCubit extends Cubit<NearbyRideRequestsState> {
           await nearbyRideRequestsRepoImpl.fetchNearbyRideRequests(context);
 
       return res.fold(
-        (failure) => NearbyRideRequestsModel(),
+        (failure) => NearbyRideRequestsModel(
+            success: false, message: failure.message, data: []),
         (data) => data,
       );
     }).asyncMap((futureData) => futureData);

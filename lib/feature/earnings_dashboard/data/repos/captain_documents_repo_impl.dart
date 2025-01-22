@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
@@ -17,6 +19,7 @@ class NearbyRideRequestsRepoImpl extends NearbyRideRequestsRepo {
     final response = await apiService.getRequest(
         context: context, Constants.nearbyRideRequestsEndPoint);
     return response.fold((ifLeft) {
+      log(ifLeft);
       return Left(ServerFailure(message: ifLeft));
     }, (response) {
       return Right(NearbyRideRequestsModel.fromJson(response.data));

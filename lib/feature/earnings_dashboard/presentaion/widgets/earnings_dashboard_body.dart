@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,9 +26,6 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
 
   @override
   void initState() {
-    debugPrint(
-        "---------------------------init---------------------------------------");
-
     super.initState();
     _startStream();
   }
@@ -39,6 +37,9 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
           .getNearbyRideRequests(context);
     }).asyncExpand((stream) => stream).listen((data) {
       setState(() {
+        debugPrint("------data--");
+
+        debugPrint(data.success.toString());
         nearbyRideRequests = data;
       });
     });
@@ -115,7 +116,7 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
                     ),
                   ],
                 )
-              : nearbyRideRequests == null || nearbyRideRequests?.data == null
+              : nearbyRideRequests == null
                   ? Column(
                       children: [
                         verticalSpace(MediaQuery.of(context).size.height / 8),
@@ -126,14 +127,16 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
                         ),
                       ],
                     )
-                  : nearbyRideRequests!.data!.isEmpty
+                  : !nearbyRideRequests!.success!
                       ? Column(
                           children: [
                             verticalSpace(
                                 MediaQuery.of(context).size.height / 8),
                             Text(
-                              AppLocalizations.of(context)!
-                                  .no_nearby_ride_requests_found,
+                              nearbyRideRequests!.success == false
+                                  ? AppLocalizations.of(context)!.not_autherized
+                                  : AppLocalizations.of(context)!
+                                      .no_nearby_ride_requests_found,
                               style: AppStyles.style16BlackW600,
                             ),
                           ],
