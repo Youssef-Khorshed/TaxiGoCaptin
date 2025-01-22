@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,9 +36,6 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
           .getNearbyRideRequests(context);
     }).asyncExpand((stream) => stream).listen((data) {
       setState(() {
-        debugPrint("------data--");
-
-        debugPrint(data.success.toString());
         nearbyRideRequests = data;
       });
     });
@@ -48,14 +44,10 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print("didUpdateWidget called");
   }
 
   @override
   void deactivate() {
-    debugPrint(
-        "----------------------------Deactivate--------------------------------------");
-
     super.deactivate();
   }
 
@@ -63,10 +55,6 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
   void dispose() {
     super.dispose();
     _subscription?.cancel();
-    debugPrint(
-        "------------------------------------------------------------------");
-
-    debugPrint("Closed");
   }
 
   @override
