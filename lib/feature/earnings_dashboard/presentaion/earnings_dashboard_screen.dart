@@ -27,6 +27,7 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
   bool status = false;
   int selctedIndex = 0;
   @override
+  @override
   Widget build(BuildContext context) {
     void onItemTap(int index) {
       setState(() {

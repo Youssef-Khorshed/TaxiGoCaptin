@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "36281369878",
+    "project_id": "taxi-go-app",
+    "storage_bucket": "taxi-go-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36281369878:android:a582cb60bfe9da7b247c37",
+        "android_client_info": {
+          "package_name": "com.example.taxi_go_driver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5NDkH74hDUxKMkGegVJDo5bjjry83BGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36281369878:android:e21d8c2d6aca08de247c37",
+        "android_client_info": {
+          "package_name": "com.example.taxi_go_user_vers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5NDkH74hDUxKMkGegVJDo5bjjry83BGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
