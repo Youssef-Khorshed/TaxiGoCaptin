@@ -30,7 +30,7 @@
   "min": "دقيقة",
   "change_address": "تغيير العنوان",
   "book_now": "حجز الأن",
-  "trips_history": "تاريخ الرحللات",
+  "trips_history": "سجل الرحلات",
   "trip_favorites": "الرحلات المفضلة",
   "saved_Trips": "الرحلات المحفوظة",
   "wallet": "المحفظة",
@@ -88,7 +88,7 @@
   "min":"دقيقة",
   "change_address":"تغيير العنوان",
   "book_now":"حجز الأن",
-  "trips_history":"تاريخ الرحللات",
+
   "trip_favorites":"الرحلات المفضلة",
   "saved_Trips":"الرحلات المحفوظة",
   "wallet":"المحفظة",
@@ -149,7 +149,7 @@
   "vehicle_number": "رقم السيارة",
   "vehicle_color": "لون السيارة",
   "vehicle_model": "موديل السيارة",
-  "you_are_offline": "انت غير متصل بالانترنت",
+  "you_are_offline": "برجاء تفعيل موقعك لاستقبال الطلبات",
   "looking_for_nearby_request": "بحث عن طلبات قريبة",
   "no_nearby_ride_requests_found": "لم يتم العثور على طلبات رحلات قريبة",
   "choose_your_request": "اختر طلبك",
@@ -157,7 +157,7 @@
   "back": "رجوع",
   "sign_up": "تسجيل",
   "already_have_an_account": "هل لديك حساب بالفعل ؟ ",
-  "sign_in": "تسجيل الدخول",
+  "sign_in": " تسجيل الدخول",
   "privacy_policy_tapped": "تم الضغط على سياسة الخصوصية ",
   "privacy_policy": " سياسة الخصوصية.",
   "terms_of_service_tapped": "تم الضغط على شروط الخدمة ",
@@ -218,7 +218,7 @@
   "continues": "متابعه",
   "betterSharingExperience": "استمتع بتجربة مشاركة أفضل",
   "createAccount": "إنشاء حساب",
-  "logIn": "تسجيل الدخول",
+  "logIn": " تسجيل الدخول",
   "hello": "مرحبا",
   "iraq": "العراق",
   "unless500":"تحذير:\n لا يمكنك القيام بأي رحلة إلا إذا كان لديك 500 دينار على الأقل في محفظتك",
@@ -233,7 +233,15 @@
   "please_enter_a_valid_number": "من فضلك أدخل رقمًا صحيحًا",
   "entered_amount_must_not_be_less_than_the_fare_value": "يجب ان لا يكون المبلغ المدخل اقل من قيمة الأجرة",
   "please_enter_a_valid_amount": "من فضلك ادخل مبلغ صحيح",
-  "the_trip_was_completed_successfully": "تم انهاء الرحلة بنجاح"
-
-
+  "the_trip_was_completed_successfully": "تم انهاء الرحلة بنجاح",
+  "select_language" : "اختر اللغة" ,    "ar_key" : "العربية", "lang" : "اللغة",
+  "en_k" : "الانجليزية",   "profile": "الملف الشخصي",  "gender"    :" النوع",
+  "available_balance": "الرصيد المتاح", "address": "العنوان", "phone_nubmer": "رقم الهاتف",   "arabic": "العربية",
+  "english": "الانجليزية",   "iqd": "دينار",
+  "empty_message": "لا توجد اى رحلات",  "today" : "اليوم",
+  "tomorrow" : "غدا",
+  "last_7_days" : "اخر 7 ايام",
+  "last_30_days" : "اخر 30 يوم",
+  "this_month"    :"هذا الشهر", "price":"السعر",  "yesterday":"الامس",
+  "empty_transactions": "لا توجد اى معاملات"
 }

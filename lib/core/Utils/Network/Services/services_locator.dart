@@ -13,6 +13,9 @@ import 'package:taxi_go_driver/feature/Auth/presentation/controller/otp_cubit/ot
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/set_new_password/set_new_password_cubit.dart';
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/set_password_cubit/set_password_cubit.dart';
 import 'package:taxi_go_driver/feature/Auth/presentation/controller/sign_up_cubit.dart';
+import 'package:taxi_go_driver/feature/History/controller/history_view_model.dart';
+import 'package:taxi_go_driver/feature/History/data/repo/history_repo.dart';
+import 'package:taxi_go_driver/feature/History/data/repo/history_repo_impl.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_driver/feature/Map/Data/Repo/mapRepoimp.dart';
@@ -29,6 +32,7 @@ import 'package:taxi_go_driver/feature/Wallet/data/repo/wallet_repo_impl.dart';
 import 'package:taxi_go_driver/feature/notification/controller/cubit/get_all_notification_cubit.dart';
 import 'package:taxi_go_driver/feature/notification/data/repo/notification_repo.dart';
 import 'package:taxi_go_driver/feature/notification/data/repo/notification_repo_impl.dart';
+import 'package:taxi_go_driver/feature/profile/data/repo/profile_repo_impl.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/cash_amount_repo/cash_amount_repo.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/cash_amount_repo/cash_amount_repo_ipm.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/repos/paid_repo/paid_after_ride_repo.dart';
@@ -56,11 +60,17 @@ Future<void> setup() async {
   getIt.registerFactory<OtpCubit>(() => OtpCubit(getIt.get<AuthRepo>()));
   getIt.registerFactory<SetPasswordCubit>(
       () => SetPasswordCubit(getIt.get<AuthRepo>()));
+  getIt.registerLazySingleton<HistoryRepo>(
+      () => HistoryRepoImpl(apiService: getIt.get()));
+  getIt.registerFactory<HistoryViewModel>(
+      () => HistoryViewModel(historyRepo: getIt.get<HistoryRepo>()));
+
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<AuthRepo>()));
   getIt.registerFactory<SetNewPasswordCubit>(
       () => SetNewPasswordCubit(getIt.get<AuthRepo>()));
   getIt.registerSingleton<LogOutCubit>(LogOutCubit(getIt.get<AuthRepo>()));
-
+  getIt.registerSingleton<ProfileRepoImpl>(
+      ProfileRepoImpl(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<LocalCubit>(LocalCubit());
 
   getIt.registerLazySingleton<PaidAfterRideRepo>(

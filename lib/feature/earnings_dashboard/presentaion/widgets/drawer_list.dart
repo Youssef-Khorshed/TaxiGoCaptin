@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
@@ -12,8 +13,10 @@ import '../../../Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
 import 'drawer_item.dart';
 
 class DrawerList extends StatefulWidget {
-  const DrawerList({super.key});
-
+  const DrawerList(
+      {super.key, required this.selectedIndex, required this.onItemTap});
+  final int selectedIndex;
+  final Function(int index) onItemTap;
   @override
   State<DrawerList> createState() => _DrawerListState();
 }
@@ -39,7 +42,7 @@ class _DrawerListState extends State<DrawerList> {
       child: ListView(
         children: [
           _buildProfileHeader(context),
-          verticalSpace(30),
+          verticalSpace(30.h),
           _buildDrawerItems(
             context,
           ),
@@ -51,13 +54,13 @@ class _DrawerListState extends State<DrawerList> {
   Widget _buildProfileHeader(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.accountScreen);
+        Navigator.pushNamed(context, Routes.profileRoute);
       },
       child: Column(
         children: [
           _buildProfileImage(),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0.r),
             child: CustomText(
               text: name ?? AppLocalizations.of(context)!.user,
               style: AppStyles.text20Size500WightDarkGray,
@@ -71,7 +74,7 @@ class _DrawerListState extends State<DrawerList> {
   Widget _buildProfileImage() {
     return CircleAvatar(
       radius: 40,
-      backgroundImage: image != null&&image!=""
+      backgroundImage: image != null && image != ""
           ? NetworkImage(image!)
           : const AssetImage(
               AppImages.imagesProfileImage,
@@ -94,7 +97,7 @@ class _DrawerListState extends State<DrawerList> {
         ),
         _buildDrawerItem(
           icon: AppIcons.iconsHistory,
-          name: AppLocalizations.of(context)!.history,
+          name: AppLocalizations.of(context)!.trips_history,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[1]);
           },
@@ -104,13 +107,6 @@ class _DrawerListState extends State<DrawerList> {
           name: AppLocalizations.of(context)!.wallet,
           onTap: () {
             Navigator.pushNamed(context, drawerPageRoutes[2]);
-          },
-        ),
-        _buildDrawerItem(
-          icon: AppIcons.iconsSettingsIcon,
-          name: AppLocalizations.of(context)!.account,
-          onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[3]);
           },
         ),
         BlocConsumer<LogOutCubit, LogOutState>(
@@ -175,6 +171,4 @@ List drawerPageRoutes = [
   Routes.homeRoute,
   Routes.historyRoute,
   Routes.walletRoute,
-  Routes.missionRoute,
-  Routes.welcomeRoute,
 ];

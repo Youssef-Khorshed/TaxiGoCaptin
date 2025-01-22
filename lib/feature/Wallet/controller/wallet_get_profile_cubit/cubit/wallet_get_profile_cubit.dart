@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import '../../../data/model/get_profile_model.dart';
 import '../../../data/repo/wallet_repo.dart';
-
 part 'wallet_get_profile_state.dart';
 
 class WalletGetProfileCubit extends Cubit<WalletGetProfileState> {
@@ -18,7 +17,7 @@ class WalletGetProfileCubit extends Cubit<WalletGetProfileState> {
     final response = await walletRepo.getProfile(context: context);
     response.fold(
       (onError) {
-        emit(WalletGetProfileError());
+        emit(WalletGetProfileError(message: onError.message));
       },
       (onSuccess) {
         getProfileModel = onSuccess;

@@ -113,7 +113,7 @@
   "vehicle_number": "Vehicle Number",
   "vehicle_color": "Vehicle Color",
   "vehicle_model": "Vehicle Model",
-  "you_are_offline": "You are Offline",
+  "you_are_offline": "Please activate your site to receive orders",
   "looking_for_nearby_request": "Looking for nearby request",
   "no_nearby_ride_requests_found": "No nearby ride requests found",
   "choose_your_request": "Choose Your Request",
@@ -196,5 +196,14 @@
   "please_enter_a_valid_number": "Please enter a valid number",
   "entered_amount_must_not_be_less_than_the_fare_value": "Entered amount must not be less than the fare value",
   "please_enter_a_valid_amount": "Please enter a valid amount",
-  "the_trip_was_completed_successfully": "The trip was completed successfully"
+  "the_trip_was_completed_successfully": "The trip was completed successfully",      "select_language" : "Select Language",    "ar_key" : "Arabic",    "en_k" : "English",    "profile": "Profile",
+
+  "lang" : "Language",    "gender"    :"Gender",   "balance": "Balance",   "address": "Address",   "phone_nubmer": "Phone Number",
+
+  "arabic": "Arabic",   "english": "English",   "iqd": "IQD",
+  "empty_message": "There are no trips",   "price":"price", "today" : "Today",
+  "tomorrow" : "Tomorrow",
+  "last_7_days" : "Last 7 Days",
+  "last_30_days" : "Last 30 Days",
+  "this_month"    :"This Month", "yesterday":"Yesterday",    "empty_transactions": "There are no transactions"
 }

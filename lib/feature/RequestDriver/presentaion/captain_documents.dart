@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/Custom_button.dart';
 import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
@@ -65,7 +64,7 @@ class _CaptainDocumentsState extends State<CaptainDocuments> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: documentCustomAppBar(context),
+      appBar: documentCustomAppBar(context, documentsCounts),
       body: BlocConsumer<CaptainDocumentsCubit, CaptainDocumentsState>(
         listener: (context, state) {
           if (state is CaptainDocumentsSuccess && state.success) {
@@ -80,19 +79,6 @@ class _CaptainDocumentsState extends State<CaptainDocuments> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CircleAvatar(
-                      radius: 23.r,
-                      backgroundColor: AppColors.kDarkBlue,
-                      child: Text(
-                        "${documentsCounts}/10",
-                        style: TextStyle(color: Colors.white, fontSize: 14.sp),
-                      ),
-                    ),
-                  ],
-                ),
                 verticalSpace(10.h),
                 Expanded(
                   child: SingleChildScrollView(
