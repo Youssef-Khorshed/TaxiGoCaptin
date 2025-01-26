@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Firebase/firebase_options.dart';
 import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_driver/feature/APP/captinApp.dart';
-
 import 'Network/local/sharedprefrences.dart';
 import 'blocobserever.dart';
 import 'core/Utils/Network/Services/services_locator.dart';
