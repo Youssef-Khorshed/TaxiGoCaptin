@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class FirebaseNotification {
     await fcm.requestPermission();
     String? token = await fcm.getToken();
     if (kDebugMode) {
-      print(token);
+      log(token ?? 'No token found');
     }
     if (token != null) {
       await sendToken(
@@ -99,8 +100,31 @@ class FirebaseNotification {
     }
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       if (kDebugMode) {
-        print('test notification');
+        log('test notification');
       }
+      // try {
+      //   UserNotification userData = UserNotification.fromJson(message.data);
+      //   await CacheHelper().init();
+      //   var title = userData.title;
+      //   var body = userData.body;
+
+      //   AwesomeNotifications().createNotification(
+      //     content: NotificationContent(
+      //       id: UniqueKey().hashCode,
+      //       channelKey: "basic_channel",
+      //       title: title,
+      //       body: body,
+      //       payload: {},
+      //       roundedLargeIcon: true,
+      //       notificationLayout: NotificationLayout.Messaging,
+      //     ),
+      //   );
+      // } catch (e) {
+      //   if (kDebugMode) {
+      //     print(e.toString());
+      //   }
+      // }
+
       try {
         UserNotification userData = UserNotification.fromJson(message.data);
         await CacheHelper().init();
@@ -135,6 +159,7 @@ class FirebaseNotification {
     if (kDebugMode) {
       print('test background notification');
     }
+
     try {
       UserNotification userData = UserNotification.fromJson(message.data);
       await CacheHelper().init();

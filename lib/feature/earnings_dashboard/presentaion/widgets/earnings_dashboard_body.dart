@@ -29,6 +29,7 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
   @override
   void initState() {
     super.initState();
+
     FirebaseNotification.init(context);
     FirebaseNotification.initNotifications();
     _startStream();
