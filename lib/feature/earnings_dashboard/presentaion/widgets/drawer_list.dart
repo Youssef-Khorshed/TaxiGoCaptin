@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../../../core/Utils/Network/Services/secure_profile.dart';
 import '../../../../core/Utils/routes/routes.dart';
 import '../../../APP/custom_widgets/custom_text.dart';
@@ -39,14 +40,17 @@ class _DrawerListState extends State<DrawerList> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ListView(
-        children: [
-          _buildProfileHeader(context),
-          verticalSpace(30.h),
-          _buildDrawerItems(
-            context,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20.0),
+        child: ListView(
+          children: [
+            _buildProfileHeader(context),
+            verticalSpace(30.h),
+            _buildDrawerItems(
+              context,
+            ),
+          ],
+        ),
       ),
     );
   }

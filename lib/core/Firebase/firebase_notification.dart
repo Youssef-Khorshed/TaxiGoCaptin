@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'dart:developer';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:taxi_go_driver/Core/Utils/Network/Services/internetconnection.dart';
-import 'package:taxi_go_driver/Network/local/sharedprefrences.dart';
-import 'package:taxi_go_driver/main.dart';
 import 'package:taxi_go_driver/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/Core/Utils/Network/Services/apiservices.dart';
+import 'package:taxi_go_driver/Core/Utils/Network/Services/internetconnection.dart';
 import 'package:taxi_go_driver/Core/Utils/Network/Services/services_locator.dart';
+import 'package:taxi_go_driver/Network/local/sharedprefrences.dart';
+import 'package:taxi_go_driver/main.dart';
 
 class FirebaseNotification {
   static ApiService apiServices =
@@ -102,35 +103,10 @@ class FirebaseNotification {
       if (kDebugMode) {
         log('test notification');
       }
-      // try {
-      //   UserNotification userData = UserNotification.fromJson(message.data);
-      //   await CacheHelper().init();
-      //   var title = userData.title;
-      //   var body = userData.body;
-
-      //   AwesomeNotifications().createNotification(
-      //     content: NotificationContent(
-      //       id: UniqueKey().hashCode,
-      //       channelKey: "basic_channel",
-      //       title: title,
-      //       body: body,
-      //       payload: {},
-      //       roundedLargeIcon: true,
-      //       notificationLayout: NotificationLayout.Messaging,
-      //     ),
-      //   );
-      // } catch (e) {
-      //   if (kDebugMode) {
-      //     print(e.toString());
-      //   }
-      // }
-
       try {
         UserNotification userData = UserNotification.fromJson(message.data);
-        await CacheHelper().init();
         var title = userData.title;
         var body = userData.body;
-
         AwesomeNotifications().createNotification(
           content: NotificationContent(
             id: UniqueKey().hashCode,
@@ -211,8 +187,8 @@ class UserNotification {
   UserNotification({required this.title, required this.body});
   factory UserNotification.fromJson(Map<String, dynamic> json) {
     return UserNotification(
-      title: json['title'],
-      body: json['body'],
+      title: json['title'] ?? 'No title',
+      body: json['body'] ?? 'No body',
     );
   }
 }

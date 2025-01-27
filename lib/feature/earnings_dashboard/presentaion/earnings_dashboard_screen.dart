@@ -46,76 +46,79 @@ class _EarningsDashboardScreenState extends State<EarningsDashboardScreen> {
                   LatLng(cubit.orginPosition!.lat!, cubit.orginPosition!.lng!));
         }
       },
-      child: Scaffold(
-        backgroundColor: AppColors.kPrimaryColor,
-        appBar: AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.identity()
-                    ..scale(-1.0, 1.0), // Mirror horizontally
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: SvgPicture.asset(
-                      AppIcons.iconsListIcon,
-                      height: 50.h,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.kPrimaryColor,
+          appBar: AppBar(
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  icon: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..scale(-1.0, 1.0), // Mirror horizontally
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: SvgPicture.asset(
+                        AppIcons.iconsListIcon,
+                        height: 50.h,
+                      ),
                     ),
                   ),
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            },
-          ),
-          scrolledUnderElevation: 0,
-          backgroundColor: AppColors.kPrimaryColor,
-          elevation: 0,
-          centerTitle: true,
-          title: Text(
-            AppLocalizations.of(context)!.home,
-            style: AppStyles.text20Size500WightDarkGray,
-          ),
-          actions: [
-            FlutterSwitch(
-              width: 60.w,
-              height: 30.h,
-              value: status,
-              borderRadius: 30.0,
-              activeIcon: CircleAvatar(
-                backgroundColor: AppColors.kblue,
-              ),
-              activeColor: AppColors.kblue,
-              inactiveColor: AppColors.redColor,
-              inactiveIcon: const CircleAvatar(
-                backgroundColor: Colors.red,
-              ),
-              padding: 8.w,
-              onToggle: (val) async {
-                setState(() {
-                  status = val;
-                });
-
-                if (val) {
-                  final cubit = context.read<MapsCubit>();
-
-                  await cubit.getCaptinPosition(title: 'captin');
-                }
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                );
               },
             ),
-            horizontalSpace(10.w),
-          ],
-        ),
-        drawer: Drawer(
-          child: DrawerList(
-            onItemTap: (index) => onItemTap(index),
-            selectedIndex: selctedIndex,
+            scrolledUnderElevation: 0,
+            backgroundColor: AppColors.kPrimaryColor,
+            elevation: 0,
+            centerTitle: true,
+            title: Text(
+              AppLocalizations.of(context)!.home,
+              style: AppStyles.text20Size500WightDarkGray,
+            ),
+            actions: [
+              FlutterSwitch(
+                width: 60.w,
+                height: 30.h,
+                value: status,
+                borderRadius: 30.0,
+                activeIcon: CircleAvatar(
+                  backgroundColor: AppColors.kblue,
+                ),
+                activeColor: AppColors.kblue,
+                inactiveColor: AppColors.redColor,
+                inactiveIcon: const CircleAvatar(
+                  backgroundColor: Colors.red,
+                ),
+                padding: 8.w,
+                onToggle: (val) async {
+                  setState(() {
+                    status = val;
+                  });
+
+                  if (val) {
+                    final cubit = context.read<MapsCubit>();
+
+                    await cubit.getCaptinPosition(title: 'captin');
+                  }
+                },
+              ),
+              horizontalSpace(10.w),
+            ],
           ),
+          drawer: Drawer(
+            child: DrawerList(
+              onItemTap: (index) => onItemTap(index),
+              selectedIndex: selctedIndex,
+            ),
+          ),
+          body: EarningsDashboardBody(status: status),
         ),
-        body: EarningsDashboardBody(status: status),
       ),
     );
   }

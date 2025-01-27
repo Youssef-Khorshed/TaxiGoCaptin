@@ -1,11 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/Custom_button.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
+
 import '../../../../../core/Utils/colors/colors.dart';
 import '../../../../../core/Utils/spacing/vertspace.dart';
 import '../../../../../core/Utils/text_styles/styles.dart';
@@ -25,7 +26,7 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: ListView(
+          body: Column(
         children: [
           Form(
             autovalidateMode: LoginCubit.get(context).loginAutoValidateMode,
@@ -112,7 +113,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
             ),
           ),
-          // const Spacer(),
+          const Spacer(),
           BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginInSuccess) {
