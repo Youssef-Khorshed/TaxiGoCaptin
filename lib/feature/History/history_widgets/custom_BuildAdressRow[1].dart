@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
@@ -67,25 +66,30 @@ class BuildAddressRow extends StatelessWidget {
         final toAddress = snapshot.data!['toAddress']!;
         final toCity = snapshot.data!['toCity']!;
 
-        return ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return Padding(
+          padding: EdgeInsets.all(15.0.sp),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TripDetailsMap(
                 address: fromAddress,
                 location: fromCity,
                 icon: AppIcons.iconsMapRed,
               ),
+              historyData.distance != null
+                  ? Text(
+                      historyData.distance == null
+                          ? ""
+                          : '${historyData.distance.toStringAsFixed(1)} ${AppLocalizations.of(context)!.km}',
+                      style: TextStyle(fontSize: 15.sp),
+                    )
+                  : const SizedBox(),
               TripDetailsMap(
                 address: toAddress,
                 location: toCity,
                 icon: AppIcons.iconsMapBlue,
               ),
             ],
-          ),
-          trailing: Text(
-            '${historyData.distance} ${AppLocalizations.of(context)!.km}',
-            style: TextStyle(fontSize: 15.sp),
           ),
         );
       },

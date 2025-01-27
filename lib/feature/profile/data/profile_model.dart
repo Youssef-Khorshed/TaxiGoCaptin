@@ -39,7 +39,7 @@ class UserInfo {
   String? rate;
   String? balance;
   String? emailVerifiedAt;
-  int? daily_earnings;
+  num? daily_earnings;
   int? daily_rides;
 
   UserInfo({

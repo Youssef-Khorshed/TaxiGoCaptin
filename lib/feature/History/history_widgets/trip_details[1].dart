@@ -22,24 +22,33 @@ class TripDetailsMap extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SvgPicture.asset(
-            icon,
-            width: 20.w,
-            height: 20.h,
+          Padding(
+            padding: EdgeInsets.only(top: 3.0.h),
+            child: SvgPicture.asset(
+              icon,
+              width: 20.w,
+              height: 20.h,
+            ),
           ),
-          SizedBox(width: 10.w),
+          SizedBox(width: 5.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  location,
-                  style: AppStyles.style16BlackW600,
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    location,
+                    style: AppStyles.style16BlackW600,
+                  ),
                 ),
                 SizedBox(height: 5.h),
-                Text(
-                  address,
-                  style: AppStyles.style12DarkgrayW400,
+                SizedBox(
+                  width: double.infinity,
+                  child: Text(
+                    address,
+                    style: AppStyles.style12DarkgrayW400,
+                  ),
                 ),
               ],
             ),

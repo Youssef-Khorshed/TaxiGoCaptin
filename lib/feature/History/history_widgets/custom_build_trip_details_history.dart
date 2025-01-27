@@ -34,19 +34,26 @@ class TripDetails extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(bottom: 5.h, right: 10.w, left: 10.w),
-          color: AppColors.whiteColor,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: AppColors.whiteColor,
+          ),
           child: BuildAddressRow(
             historyData: historyData,
           ),
         ),
-        Container(
-          width: double.infinity,
-          height: 1,
-          color: AppColors.darkgrayColor,
-        ),
-        CustomDriverdetailsHistory(
-          price: historyData.paid ?? "200",
-        ),
+        historyData.paid == null
+            ? const SizedBox()
+            : Container(
+                width: double.infinity,
+                height: 1,
+                color: AppColors.darkgrayColor,
+              ),
+        historyData.paid == null
+            ? const SizedBox()
+            : CustomDriverdetailsHistory(
+                price: historyData.paid ?? "",
+              ),
       ],
     );
   }

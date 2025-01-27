@@ -11,7 +11,6 @@ import 'package:taxi_go_driver/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/Core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_driver/Core/Utils/Network/Services/internetconnection.dart';
 import 'package:taxi_go_driver/Core/Utils/Network/Services/services_locator.dart';
-import 'package:taxi_go_driver/Network/local/sharedprefrences.dart';
 import 'package:taxi_go_driver/main.dart';
 
 class FirebaseNotification {
@@ -135,13 +134,10 @@ class FirebaseNotification {
     if (kDebugMode) {
       print('test background notification');
     }
-
     try {
       UserNotification userData = UserNotification.fromJson(message.data);
-      await CacheHelper().init();
       var title = userData.title;
       var body = userData.body;
-
       AwesomeNotifications().createNotification(
         content: NotificationContent(
           id: UniqueKey().hashCode,
@@ -181,14 +177,15 @@ class FirebaseNotification {
 }
 
 class UserNotification {
-  final String title;
-  final String body;
+  final String? title;
+  final String? body;
 
   UserNotification({required this.title, required this.body});
+
   factory UserNotification.fromJson(Map<String, dynamic> json) {
     return UserNotification(
-      title: json['title'] ?? 'Enter our app now',
-      body: json['body'] ?? 'you have a new thing to do',
+      title: json['title'] != null ? json['title'] : null,
+      body: json['body'] != null ? json['body'] : null,
     );
   }
 }
