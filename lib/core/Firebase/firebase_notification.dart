@@ -187,8 +187,8 @@ class UserNotification {
   UserNotification({required this.title, required this.body});
   factory UserNotification.fromJson(Map<String, dynamic> json) {
     return UserNotification(
-      title: json['title'] ?? 'No title',
-      body: json['body'] ?? 'No body',
+      title: json['title'] ?? 'Enter our app now',
+      body: json['body'] ?? 'you have a new thing to do',
     );
   }
 }
