@@ -16,6 +16,7 @@
     "transaction_adjustment": "Adjustment",
     "transaction_withdraw": "Withdraw",
     "notifications": "Notifications",
+    "empty_notification": "There are no notifications",
     "notification_details": "Notification Details",
     "system_notification": "System Notification",
     "enter_amount": "Enter Amount",

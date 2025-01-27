@@ -8,7 +8,7 @@ final class GetAllNotificationInitial extends GetAllNotificationState {}
 final class GetAllNotificationLoading extends GetAllNotificationInitial {}
 
 final class GetAllNotificationSuccess extends GetAllNotificationInitial {
-  final GetAllNotificationModel getAllNotificationModel;
+  final NotificationModelData getAllNotificationModel;
 
   GetAllNotificationSuccess({required this.getAllNotificationModel});
 }

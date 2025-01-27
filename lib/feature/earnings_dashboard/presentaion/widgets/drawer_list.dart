@@ -109,6 +109,13 @@ class _DrawerListState extends State<DrawerList> {
             Navigator.pushNamed(context, drawerPageRoutes[2]);
           },
         ),
+        _buildDrawerItem(
+          icon: AppIcons.notificationIcon,
+          name: AppLocalizations.of(context)!.notifications,
+          onTap: () {
+            Navigator.pushNamed(context, drawerPageRoutes[3]);
+          },
+        ),
         BlocConsumer<LogOutCubit, LogOutState>(
           listener: (context, state) {
             if (state is LogOutSuccess) {
@@ -171,4 +178,5 @@ List drawerPageRoutes = [
   Routes.homeRoute,
   Routes.historyRoute,
   Routes.walletRoute,
+  Routes.notificationRoute
 ];

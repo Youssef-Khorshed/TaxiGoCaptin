@@ -240,6 +240,7 @@
   "english": "الانجليزية",   "iqd": "دينار",
   "empty_message": "لا توجد اى رحلات",  "today" : "اليوم",
   "tomorrow" : "غدا",
+  "empty_notification": "لا توجد اى اشعارات",
   "last_7_days" : "اخر 7 ايام",
   "last_30_days" : "اخر 30 يوم",
   "this_month"    :"هذا الشهر", "price":"السعر",  "yesterday":"الامس",

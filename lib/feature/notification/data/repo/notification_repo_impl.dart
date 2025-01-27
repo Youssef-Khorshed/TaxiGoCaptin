@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_driver/core/Utils/Network/Services/apiservices.dart';
-import 'package:taxi_go_driver/feature/notification/data/model/get_all_notification_model.dart';
+import 'package:taxi_go_driver/feature/notification/data/model/notification_model/notification_model.dart';
 import 'notification_repo.dart';
 
 class NotificationRepoImpl extends NotificationRepo {
@@ -13,13 +13,13 @@ class NotificationRepoImpl extends NotificationRepo {
   NotificationRepoImpl({required this.apiService});
 
   @override
-  Future<Either<Failure, GetAllNotificationModel>> getAllNotification(
+  Future<Either<Failure, NotificationModelData>> getAllNotification(
       {required BuildContext context}) async {
     final response = await apiService.getRequest(
       context: context,
       Constants.getAllNotificationURL(),
     );
     return response.fold((l) => Left(ServerFailure(message: l)),
-        (response) => Right(GetAllNotificationModel.fromJson(response.data)));
+        (response) => Right(NotificationModelData.fromJson(response.data)));
   }
 }

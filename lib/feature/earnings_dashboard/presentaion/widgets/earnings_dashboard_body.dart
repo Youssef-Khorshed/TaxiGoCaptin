@@ -114,33 +114,43 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
                             verticalSpace(
                                 MediaQuery.of(context).size.height / 8),
                             Text(
-                              nearbyRideRequests!.success == false
-                                  ? AppLocalizations.of(context)!.not_autherized
-                                  : AppLocalizations.of(context)!
-                                      .no_nearby_ride_requests_found,
+                              AppLocalizations.of(context)!.not_autherized,
                               style: AppStyles.style16BlackW600,
                             ),
                           ],
                         )
-                      : ListView.separated(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          itemBuilder: (context, index) {
-                            return RideRequestWidget(
-                              nearbyRideRequestsData:
-                                  nearbyRideRequests!.data![index],
-                            );
-                          },
-                          separatorBuilder: (context, index) => SizedBox(
-                            height: 10.h,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 50.w),
-                              child: Divider(),
+                      : nearbyRideRequests!.data!.isEmpty
+                          ? Column(
+                              children: [
+                                verticalSpace(
+                                    MediaQuery.of(context).size.height / 8),
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .no_nearby_ride_requests_found,
+                                  style: AppStyles.style16BlackW600,
+                                ),
+                              ],
+                            )
+                          : ListView.separated(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (context, index) {
+                                return RideRequestWidget(
+                                  nearbyRideRequestsData:
+                                      nearbyRideRequests!.data![index],
+                                );
+                              },
+                              separatorBuilder: (context, index) => SizedBox(
+                                height: 10.h,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 50.w),
+                                  child: Divider(),
+                                ),
+                              ),
+                              itemCount: nearbyRideRequests!.data!.length,
                             ),
-                          ),
-                          itemCount: nearbyRideRequests!.data!.length,
-                        ),
         ],
       ),
     );

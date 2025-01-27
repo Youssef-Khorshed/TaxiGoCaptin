@@ -80,7 +80,7 @@ class Constants {
   static const String walletDeposit = 'deposit';
   static const String walleTransactions = '/transactions';
   static const String walleGetProfileData = '/profile';
-  static const String getAllNotification = 'notifications';
+  static const String getAllNotification = '/notifications';
   static const String getAmount = '$baseUrl/captain/rides/cash-amount';
 
   static String depositURL({
