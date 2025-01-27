@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Firebase/firebase_notification.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
@@ -150,6 +151,7 @@ class _DrawerListState extends State<DrawerList> {
                             Navigator.of(context).pop();
                             LogOutCubit.get(parentContext)
                                 .logOut(parentContext);
+                            FirebaseNotification.removeToken(context);
                           },
                           child: Text(AppLocalizations.of(context)!.yes),
                         ),
