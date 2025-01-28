@@ -62,9 +62,28 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
         setState(() {
           selectedValue = value!;
           HistoryViewModel.get(context)
-              .getHistoryData(context, tripHistory: value);
+              .getHistoryData(context, tripHistory: convert(value));
         });
       },
     );
+  }
+
+  String convert(String value) {
+    switch (value) {
+      case 'Today':
+      case 'اليوم':
+        return 'day';
+      case 'Yesterday':
+      case 'الامس':
+        return 'yesterday';
+      case 'Last 7 days':
+      case 'اخر ٧ ايام':
+        return 'week';
+      case 'This month':
+      case 'هذا الشهر':
+        return 'month';
+      default:
+        return value; // Default case if no match
+    }
   }
 }

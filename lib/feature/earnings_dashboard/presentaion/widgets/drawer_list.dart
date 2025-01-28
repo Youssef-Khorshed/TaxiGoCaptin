@@ -7,7 +7,6 @@ import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-
 import '../../../../core/Utils/Network/Services/secure_profile.dart';
 import '../../../../core/Utils/routes/routes.dart';
 import '../../../APP/custom_widgets/custom_text.dart';
