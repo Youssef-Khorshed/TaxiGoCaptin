@@ -54,13 +54,14 @@ class _EarningsDashboardBodyState extends State<EarningsDashboardBody> {
 
   @override
   void deactivate() {
+    _subscription?.cancel();
     super.deactivate();
   }
 
   @override
   void dispose() {
-    super.dispose();
     _subscription?.cancel();
+    super.dispose();
   }
 
   @override

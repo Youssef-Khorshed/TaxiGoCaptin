@@ -59,7 +59,7 @@ class _DrawerListState extends State<DrawerList> {
   Widget _buildProfileHeader(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.profileRoute);
+        Navigator.pushReplacementNamed(context, Routes.profileRoute);
       },
       child: Column(
         children: [
@@ -97,28 +97,28 @@ class _DrawerListState extends State<DrawerList> {
           icon: AppIcons.iconsHome,
           name: AppLocalizations.of(context)!.home,
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[0]);
+            Navigator.pushReplacementNamed(context, drawerPageRoutes[0]);
           },
         ),
         _buildDrawerItem(
           icon: AppIcons.iconsHistory,
           name: AppLocalizations.of(context)!.trips_history,
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[1]);
+            Navigator.pushReplacementNamed(context, drawerPageRoutes[1]);
           },
         ),
         _buildDrawerItem(
           icon: AppIcons.iconsWalletIcon,
           name: AppLocalizations.of(context)!.wallet,
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[2]);
+            Navigator.pushReplacementNamed(context, drawerPageRoutes[2]);
           },
         ),
         _buildDrawerItem(
           icon: AppIcons.notificationIcon,
           name: AppLocalizations.of(context)!.notifications,
           onTap: () {
-            Navigator.pushNamed(context, drawerPageRoutes[3]);
+            Navigator.pushReplacementNamed(context, drawerPageRoutes[3]);
           },
         ),
         BlocConsumer<LogOutCubit, LogOutState>(
