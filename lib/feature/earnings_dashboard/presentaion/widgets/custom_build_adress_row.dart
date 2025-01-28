@@ -34,11 +34,15 @@ class BuildAddressRow extends StatelessWidget {
         children: [
           TripDetailsMap(
               address: fromAddress,
-              location: parseAddress(fromAddress)['street_number'] ?? '',
+              location:
+                  "${parseAddress(fromAddress)['street_number']} ${parseAddress(fromAddress)['street_name']} ${parseAddress(fromAddress)['state']}" ??
+                      '',
               icon: AppIcons.iconsMapRed),
           TripDetailsMap(
             address: toAddress,
-            location: parseAddress(toAddress)['street_number'] ?? '',
+            location:
+                "${parseAddress(toAddress)['street_number']} ${parseAddress(fromAddress)['street_name']} ${parseAddress(fromAddress)['state']}" ??
+                    '',
             icon: AppIcons.iconsMapBlue,
           ),
           distance == null

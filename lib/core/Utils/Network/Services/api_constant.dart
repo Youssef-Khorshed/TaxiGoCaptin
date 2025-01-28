@@ -5,7 +5,8 @@ class Constants {
   static const String profileEndPoint = "$baseUrl/profile";
 
   ///Test
-  static const String historyEndPoint = "$baseUrl/captain/rides/history";
+  static const String historyEndPoint =
+      "$baseUrl/captain/rides/history?filter=";
   static const String saveTripEndPoint = "$baseUrl/profile";
   static const String addFavTripEndPoint = "$baseUrl/profile";
   static const String captinToken =

@@ -7,7 +7,7 @@ import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/map_screen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../widgets/costume_bottun.dart';
 
@@ -67,7 +67,7 @@ class _DriverActionState extends State<DriverAction> {
             Expanded(
               child: CostumeButton(
                 height: 50.h,
-                text: "Accept",
+                text: AppLocalizations.of(context)!.to_accept,
                 textColor: AppColors.kWhite,
                 color: AppColors.kblue,
                 onPressed: () async {

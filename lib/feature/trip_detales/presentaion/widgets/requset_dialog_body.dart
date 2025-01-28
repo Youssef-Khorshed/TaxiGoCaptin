@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Data/model/accept_ride_request/accept_ride_request.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/custom_build_adress_row.dart';
@@ -53,6 +55,7 @@ class _RequestDialogBodyState extends State<RequestDialogBody> {
             child: BookingDetailsAccepted(),
             replacement: SizedBox(),
           ),
+          verticalSpace(20.h),
           Visibility(
             visible: cubit.isAccepted,
             replacement: RequestButtons(),

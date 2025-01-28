@@ -14,10 +14,11 @@ class HistoryRepoImpl extends HistoryRepo {
   @override
   Future<Either<Failure, HistoryDataModel>> getData(BuildContext context,
       {String? tripHistory}) async {
-    final response = await apiService.getRequest(
-      Constants.historyEndPoint,
+    var response = await apiService.getRequest(
+      "${Constants.historyEndPoint}$tripHistory",
       context: context,
     );
+    ;
     return response.fold((ifLeft) => Left(ServerFailure(message: ifLeft)),
         (response) {
       HistoryDataModel historyDataModel =

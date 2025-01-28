@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../core/Utils/colors/colors.dart';
 
 class SnappingSheetTitleRequest extends StatelessWidget {
@@ -16,17 +16,19 @@ class SnappingSheetTitleRequest extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: EdgeInsets.only(
-              left: width * 0.3, right: width * 0.3, bottom: 25),
-          child: const Divider(
-            height: 25,
-            thickness: 7,
-            color: AppColors.kgrey,
-          ),
-        ),
-        const Text(
-          'Trip Details',
+        // Padding(
+        //   padding: EdgeInsets.only(
+        //       left: width * 0.3, right: width * 0.3, bottom: 25),
+        //   child: const Divider(
+        //     height: 25,
+        //     thickness: 7,
+        //     color: AppColors.kgrey,
+        //   ),
+
+        // ),
+
+        Text(
+          AppLocalizations.of(context)!.trip_details,
           style: TextStyle(
               color: Color.fromARGB(255, 29, 26, 216),
               fontSize: 25,

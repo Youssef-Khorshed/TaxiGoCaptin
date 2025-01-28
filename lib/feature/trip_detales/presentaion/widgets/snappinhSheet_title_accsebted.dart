@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/Utils/colors/colors.dart';
@@ -34,7 +35,7 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: width / 3),
           child: const Divider(
             height: 25,
-            thickness: 7,
+            thickness: 4,
             color: AppColors.kgrey,
           ),
         ),
@@ -47,8 +48,12 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CircleAvatar(
-                backgroundImage: AssetImage(AppImages.imagesDriverImage),
+              CircleAvatar(
+                backgroundColor: AppColors.primaryColor.withAlpha(200),
+                child: Text(
+                  cutomerName[0].toUpperCase(),
+                  style: AppStyles.style24WhiteW500,
+                ),
                 radius: 35,
               ),
               const SizedBox(

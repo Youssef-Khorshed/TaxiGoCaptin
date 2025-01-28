@@ -197,6 +197,7 @@
   "vehicle_model": "Vehicle Model",
   "vehicle_number": "Vehicle Number",
   "verify": "Verify",
+  "trip_details":"Trip Details",
   "verification_email_or_phone": "Verification email or phone number",
   "viaEmail": "Via Email",
   "viaSMS": "Via SMS",

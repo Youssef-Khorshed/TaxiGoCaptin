@@ -15,6 +15,11 @@ class HistorySuccessStates extends HistoryStates {
   HistorySuccessStates({required this.historyDataModel});
 }
 
+class ChangeItemDropDown extends HistoryStates {
+  final String item;
+  ChangeItemDropDown({required this.item});
+}
+
 class AddToSaveToFavTripLoadingStates extends HistoryStates {}
 
 class AddToSaveToFavFailureStates extends HistoryStates {

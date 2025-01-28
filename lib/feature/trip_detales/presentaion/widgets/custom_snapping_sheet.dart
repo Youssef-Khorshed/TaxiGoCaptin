@@ -54,7 +54,7 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
               grabbingContentOffset: GrabbingContentOffset.bottom,
             ),
           ], // Your main screen content goes here
-          grabbingHeight: cubit.isAccepted ? 120 : 90,
+          grabbingHeight: cubit.isAccepted ? 120 : 105,
           // Start fully closed
           grabbing: Container(
             color: AppColors.kBackgroundColor,

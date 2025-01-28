@@ -7,6 +7,7 @@ import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
 import '../../../../core/Utils/colors/colors.dart';
 import '../../../../widgets/costume_bottun.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class RequestButtons extends StatelessWidget {
@@ -27,7 +28,7 @@ class RequestButtons extends StatelessWidget {
                   Navigator.pushReplacementNamed(context, Routes.homeRoute);
                 },
                 height: 50.h,
-                text: "Decline",
+                text: AppLocalizations.of(context)!.cancel,
                 color: Colors.red.withOpacity(.05),
                 textColor: Colors.red,
                 borderColor: Colors.red,
@@ -37,7 +38,7 @@ class RequestButtons extends StatelessWidget {
             Expanded(
               child: CostumeButton(
                 height: 50.h,
-                text: "Accept Ride",
+                text: AppLocalizations.of(context)!.to_accept,
                 textColor: AppColors.kWhite,
                 color: AppColors.kblue,
                 onPressed: () async {

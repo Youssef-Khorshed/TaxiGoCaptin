@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
+import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/History/controller/history_view_model.dart';
 
 class CustomHistoryDropDown extends StatefulWidget {
@@ -33,6 +35,12 @@ String? selectedValue;
 class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
   @override
   Widget build(BuildContext context) {
+    List<String> items = [
+      AppLocalizations.of(context)!.today,
+      AppLocalizations.of(context)!.yesterday,
+      AppLocalizations.of(context)!.last_7_days,
+      AppLocalizations.of(context)!.this_month,
+    ];
     return DropdownButton2(
       underline: const SizedBox(),
       isExpanded: true,
@@ -50,8 +58,8 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
         useSafeArea: true,
       ),
       hint: AutoSizeText(
-        selectedValue ?? AppLocalizations.of(context)!.this_month,
-        style: widget.nameTextStyle,
+        context.read<HistoryViewModel>().selectedValue ?? items.first,
+        style: AppStyles.style16WhiteW500,
         textAlign: TextAlign.center,
       ),
       items: widget.items
@@ -60,7 +68,7 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
           .toList(),
       onChanged: (value) {
         setState(() {
-          selectedValue = value!;
+          HistoryViewModel.get(context).changeDropDownItem(value!);
           HistoryViewModel.get(context)
               .getHistoryData(context, tripHistory: convert(value));
         });
