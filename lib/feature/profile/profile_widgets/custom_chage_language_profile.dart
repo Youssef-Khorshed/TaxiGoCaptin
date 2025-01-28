@@ -25,7 +25,11 @@ class CustomChagelanguageProfileState
         value: isArabic,
         onChanged: (value) {
           setState(() {
-            isArabic = value;
+            if (isArabic == true) {
+              value = false;
+            } else {
+              value = true;
+            }
             LocalCubit.get(context).changeLocale();
           });
         },

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Firebase/firebase_notification.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/assets/images.dart';
+import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 
@@ -137,14 +138,26 @@ class _DrawerListState extends State<DrawerList> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text(AppLocalizations.of(context)!.exit),
-                      content: Text(AppLocalizations.of(context)!.confirmExit),
+                      title: Text(
+                        AppLocalizations.of(context)!.exit,
+                        style: AppStyles.style18BlueBold.copyWith(
+                          color: AppColors.blackColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      content: Text(AppLocalizations.of(context)!.confirmExit,
+                          textAlign: TextAlign.center,
+                          style: AppStyles.style10DarkgrayW700.copyWith(
+                              fontSize: 14.sp, fontWeight: FontWeight.w500)),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text(AppLocalizations.of(context)!.no),
+                          child: Text(AppLocalizations.of(context)!.no,
+                              textAlign: TextAlign.center,
+                              style: AppStyles.style12BlackW700
+                                  .copyWith(color: AppColors.redColor)),
                         ),
                         TextButton(
                           onPressed: () {
@@ -153,7 +166,10 @@ class _DrawerListState extends State<DrawerList> {
                                 .logOut(parentContext);
                             FirebaseNotification.removeToken(context);
                           },
-                          child: Text(AppLocalizations.of(context)!.yes),
+                          child: Text(AppLocalizations.of(context)!.yes,
+                              textAlign: TextAlign.center,
+                              style: AppStyles.style12BlackW700
+                                  .copyWith(color: AppColors.blueColor)),
                         ),
                       ],
                     );

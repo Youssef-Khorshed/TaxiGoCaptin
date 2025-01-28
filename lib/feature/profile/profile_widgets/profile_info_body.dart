@@ -1,10 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/enums/localization.dart';
-import 'package:taxi_go_driver/core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/profile/data/profile_model.dart';
@@ -78,9 +77,7 @@ class ProfileInfoBody extends StatelessWidget {
           verticalSpace(15.h),
           ProfileInfoItem(
             lable: AppLocalizations.of(context)!.lang,
-            textInfo: LocalCubit.get(context).localization == const Locale("en")
-                ? AppLocalizations.of(context)!.english
-                : AppLocalizations.of(context)!.arabic,
+            textInfo: AppLocalizations.of(context)!.arabic,
             toggle: const CustomChagelanguageProfile(),
           ),
         ]),
