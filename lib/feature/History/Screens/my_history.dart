@@ -4,11 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:taxi_go_driver/Core/Utils/Network/Services/services_locator.dart';
-import 'package:taxi_go_driver/core/Utils/assets/lottie.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
-import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_dummy_widget.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/drawer_app_bar.dart';
 import 'package:taxi_go_driver/feature/History/controller/history_states.dart';
@@ -129,10 +127,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ),
               );
             } else if (state is HistoryFailureStates) {
-              return CustomErroranimation(
-                errormessage: state.errMessage,
-                lottie: AppLottie.errorFailure,
-              );
+              return CustomEmptyDataView(
+                  message: AppLocalizations.of(context)!.error_occurred);
             }
 
             return state is HistoryLoadingStates

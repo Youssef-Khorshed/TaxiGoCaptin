@@ -13,7 +13,6 @@ import 'package:taxi_go_driver/feature/card_screen/presentaion/card_screen.dart'
 import 'package:taxi_go_driver/feature/chat/chat.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/earnings_dashboard_screen.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/presentaion/widgets/trip_details.dart';
-import 'package:taxi_go_driver/feature/notification/presentaion/notification_view.dart';
 import 'package:taxi_go_driver/feature/notification/screens/notification_screen.dart';
 import 'package:taxi_go_driver/feature/profile/profile.dart';
 import 'package:taxi_go_driver/feature/splash_screen/splash_screen.dart';
