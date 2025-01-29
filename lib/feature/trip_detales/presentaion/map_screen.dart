@@ -78,7 +78,6 @@ class MapScreenState extends State<MapScreen> {
     else if (state is PickUpUserSuccess && !context.read<MapsCubit>().onTrip) {
       Fluttertoast.showToast(msg: state.pickupUser.message!);
       context.read<MapsCubit>().startTrip();
-      context.read<MapsCubit>().accept();
 
       /// Check if the trip completed
     } else if (state is CompleteRideSuccess) {
@@ -86,12 +85,10 @@ class MapScreenState extends State<MapScreen> {
       Navigator.of(context).pushReplacementNamed(Routes.paymentDetailsRoute);
     }
 
-    /// check if arrived Nearby User
-    if (state is GetDistanceLatLngSuccess) {
-      if (state.leg.distance!.value! < 100 &&
-          !context.read<MapsCubit>().arrivedtoCustomer) {
-        context.read<MapsCubit>().arrivedToCustomer();
-      }
+    // / check if arrived Nearby User
+    if (state is PickUpUserSuccess) {
+      context.read<MapsCubit>().accept();
+      context.read<MapsCubit>().arrivedToCustomer();
     }
   }
 }

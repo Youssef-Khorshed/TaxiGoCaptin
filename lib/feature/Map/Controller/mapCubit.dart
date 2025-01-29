@@ -79,6 +79,13 @@ class MapsCubit extends Cubit<MapsState> {
     }
   }
 
+  /// clear cashed markers and polyines
+  void clearMarkerPolyines() {
+    polyLines.clear();
+    markers.clear();
+    emit(ClearMarkerPolyines());
+  }
+
   /// getCaptinPosition
   Future<void> getCaptinPosition({required String title}) async {
     try {

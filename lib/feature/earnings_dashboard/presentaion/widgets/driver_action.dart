@@ -34,6 +34,8 @@ class _DriverActionState extends State<DriverAction> {
     return BlocListener<MapsCubit, MapsState>(
       listener: (context, state) {
         if (state is AccpetRideRequestSuccess) {
+          context.read<MapsCubit>().clearMarkerPolyines();
+          context.read<MapsCubit>().captinOriginDistanceTime = null;
           Navigator.pop(context);
           Navigator.of(context).push(CupertinoPageRoute(
               builder: (_) => MapScreen(

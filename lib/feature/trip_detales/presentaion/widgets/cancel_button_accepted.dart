@@ -45,9 +45,9 @@ class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
                 onPressed: () async {
                   final cubit = context.read<MapsCubit>();
                   double distanceinKm =
-                      cubit.captinOriginDistanceTime!.distance!.value! *
-                          1.60934;
-
+                      (cubit.captinOriginDistanceTime!.distance!.value! / 1000)
+                          .toDouble();
+                  cubit.isAccepted = false;
                   cubit.completeRideRequest(
                       context: context, distanceinKm: distanceinKm);
                 },

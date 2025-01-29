@@ -88,6 +88,8 @@
   "km": "كم",
   "lang": "اللغة",
   "trip_complete":"إنهاء الرحلة",
+  "arrived_to_customer":"الوصل إلي العميل",
+  "please_arrived_to_customer":"برجاء الوصول الي العميل أولا",
   "last_30_days": "اخر 30 يوم",
   "last_7_days": "اخر 7 ايام",
   "log_in": "تسجيل الدخول",

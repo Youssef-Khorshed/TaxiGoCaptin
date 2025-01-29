@@ -1,7 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapState.dart';
@@ -38,14 +41,29 @@ class RequestButtons extends StatelessWidget {
             Expanded(
               child: CostumeButton(
                 height: 50.h,
-                text: AppLocalizations.of(context)!.to_accept,
+                text: AppLocalizations.of(context)!.arrived_to_customer,
                 textColor: AppColors.kWhite,
                 color: AppColors.kblue,
                 onPressed: () async {
-                  await context
-                      .read<MapsCubit>()
-                      .pickCustomer(context: context);
-                  context.read<MapsCubit>().arrivedToCustomer();
+                  final cubit = context.read<MapsCubit>();
+                  if (cubit.captinOriginDistanceTime != null) {
+                    int distanceinKm =
+                        cubit.captinOriginDistanceTime!.distance!.value!;
+                    log(distanceinKm.toString());
+                    if (distanceinKm <= 10) {
+                      log("yes");
+
+                      await context
+                          .read<MapsCubit>()
+                          .pickCustomer(context: context);
+                      context.read<MapsCubit>().arrivedToCustomer();
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: AppLocalizations.of(context)!
+                              .please_arrived_to_customer,
+                          backgroundColor: Colors.red.shade900);
+                    }
+                  }
                 },
               ),
             ),

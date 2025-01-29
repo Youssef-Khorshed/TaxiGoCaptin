@@ -10,7 +10,6 @@ import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/ride_complete_cubit/ride_complete_details_cubit.dart';
-import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/payments_details.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/tripe_complete_date.dart';
 
 class PaymentScreen extends StatefulWidget {

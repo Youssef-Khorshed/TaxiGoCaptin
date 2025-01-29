@@ -10,9 +10,13 @@ import 'package:taxi_go_driver/feature/Map/Data/model/rideRequestModel/cancel/ca
 import 'package:taxi_go_driver/feature/Map/Data/model/update_captin_location/update_captin_location.dart';
 import 'package:taxi_go_driver/feature/earnings_dashboard/data/models/nearby_ride_requests.dart';
 
-abstract class MapsState {}
+abstract class MapsState {
+  get updateCaptinLocation => null;
+}
 
 class MapsInitial extends MapsState {}
+
+class ClearMarkerPolyines extends MapsState {}
 
 class MapsInitialized extends MapsState {}
 
