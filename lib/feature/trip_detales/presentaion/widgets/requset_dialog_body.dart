@@ -36,20 +36,12 @@ class _RequestDialogBodyState extends State<RequestDialogBody> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Divider(),
-          // BuildAddressRow(
-          //     address: widget.nearbyRideRequest.data!.request!.addressFrom!,
-          //     iconmap: AppIcons.mapRed),
-          // BuildAddressRow(
-          //     address: widget.nearbyRideRequest.data!.request!.addressTo!,
-          //     iconmap: AppIcons.mapBlue),
-
           BuildAddressRow(
             fromAddress: widget.nearbyRideRequest.data!.request!.addressFrom!,
             fromLoccation: '',
             toAddress: widget.nearbyRideRequest.data!.request!.addressTo!,
             toLocation: '',
           ),
-
           Visibility(
             visible: cubit.isAccepted,
             child: BookingDetailsAccepted(),

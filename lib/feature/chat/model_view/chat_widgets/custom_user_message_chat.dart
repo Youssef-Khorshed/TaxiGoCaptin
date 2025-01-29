@@ -22,7 +22,7 @@ class UserMessage extends StatelessWidget {
     final isCaptain = userType == "captain";
 
     return Align(
-      alignment: isCaptain ? Alignment.centerLeft : Alignment.centerRight,
+      alignment: !isCaptain ? Alignment.centerLeft : Alignment.centerRight,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5.h),
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
@@ -38,10 +38,10 @@ class UserMessage extends StatelessWidget {
               color: AppColors.grayColor,
             ),
           ],
-          color: isCaptain ? AppColors.whiteColor : AppColors.blueColor,
+          color: isCaptain ? AppColors.blueColor : AppColors.whiteColor,
           borderRadius: BorderRadius.only(
-            bottomLeft: isCaptain ? Radius.zero : Radius.circular(16.sp),
-            bottomRight: isCaptain ? Radius.circular(16.sp) : Radius.zero,
+            bottomLeft: !isCaptain ? Radius.zero : Radius.circular(16.sp),
+            bottomRight: !isCaptain ? Radius.circular(16.sp) : Radius.zero,
             topLeft: Radius.circular(16.sp),
             topRight: Radius.circular(16.sp),
           ),
@@ -53,7 +53,7 @@ class UserMessage extends StatelessWidget {
               message,
               maxLines: 1000,
               style: AppStyles.style14BlackW500.copyWith(
-                color: isCaptain ? AppColors.blackColor : AppColors.whiteColor,
+                color: isCaptain ? AppColors.whiteColor : AppColors.blackColor,
               ),
             ),
             Padding(

@@ -41,8 +41,8 @@ class _TripeCompleteDateState extends State<TripeCompleteDate> {
             Fluttertoast.showToast(
                 msg: AppLocalizations.of(context)!
                     .the_trip_was_completed_successfully);
-            Future.delayed(const Duration(seconds: 2), () {
-              Navigator.pushNamed(context, Routes.accountScreen);
+            Future.delayed(const Duration(seconds: 1), () {
+              Navigator.pushNamed(context, Routes.homeRoute);
             });
           }
         },
@@ -51,11 +51,11 @@ class _TripeCompleteDateState extends State<TripeCompleteDate> {
             BuildAddressRow(
               rideDetails: widget.rideCompleteDetailsModel,
             ),
-            verticalSpace(30.h),
+            verticalSpace(10.h),
             PaymentsDetails(
                 rideDetails: widget.rideCompleteDetailsModel,
                 size: MediaQuery.of(context).size),
-            verticalSpace(MediaQuery.of(context).size.height * 0.2),
+            verticalSpace(10.h),
             BlocBuilder<PayAfterRideCubit, PayAfterRideState>(
               builder: (context, state) {
                 var cubit = context.read<CashAmountCubit>();
@@ -87,16 +87,14 @@ class _TripeCompleteDateState extends State<TripeCompleteDate> {
                                 Fluttertoast.showToast(
                                     msg: AppLocalizations.of(context)!
                                         .the_trip_was_completed_successfully);
-                                Future.delayed(const Duration(seconds: 2), () {
+                                Future.delayed(const Duration(seconds: 1), () {
                                   Navigator.pushNamed(
-                                    context,
-                                    Routes.accountScreen,
-                                  );
+                                      context, Routes.homeRoute);
                                 });
                               },
                         color: AppColors.kblue,
                         textColor: AppColors.kWhite,
-                        text: AppLocalizations.of(context)!.submit,
+                        text: AppLocalizations.of(context)!.payment,
                       );
               },
             ),

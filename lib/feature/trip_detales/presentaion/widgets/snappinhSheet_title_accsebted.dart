@@ -2,11 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
-import 'package:taxi_go_driver/core/Utils/assets/images.dart';
 import 'package:taxi_go_driver/core/Utils/routes/routes.dart';
 import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../core/Utils/colors/colors.dart';
 
 //import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -46,7 +44,7 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           width: 100,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
                 backgroundColor: AppColors.primaryColor.withAlpha(200),
@@ -59,24 +57,12 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
               const SizedBox(
                 width: 15,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    cutomerName,
-                    style: TextStyle(
-                        color: AppColors.kBlack,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  SvgPicture.asset(
-                    AppIcons.iconsCar1,
-                    height: 20,
-                  ),
-                ],
+              Text(
+                cutomerName,
+                style: TextStyle(
+                    color: AppColors.kBlack,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
               const Spacer(),
               Row(
@@ -92,7 +78,8 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.chat);
+                      Navigator.pushNamed(context, Routes.chat,
+                          arguments: cutomerName);
                     },
                     icon: SvgPicture.asset(
                       AppIcons.iconsMessage,

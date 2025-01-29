@@ -201,7 +201,7 @@ class MapsCubit extends Cubit<MapsState> {
         //     const ImageConfiguration(), AppImages.captinLocationImage);
 
         updateLatLngBoundPosition(
-            origin: origin, destination: destination, zoom: 12);
+            origin: origin, destination: destination, zoom: 17);
         drawPolyline(points: onSuccess.routes!.first.overviewPolyline!.points!);
         emit(DirectionsLoaded(polyLines));
       } else {
@@ -247,7 +247,7 @@ class MapsCubit extends Cubit<MapsState> {
 
   /// update place camera position for a place
   void updatePlaceCameraPosition(
-      {required LatLng place, double zoom = 13}) async {
+      {required LatLng place, double zoom = 17}) async {
     placeCameraPosition = CameraPosition(
       bearing: 0.0,
       target: LatLng(place.latitude, place.longitude),
@@ -265,7 +265,7 @@ class MapsCubit extends Cubit<MapsState> {
   void updateLatLngBoundPosition(
       {required LatLng origin,
       required LatLng destination,
-      double zoom = 13}) async {
+      double zoom = 17}) async {
     LatLngBounds bounds = _calculateBounds(origin, destination);
     CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
     await mapController.animateCamera(cameraUpdate);

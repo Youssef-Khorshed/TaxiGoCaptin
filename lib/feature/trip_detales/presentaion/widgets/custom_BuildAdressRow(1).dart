@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:taxi_go_driver/core/Utils/Network/Services/custom_parseAddress.dart';
 import 'package:taxi_go_driver/core/Utils/assets/assets.dart';
+import 'package:taxi_go_driver/core/Utils/assets/icons.dart';
 import 'package:taxi_go_driver/core/Utils/colors/colors.dart';
 import 'package:taxi_go_driver/core/Utils/spacing/vertspace.dart';
 import 'package:taxi_go_driver/feature/trip_detales/date/model/ride_complete_model/ride_complete_details_model.dart';
@@ -19,13 +20,15 @@ class BuildAddressRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Map<String, String>>(
-      future: _getFormattedAddresses(
-        fromLatitude: double.parse(rideDetails.rideRequest.latFrom),
-        fromLongitude: double.parse(rideDetails.rideRequest.lngFrom),
-        toLatitude: double.parse(rideDetails.rideRequest.latTo),
-        toLongitude: double.parse(rideDetails.rideRequest.lngTo),
-      ),
+    return FutureBuilder<RideRequest>(
+      future: getRideRequest(ride: rideDetails),
+      // _getFormattedAddresses(
+      //   fromLatitude: double.parse(rideDetails.rideRequest.latFrom),
+      //   fromLongitude: double.parse(rideDetails.rideRequest.lngFrom),
+      //   toLatitude: double.parse(rideDetails.rideRequest.latTo),
+      //   toLongitude: double.parse(rideDetails.rideRequest.lngTo),
+      // )
+
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return ListTile(
@@ -54,95 +57,126 @@ class BuildAddressRow extends StatelessWidget {
           );
         }
 
-        final fromAddress = snapshot.data!['fromAddress']!;
-        final fromCity = snapshot.data!['fromCity']!;
-        final toAddress = snapshot.data!['toAddress']!;
-        final toCity = snapshot.data!['toCity']!;
+        final fromAddress = snapshot.data!.addressFrom;
+        final fromCity =
+            "${parseAddress(fromAddress)['street_number']} ${parseAddress(fromAddress)['street_name']} ${parseAddress(fromAddress)['state']}";
+        final toAddress = snapshot.data!.addressTo;
+        final toCity =
+            "${parseAddress(toAddress)['street_number']} ${parseAddress(fromAddress)['street_name']} ${parseAddress(fromAddress)['state']}";
+        ;
 
-        return ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0.sp),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TripDetailsMap(
                 address: fromAddress,
                 location: fromCity,
-                icon: Assets.iconsMapRed,
+                icon: AppIcons.iconsMapRed,
+              ),
+              Text(
+                '${rideDetails.distance.toStringAsFixed(1)} ${AppLocalizations.of(context)!.km}',
+                style: TextStyle(fontSize: 15.sp),
               ),
               TripDetailsMap(
                 address: toAddress,
                 location: toCity,
-                icon: Assets.iconsMapBlue,
+                icon: AppIcons.iconsMapBlue,
               ),
             ],
           ),
-          trailing: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: "${rideDetails.distance} ",
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                    color: Colors.black, // اللون الأسود للمسافة
-                  ),
-                ),
-                TextSpan(
-                  text: AppLocalizations.of(context)!.km,
-                  style: TextStyle(
-                    fontSize: 15.sp,
-                    color: Colors.grey, // اللون الرمادي لـ "km"
-                  ),
-                ),
-              ],
-            ),
-          ),
         );
+
+        //  ListTile(
+        //   title: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       TripDetailsMap(
+        //         address: fromAddress,
+        //         location: fromCity,
+        //         icon: Assets.iconsMapRed,
+        //       ),
+        //       TripDetailsMap(
+        //         address: toAddress,
+        //         location: toCity,
+        //         icon: Assets.iconsMapBlue,
+        //       ),
+        //     ],
+        //   ),
+        //   trailing: RichText(
+        //     text: TextSpan(
+        //       children: [
+        //         TextSpan(
+        //           text: "${rideDetails.distance} ",
+        //           style: TextStyle(
+        //             fontSize: 15.sp,
+        //             color: Colors.black, // اللون الأسود للمسافة
+        //           ),
+        //         ),
+        //         TextSpan(
+        //           text: AppLocalizations.of(context)!.km,
+        //           style: TextStyle(
+        //             fontSize: 15.sp,
+        //             color: Colors.grey, // اللون الرمادي لـ "km"
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // );
       },
     );
   }
 
-  Future<Map<String, String>> _getFormattedAddresses({
-    required double fromLatitude,
-    required double fromLongitude,
-    required double toLatitude,
-    required double toLongitude,
-  }) async {
-    try {
-      final fromAddress =
-          await _getAddress(33.347690885526916, 43.708672016474615);
-      final toAddress =
-          await _getAddress(33.31513360473233, 43.730129688187574);
+  // Future<Map<String, String>> _getFormattedAddresses({
+  //   required double fromLatitude,
+  //   required double fromLongitude,
+  //   required double toLatitude,
+  //   required double toLongitude,
+  // }) async {
+  //   try {
+  //     final fromAddress =
+  //         await  rideDetails.rideRequest.addressFrom;
+  //     final toAddress =
+  //         await rideDetails.rideRequest.addressFrom;
 
-      return {
-        'fromAddress': fromAddress['address']!,
-        'fromCity': fromAddress['city']!,
-        'toAddress': toAddress['address']!,
-        'toCity': toAddress['city']!,
-      };
-    } catch (e) {
-      throw Exception("فشل في جلب العناوين: $e");
-    }
-  }
+  //     return {
+  //       'fromAddress': fromAddress['address']!,
+  //       'fromCity': fromAddress['city']!,
+  //       'toAddress': toAddress['address']!,
+  //       'toCity': toAddress['city']!,
+  //     };
 
-  Future<Map<String, String>> _getAddress(
-      double latitude, double longitude) async {
-    final address = await GeoCode()
-        .reverseGeocoding(latitude: latitude, longitude: longitude);
-    String _getCity(String city) {
-      if (city.isEmpty) return '';
+  //   } catch (e) {
+  //     throw Exception("فشل في جلب العناوين: $e");
+  //   }
+  // }
 
-      List<String> parts = city.split(' ');
-      if (parts.length > 2) {
-        return '${parts[0]} ${parts[1]}';
-      }
+  // Future<Map<String, String>> _getAddress(
+  //     double latitude, double longitude) async {
+  //   final address = await GeoCode()
+  //       .reverseGeocoding(latitude: latitude, longitude: longitude);
+  //   String _getCity(String city) {
+  //     if (city.isEmpty) return '';
 
-      return city;
-    }
+  //     List<String> parts = city.split(' ');
+  //     if (parts.length > 2) {
+  //       return '${parts[0]} ${parts[1]}';
+  //     }
 
-    return {
-      'address': address.streetAddress ?? 'streetAddress',
-      'city': _getCity(address.city ?? 'city'),
-    };
-  }
+  //     return city;
+  //   }
+
+  //   return {
+  //     'address': address.streetAddress ?? 'streetAddress',
+  //     'city': _getCity(address.city ?? 'city'),
+  //   };
+  // }
+}
+
+Future<RideRequest> getRideRequest({required RideCompleteDetailsModel ride}) {
+  return Future.value(ride.rideRequest);
 }
 
 Widget simmerWidget(context) {

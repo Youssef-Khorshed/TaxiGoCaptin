@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_driver/feature/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_driver/feature/account_screen/presentaion/widgets/costume_bottun.dart';
 import '../../../../core/Utils/colors/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CancelButtonAccepted extends StatefulWidget {
   const CancelButtonAccepted({
@@ -30,7 +31,6 @@ class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
         onTap: () {
           setState(() {
             _isAccepted = !_isAccepted;
-            // log('Cancellation state: $_isAccepted');
           });
           widget.onCancel();
         },
@@ -39,7 +39,7 @@ class _CancelButtonAcceptedState extends State<CancelButtonAccepted> {
             Expanded(
               child: CostumeButton(
                 height: 50.h,
-                text: "Compelte Trip",
+                text: AppLocalizations.of(context)!.trip_complete,
                 textColor: AppColors.kWhite,
                 color: AppColors.kblue,
                 onPressed: () async {

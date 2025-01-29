@@ -9,9 +9,8 @@ import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/chat/model_view/manger/chat/chat_cubit.dart';
 
 class UserNameContainer extends StatelessWidget {
-  const UserNameContainer({super.key, required this.name, required this.image});
+  const UserNameContainer({super.key, required this.name});
   final String name;
-  final String image;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,17 +30,13 @@ class UserNameContainer extends StatelessWidget {
             ),
           ),
           horizontalSpace(5),
-          Container(
-            width: 40.w,
-            height: 40.h,
-            decoration: BoxDecoration(
-              color: const Color(0xff969696),
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(image),
-                fit: BoxFit.contain,
-              ),
+          CircleAvatar(
+            backgroundColor: AppColors.primaryColor.withAlpha(200),
+            child: Text(
+              name[0].toUpperCase(),
+              style: AppStyles.style24WhiteW500,
             ),
+            radius: 35,
           ),
           horizontalSpace(10),
           Column(

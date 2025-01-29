@@ -35,9 +35,9 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
         var cubit = context.read<MapsCubit>();
         return SnappingSheet(
           lockOverflowDrag: false,
-          snappingPositions: const [
+          snappingPositions: [
             SnappingPosition.pixels(
-              positionPixels: 400,
+              positionPixels: cubit.isAccepted ? 500 : 400,
               snappingCurve: Curves.elasticOut,
               snappingDuration: Duration(milliseconds: 1750),
             ),
@@ -47,14 +47,14 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
               snappingDuration: Duration(seconds: 1),
               grabbingContentOffset: GrabbingContentOffset.top,
             ),
-            SnappingPosition.factor(
-              positionFactor: 0.65,
+            SnappingPosition.pixels(
+              positionPixels: cubit.isAccepted ? 500 : 400,
               snappingCurve: Curves.bounceOut,
               snappingDuration: Duration(seconds: 1),
               grabbingContentOffset: GrabbingContentOffset.bottom,
             ),
           ], // Your main screen content goes here
-          grabbingHeight: cubit.isAccepted ? 120 : 105,
+          grabbingHeight: cubit.isAccepted ? 80 : 105,
           // Start fully closed
           grabbing: Container(
             color: AppColors.kBackgroundColor,
@@ -86,7 +86,7 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
             children: [
               Center(
                 child: Container(
-                  height: MediaQuery.of(context).size.height * .8,
+                  height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: CustomMap(
                     nearbyRideRequest: widget.nearbyRideRequest,

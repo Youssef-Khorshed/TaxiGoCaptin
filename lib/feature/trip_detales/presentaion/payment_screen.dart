@@ -10,6 +10,7 @@ import 'package:taxi_go_driver/core/Utils/text_styles/styles.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_driver/feature/APP/custom_widgets/custom_loading.dart';
 import 'package:taxi_go_driver/feature/trip_detales/controllers/ride_complete_cubit/ride_complete_details_cubit.dart';
+import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/payments_details.dart';
 import 'package:taxi_go_driver/feature/trip_detales/presentaion/widgets/tripe_complete_date.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kWhite,
-      body: PaymentsDetailsBlockBuilder(),
+      body: SafeArea(child: PaymentsDetailsBlockBuilder()),
     );
   }
 }
@@ -52,26 +53,34 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                     lottie: AppLottie.errorFailure,
                   )
                 : state is RideCompleteDetailsSuccess
-                    ? ListView(
-                        shrinkWrap: true,
-                        padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width * 0.05),
-                        children: [
-                          verticalSpace(50),
-                          Center(
-                            child: AutoSizeText(
-                              AppLocalizations.of(context)!.payment,
-                              style: AppStyles.style18BlackW500,
-                            ),
+                    ? Padding(
+                        padding: EdgeInsets.only(
+                            right: 10.0.w,
+                            left: 10.w,
+                            bottom: MediaQuery.of(context).viewInsets.bottom),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              verticalSpace(10),
+                              Center(
+                                child: AutoSizeText(
+                                  AppLocalizations.of(context)!.payment,
+                                  style: AppStyles.style18BlackW500,
+                                ),
+                              ),
+                              verticalSpace(10),
+                              TripeCompleteDate(
+                                rideCompleteDetailsModel:
+                                    state.rideCompleteDetailsModel,
+                              ),
+                              // verticalSpace(10.h),
+                              // PaymentsDetails(
+                              //     size: MediaQuery.of(context).size,
+                              //     rideDetails: state.rideCompleteDetailsModel)
+                            ],
                           ),
-                          verticalSpace(10),
-                          TripeCompleteDate(
-                            rideCompleteDetailsModel:
-                                state.rideCompleteDetailsModel,
-                          ),
-                          verticalSpace(25.h)
-                        ],
+                        ),
                       )
                     : Container();
       },

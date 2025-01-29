@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../../core/Utils/colors/colors.dart';
 
 class SnappingSheetTitleRequest extends StatelessWidget {
   const SnappingSheetTitleRequest({
@@ -13,7 +12,7 @@ class SnappingSheetTitleRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
         // Padding(
@@ -21,10 +20,9 @@ class SnappingSheetTitleRequest extends StatelessWidget {
         //       left: width * 0.3, right: width * 0.3, bottom: 25),
         //   child: const Divider(
         //     height: 25,
-        //     thickness: 7,
+        //     thickness: 2,
         //     color: AppColors.kgrey,
         //   ),
-
         // ),
 
         Text(

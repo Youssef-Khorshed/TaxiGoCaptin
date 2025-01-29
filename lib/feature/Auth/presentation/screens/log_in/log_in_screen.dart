@@ -124,7 +124,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         AutovalidateMode.disabled;
                     LoginCubit.get(context).loginPhoneController.clear();
                     LoginCubit.get(context).loginPassController.clear();
-                    Navigator.pushReplacementNamed(context, Routes.homeRoute);
+                    Navigator.pushReplacementNamed(context, Routes.otp);
                   } else if (state is LoginInError) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(state.errorMessage)));

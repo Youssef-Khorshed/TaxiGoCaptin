@@ -39,7 +39,7 @@ class MapScreenState extends State<MapScreen> {
         checkMapStates(state, context);
       },
       child: Scaffold(
-        backgroundColor: AppColors.kblue,
+        backgroundColor: AppColors.whiteColor,
         body: Stack(
           children: [
             CustomSnappingSheet(
