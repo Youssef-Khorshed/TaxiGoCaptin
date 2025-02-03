@@ -1,7 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Constants {
-  static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
+  static const String baseUrl = '';
   static const String profileEndPoint = "$baseUrl/profile";
 
   ///Test
@@ -10,8 +10,8 @@ class Constants {
   static const String saveTripEndPoint = "$baseUrl/profile";
   static const String addFavTripEndPoint = "$baseUrl/profile";
   static const String captinToken =
-      '32|8t9ccIYshCZ3jBx8ITjqgtOC1FNgbA8kHAbCA5Rs23b9d158';
-  static const String mapToken = 'AIzaSyB3SWKn_1sA3pDumna7B9no7LAo21qC8OQ';
+      '';
+  static const String mapToken = '';
 
   static String kToken = "kToken";
 
